@@ -12,6 +12,7 @@ interface RankingCardProps {
   minInvestment: string;
   nisaSupport: boolean;
   highlight?: string;
+  affiliateUrl: string;
 }
 
 const RankingCard = ({
@@ -22,6 +23,7 @@ const RankingCard = ({
   minInvestment,
   nisaSupport,
   highlight,
+  affiliateUrl,
 }: RankingCardProps) => {
   const rankColors = {
     1: "gradient-primary text-white",
@@ -77,9 +79,19 @@ const RankingCard = ({
           </Badge>
         )}
 
-        <Button className="w-full" size="lg">
-          口座開設はこちら
-          <ExternalLink className="ml-2 h-4 w-4" />
+        <Button 
+          className="w-full" 
+          size="lg"
+          asChild
+        >
+          <a 
+            href={affiliateUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            口座開設はこちら
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </a>
         </Button>
       </CardContent>
     </Card>

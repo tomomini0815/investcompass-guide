@@ -22,6 +22,7 @@ interface SecurityCompany {
   foreignStocks: boolean;
   points: string;
   rating: number;
+  affiliateUrl: string;
 }
 
 const ComparisonTable = () => {
@@ -39,6 +40,7 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "Tポイント・Vポイント",
       rating: 5,
+      affiliateUrl: "https://www.sbisec.co.jp/",
     },
     {
       name: "楽天証券",
@@ -50,6 +52,7 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "楽天ポイント",
       rating: 5,
+      affiliateUrl: "https://www.rakuten-sec.co.jp/",
     },
     {
       name: "マネックス証券",
@@ -61,6 +64,7 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "マネックスポイント",
       rating: 4,
+      affiliateUrl: "https://www.monex.co.jp/",
     },
     {
       name: "松井証券",
@@ -72,6 +76,7 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "松井証券ポイント",
       rating: 4,
+      affiliateUrl: "https://www.matsui.co.jp/",
     },
     {
       name: "auカブコム証券",
@@ -83,6 +88,7 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "Pontaポイント",
       rating: 4,
+      affiliateUrl: "https://kabu.com/",
     },
   ];
 
@@ -194,9 +200,15 @@ const ComparisonTable = () => {
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <Button size="sm" className="whitespace-nowrap">
-                      詳細を見る
-                      <ExternalLink className="ml-1 h-3 w-3" />
+                    <Button size="sm" className="whitespace-nowrap" asChild>
+                      <a 
+                        href={company.affiliateUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        詳細を見る
+                        <ExternalLink className="ml-1 h-3 w-3" />
+                      </a>
                     </Button>
                   </TableCell>
                 </TableRow>

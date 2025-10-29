@@ -66,6 +66,7 @@ const Index = () => {
       minInvestment: "100円〜",
       nisaSupport: true,
       highlight: "総合1位",
+      affiliateUrl: "https://www.sbisec.co.jp/",
     },
     {
       rank: 2,
@@ -79,6 +80,7 @@ const Index = () => {
       minInvestment: "100円〜",
       nisaSupport: true,
       highlight: "ポイント還元No.1",
+      affiliateUrl: "https://www.rakuten-sec.co.jp/",
     },
     {
       rank: 3,
@@ -92,6 +94,7 @@ const Index = () => {
       minInvestment: "100円〜",
       nisaSupport: true,
       highlight: "米国株取引におすすめ",
+      affiliateUrl: "https://www.monex.co.jp/",
     },
   ];
 
