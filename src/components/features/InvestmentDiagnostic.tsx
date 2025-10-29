@@ -90,35 +90,35 @@ const InvestmentDiagnostic = () => {
   if (result) {
     const recommendation = getRecommendation();
     return (
-      <section id="診断" className="py-16 bg-muted/30">
+      <section id="診断" className="py-8 sm:py-12 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <Card className="max-w-2xl mx-auto shadow-lg">
-            <CardHeader className="text-center">
-              <div className="mx-auto w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                <CheckCircle2 className="h-8 w-8 text-secondary" />
+            <CardHeader className="text-center px-4 sm:px-6">
+              <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                <CheckCircle2 className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />
               </div>
-              <CardTitle className="text-2xl">あなたにおすすめの投資方法</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">あなたにおすすめの投資方法</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
               <div className="text-center">
-                <h3 className="text-xl font-bold text-primary mb-2">{recommendation.title}</h3>
-                <p className="text-muted-foreground">{recommendation.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-primary mb-2">{recommendation.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground">{recommendation.description}</p>
               </div>
 
               <div className="space-y-3">
                 {recommendation.features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                  <div key={index} className="flex items-start gap-2 sm:gap-3">
                     <CheckCircle2 className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
+                    <span className="text-sm sm:text-base">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={handleReset} className="flex-1">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button variant="outline" onClick={handleReset} className="flex-1 w-full">
                   もう一度診断する
                 </Button>
-                <Button className="flex-1">
+                <Button className="flex-1 w-full">
                   証券会社を比較する
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -131,27 +131,27 @@ const InvestmentDiagnostic = () => {
   }
 
   return (
-    <section id="診断" className="py-16 bg-muted/30">
+    <section id="診断" className="py-8 sm:py-12 md:py-16 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">あなたに最適な投資方法を診断</h2>
-          <p className="text-muted-foreground">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">あなたに最適な投資方法を診断</h2>
+          <p className="text-sm sm:text-base text-muted-foreground px-4">
             3つの質問に答えて、あなたに合った投資スタイルを見つけましょう
           </p>
         </div>
 
         <Card className="max-w-2xl mx-auto shadow-lg">
-          <CardHeader>
-            <CardTitle>質問 {step + 1} / {questions.length}</CardTitle>
-            <CardDescription>{questions[step].question}</CardDescription>
+          <CardHeader className="px-4 sm:px-6">
+            <CardTitle className="text-lg sm:text-xl">質問 {step + 1} / {questions.length}</CardTitle>
+            <CardDescription className="text-sm sm:text-base">{questions[step].question}</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
             <RadioGroup value={answers[step]} onValueChange={handleAnswer}>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {questions[step].options.map((option) => (
-                  <div key={option.value} className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                  <div key={option.value} className="flex items-center space-x-2 sm:space-x-3 p-3 sm:p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
                     <RadioGroupItem value={option.value} id={option.value} />
-                    <Label htmlFor={option.value} className="flex-1 cursor-pointer">
+                    <Label htmlFor={option.value} className="flex-1 cursor-pointer text-sm sm:text-base">
                       {option.label}
                     </Label>
                   </div>
@@ -159,12 +159,12 @@ const InvestmentDiagnostic = () => {
               </div>
             </RadioGroup>
 
-            <div className="flex justify-between items-center pt-4">
-              <div className="flex gap-1">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4">
+              <div className="flex gap-1 order-2 sm:order-1">
                 {questions.map((_, index) => (
                   <div
                     key={index}
-                    className={`h-2 w-16 rounded-full transition-colors ${
+                    className={`h-2 w-12 sm:w-16 rounded-full transition-colors ${
                       index <= step ? "bg-primary" : "bg-muted"
                     }`}
                   />
@@ -173,7 +173,7 @@ const InvestmentDiagnostic = () => {
               <Button
                 onClick={handleNext}
                 disabled={!answers[step]}
-                className="gap-2"
+                className="gap-2 w-full sm:w-auto order-1 sm:order-2"
               >
                 {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
                 <ArrowRight className="h-4 w-4" />

@@ -116,83 +116,84 @@ const ComparisonTable = () => {
 
   return (
     <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">証券会社詳細比較表</CardTitle>
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-xl sm:text-2xl">証券会社詳細比較表</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[200px]">証券会社</TableHead>
-                <TableHead>手数料</TableHead>
-                <TableHead>最低投資額</TableHead>
-                <TableHead className="text-center">NISA</TableHead>
-                <TableHead className="text-center">つみたてNISA</TableHead>
-                <TableHead 
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleSort("ipoCount")}
-                >
-                  <div className="flex items-center gap-1">
-                    IPO実績
-                    {sortBy === "ipoCount" && (
-                      sortOrder === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
-                    )}
-                  </div>
-                </TableHead>
-                <TableHead className="text-center">外国株</TableHead>
-                <TableHead>ポイント</TableHead>
-                <TableHead 
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleSort("rating")}
-                >
-                  <div className="flex items-center gap-1">
-                    評価
-                    {sortBy === "rating" && (
-                      sortOrder === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
-                    )}
-                  </div>
-                </TableHead>
-                <TableHead className="text-center">口座開設</TableHead>
-              </TableRow>
-            </TableHeader>
+      <CardContent className="p-0">
+        <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="inline-block min-w-full align-middle px-4 sm:px-6">
+            <Table className="min-w-[800px]">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-[140px] sm:min-w-[180px] text-xs sm:text-sm">証券会社</TableHead>
+                  <TableHead className="min-w-[80px] sm:min-w-[100px] text-xs sm:text-sm">手数料</TableHead>
+                  <TableHead className="min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm">最低投資額</TableHead>
+                  <TableHead className="text-center min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm">NISA</TableHead>
+                  <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm">つみたてNISA</TableHead>
+                  <TableHead 
+                    className="cursor-pointer hover:bg-muted/50 min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm"
+                    onClick={() => handleSort("ipoCount")}
+                  >
+                    <div className="flex items-center gap-1">
+                      IPO実績
+                      {sortBy === "ipoCount" && (
+                        sortOrder === "asc" ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
+                      )}
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-center min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm">外国株</TableHead>
+                  <TableHead className="min-w-[120px] sm:min-w-[140px] text-xs sm:text-sm">ポイント</TableHead>
+                  <TableHead 
+                    className="cursor-pointer hover:bg-muted/50 min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm"
+                    onClick={() => handleSort("rating")}
+                  >
+                    <div className="flex items-center gap-1">
+                      評価
+                      {sortBy === "rating" && (
+                        sortOrder === "asc" ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
+                      )}
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-center min-w-[100px] sm:min-w-[120px] text-xs sm:text-sm">口座開設</TableHead>
+                </TableRow>
+              </TableHeader>
             <TableBody>
               {sortedCompanies.map((company) => (
                 <TableRow key={company.name} className="hover:bg-muted/50">
-                  <TableCell className="font-semibold">{company.name}</TableCell>
-                  <TableCell>{company.commission}</TableCell>
-                  <TableCell>{company.minInvestment}</TableCell>
+                  <TableCell className="font-semibold text-xs sm:text-sm">{company.name}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{company.commission}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{company.minInvestment}</TableCell>
                   <TableCell className="text-center">
                     {company.nisaSupport ? (
-                      <Check className="h-5 w-5 text-secondary mx-auto" />
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-secondary mx-auto" />
                     ) : (
-                      <X className="h-5 w-5 text-muted-foreground mx-auto" />
+                      <X className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground mx-auto" />
                     )}
                   </TableCell>
                   <TableCell className="text-center">
                     {company.tsumitateNisa ? (
-                      <Check className="h-5 w-5 text-secondary mx-auto" />
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-secondary mx-auto" />
                     ) : (
-                      <X className="h-5 w-5 text-muted-foreground mx-auto" />
+                      <X className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground mx-auto" />
                     )}
                   </TableCell>
                   <TableCell className="text-center">
-                    <Badge variant="secondary">{company.ipoCount}社</Badge>
+                    <Badge variant="secondary" className="text-xs">{company.ipoCount}社</Badge>
                   </TableCell>
                   <TableCell className="text-center">
                     {company.foreignStocks ? (
-                      <Check className="h-5 w-5 text-secondary mx-auto" />
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-secondary mx-auto" />
                     ) : (
-                      <X className="h-5 w-5 text-muted-foreground mx-auto" />
+                      <X className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground mx-auto" />
                     )}
                   </TableCell>
-                  <TableCell className="text-sm">{company.points}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{company.points}</TableCell>
                   <TableCell>
                     <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <div
                           key={i}
-                          className={`h-4 w-4 rounded-sm ${
+                          className={`h-3 w-3 sm:h-4 sm:w-4 rounded-sm ${
                             i < company.rating ? "bg-accent" : "bg-muted"
                           }`}
                         />
@@ -200,13 +201,14 @@ const ComparisonTable = () => {
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <Button size="sm" className="whitespace-nowrap" asChild>
+                    <Button size="sm" className="whitespace-nowrap text-xs px-2 sm:px-4" asChild>
                       <a 
                         href={company.affiliateUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
-                        詳細を見る
+                        <span className="hidden sm:inline">詳細を見る</span>
+                        <span className="sm:hidden">詳細</span>
                         <ExternalLink className="ml-1 h-3 w-3" />
                       </a>
                     </Button>
@@ -215,7 +217,11 @@ const ComparisonTable = () => {
               ))}
             </TableBody>
           </Table>
+          </div>
         </div>
+        <p className="text-xs text-muted-foreground text-center mt-4 px-4 sm:hidden">
+          ← 横にスクロールして全項目を確認できます →
+        </p>
       </CardContent>
     </Card>
   );

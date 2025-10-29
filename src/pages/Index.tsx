@@ -137,14 +137,14 @@ const Index = () => {
         <InvestmentDiagnostic />
 
         {/* Categories */}
-        <section className="py-16 container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">投資カテゴリーから探す</h2>
-            <p className="text-muted-foreground">
+        <section className="py-8 sm:py-12 md:py-16 container mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">投資カテゴリーから探す</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-4">
               あなたの興味のある投資商品を選んで、詳しく学びましょう
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {categories.map((category, index) => (
               <div key={category.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CategoryCard {...category} />
@@ -154,15 +154,15 @@ const Index = () => {
         </section>
 
         {/* Securities Ranking */}
-        <section className="py-16 bg-muted/30">
+        <section className="py-8 sm:py-12 md:py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">証券会社おすすめランキング</h2>
-              <p className="text-muted-foreground">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">証券会社おすすめランキング</h2>
+              <p className="text-sm sm:text-base text-muted-foreground px-4">
                 人気の証券会社を徹底比較。あなたに最適な証券会社を見つけましょう
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
               {rankings.map((ranking) => (
                 <RankingCard key={ranking.rank} {...ranking} />
               ))}
@@ -171,14 +171,14 @@ const Index = () => {
         </section>
 
         {/* Popular Articles */}
-        <section className="py-16 container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">人気の投資ガイド記事</h2>
-            <p className="text-muted-foreground">
+        <section className="py-8 sm:py-12 md:py-16 container mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">人気の投資ガイド記事</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-4">
               投資の基礎から実践まで、役立つ情報をお届けします
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {articles.map((article) => (
               <ArticleCard key={article.id} {...article} />
             ))}

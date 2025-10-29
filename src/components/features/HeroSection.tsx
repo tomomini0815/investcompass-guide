@@ -23,32 +23,32 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-20 md:py-32">
+      <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 lg:py-32">
         <div className="max-w-3xl animate-fade-in-up">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
             あなたの投資を<br />
             成功に導く完全ガイド
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-8 leading-relaxed">
             投資初心者から中級者まで。株式投資、NISA、iDeCo、仮想通貨など、
             あらゆる投資商品を徹底解説。信頼できる情報で、あなたの資産形成をサポートします。
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12">
             <Button 
               size="lg" 
-              className="bg-accent hover:bg-accent-hover text-white text-lg px-8 py-6 shadow-xl" 
+              className="bg-accent hover:bg-accent-hover text-white text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 shadow-xl w-full sm:w-auto" 
               asChild
             >
               <Link to="/#診断">
                 投資診断を始める
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
               </Link>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
-              className="bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm text-lg px-8 py-6" 
+              className="bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 w-full sm:w-auto" 
               asChild
             >
               <Link to="/comparison">証券会社を比較する</Link>
@@ -56,16 +56,16 @@ const HeroSection = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm mb-2">
-                  <stat.icon className="h-6 w-6 text-white" />
+                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-sm mb-2">
+                  <stat.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">
+                <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-white/80">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-white/80">{stat.label}</div>
               </div>
             ))}
           </div>
