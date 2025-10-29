@@ -1,0 +1,189 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+const InvestmentDiagnostic = () => {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [result, setResult] = useState<string | null>(null);
+
+  const questions = [
+    {
+      question: "投資経験はどのくらいありますか?",
+      options: [
+        { value: "beginner", label: "未経験・初心者" },
+        { value: "intermediate", label: "1〜3年程度" },
+        { value: "advanced", label: "3年以上" },
+      ],
+    },
+    {
+      question: "投資の主な目的は何ですか?",
+      options: [
+        { value: "retirement", label: "老後資金の準備" },
+        { value: "wealth", label: "資産を増やしたい" },
+        { value: "education", label: "教育資金の準備" },
+      ],
+    },
+    {
+      question: "リスクに対する考え方は?",
+      options: [
+        { value: "conservative", label: "安定重視・リスク回避" },
+        { value: "moderate", label: "バランス型" },
+        { value: "aggressive", label: "リターン重視・リスク許容" },
+      ],
+    },
+  ];
+
+  const getRecommendation = () => {
+    if (answers[0] === "beginner") {
+      if (answers[2] === "conservative") {
+        return {
+          title: "つみたてNISA + インデックス投資",
+          description: "初心者で安定志向のあなたには、つみたてNISAでインデックスファンドへの積立投資がおすすめです。",
+          features: ["月100円から始められる", "非課税枠を活用", "長期分散投資でリスク軽減"],
+        };
+      }
+      return {
+        title: "NISA + バランス型投資信託",
+        description: "初心者のあなたには、NISAを活用したバランス型投資信託がおすすめです。",
+        features: ["年120万円の非課税枠", "株式と債券のバランス投資", "プロによる運用"],
+      };
+    }
+    
+    if (answers[2] === "aggressive") {
+      return {
+        title: "個別株投資 + 成長株戦略",
+        description: "積極的なあなたには、成長性の高い個別株への投資がおすすめです。",
+        features: ["高いリターンを狙える", "企業分析スキルが身につく", "配当金も期待できる"],
+      };
+    }
+
+    return {
+      title: "NISA + 投資信託",
+      description: "バランスの取れた投資スタイルで、着実に資産を増やしましょう。",
+      features: ["非課税のメリット", "分散投資でリスク管理", "手間をかけずに運用"],
+    };
+  };
+
+  const handleAnswer = (value: string) => {
+    setAnswers({ ...answers, [step]: value });
+  };
+
+  const handleNext = () => {
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      const recommendation = getRecommendation();
+      setResult(recommendation.title);
+    }
+  };
+
+  const handleReset = () => {
+    setStep(0);
+    setAnswers({});
+    setResult(null);
+  };
+
+  if (result) {
+    const recommendation = getRecommendation();
+    return (
+      <section id="診断" className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-2xl mx-auto shadow-lg">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle2 className="h-8 w-8 text-secondary" />
+              </div>
+              <CardTitle className="text-2xl">あなたにおすすめの投資方法</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-primary mb-2">{recommendation.title}</h3>
+                <p className="text-muted-foreground">{recommendation.description}</p>
+              </div>
+
+              <div className="space-y-3">
+                {recommendation.features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-secondary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-3">
+                <Button variant="outline" onClick={handleReset} className="flex-1">
+                  もう一度診断する
+                </Button>
+                <Button className="flex-1">
+                  証券会社を比較する
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="診断" className="py-16 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">あなたに最適な投資方法を診断</h2>
+          <p className="text-muted-foreground">
+            3つの質問に答えて、あなたに合った投資スタイルを見つけましょう
+          </p>
+        </div>
+
+        <Card className="max-w-2xl mx-auto shadow-lg">
+          <CardHeader>
+            <CardTitle>質問 {step + 1} / {questions.length}</CardTitle>
+            <CardDescription>{questions[step].question}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <RadioGroup value={answers[step]} onValueChange={handleAnswer}>
+              <div className="space-y-3">
+                {questions[step].options.map((option) => (
+                  <div key={option.value} className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                    <RadioGroupItem value={option.value} id={option.value} />
+                    <Label htmlFor={option.value} className="flex-1 cursor-pointer">
+                      {option.label}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+            </RadioGroup>
+
+            <div className="flex justify-between items-center pt-4">
+              <div className="flex gap-1">
+                {questions.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-2 w-16 rounded-full transition-colors ${
+                      index <= step ? "bg-primary" : "bg-muted"
+                    }`}
+                  />
+                ))}
+              </div>
+              <Button
+                onClick={handleNext}
+                disabled={!answers[step]}
+                className="gap-2"
+              >
+                {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+};
+
+export default InvestmentDiagnostic;

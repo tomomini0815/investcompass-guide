@@ -1,0 +1,62 @@
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
+
+interface ArticleCardProps {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+  date: string;
+  thumbnail?: string;
+}
+
+const ArticleCard = ({
+  id,
+  title,
+  excerpt,
+  category,
+  readTime,
+  date,
+  thumbnail,
+}: ArticleCardProps) => {
+  return (
+    <Link to={`/guide/${id}`}>
+      <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer overflow-hidden">
+        {thumbnail && (
+          <div className="h-48 overflow-hidden bg-muted">
+            <img
+              src={thumbnail}
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+        )}
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between mb-2">
+            <Badge variant="secondary">{category}</Badge>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <Clock className="h-3 w-3" />
+              {readTime}
+            </div>
+          </div>
+          <h3 className="font-bold text-lg leading-tight line-clamp-2">{title}</h3>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground line-clamp-3 mb-3">{excerpt}</p>
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <span>{date}</span>
+            <div className="flex items-center gap-1">
+              <TrendingUp className="h-3 w-3" />
+              <span>人気記事</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+};
+
+export default ArticleCard;
