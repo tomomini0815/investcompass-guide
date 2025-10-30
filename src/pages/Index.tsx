@@ -6,6 +6,7 @@ import CategoryCard from "@/components/features/CategoryCard";
 import RankingCard from "@/components/features/RankingCard";
 import ArticleCard from "@/components/features/ArticleCard";
 import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins } from "lucide-react";
+import { useState } from "react";
 
 const Index = () => {
   const categories = [
@@ -58,12 +59,12 @@ const Index = () => {
       rank: 1,
       name: "SBI証券",
       features: [
-        "国内株式売買手数料が業界最安水準",
+        "国内株式・米国株式手数料が業界最安水準（0円）",
         "取扱商品が豊富で初心者にも最適",
-        "Tポイントで投資が可能",
+        "Tポイント・Vポイントで投資が可能",
       ],
-      commission: "0円〜",
-      minInvestment: "100円〜",
+      commission: "国内株式:0円/米国株式:0円",
+      minInvestment: "投資信託:100円〜",
       nisaSupport: true,
       highlight: "総合1位",
       affiliateUrl: "https://www.sbisec.co.jp/",
@@ -76,8 +77,8 @@ const Index = () => {
         "取引ツールが使いやすい",
         "楽天銀行との連携でお得",
       ],
-      commission: "0円〜",
-      minInvestment: "100円〜",
+      commission: "国内株式:0円/米国株式:0.495%",
+      minInvestment: "投資信託:100円〜",
       nisaSupport: true,
       highlight: "ポイント還元No.1",
       affiliateUrl: "https://www.rakuten-sec.co.jp/",
@@ -88,13 +89,105 @@ const Index = () => {
       features: [
         "米国株の取扱銘柄数が豊富",
         "投資情報・レポートが充実",
-        "クレカ積立で1.1%ポイント還元",
+        "dポイントで1.1%ポイント還元",
       ],
-      commission: "0円〜",
-      minInvestment: "100円〜",
+      commission: "国内株式:55円〜/米国株式:無料キャッシュバック",
+      minInvestment: "投資信託:100円〜",
       nisaSupport: true,
       highlight: "米国株取引におすすめ",
       affiliateUrl: "https://www.monex.co.jp/",
+    },
+  ];
+
+  // 国内暗号資産取引所ランキング
+  const domesticCryptoExchanges = [
+    {
+      rank: 1,
+      name: "GMOコイン",
+      features: [
+        "入金・出金・送金手数料が無料",
+        "国内最多の暗号資産取り扱い",
+        "初心者から上級者まで利用可能",
+      ],
+      commission: "取引手数料:無料〜0.15%",
+      minInvestment: "1円〜",
+      nisaSupport: false,
+      highlight: "手数料最安",
+      affiliateUrl: "https://coin.z.com/jp/",
+    },
+    {
+      rank: 2,
+      name: "Coincheck",
+      features: [
+        "ビットコイン取引所手数料が無料",
+        "500円から始められる",
+        "日本円入出金に対応",
+      ],
+      commission: "入金:770円〜/出金:407円",
+      minInvestment: "500円〜",
+      nisaSupport: false,
+      highlight: "初心者向け",
+      affiliateUrl: "https://coincheck.com/ja/",
+    },
+    {
+      rank: 3,
+      name: "bitFlyer",
+      features: [
+        "国内ビットコイン取引量9年連続No.1",
+        "すべての銘柄が1円から購入可能",
+        "住信SBIネット銀行との連携",
+      ],
+      commission: "取引手数料:0.01〜0.15%",
+      minInvestment: "1円〜",
+      nisaSupport: false,
+      highlight: "実績No.1",
+      affiliateUrl: "https://bitflyer.com/ja-jp/",
+    },
+  ];
+
+  // 国外暗号資産取引所ランキング
+  const internationalCryptoExchanges = [
+    {
+      rank: 1,
+      name: "Binance",
+      features: [
+        "世界最大級の暗号資産取引所",
+        "300種類以上の取引銘柄",
+        "レバレッジ取引に対応",
+      ],
+      commission: "取引手数料:0.1%",
+      minInvestment: "1ドル〜",
+      nisaSupport: false,
+      highlight: "世界最大",
+      affiliateUrl: "https://www.binance.com/ja",
+    },
+    {
+      rank: 2,
+      name: "Bybit",
+      features: [
+        "使いやすいアプリとリーズナブルな手数料",
+        "35種類の取扱仮想通貨",
+        "入金手数料無料",
+      ],
+      commission: "取引手数料:0.1%",
+      minInvestment: "500円相当額〜",
+      nisaSupport: false,
+      highlight: "使いやすい",
+      affiliateUrl: "https://www.bybit.com/ja-JP/",
+    },
+    {
+      rank: 3,
+      name: "Coinbase",
+      features: [
+        "アメリカ最大の仮想通貨取引所",
+        "初心者にも使いやすいインターフェース",
+        "セキュリティ対策が充実",
+      ],
+      commission: "取引手数料:約1.99%",
+      minInvestment: "1ドル〜",
+      nisaSupport: false,
+      highlight: "信頼性高",
+      affiliateUrl: "https://www.coinbase.com/ja",
     },
   ];
 
@@ -124,6 +217,8 @@ const Index = () => {
       date: "2024年1月10日",
     },
   ];
+
+  const [activeTab, setActiveTab] = useState<"domestic" | "international">("domestic");
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -166,6 +261,55 @@ const Index = () => {
               {rankings.map((ranking) => (
                 <RankingCard key={ranking.rank} {...ranking} />
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Cryptocurrency Exchange Ranking */}
+        <section className="py-8 sm:py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">暗号資産取引所ランキング</h2>
+              <p className="text-sm sm:text-base text-muted-foreground px-4">
+                国内外の人気暗号資産取引所を比較。あなたに最適な取引所を見つけましょう
+              </p>
+            </div>
+            
+            {/* Tabs for Domestic and International */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex p-1 bg-muted rounded-lg">
+                <button
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                    activeTab === "domestic"
+                      ? "bg-background text-foreground shadow"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  onClick={() => setActiveTab("domestic")}
+                >
+                  国内取引所
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                    activeTab === "international"
+                      ? "bg-background text-foreground shadow"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  onClick={() => setActiveTab("international")}
+                >
+                  国外取引所
+                </button>
+              </div>
+            </div>
+            
+            {/* Ranking Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
+              {activeTab === "domestic"
+                ? domesticCryptoExchanges.map((exchange) => (
+                    <RankingCard key={exchange.rank} {...exchange} />
+                  ))
+                : internationalCryptoExchanges.map((exchange) => (
+                    <RankingCard key={exchange.rank} {...exchange} />
+                  ))}
             </div>
           </div>
         </section>
