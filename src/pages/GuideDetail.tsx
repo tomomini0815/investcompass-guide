@@ -112,30 +112,38 @@ const GuideDetail = () => {
       
       <main className="flex-1">
         {/* Breadcrumb */}
-        <div className="bg-muted/30 py-4">
+        <div className="bg-gradient-to-r from-muted/50 to-muted/30 py-4 border-b">
           <div className="container mx-auto px-4">
-            <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary">
-              <ArrowLeft className="h-4 w-4 mr-1" />
+            <Link 
+              to="/" 
+              className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <ArrowLeft className="h-4 w-4 mr-1 group-hover:-translate-x-1 transition-transform" />
               トップページに戻る
             </Link>
           </div>
         </div>
 
         {/* Article Header */}
-        <section className="py-12 container mx-auto px-4">
+        <section className="py-16 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-4">{article.category}</Badge>
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            <Badge 
+              variant="secondary" 
+              className="mb-6 px-4 py-2 text-sm font-semibold"
+            >
+              {article.category}
+            </Badge>
+            <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
               {article.title}
             </h1>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {article.date}
+            <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8 pb-8 border-b">
+              <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+                <Calendar className="h-4 w-4 text-primary" />
+                <span>{article.date}</span>
               </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                読了時間: {article.readTime}
+              <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+                <Clock className="h-4 w-4 text-secondary" />
+                <span>読了時間: {article.readTime}</span>
               </div>
             </div>
           </div>
@@ -156,21 +164,25 @@ const GuideDetail = () => {
               {/* Sidebar */}
               <aside className="space-y-6">
                 {/* CTA Card */}
-                <Card className="sticky top-4">
-                  <CardHeader>
-                    <CardTitle className="text-lg">今すぐ始めよう</CardTitle>
+                <Card className="sticky top-4 overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 border-2 border-primary/20 shadow-xl">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-2xl"></div>
+                  <CardHeader className="relative z-10">
+                    <CardTitle className="text-xl flex items-center gap-2">
+                      <span className="text-2xl">🚀</span>
+                      今すぐ始めよう
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-sm text-muted-foreground">
+                  <CardContent className="space-y-4 relative z-10">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       投資を始めるなら、まずは証券口座の開設から。
                     </p>
-                    <Button className="w-full" asChild>
+                    <Button className="w-full shadow-lg hover:shadow-xl transition-shadow" asChild>
                       <Link to="/comparison">
                         証券会社を比較する
                         <ExternalLink className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
-                    <Button variant="outline" className="w-full" asChild>
+                    <Button variant="outline" className="w-full border-2 hover:border-primary/50" asChild>
                       <Link to="/tools">
                         投資をシミュレーション
                       </Link>
@@ -179,9 +191,12 @@ const GuideDetail = () => {
                 </Card>
 
                 {/* Related Articles */}
-                <Card>
+                <Card className="border-2 hover:border-primary/30 transition-colors">
                   <CardHeader>
-                    <CardTitle className="text-lg">関連記事</CardTitle>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <span className="text-xl">📚</span>
+                      関連記事
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {Object.entries(articles)
@@ -191,9 +206,9 @@ const GuideDetail = () => {
                         <Link
                           key={key}
                           to={`/guide/${key}`}
-                          className="block text-sm hover:text-primary transition-colors"
+                          className="block p-3 rounded-lg text-sm hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/20 group"
                         >
-                          {relatedArticle.title}
+                          <span className="line-clamp-2 group-hover:underline">{relatedArticle.title}</span>
                         </Link>
                       ))}
                   </CardContent>
