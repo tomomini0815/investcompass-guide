@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, TrendingUp } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navigation = [
     { name: "ホーム", href: "/" },
@@ -14,6 +15,14 @@ const Header = () => {
     { name: "投資ガイド", href: "/guide/nisa-beginner" },
     { name: "計算ツール", href: "/tools" },
   ];
+
+  // 現在のパスに基づいてアクティブなナビゲーション項目を判定する関数
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -31,7 +40,11 @@ const Header = () => {
             <Link
               key={item.name}
               to={item.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors px-3 py-2 rounded-md ${
+                isActive(item.href)
+                  ? "text-primary bg-primary/10"
+                  : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+              }`}
             >
               {item.name}
             </Link>
@@ -60,7 +73,11 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="block py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                className={`block py-2 text-sm font-medium transition-colors px-3 rounded-md ${
+                  isActive(item.href)
+                    ? "text-primary bg-primary/10"
+                    : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
