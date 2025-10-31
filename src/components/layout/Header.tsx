@@ -42,8 +42,8 @@ const Header = () => {
               to={item.href}
               className={`text-sm font-medium transition-colors px-3 py-2 rounded-md ${
                 isActive(item.href)
-                  ? "text-primary bg-primary/10"
-                  : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                  ? "text-primary bg-primary/15"
+                  : "text-foreground/80 bg-muted/50 hover:bg-primary/10"
               }`}
             >
               {item.name}
@@ -75,8 +75,8 @@ const Header = () => {
                 to={item.href}
                 className={`block py-2 text-sm font-medium transition-colors px-3 rounded-md ${
                   isActive(item.href)
-                    ? "text-primary bg-primary/10"
-                    : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                    ? "text-primary bg-primary/15"
+                    : "text-foreground/80 bg-muted/50 hover:bg-primary/10"
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
