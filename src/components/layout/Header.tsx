@@ -9,7 +9,9 @@ const Header = () => {
   const navigation = [
     { name: "ホーム", href: "/" },
     { name: "証券会社比較", href: "/comparison" },
-    { name: "投資ガイド", href: "/guide/nisa-beginner" },
+    { name: "暗号資産取引所比較", href: "/crypto-comparison" },
+    { name: "FX業者比較", href: "/fx-comparison" },
+    { name: "投資ガイド", href: "/guide/investment-basics" },
     { name: "計算ツール", href: "/tools" },
   ];
 

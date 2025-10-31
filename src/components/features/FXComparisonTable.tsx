@@ -12,166 +12,144 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface SecurityCompany {
+interface FXCompany {
   name: string;
-  commission: string;
+  spread: string;
   minInvestment: string;
-  nisaSupport: boolean;
-  tsumitateNisa: boolean;
-  ipoCount: number;
-  foreignStocks: boolean;
-  points: string;
+  currencyPairs: string;
+  swapPoint: boolean;
+  scalping: boolean;
   rating: number;
   affiliateUrl: string;
-  isDomestic: boolean; // 国内証券会社かどうかを示すフラグを追加
+  isDomestic: boolean;
 }
 
-const ComparisonTable = () => {
-  const [sortBy, setSortBy] = useState<keyof SecurityCompany | null>(null);
+const FXComparisonTable = () => {
+  const [sortBy, setSortBy] = useState<keyof FXCompany | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [showDomestic, setShowDomestic] = useState<boolean>(true); // 国内/国外切り替えの状態
+  const [showDomestic, setShowDomestic] = useState<boolean>(true);
 
-  const companies: SecurityCompany[] = [
-    // 国内証券会社（人気ランキング順）
+  const companies: FXCompany[] = [
+    // 国内FX業者（人気ランキング順）
     {
-      name: "SBI証券",
-      commission: "国内株式:0円/米国株式:0円",
-      minInvestment: "投資信託:100円〜",
-      nisaSupport: true,
-      tsumitateNisa: true,
-      ipoCount: 89,
-      foreignStocks: true,
-      points: "Tポイント・Vポイント",
+      name: "GMOクリック証券",
+      spread: "0.2銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "30種類（ラージ銘柄含む）",
+      swapPoint: true,
+      scalping: true,
       rating: 5,
-      affiliateUrl: "https://www.sbisec.co.jp/",
+      affiliateUrl: "https://click.gmo-jp.com/",
       isDomestic: true,
     },
     {
-      name: "楽天証券",
-      commission: "国内株式:0円/米国株式:0.495%",
-      minInvestment: "投資信託:100円〜",
-      nisaSupport: true,
-      tsumitateNisa: true,
-      ipoCount: 65,
-      foreignStocks: true,
-      points: "楽天ポイント",
-      rating: 5,
-      affiliateUrl: "https://www.rakuten-sec.co.jp/",
-      isDomestic: true,
-    },
-    {
-      name: "マネックス証券",
-      commission: "国内株式:55円〜/米国株式:無料キャッシュバック",
-      minInvestment: "投資信託:100円〜",
-      nisaSupport: true,
-      tsumitateNisa: true,
-      ipoCount: 53,
-      foreignStocks: true,
-      points: "dポイント",
+      name: "みんなのFX",
+      spread: "0.2銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "51種類",
+      swapPoint: true,
+      scalping: false,
       rating: 4,
-      affiliateUrl: "https://www.monex.co.jp/",
+      affiliateUrl: "https://fx.gmo-jp.com/",
       isDomestic: true,
     },
     {
-      name: "松井証券",
-      commission: "国内株式:0円(50万円以下)/米国株式:0円",
-      minInvestment: "投資信託:100円〜",
-      nisaSupport: true,
-      tsumitateNisa: true,
-      ipoCount: 56,
-      foreignStocks: true,
-      points: "松井証券ポイント",
+      name: "外為どっとコム",
+      spread: "0.2銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "30種類",
+      swapPoint: false,
+      scalping: true,
       rating: 4,
-      affiliateUrl: "https://www.matsui.co.jp/",
+      affiliateUrl: "https://www.gaitame.com/",
       isDomestic: true,
     },
     {
-      name: "auカブコム証券",
-      commission: "国内株式:0円/米国株式:0.495%",
-      minInvestment: "投資信託:100円〜",
-      nisaSupport: true,
-      tsumitateNisa: true,
-      ipoCount: 42,
-      foreignStocks: true,
-      points: "Pontaポイント",
+      name: "ヒロセ通商",
+      spread: "0.2銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "54種類",
+      swapPoint: false,
+      scalping: true,
       rating: 4,
-      affiliateUrl: "https://kabu.com/",
+      affiliateUrl: "https://www.hirose-fx.co.jp/",
       isDomestic: true,
     },
-    // 国外証券会社（人気ランキング順）
+    {
+      name: "LIGHT FX",
+      spread: "0.2銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "51種類",
+      swapPoint: true,
+      scalping: false,
+      rating: 4,
+      affiliateUrl: "https://light-fx.jp/",
+      isDomestic: true,
+    },
+    // 国外FX業者（人気ランキング順）
     {
       name: "Interactive Brokers",
-      commission: "$0.5/100株",
+      spread: "$0.5/100株",
       minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
+      currencyPairs: "80種類以上",
+      swapPoint: true,
+      scalping: true,
       rating: 5,
       affiliateUrl: "https://www.interactivebrokers.com/",
       isDomestic: false,
     },
     {
-      name: "Charles Schwab",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
+      name: "IG証券",
+      spread: "取引画面で確認",
+      minInvestment: "1万通貨",
+      currencyPairs: "約100種類",
+      swapPoint: true,
+      scalping: true,
       rating: 4,
-      affiliateUrl: "https://www.schwab.com/",
+      affiliateUrl: "https://www.ig.com/jp",
       isDomestic: false,
     },
     {
-      name: "Fidelity",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
+      name: "XM",
+      spread: "0.0 pips",
+      minInvestment: "$5",
+      currencyPairs: "50種類以上",
+      swapPoint: true,
+      scalping: true,
       rating: 4,
-      affiliateUrl: "https://www.fidelity.com/",
+      affiliateUrl: "https://www.xm.com/",
       isDomestic: false,
     },
     {
-      name: "E*TRADE",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
+      name: "Pepperstone",
+      spread: "0.0 pips",
+      minInvestment: "$200",
+      currencyPairs: "60種類以上",
+      swapPoint: true,
+      scalping: true,
       rating: 4,
-      affiliateUrl: "https://us.etrade.com/",
+      affiliateUrl: "https://pepperstone.com/",
       isDomestic: false,
     },
     {
-      name: "TD Ameritrade",
-      commission: "$0/取引",
+      name: "OANDA",
+      spread: "0.0 pips",
       minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
+      currencyPairs: "70種類以上",
+      swapPoint: true,
+      scalping: true,
       rating: 4,
-      affiliateUrl: "https://www.tdameritrade.com/",
+      affiliateUrl: "https://www.oanda.com/",
       isDomestic: false,
     },
   ];
 
-  // 表示する証券会社をフィルタリング
+  // 表示するFX業者をフィルタリング
   const filteredCompanies = companies.filter(company => 
     showDomestic ? company.isDomestic : !company.isDomestic
   );
 
-  const handleSort = (key: keyof SecurityCompany) => {
+  const handleSort = (key: keyof FXCompany) => {
     if (sortBy === key) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
@@ -186,8 +164,7 @@ const ComparisonTable = () => {
       if (b.rating !== a.rating) {
         return b.rating - a.rating;
       }
-      // 評価が同じ場合はIPO実績でソート
-      return b.ipoCount - a.ipoCount;
+      return 0;
     }
     
     const aValue = a[sortBy];
@@ -213,32 +190,32 @@ const ComparisonTable = () => {
   );
 
   // モバイル向けカードコンポーネント
-  const MobileCompanyCard = ({ company }: { company: SecurityCompany }) => (
+  const MobileCompanyCard = ({ company }: { company: FXCompany }) => (
     <Card className="mb-4 shadow-md border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-bold flex justify-between items-center">
           <span>{company.name}</span>
           <Badge variant="secondary" className="text-xs">
-            {company.ipoCount}社 IPO
+            {company.currencyPairs}
           </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div>
-            <p className="text-muted-foreground text-xs">手数料</p>
-            <p className="font-semibold">{company.commission}</p>
+            <p className="text-muted-foreground text-xs">スプレッド</p>
+            <p className="font-semibold">{company.spread}</p>
           </div>
           <div>
-            <p className="text-muted-foreground text-xs">最低投資額</p>
+            <p className="text-muted-foreground text-xs">最低取引単位</p>
             <p className="font-semibold">{company.minInvestment}</p>
           </div>
         </div>
         
         <div className="grid grid-cols-2 gap-3">
           <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">NISA</span>
-            {company.nisaSupport ? (
+            <span className="text-muted-foreground text-xs">スワップポイント</span>
+            {company.swapPoint ? (
               <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                 <Check className="h-3 w-3 text-green-600" />
               </div>
@@ -249,8 +226,8 @@ const ComparisonTable = () => {
             )}
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">つみたてNISA</span>
-            {company.tsumitateNisa ? (
+            <span className="text-muted-foreground text-xs">スキャルピング</span>
+            {company.scalping ? (
               <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                 <Check className="h-3 w-3 text-green-600" />
               </div>
@@ -260,24 +237,6 @@ const ComparisonTable = () => {
               </div>
             )}
           </div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <span className="text-muted-foreground text-xs">外国株</span>
-          {company.foreignStocks ? (
-            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-              <Check className="h-3 w-3 text-green-600" />
-            </div>
-          ) : (
-            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-              <X className="h-3 w-3 text-red-600" />
-            </div>
-          )}
-        </div>
-        
-        <div>
-          <p className="text-muted-foreground text-xs mb-1">ポイント</p>
-          <p className="text-sm">{company.points}</p>
         </div>
         
         <div>
@@ -306,7 +265,7 @@ const ComparisonTable = () => {
   return (
     <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="px-4 sm:px-6 pb-4">
-        <CardTitle className="text-xl sm:text-2xl font-bold text-center">証券会社詳細比較表</CardTitle>
+        <CardTitle className="text-xl sm:text-2xl font-bold text-center">FX業者詳細比較表</CardTitle>
         {/* 国内/国外切り替えボタン */}
         <div className="flex justify-center mt-4 space-x-4">
           <Button 
@@ -314,14 +273,14 @@ const ComparisonTable = () => {
             onClick={() => setShowDomestic(true)}
             className="px-6 py-2"
           >
-            国内証券会社
+            国内FX業者
           </Button>
           <Button 
             variant={!showDomestic ? "default" : "outline"} 
             onClick={() => setShowDomestic(false)}
             className="px-6 py-2"
           >
-            国外証券会社
+            国外FX業者
           </Button>
         </div>
       </CardHeader>
@@ -330,10 +289,10 @@ const ComparisonTable = () => {
         <div className="md:hidden px-4 py-2">
           <div className="mb-4">
             <h3 className="text-lg font-semibold text-center mb-2">
-              {showDomestic ? "国内" : "国外"}証券会社詳細比較
+              {showDomestic ? "国内" : "国外"}FX業者詳細比較
             </h3>
             <p className="text-sm text-muted-foreground text-center">
-              各{showDomestic ? "国内" : "国外"}証券会社の詳細情報を比較できます
+              各{showDomestic ? "国内" : "国外"}FX業者の詳細情報を比較できます
             </p>
           </div>
           {sortedCompanies.map((company) => (
@@ -348,24 +307,12 @@ const ComparisonTable = () => {
               <Table className="min-w-[800px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
-                    <TableHead className="min-w-[140px] sm:min-w-[180px] text-xs sm:text-sm font-bold text-primary">証券会社</TableHead>
-                    <TableHead className="min-w-[80px] sm:min-w-[100px] text-xs sm:text-sm font-bold text-primary">手数料</TableHead>
-                    <TableHead className="min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">最低投資額</TableHead>
-                    <TableHead className="text-center min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary">NISA</TableHead>
-                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">つみたてNISA</TableHead>
-                    <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary"
-                      onClick={() => handleSort("ipoCount")}
-                    >
-                      <div className="flex items-center gap-1">
-                        IPO実績
-                        {sortBy === "ipoCount" && (
-                          sortOrder === "asc" ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
-                        )}
-                      </div>
-                    </TableHead>
-                    <TableHead className="text-center min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary">外国株</TableHead>
-                    <TableHead className="min-w-[120px] sm:min-w-[140px] text-xs sm:text-sm font-bold text-primary">ポイント</TableHead>
+                    <TableHead className="min-w-[140px] sm:min-w-[180px] text-xs sm:text-sm font-bold text-primary">FX業者</TableHead>
+                    <TableHead className="min-w-[80px] sm:min-w-[100px] text-xs sm:text-sm font-bold text-primary">スプレッド</TableHead>
+                    <TableHead className="min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">最低取引単位</TableHead>
+                    <TableHead className="min-w-[120px] sm:min-w-[140px] text-xs sm:text-sm font-bold text-primary">通貨ペア</TableHead>
+                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">スワップポイント</TableHead>
+                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">スキャルピング</TableHead>
                     <TableHead 
                       className="cursor-pointer hover:bg-muted/50 min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary"
                       onClick={() => handleSort("rating")}
@@ -387,10 +334,11 @@ const ComparisonTable = () => {
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{company.commission}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3">{company.spread}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.minInvestment}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
                       <TableCell className="text-center py-3">
-                        {company.nisaSupport ? (
+                        {company.swapPoint ? (
                           <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
                             <Check className="h-4 w-4 text-green-600" />
                           </div>
@@ -401,7 +349,7 @@ const ComparisonTable = () => {
                         )}
                       </TableCell>
                       <TableCell className="text-center py-3">
-                        {company.tsumitateNisa ? (
+                        {company.scalping ? (
                           <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
                             <Check className="h-4 w-4 text-green-600" />
                           </div>
@@ -411,23 +359,6 @@ const ComparisonTable = () => {
                           </div>
                         )}
                       </TableCell>
-                      <TableCell className="text-center py-3">
-                        <Badge variant="secondary" className="text-xs px-2 py-1">
-                          {company.ipoCount}社
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-center py-3">
-                        {company.foreignStocks ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
-                          </div>
-                        ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
-                          </div>
-                        )}
-                      </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{company.points}</TableCell>
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
@@ -463,4 +394,4 @@ const ComparisonTable = () => {
   );
 };
 
-export default ComparisonTable;
+export default FXComparisonTable;

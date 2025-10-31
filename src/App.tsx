@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Comparison from "./pages/Comparison";
+import CryptoComparison from "./pages/CryptoComparison";
+import FXComparison from "./pages/FXComparison";
 import GuideDetail from "./pages/GuideDetail";
 import Tools from "./pages/Tools";
 import Privacy from "./pages/Privacy";
@@ -23,6 +25,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/comparison" element={<Comparison />} />
+          <Route path="/crypto-comparison" element={<CryptoComparison />} />
+          <Route path="/fx-comparison" element={<FXComparison />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
           <Route path="/privacy" element={<Privacy />} />
