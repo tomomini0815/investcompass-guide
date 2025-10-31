@@ -22,6 +22,7 @@ interface FXCompany {
   rating: number;
   affiliateUrl: string;
   isDomestic: boolean;
+  features: string; // 各FX業者の特徴を追加
 }
 
 const FXComparisonTable = () => {
@@ -41,6 +42,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://click.gmo-jp.com/",
       isDomestic: true,
+      features: "GMOグループ傘下で信頼性が高く、スプレッドが非常に狭い。スキャルピングも可能で、初心者から上級者まで利用可能。",
     },
     {
       name: "みんなのFX",
@@ -52,6 +54,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://fx.gmo-jp.com/",
       isDomestic: true,
+      features: "GMOクリック証券の姉妹サービス。通貨ペア数が多く、スワップポイントも充実。スキャルピングは不可。",
     },
     {
       name: "外為どっとコム",
@@ -63,6 +66,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.gaitame.com/",
       isDomestic: true,
+      features: "業界最大手の老舗FX業者。スキャルピングが可能で、取引ツールが充実。スワップポイントは提供していない。",
     },
     {
       name: "ヒロセ通商",
@@ -74,6 +78,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.hirose-fx.co.jp/",
       isDomestic: true,
+      features: "通貨ペア数が非常に多く、スキャルピングも可能。独自の取引ツール「ヒロセ君」が特徴。スワップポイントは提供していない。",
     },
     {
       name: "LIGHT FX",
@@ -85,6 +90,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://light-fx.jp/",
       isDomestic: true,
+      features: "スワップポイントが非常に高く、長期保有向き。通貨ペア数も多く、初心者に人気。スキャルピングは不可。",
     },
     // 国外FX業者（人気ランキング順）
     {
@@ -97,6 +103,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.interactivebrokers.com/",
       isDomestic: false,
+      features: "世界中の市場にアクセス可能で、手数料が非常に安い。プロ向けの高度な取引ツールを提供。スキャルピングも可能。",
     },
     {
       name: "IG証券",
@@ -108,6 +115,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.ig.com/jp",
       isDomestic: false,
+      features: "日本語対応が充実し、初心者にも使いやすい。通貨ペア数が多く、スキャルピングも可能。教育コンテンツも豊富。",
     },
     {
       name: "XM",
@@ -119,6 +127,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.xm.com/",
       isDomestic: false,
+      features: "ゼロスプレッドプランが人気。最低取引単位が小さく、初心者にも使いやすい。スキャルピングも可能。",
     },
     {
       name: "Pepperstone",
@@ -130,6 +139,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://pepperstone.com/",
       isDomestic: false,
+      features: "オーストラリアのFX業者で、信頼性が高い。スキャルピングが可能で、取引ツールが充実。教育コンテンツも豊富。",
     },
     {
       name: "OANDA",
@@ -141,6 +151,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.oanda.com/",
       isDomestic: false,
+      features: "信頼性が高く、初心者から上級者まで利用可能。通貨ペア数が多く、スキャルピングも可能。教育コンテンツも充実。",
     },
   ];
 
@@ -244,6 +255,12 @@ const FXComparisonTable = () => {
           <RatingStars rating={company.rating} />
         </div>
         
+        {/* 特徴を追加 */}
+        <div>
+          <p className="text-muted-foreground text-xs mb-1">特徴</p>
+          <p className="text-sm">{company.features}</p>
+        </div>
+        
         <Button 
           size="sm" 
           className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
@@ -254,7 +271,7 @@ const FXComparisonTable = () => {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            詳細を見る
+            公式サイト
             <ExternalLink className="ml-1 h-3 w-3" />
           </a>
         </Button>
@@ -266,8 +283,11 @@ const FXComparisonTable = () => {
     <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="px-4 sm:px-6 pb-4">
         <CardTitle className="text-xl sm:text-2xl font-bold text-center">FX業者詳細比較表</CardTitle>
+        <p className="text-sm text-muted-foreground text-center mt-4">
+          各FX業者のスプレッド、最低取引単位、通貨ペア数、スワップポイント、スキャルピング可否、評価などの情報を比較できます
+        </p>
         {/* 国内/国外切り替えボタン */}
-        <div className="flex justify-center mt-4 space-x-4">
+        <div className="flex justify-center mt-8 space-x-4">
           <Button 
             variant={showDomestic ? "default" : "outline"} 
             onClick={() => setShowDomestic(true)}
@@ -304,17 +324,17 @@ const FXComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[800px]">
+              <Table className="min-w-[700px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
-                    <TableHead className="min-w-[140px] sm:min-w-[180px] text-xs sm:text-sm font-bold text-primary">FX業者</TableHead>
-                    <TableHead className="min-w-[80px] sm:min-w-[100px] text-xs sm:text-sm font-bold text-primary">スプレッド</TableHead>
-                    <TableHead className="min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">最低取引単位</TableHead>
-                    <TableHead className="min-w-[120px] sm:min-w-[140px] text-xs sm:text-sm font-bold text-primary">通貨ペア</TableHead>
-                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">スワップポイント</TableHead>
-                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">スキャルピング</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">FX業者</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スプレッド</TableHead>
+                    <TableHead className="min-w-[90px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">最低取引単位</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">通貨ペア</TableHead>
+                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スワップポイント</TableHead>
+                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
                     <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary"
+                      className="cursor-pointer hover:bg-muted/50 min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
                       onClick={() => handleSort("rating")}
                     >
                       <div className="flex items-center gap-1">
@@ -324,7 +344,8 @@ const FXComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="text-center min-w-[100px] sm:min-w-[120px] text-xs sm:text-sm font-bold text-primary">口座開設</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
+                    <TableHead className="text-center min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">公式サイト</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -362,6 +383,7 @@ const FXComparisonTable = () => {
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words">{company.features}</TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
@@ -373,8 +395,7 @@ const FXComparisonTable = () => {
                             target="_blank" 
                             rel="noopener noreferrer"
                           >
-                            <span className="hidden sm:inline">詳細を見る</span>
-                            <span className="sm:hidden">詳細</span>
+                            公式サイト
                             <ExternalLink className="ml-1 h-3 w-3" />
                           </a>
                         </Button>

@@ -1,26 +1,26 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import FXComparisonTable from "@/components/features/FXComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
-import FXComparisonTable from "@/components/features/FXComparisonTable";
 
 const FXComparison = () => {
   const selectionPoints = [
     {
-      title: "スプレッドの安さ",
-      description: "スプレッドが安ければ、取引コストを抑えて利益を最大化できます。",
+      title: "スプレッドの狭さ",
+      description: "取引コストを抑えることで、長期的なリターンを最大化できます。",
     },
     {
-      title: "取扱通貨ペアの豊富さ",
-      description: "主要な通貨ペアだけでなく、マイナー通貨ペアも充実している業者がおすすめです。",
+      title: "通貨ペアの豊富さ",
+      description: "主要通貨からマイナー通貨まで、多様な通貨ペアから選べることが重要です。",
     },
     {
       title: "スワップポイント",
-      description: "スワップポイントが高い業者を選ぶことで、長期保有時の利益を増やすことができます。",
+      description: "長期保有する際にもらえるスワップポイントも重要な選定ポイントです。",
     },
     {
       title: "使いやすさ",
-      description: "直感的な取引ツール、安定したサーバー環境、充実したサポート体制も重要な選定ポイントです。",
+      description: "取引ツールやアプリの操作性も重要な選定ポイントです。",
     },
   ];
 
@@ -41,14 +41,14 @@ const FXComparison = () => {
                 FX業者徹底比較
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8 animate-fade-in-up">
-                スプレッド、取扱通貨ペア、スワップポイントを一覧で比較。
+                スプレッド、通貨ペア、スワップポイントを一覧で比較。
                 <br />
                 あなたに最適なFX業者を見つけましょう。
               </p>
               <div className="flex flex-wrap gap-6 justify-center text-sm">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
-                  <span>主要業者を完全比較</span>
+                  <span>主要10社を完全比較</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
@@ -116,28 +116,26 @@ const FXComparison = () => {
                     初心者の方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    まずはGMOクリック証券やみんなのFXなど、信頼性の高い大手業者から始めることをおすすめします。
+                    まずはGMOクリック証券や外為どっとコムなど、国内で運営されている信頼性の高い業者から始めることをおすすめします。
                     使いやすさと充実したサポート体制が魅力です。
                   </p>
                 </div>
                 <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-secondary/10">
                   <p className="font-semibold text-secondary mb-2 flex items-center gap-2">
                     <span className="inline-block w-8 h-8 bg-secondary/10 rounded-full flex items-center justify-center text-sm">2</span>
-                    スキャルピングをしたい方へ
+                    海外業者を利用したい方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    外為どっとコムやヒロセ通商はスキャルピング公認で、取引ツールも充実しています。
-                    ただし、取引ルールには注意が必要です。
+                    Interactive BrokersやXMなど、海外の大手業者は通貨ペアが豊富で、手数料も競争力があります。
                   </p>
                 </div>
                 <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-accent/10">
                   <p className="font-semibold text-accent mb-2 flex items-center gap-2">
                     <span className="inline-block w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center text-sm">3</span>
-                    高水準のスワップポイントを求める方へ
+                    スキャルピングをしたい方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    LIGHT FXは高水準のスワップポイントが特徴で、長期保有におすすめです。
-                    ただし、スプレッドはやや広い傾向があります。
+                    スキャルピング（短期取引）に対応している業者を選ぶことで、短期的な利益を狙う取引が可能です。
                   </p>
                 </div>
               </CardContent>

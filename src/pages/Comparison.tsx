@@ -3,6 +3,8 @@ import Footer from "@/components/layout/Footer";
 import ComparisonTable from "@/components/features/ComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Comparison = () => {
   const selectionPoints = [
@@ -93,6 +95,51 @@ const Comparison = () => {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <ComparisonTable />
+          </div>
+        </section>
+
+        {/* Additional Comparison Links */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <Card className="text-center group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl">₿</span>
+                  </div>
+                  <CardTitle className="text-xl font-bold">暗号資産取引所比較</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-6">
+                    国内外の主要暗号資産取引所を比較して、最適な取引所を選びましょう。
+                  </p>
+                  <Button asChild>
+                    <Link to="/crypto-comparison">
+                      比較ページへ
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl">💱</span>
+                  </div>
+                  <CardTitle className="text-xl font-bold">FX業者比較</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-6">
+                    スプレッド、通貨ペア、スワップポイントなどを比較して、最適なFX業者を選びましょう。
+                  </p>
+                  <Button asChild>
+                    <Link to="/fx-comparison">
+                      比較ページへ
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
 

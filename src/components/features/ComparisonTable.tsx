@@ -24,6 +24,7 @@ interface SecurityCompany {
   rating: number;
   affiliateUrl: string;
   isDomestic: boolean; // 国内証券会社かどうかを示すフラグを追加
+  features: string; // 各証券会社の特徴を追加
 }
 
 const ComparisonTable = () => {
@@ -45,6 +46,7 @@ const ComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.sbisec.co.jp/",
       isDomestic: true,
+      features: "手数料が無料でコストパフォーマンスが高く、IPO抽選数が業界最多。初心者向けの学習コンテンツも充実。",
     },
     {
       name: "楽天証券",
@@ -58,6 +60,7 @@ const ComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.rakuten-sec.co.jp/",
       isDomestic: true,
+      features: "楽天グループとの連携でポイント還元が魅力。米国株式に手数料がかかるが、投資信託の選択肢が豊富。",
     },
     {
       name: "マネックス証券",
@@ -71,6 +74,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.monex.co.jp/",
       isDomestic: true,
+      features: "米国株式のキャッシュバック制度が特徴。投資信託の手数料が無料で、長期投資向けのサービスが充実。",
     },
     {
       name: "松井証券",
@@ -84,6 +88,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.matsui.co.jp/",
       isDomestic: true,
+      features: "国内株式50万円以下なら無料、米国株式も無料。IPO抽選数も豊富で、初心者から上級者まで利用可能。",
     },
     {
       name: "auカブコム証券",
@@ -97,6 +102,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://kabu.com/",
       isDomestic: true,
+      features: "auユーザーにはau PAY金利優遇。米国株式に手数料がかかるが、国内株式は無料で使いやすい。",
     },
     // 国外証券会社（人気ランキング順）
     {
@@ -111,6 +117,7 @@ const ComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.interactivebrokers.com/",
       isDomestic: false,
+      features: "世界中の市場にアクセス可能で、手数料が非常に安い。プロ向けの高度な取引ツールを提供。",
     },
     {
       name: "Charles Schwab",
@@ -124,6 +131,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.schwab.com/",
       isDomestic: false,
+      features: "米国大手証券会社で信頼性が高い。独自のリサーチツールが充実し、初心者から上級者まで対応。",
     },
     {
       name: "Fidelity",
@@ -137,6 +145,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.fidelity.com/",
       isDomestic: false,
+      features: "投資信託の選択肢が非常に豊富で、手数料も無料。独自のリサーチ情報が充実している。",
     },
     {
       name: "E*TRADE",
@@ -150,6 +159,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://us.etrade.com/",
       isDomestic: false,
+      features: "使いやすいプラットフォームと教育リソースが特徴。初心者向けのツールが充実している。",
     },
     {
       name: "TD Ameritrade",
@@ -163,6 +173,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.tdameritrade.com/",
       isDomestic: false,
+      features: "Thinkorswimという高度な取引プラットフォームを提供。教育コンテンツが充実し、初心者に優しい。",
     },
   ];
 
@@ -235,31 +246,22 @@ const ComparisonTable = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">NISA</span>
-            {company.nisaSupport ? (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                <Check className="h-3 w-3 text-green-600" />
-              </div>
-            ) : (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                <X className="h-3 w-3 text-red-600" />
-              </div>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">つみたてNISA</span>
-            {company.tsumitateNisa ? (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                <Check className="h-3 w-3 text-green-600" />
-              </div>
-            ) : (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                <X className="h-3 w-3 text-red-600" />
-              </div>
-            )}
-          </div>
+        {/* NISA/つみたてNISAを統合 */}
+        <div className="flex items-center gap-2">
+          <span className="text-muted-foreground text-xs">NISA/つみたてNISA</span>
+          {company.nisaSupport && company.tsumitateNisa ? (
+            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+              <Check className="h-3 w-3 text-green-600" />
+            </div>
+          ) : company.nisaSupport || company.tsumitateNisa ? (
+            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-yellow-100">
+              <Check className="h-3 w-3 text-yellow-600" />
+            </div>
+          ) : (
+            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
+              <X className="h-3 w-3 text-red-600" />
+            </div>
+          )}
         </div>
         
         <div className="flex items-center gap-2">
@@ -285,6 +287,12 @@ const ComparisonTable = () => {
           <RatingStars rating={company.rating} />
         </div>
         
+        {/* 特徴を追加 */}
+        <div>
+          <p className="text-muted-foreground text-xs mb-1">特徴</p>
+          <p className="text-sm">{company.features}</p>
+        </div>
+        
         <Button 
           size="sm" 
           className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
@@ -307,8 +315,11 @@ const ComparisonTable = () => {
     <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="px-4 sm:px-6 pb-4">
         <CardTitle className="text-xl sm:text-2xl font-bold text-center">証券会社詳細比較表</CardTitle>
+        <p className="text-sm text-muted-foreground text-center mt-4">
+          各証券会社の手数料、最低投資額、NISA対応状況、IPO実績、評価などの情報を比較できます
+        </p>
         {/* 国内/国外切り替えボタン */}
-        <div className="flex justify-center mt-4 space-x-4">
+        <div className="flex justify-center mt-8 space-x-4">
           <Button 
             variant={showDomestic ? "default" : "outline"} 
             onClick={() => setShowDomestic(true)}
@@ -345,16 +356,20 @@ const ComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[800px]">
+              <Table className="min-w-[650px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
-                    <TableHead className="min-w-[140px] sm:min-w-[180px] text-xs sm:text-sm font-bold text-primary">証券会社</TableHead>
-                    <TableHead className="min-w-[80px] sm:min-w-[100px] text-xs sm:text-sm font-bold text-primary">手数料</TableHead>
-                    <TableHead className="min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">最低投資額</TableHead>
-                    <TableHead className="text-center min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary">NISA</TableHead>
-                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">つみたてNISA</TableHead>
+                    <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">証券会社</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">手数料</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">最低投資額</TableHead>
+                    {/* NISA/つみたてNISAを統合 */}
+                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary">NISA/<br/>つみたてNISA</TableHead>
                     <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary"
+                      className={`cursor-pointer min-w-[80px] text-xs sm:text-sm font-bold ${
+                        sortBy === "ipoCount" 
+                          ? "bg-primary/10 text-primary" 
+                          : "text-primary hover:bg-muted/50"
+                      } whitespace-nowrap`}
                       onClick={() => handleSort("ipoCount")}
                     >
                       <div className="flex items-center gap-1">
@@ -364,10 +379,14 @@ const ComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="text-center min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary">外国株</TableHead>
-                    <TableHead className="min-w-[120px] sm:min-w-[140px] text-xs sm:text-sm font-bold text-primary">ポイント</TableHead>
+                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">外国株</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">ポイント</TableHead>
                     <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary"
+                      className={`cursor-pointer min-w-[60px] text-xs sm:text-sm font-bold ${
+                        sortBy === "rating" 
+                          ? "bg-primary/10 text-primary" 
+                          : "text-primary hover:bg-muted/50"
+                      } whitespace-nowrap`}
                       onClick={() => handleSort("rating")}
                     >
                       <div className="flex items-center gap-1">
@@ -377,7 +396,8 @@ const ComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="text-center min-w-[100px] sm:min-w-[120px] text-xs sm:text-sm font-bold text-primary">口座開設</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
+                    <TableHead className="text-center min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">公式サイト</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -389,25 +409,37 @@ const ComparisonTable = () => {
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.commission}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.minInvestment}</TableCell>
+                      {/* NISA/つみたてNISAを統合 */}
                       <TableCell className="text-center py-3">
-                        {company.nisaSupport ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
+                        {company.nisaSupport && company.tsumitateNisa ? (
+                          // 両方サポートしている場合は一つのアイコンのみ表示
+                          <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+                            <Check className="h-3 w-3 text-green-600" />
+                          </div>
+                        ) : company.nisaSupport ? (
+                          <div className="flex flex-col items-center">
+                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+                              <Check className="h-3 w-3 text-green-600" />
+                            </div>
+                            <span className="text-xs">/</span>
+                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
+                              <X className="h-3 w-3 text-red-600" />
+                            </div>
+                          </div>
+                        ) : company.tsumitateNisa ? (
+                          <div className="flex flex-col items-center">
+                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
+                              <X className="h-3 w-3 text-red-600" />
+                            </div>
+                            <span className="text-xs">/</span>
+                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+                              <Check className="h-3 w-3 text-green-600" />
+                            </div>
                           </div>
                         ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
-                          </div>
-                        )}
-                      </TableCell>
-                      <TableCell className="text-center py-3">
-                        {company.tsumitateNisa ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
-                          </div>
-                        ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
+                          // 両方サポートしていない場合は一つのアイコンのみ表示
+                          <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
+                            <X className="h-3 w-3 text-red-600" />
                           </div>
                         )}
                       </TableCell>
@@ -418,12 +450,12 @@ const ComparisonTable = () => {
                       </TableCell>
                       <TableCell className="text-center py-3">
                         {company.foreignStocks ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
+                          <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+                            <Check className="h-3 w-3 text-green-600" />
                           </div>
                         ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
+                          <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
+                            <X className="h-3 w-3 text-red-600" />
                           </div>
                         )}
                       </TableCell>
@@ -431,6 +463,7 @@ const ComparisonTable = () => {
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words">{company.features}</TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
@@ -442,8 +475,7 @@ const ComparisonTable = () => {
                             target="_blank" 
                             rel="noopener noreferrer"
                           >
-                            <span className="hidden sm:inline">詳細を見る</span>
-                            <span className="sm:hidden">詳細</span>
+                            公式サイト
                             <ExternalLink className="ml-1 h-3 w-3" />
                           </a>
                         </Button>

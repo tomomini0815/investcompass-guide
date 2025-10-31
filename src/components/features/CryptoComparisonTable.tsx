@@ -22,6 +22,7 @@ interface CryptoExchange {
   rating: number;
   affiliateUrl: string;
   isDomestic: boolean; // 国内取引所かどうかを示すフラグを追加
+  features: string; // 各取引所の特徴を追加
 }
 
 const CryptoComparisonTable = () => {
@@ -30,6 +31,7 @@ const CryptoComparisonTable = () => {
   const [showDomestic, setShowDomestic] = useState<boolean>(true); // 国内/国外切り替えの状態
 
   const exchanges: CryptoExchange[] = [
+    // 国内取引所（人気ランキング順）
     {
       name: "bitFlyer",
       tradingFee: "0.12%",
@@ -40,6 +42,7 @@ const CryptoComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://bitflyer.com/",
       isDomestic: true,
+      features: "日本最大手の暗号資産取引所で信頼性が高い。日本円入出金に対応し、初心者にも使いやすい。JASA認定を取得。",
     },
     {
       name: "GMOコイン",
@@ -51,6 +54,7 @@ const CryptoComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://coin.z.com/jp/",
       isDomestic: true,
+      features: "GMOインターネットグループ傘下で安定性が高い。手数料が比較的安価で、取扱暗号資産も豊富。",
     },
     {
       name: "DMM Bitcoin",
@@ -62,6 +66,56 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://bitcoin.dmm.com/",
       isDomestic: true,
+      features: "DMMグループ傘下の取引所。レバレッジ取引に対応しており、暗号資産の売買だけでなく多様な取引が可能。",
+    },
+    {
+      name: "Coincheck",
+      tradingFee: "0.10%",
+      withdrawalFee: "0円〜",
+      supportedCoins: 25,
+      security: "JASA認定・コールドウォレット対応",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://coincheck.com/",
+      isDomestic: true,
+      features: "国内で最も利用されている取引所の一つ。初心者に優しいインターフェースと、日本円入出金の便利さが特徴。",
+    },
+    {
+      name: "ZAIF",
+      tradingFee: "0.10%",
+      withdrawalFee: "0円〜",
+      supportedCoins: 30,
+      security: "コールドウォレット対応",
+      japaneseSupport: true,
+      rating: 3,
+      affiliateUrl: "https://zaif.jp/",
+      isDomestic: true,
+      features: "国内で長く運営されている取引所。取扱暗号資産数が多く、独自のポイント制度を導入。",
+    },
+    {
+      name: "QUOINE",
+      tradingFee: "0.05%",
+      withdrawalFee: "0円〜",
+      supportedCoins: 20,
+      security: "JASA認定・コールドウォレット対応",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://quoine.com/jp/",
+      isDomestic: true,
+      features: "世界に進出している日本の取引所。低手数料と高流動性が特徴で、プロトレーダーにも人気。",
+    },
+    // 国外取引所（人気ランキング順）
+    {
+      name: "Binance",
+      tradingFee: "0.10%",
+      withdrawalFee: "0.0005〜",
+      supportedCoins: 400,
+      security: "コールドウォレット対応・SAFU基金",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://www.binance.com/",
+      isDomestic: false,
+      features: "世界最大手の暗号資産取引所。取扱暗号資産が非常に多く、手数料も安価。高度な取引機能も充実。",
     },
     {
       name: "Coinbase",
@@ -73,17 +127,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.coinbase.com/",
       isDomestic: false,
-    },
-    {
-      name: "Binance",
-      tradingFee: "0.10%",
-      withdrawalFee: "0.0005〜",
-      supportedCoins: 400,
-      security: "コールドウォレット対応・SAFU基金",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://www.binance.com/",
-      isDomestic: false,
+      features: "アメリカ最大手の暗号資産取引所。セキュリティ対策が手厚く、初心者に優しいインターフェース。",
     },
     {
       name: "Kraken",
@@ -95,6 +139,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.kraken.com/",
       isDomestic: false,
+      features: "長きにわたって運営されている老舗取引所。セキュリティ対策が手厚く、上級者向けの機能も充実。",
     },
     {
       name: "Gemini",
@@ -106,6 +151,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.gemini.com/",
       isDomestic: false,
+      features: "Winklevoss兄弟が設立した信頼性の高い取引所。米国で厳格な規制を満たしており、セキュリティが高い。",
     },
     {
       name: "FTX",
@@ -117,6 +163,7 @@ const CryptoComparisonTable = () => {
       rating: 3,
       affiliateUrl: "https://ftx.com/",
       isDomestic: false,
+      features: "-copy trading-機能が特徴で、他のトレーダーの取引をコピーできる。手数料が非常に安価で、多様な取引機能を提供。",
     },
     {
       name: "Bybit",
@@ -128,6 +175,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.bybit.com/",
       isDomestic: false,
+      features: "アジアを中心に人気の取引所。レバレッジ取引が充実しており、初心者から上級者まで利用可能。",
     },
     {
       name: "Bitget",
@@ -139,6 +187,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.bitget.com/",
       isDomestic: false,
+      features: "-copy trading-機能が特徴で、他のトレーダーの取引をコピーできる。手数料が安価で、多様な取引機能を提供。",
     },
   ];
 
@@ -166,6 +215,7 @@ const CryptoComparisonTable = () => {
         // 評価が同じ場合は取扱暗号資産数でソート
         return b.supportedCoins - a.supportedCoins;
       }
+      // 国内取引所の場合は人気ランキング順（配列の順序を維持）
       return 0;
     }
     
@@ -238,6 +288,12 @@ const CryptoComparisonTable = () => {
           <RatingStars rating={exchange.rating} />
         </div>
         
+        {/* 特徴を追加 */}
+        <div>
+          <p className="text-muted-foreground text-xs mb-1">特徴</p>
+          <p className="text-sm">{exchange.features}</p>
+        </div>
+        
         <Button 
           size="sm" 
           className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
@@ -248,7 +304,7 @@ const CryptoComparisonTable = () => {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            詳細を見る
+            公式サイト
             <ExternalLink className="ml-1 h-3 w-3" />
           </a>
         </Button>
@@ -260,8 +316,11 @@ const CryptoComparisonTable = () => {
     <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="px-4 sm:px-6 pb-4">
         <CardTitle className="text-xl sm:text-2xl font-bold text-center">暗号資産取引所詳細比較表</CardTitle>
+        <p className="text-sm text-muted-foreground text-center mt-4">
+          各暗号資産取引所の取引手数料、出金手数料、取扱暗号資産数、セキュリティ対策、評価などの情報を比較できます
+        </p>
         {/* 国内/国外切り替えボタン */}
-        <div className="flex justify-center mt-4 space-x-4">
+        <div className="flex justify-center mt-8 space-x-4">
           <Button 
             variant={showDomestic ? "default" : "outline"} 
             onClick={() => setShowDomestic(true)}
@@ -298,14 +357,14 @@ const CryptoComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[800px]">
+              <Table className="min-w-[700px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
-                    <TableHead className="min-w-[140px] sm:min-w-[180px] text-xs sm:text-sm font-bold text-primary">取引所</TableHead>
-                    <TableHead className="min-w-[80px] sm:min-w-[100px] text-xs sm:text-sm font-bold text-primary">取引手数料</TableHead>
-                    <TableHead className="min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">出金手数料</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引所</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引手数料</TableHead>
+                    <TableHead className="min-w-[90px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">出金手数料</TableHead>
                     <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary"
+                      className="cursor-pointer hover:bg-muted/50 min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
                       onClick={() => handleSort("supportedCoins")}
                     >
                       <div className="flex items-center gap-1">
@@ -315,10 +374,10 @@ const CryptoComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="min-w-[120px] sm:min-w-[140px] text-xs sm:text-sm font-bold text-primary">セキュリティ</TableHead>
-                    <TableHead className="text-center min-w-[90px] sm:min-w-[110px] text-xs sm:text-sm font-bold text-primary">日本語対応</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">セキュリティ</TableHead>
+                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">日本語対応</TableHead>
                     <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[70px] sm:min-w-[80px] text-xs sm:text-sm font-bold text-primary"
+                      className="cursor-pointer hover:bg-muted/50 min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
                       onClick={() => handleSort("rating")}
                     >
                       <div className="flex items-center gap-1">
@@ -328,7 +387,8 @@ const CryptoComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="text-center min-w-[100px] sm:min-w-[120px] text-xs sm:text-sm font-bold text-primary">口座開設</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
+                    <TableHead className="text-center min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">公式サイト</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -360,6 +420,7 @@ const CryptoComparisonTable = () => {
                       <TableCell className="py-3">
                         <RatingStars rating={exchange.rating} />
                       </TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words">{exchange.features}</TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
@@ -371,8 +432,7 @@ const CryptoComparisonTable = () => {
                             target="_blank" 
                             rel="noopener noreferrer"
                           >
-                            <span className="hidden sm:inline">詳細を見る</span>
-                            <span className="sm:hidden">詳細</span>
+                            公式サイト
                             <ExternalLink className="ml-1 h-3 w-3" />
                           </a>
                         </Button>

@@ -1,26 +1,26 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CryptoComparisonTable from "@/components/features/CryptoComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
-import CryptoComparisonTable from "@/components/features/CryptoComparisonTable";
 
 const CryptoComparison = () => {
   const selectionPoints = [
     {
       title: "手数料の安さ",
-      description: "取引手数料や出金手数料が安ければ、コストを抑えて取引できます。",
+      description: "取引コストを抑えることで、長期的なリターンを最大化できます。",
     },
     {
       title: "取扱暗号資産の豊富さ",
-      description: "BTC、ETH、ADAなど主要な暗号資産だけでなく、新興暗号資産も充実している取引所がおすすめです。",
+      description: "ビットコイン、イーサリアムなど、多様な暗号資産から選べることが重要です。",
     },
     {
-      title: "セキュリティ体制",
-      description: "資産の安全性を確保するため、信頼性の高いセキュリティ対策が施されているか確認しましょう。",
+      title: "セキュリティ対策",
+      description: "資産の安全性を確保するためのセキュリティ対策を確認しましょう。",
     },
     {
       title: "使いやすさ",
-      description: "直感的なUI/UX、安定した取引環境、充実したサポート体制も重要な選定ポイントです。",
+      description: "取引ツールやアプリの操作性も重要な選定ポイントです。",
     },
   ];
 
@@ -41,14 +41,14 @@ const CryptoComparison = () => {
                 暗号資産取引所徹底比較
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8 animate-fade-in-up">
-                手数料、取扱暗号資産、セキュリティを一覧で比較。
+                手数料、取扱暗号資産、セキュリティ対策を一覧で比較。
                 <br />
                 あなたに最適な暗号資産取引所を見つけましょう。
               </p>
               <div className="flex flex-wrap gap-6 justify-center text-sm">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
-                  <span>主要5社を完全比較</span>
+                  <span>主要10社を完全比較</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
@@ -116,28 +116,26 @@ const CryptoComparison = () => {
                     初心者の方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    まずはbitFlyerやGMOコインなど、日本で運営実績のある大手取引所から始めることをおすすめします。
-                    信頼性と安全性が高く、日本語対応のサポートも充実しています。
+                    まずはbitFlyerやGMOコインなど、国内で運営されている信頼性の高い取引所から始めることをおすすめします。
+                    使いやすさと充実したサポート体制が魅力です。
                   </p>
                 </div>
                 <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-secondary/10">
                   <p className="font-semibold text-secondary mb-2 flex items-center gap-2">
                     <span className="inline-block w-8 h-8 bg-secondary/10 rounded-full flex items-center justify-center text-sm">2</span>
-                    海外取引所を利用する方へ
+                    海外取引所を利用したい方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    BinanceやCoinbaseなど海外の大手取引所は、取扱暗号資産数が多く、手数料も安めです。
-                    ただし、日本語対応やサポート体制には注意が必要です。
+                    BinanceやCoinbaseなど、海外の大手取引所は取扱暗号資産が豊富で、手数料も競争力があります。
                   </p>
                 </div>
                 <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-accent/10">
                   <p className="font-semibold text-accent mb-2 flex items-center gap-2">
                     <span className="inline-block w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center text-sm">3</span>
-                    セキュリティ重視の方へ
+                    セキュリティを重視する方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    冷蔵庫（コールドウォレット）での資産保管に対応している取引所を選びましょう。
-                    また、二段階認証や生体認証などのセキュリティ対策が充実していることも重要です。
+                    冷蔵庫（コールドウォレット）の導入や、JASA認定を取得している取引所を選ぶことで、資産の安全性を高めることができます。
                   </p>
                 </div>
               </CardContent>

@@ -1,85 +1,73 @@
-# 投資コンパスガイド (InvestCompass Guide)
+# Welcome to your Lovable project
 
-投資コンパスガイドは、投資初心者から中級者までを対象とした包括的な投資情報サイトです。証券会社比較、暗号資産取引所比較、FX業者比較、投資ガイドなどの機能を提供しています。
+## Project info
 
-## プロジェクト概要
+**URL**: https://lovable.dev/projects/e9f57958-9c46-4aa7-bc8c-0a3e93bfaf01
 
-このプロジェクトは、投資に関する情報を分かりやすく提供し、ユーザーが適切な投資判断を行えるように支援することを目的としています。
+## How can I edit this code?
 
-## 開発環境のセットアップ
+There are several ways of editing your application.
 
-### 前提条件
+**Use Lovable**
 
-- Node.js (バージョン16以上)
-- npm (通常Node.jsと一緒にインストールされます)
+Simply visit the [Lovable Project](https://lovable.dev/projects/e9f57958-9c46-4aa7-bc8c-0a3e93bfaf01) and start prompting.
 
-### セットアップ手順
+Changes made via Lovable will be committed automatically to this repo.
+
+**Use your preferred IDE**
+
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
 
 ```sh
-# Step 1: リポジトリをクローン
-git clone https://github.com/tomomini0815/investcompass-guide.git
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-# Step 2: プロジェクトディレクトリに移動
-cd investcompass-guide
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-# Step 3: 依存関係をインストール
-npm install
+# Step 3: Install the necessary dependencies.
+npm i
 
-# Step 4: 開発サーバーを起動
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-開発サーバーが起動すると、通常は http://localhost:8080 でアプリケーションにアクセスできます。
+**Edit a file directly in GitHub**
 
-## 使用技術
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-このプロジェクトは以下の技術スタックで構築されています：
+**Use GitHub Codespaces**
 
-- Vite (ビルドツール)
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
+
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
 - TypeScript
 - React
-- shadcn-ui (UIコンポーネント)
-- Tailwind CSS (スタイリング)
-- React Router (ルーティング)
-- Lucide React (アイコン)
+- shadcn-ui
+- Tailwind CSS
 
-## デプロイ
+## How can I deploy this project?
 
-このプロジェクトはGitHub Pagesを使用してデプロイされています。
+Simply open [Lovable](https://lovable.dev/projects/e9f57958-9c46-4aa7-bc8c-0a3e93bfaf01) and click on Share -> Publish.
 
-デプロイ手順：
+## Can I connect a custom domain to my Lovable project?
 
-```sh
-# ビルド
-npm run build
+Yes, you can!
 
-# デプロイ
-npm run deploy
-```
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-## ディレクトリ構造
-
-```
-investcompass-guide/
-├── public/              # 静的ファイル
-├── src/                 # ソースコード
-│   ├── components/      # Reactコンポーネント
-│   ├── pages/           # ページコンポーネント
-│   ├── App.tsx          # メインアプリコンポーネント
-│   └── main.tsx         # エントリーポイント
-├── index.html           # メインHTMLファイル
-├── package.json         # 依存関係とスクリプト
-└── vite.config.ts       # Vite設定ファイル
-```
-
-## 貢献方法
-
-1. リポジトリをフォーク
-2. 新しいブランチを作成 (`git checkout -b feature/AmazingFeature`)
-3. 変更をコミット (`git commit -m 'Add some AmazingFeature'`)
-4. ブランチにプッシュ (`git push origin feature/AmazingFeature`)
-5. プルリクエストを作成
-
-## ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。詳細は[LICENSE](LICENSE)ファイルを参照してください。
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
