@@ -13,6 +13,44 @@ const Stocks = () => {
       id: "stocks-basics",
       title: "株式投資の基本と仕組み",
       excerpt: "株式とは何か、株式投資の基本的な仕組みと投資の流れについて解説します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">株式とは？</h3>
+        <p class="mb-4">株式とは、企業が資金調達のために発行する証券で、その企業の所有権の一部を表しています。株式を購入することで、その企業の株主となり、企業の成長とともに利益を得ることができます。</p>
+        
+        <h3 class="text-xl font-bold mb-3">株式投資の仕組み</h3>
+        <p class="mb-4">株式投資では、株式を購入して保有し、株価の上昇や配当金によって利益を得ます。株価は市場の需給関係によって変動し、売買益（キャピタルゲイン）を得ることができます。</p>
+        
+        <h3 class="text-xl font-bold mb-3">投資の流れ</h3>
+        <ol class="list-decimal pl-5 mb-4 space-y-2">
+          <li>証券会社で口座を開設する</li>
+          <li>投資資金を口座に振り込む</li>
+          <li>投資対象の銘柄を調べる</li>
+          <li>株式を購入する</li>
+          <li>株価が上がったら売却する</li>
+        </ol>
+        
+        <h3 class="text-xl font-bold mb-3">株式投資のメリットとデメリット</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h4 class="font-bold text-green-800 mb-2">メリット</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>高リターンが期待できる</li>
+              <li>流動性が高い</li>
+              <li>少額から始められる</li>
+              <li>多様な銘柄が選べる</li>
+            </ul>
+          </div>
+          <div class="bg-red-50 p-4 rounded-lg">
+            <h4 class="font-bold text-red-800 mb-2">デメリット</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>元本割れのリスク</li>
+              <li>知識と経験が必要</li>
+              <li>市場の変動に影響される</li>
+              <li>時間と労力が必要</li>
+            </ul>
+          </div>
+        </div>
+      `,
       readTime: "6分",
       date: "2024年10月30日",
     },
@@ -20,6 +58,32 @@ const Stocks = () => {
       id: "how-to-buy-stocks",
       title: "株式の買い方・売買の手順",
       excerpt: "証券口座の開設から実際に株式を購入するまでの手順を詳しく説明します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">証券口座の開設</h3>
+        <p class="mb-4">株式投資を始めるには、まず証券会社で口座を開設する必要があります。本人確認書類と印鑑が必要です。オンラインで開設できる会社も多く、30分程度で完了します。</p>
+        
+        <h3 class="text-xl font-bold mb-3">投資資金の準備</h3>
+        <p class="mb-4">投資に使用する資金を銀行口座から証券口座に振り込みます。この際、振り込み手数料がかかる場合があります。</p>
+        
+        <h3 class="text-xl font-bold mb-3">銘柄の選定</h3>
+        <p class="mb-4">投資対象となる銘柄を選びます。企業の財務状況、業績、業界動向などを調査し、自分の投資目的に合った銘柄を選びましょう。</p>
+        
+        <h3 class="text-xl font-bold mb-3">注文の方法</h3>
+        <div class="mb-4">
+          <h4 class="font-bold mb-2">注文種別</h4>
+          <ul class="list-disc pl-5 space-y-1 mb-3">
+            <li>成行注文：現在の市場価格で即座に約定</li>
+            <li>指値注文：指定した価格で売買</li>
+            <li>逆指値注文：指定した価格に達した時点で成行注文を出す</li>
+          </ul>
+          
+          <h4 class="font-bold mb-2">売買数量</h4>
+          <p>購入する株式の数量を指定します。1単元（100株）単位で取引される銘柄が多いです。</p>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">売買の実行</h3>
+        <p class="mb-4">注文を出すと、約定するまでに数秒〜数分かかります。約定後は、保有株式として口座に反映されます。</p>
+      `,
       readTime: "8分",
       date: "2024年10月30日",
     },
@@ -27,6 +91,37 @@ const Stocks = () => {
       id: "stock-analysis",
       title: "銘柄選びと企業分析の方法",
       excerpt: "企業の財務諸表や業績などを分析して、良い銘柄を見極める方法を学びます。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">企業分析の重要性</h3>
+        <p class="mb-4">良い銘柄を選ぶには、企業の財務状況や事業内容、競争力などを分析する必要があります。適切な企業分析により、リスクを抑えながらリターンを高める投資が可能になります。</p>
+        
+        <h3 class="text-xl font-bold mb-3">財務諸表の読み方</h3>
+        <div class="mb-4">
+          <h4 class="font-bold mb-2">重要な財務指標</h4>
+          <ul class="list-disc pl-5 space-y-1 mb-3">
+            <li>PER（株価収益率）：株価が1株当たり利益の何倍になっているか</li>
+            <li>PBR（株価純資産倍率）：株価が1株当たり純資産の何倍になっているか</li>
+            <li>ROE（自己資本利益率）：自己資本に対する利益の割合</li>
+            <li>配当利回り：配当金と株価の比率</li>
+          </ul>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">業績分析</h3>
+        <p class="mb-4">企業の売上高、営業利益、純利益の推移を確認し、成長性や安定性を評価します。また、業界内での競争力や将来の成長可能性も重要です。</p>
+        
+        <h3 class="text-xl font-bold mb-3">テクニカル分析</h3>
+        <div class="mb-4">
+          <h4 class="font-bold mb-2">チャート分析</h4>
+          <p class="mb-2">価格や出来高の推移をチャートで分析し、売買のタイミングを判断します。</p>
+          
+          <h4 class="font-bold mb-2">主要なテクニカル指標</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>移動平均線：一定期間の平均株価を線で表したもの</li>
+            <li>MACD：トレンドの方向や強さを示す指標</li>
+            <li>RSI：買われすぎ・売られすぎを示す指標</li>
+          </ul>
+        </div>
+      `,
       readTime: "10分",
       date: "2024年10月30日",
     },
@@ -34,6 +129,39 @@ const Stocks = () => {
       id: "dividend-investing",
       title: "配当金投資の戦略とポイント",
       excerpt: "配当金を目的とした株式投資の戦略と、安定的な配当金を得るためのポイントについて解説します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">配当金投資とは？</h3>
+        <p class="mb-4">配当金投資とは、企業が利益を出すごとに株主に分配する配当金を目的とした株式投資です。株価の上昇ではなく、安定した配当金収入を得ることを目的としています。</p>
+        
+        <h3 class="text-xl font-bold mb-3">配当金投資のメリット</h3>
+        <ul class="list-disc pl-5 mb-4 space-y-2">
+          <li>安定した収入源が確保できる</li>
+          <li>インフレヘッジになる</li>
+          <li>複利効果で資産が増える</li>
+          <li>長期保有で税制優遇が受けられる</li>
+        </ul>
+        
+        <h3 class="text-xl font-bold mb-3">配当金投資の戦略</h3>
+        <div class="mb-4">
+          <h4 class="font-bold mb-2">高配当利回り銘柄の選定</h4>
+          <p class="mb-2">配当利回りが高く、かつ安定した配当政策を持つ企業を選びます。ただし、高配当利回りでも業績が悪化している場合はリスクがあります。</p>
+          
+          <h4 class="font-bold mb-2">分散投資</h4>
+          <p class="mb-2">業種や業界を分散させ、特定企業や業界への依存を減らします。これにより、個別の企業リスクを軽減できます。</p>
+          
+          <h4 class="font-bold mb-2">積立投資</h4>
+          <p>定期的に一定額を投資することで、市場の変動リスクを軽減し、長期的な資産形成を目指します。</p>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">注目すべきポイント</h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>配当政策の継続性</li>
+          <li>財務の健全性</li>
+          <li>業績の安定性</li>
+          <li>業界の成長性</li>
+          <li>為替リスク（外貨建株式の場合）</li>
+        </ul>
+      `,
       readTime: "7分",
       date: "2024年10月30日",
     },
@@ -129,29 +257,23 @@ const Stocks = () => {
               </p>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {articles.map((article, index) => (
                 <Card key={article.id} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 bg-gradient-to-br from-card to-card/80 hover:border-secondary/30">
                   <CardContent className="p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge variant="secondary" className="rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors">
-                            {index + 1}
-                          </Badge>
-                          <h3 className="text-xl font-bold group-hover:text-secondary transition-colors">{article.title}</h3>
-                        </div>
-                        <p className="text-muted-foreground mb-3 leading-relaxed">{article.excerpt}</p>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span className="flex items-center gap-1">📅 {article.date}</span>
-                          <span className="flex items-center gap-1">⏱️ {article.readTime}</span>
-                        </div>
-                      </div>
-                      <Button asChild className="group-hover:scale-105 transition-transform">
-                        <Link to={`/guide/${article.id}`}>
-                          記事を読む
-                        </Link>
-                      </Button>
+                    <div className="flex items-center gap-3 mb-4">
+                      <Badge variant="secondary" className="rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors">
+                        {index + 1}
+                      </Badge>
+                      <h3 className="text-2xl font-bold group-hover:text-secondary transition-colors">{article.title}</h3>
+                    </div>
+                    <div 
+                      className="article-content mb-4"
+                      dangerouslySetInnerHTML={{ __html: article.content }}
+                    />
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">📅 {article.date}</span>
+                      <span className="flex items-center gap-1">⏱️ {article.readTime}</span>
                     </div>
                   </CardContent>
                 </Card>

@@ -4,29 +4,34 @@ import { TrendingUp } from "lucide-react";
 const Footer = () => {
   const footerLinks = {
     "投資の基礎": [
-      { name: "投資とは", href: "/guide/what-is-investment" },
-      { name: "リスクとリターン", href: "/guide/risk-return" },
-      { name: "投資用語集", href: "/guide/glossary" },
+      { name: "投資とは", href: "/basics" },
+      { name: "リスクとリターン", href: "/basics" },
+      { name: "投資用語集", href: "/basics" },
     ],
     "投資商品": [
-      { name: "株式投資", href: "/guide/stocks" },
-      { name: "NISA・つみたてNISA", href: "/guide/nisa" },
-      { name: "iDeCo", href: "/guide/ideco" },
-      { name: "仮想通貨", href: "/guide/crypto" },
+      { name: "株式投資", href: "/stocks" },
+      { name: "NISA・つみたてNISA", href: "/nisa" },
+      { name: "iDeCo", href: "/basics" },
+      { name: "仮想通貨", href: "/crypto" },
     ],
     "ツール": [
-      { name: "複利計算", href: "/tools" },
+      { name: "複利計算", href: "/tools-detail" },
       { name: "投資診断", href: "/#診断" },
       { name: "証券会社比較", href: "/comparison" },
+    ],
+    "比較": [
+      { name: "証券会社", href: "/comparison" },
+      { name: "FX業者", href: "/fx-comparison" },
+      { name: "暗号資産", href: "/crypto-comparison" },
     ],
   };
 
   return (
     <footer className="border-t bg-muted/30 mt-20">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="flex flex-wrap justify-between gap-8 mb-8">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-4 flex-1 min-w-[200px]">
             <Link to="/" className="flex items-center gap-2 font-bold text-xl">
               <div className="gradient-primary p-2 rounded-lg">
                 <TrendingUp className="h-5 w-5 text-white" />
@@ -40,7 +45,7 @@ const Footer = () => {
 
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
+            <div key={category} className="flex-1 min-w-[200px]">
               <h3 className="font-semibold mb-4 text-foreground">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (

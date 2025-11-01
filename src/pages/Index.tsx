@@ -148,6 +148,52 @@ const Index = () => {
     },
   ];
 
+  // 国内FX業者ランキング
+  const domesticFxBrokers = [
+    {
+      rank: 1,
+      name: "外為どっとコム",
+      features: [
+        "業界最狭水準のスプレッド（米ドル/円:0.2銭）",
+        "豊富なマーケット情報と分析ツール",
+        "初心者向けコンテンツが充実",
+      ],
+      commission: "取引手数料:無料",
+      minInvestment: "1,000通貨〜",
+      nisaSupport: false,
+      highlight: "総合1位",
+      affiliateUrl: "https://www.gaitameonline.com/",
+    },
+    {
+      rank: 2,
+      name: "GMOクリック証券",
+      features: [
+        "スワップポイントが業界最高水準",
+        "株式やCFDなど他の商品との連携が可能",
+        "少額取引から大口取引まで対応",
+      ],
+      commission: "取引手数料:無料",
+      minInvestment: "1,000通貨〜",
+      nisaSupport: false,
+      highlight: "スワップポイントNo.1",
+      affiliateUrl: "https://click-sec.com/fxneo/",
+    },
+    {
+      rank: 3,
+      name: "松井証券",
+      features: [
+        "1通貨から取引可能（最小100円相当）",
+        "スプレッドは業界最狭水準",
+        "株式や投資信託との連携が可能",
+      ],
+      commission: "取引手数料:無料",
+      minInvestment: "1通貨〜",
+      nisaSupport: false,
+      highlight: "初心者向け",
+      affiliateUrl: "https://www.matsui-fx.com/",
+    },
+  ];
+
   // 国外暗号資産取引所ランキング
   const internationalCryptoExchanges = [
     {
@@ -293,6 +339,23 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
               {rankings.map((ranking) => (
                 <RankingCard key={ranking.rank} {...ranking} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FX Broker Ranking */}
+        <section className="py-8 sm:py-12 md:py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">FX業者ランキング</h2>
+              <p className="text-sm sm:text-base text-muted-foreground px-4">
+                人気のFX業者を徹底比較。あなたに最適なFX業者を見つけましょう
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
+              {domesticFxBrokers.map((broker) => (
+                <RankingCard key={broker.rank} {...broker} />
               ))}
             </div>
           </div>

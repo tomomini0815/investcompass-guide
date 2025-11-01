@@ -13,6 +13,56 @@ const Nisa = () => {
       id: "nisa-basics",
       title: "NISA・つみたてNISAの基本と違い",
       excerpt: "NISAとつみたてNISAの基本的な概念とそれぞれの特徴、違いについて解説します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">NISAとは？</h3>
+        <p class="mb-4">NISA（少額投資非課税制度）とは、個人が株式や投資信託などの金融商品に投資した際の利益（配当金・分配金・売却益）が非課税となる制度です。2014年に導入され、2024年現在も継続されています。</p>
+        
+        <h3 class="text-xl font-bold mb-3">つみたてNISAとは？</h3>
+        <p class="mb-4">つみたてNISAは、2018年に導入された長期的な資産形成に適した投資信託に特化したNISAです。毎月少額ずつ積み立てながら、インデックス型投資信託などの低コストで分散投資が可能な商品に投資できます。</p>
+        
+        <h3 class="text-xl font-bold mb-3">NISAとつみたてNISAの違い</h3>
+        <div class="overflow-x-auto mb-4">
+          <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b text-left">項目</th>
+                <th class="py-2 px-4 border-b text-left">NISA</th>
+                <th class="py-2 px-4 border-b text-left">つみたてNISA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b">対象商品</td>
+                <td class="py-2 px-4 border-b">株式、投資信託、ETF、ETNなど</td>
+                <td class="py-2 px-4 border-b">特定のインデックス型投資信託など</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b">非課税枠</td>
+                <td class="py-2 px-4 border-b">年間120万円（累計1,000万円）</td>
+                <td class="py-2 px-4 border-b">年間40万円（累計800万円）</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">非課税期間</td>
+                <td class="py-2 px-4 border-b">5年間</td>
+                <td class="py-2 px-4 border-b">20年間</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b">売却ルール</td>
+                <td class="py-2 px-4 border-b">特定口座で管理（源泉分離課税）</td>
+                <td class="py-2 px-4 border-b">特定口座で管理（源泉分離課税）</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">積立投資</td>
+                <td class="py-2 px-4 border-b">任意</td>
+                <td class="py-2 px-4 border-b">推奨（自動引き落とし）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">新NISA制度</h3>
+        <p class="mb-4">2024年から新NISA制度が始まりました。年間180万円の非課税枠（うち120万円が分配金・配当金、60万円が譲渡益）が導入され、従来のNISAとつみたてNISAが統合されました。新NISAは、従来の制度のメリットを活かしつつ、より柔軟な運用が可能になっています。</p>
+      `,
       readTime: "7分",
       date: "2024年10月30日",
     },
@@ -20,6 +70,55 @@ const Nisa = () => {
       id: "how-to-open-nisa",
       title: "NISA口座の開設手順",
       excerpt: "NISA口座を開設するまでの手順と必要な書類、注意点について詳しく説明します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">NISA口座開設の流れ</h3>
+        <ol class="list-decimal pl-5 mb-4 space-y-2">
+          <li>証券会社を選ぶ</li>
+          <li>必要な書類を準備する</li>
+          <li>口座開設申込書に記入する</li>
+          <li>本人確認と印鑑証明書の提出</li>
+          <li>口座開設の完了</li>
+        </ol>
+        
+        <h3 class="text-xl font-bold mb-3">証券会社の選び方</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h4 class="font-bold text-green-800 mb-2">チェックポイント</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>手数料の安さ</li>
+              <li>取扱商品の充実度</li>
+              <li>使いやすい取引ツール</li>
+              <li>信頼性と実績</li>
+              <li>サポート体制</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h4 class="font-bold text-blue-800 mb-2">注意点</h4>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>キャンペーンの条件を確認</li>
+              <li>年会費や管理費の有無</li>
+              <li>振込手数料の設定</li>
+              <li>利用可能なNISAの種類</li>
+            </ul>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">必要な書類</h3>
+        <ul class="list-disc pl-5 mb-4 space-y-1">
+          <li>本人確認書類（運転免許証、パスポートなど）</li>
+          <li>印鑑（認印）</li>
+          <li>印鑑証明書（市区町村で発行、3か月以内）</li>
+          <li>源泉徴収票または確定申告書（一部の証券会社）</li>
+        </ul>
+        
+        <h3 class="text-xl font-bold mb-3">口座開設後の注意点</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>年間非課税枠の管理</li>
+          <li>非課税期間の確認</li>
+          <li>売却時の注意（特定口座での管理）</li>
+          <li>他の口座との使い分け</li>
+        </ul>
+      `,
       readTime: "6分",
       date: "2024年10月30日",
     },
@@ -27,6 +126,55 @@ const Nisa = () => {
       id: "nisa-investment-strategy",
       title: "NISAでの投資戦略とおすすめ商品",
       excerpt: "NISAを活用した効果的な投資戦略と、おすすめの投資商品を紹介します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">NISA投資の基本戦略</h3>
+        <p class="mb-4">NISA口座での投資では、非課税枠を最大限に活用することが重要です。長期的な資産形成を目指す場合は、分散投資とドルコスト平均法による積立投資が効果的です。</p>
+        
+        <h3 class="text-xl font-bold mb-3">おすすめ投資商品</h3>
+        <div class="space-y-4 mb-4">
+          <div class="border-l-4 border-blue-500 pl-4">
+            <h4 class="font-bold text-blue-700 mb-2">インデックス型投資信託</h4>
+            <p>市場全体の動きに連動するため、リスク分散が図れ、信託報酬も比較的安価です。つみたてNISAの対象商品としても推奨されています。</p>
+          </div>
+          
+          <div class="border-l-4 border-green-500 pl-4">
+            <h4 class="font-bold text-green-700 mb-2">ETF（上場投資信託）</h4>
+            <p>株式のように取引所で売買できる投資信託で、手数料が安くて流動性が高いのが特徴です。日本株、米国株、先進国株など多様な商品があります。</p>
+          </div>
+          
+          <div class="border-l-4 border-purple-500 pl-4">
+            <h4 class="font-bold text-purple-700 mb-2">個人向け国債（変動金利型）</h4>
+            <p>元本が保証され、金利が変動する国債です。リスクが低く安定した運用を求める方におすすめです。</p>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">ポートフォリオの組み方</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div class="bg-blue-50 p-4 rounded-lg text-center">
+            <PieChart class="h-12 w-12 text-blue-600 mx-auto mb-2" />
+            <h4 class="font-bold text-blue-800 mb-1">国内株式</h4>
+            <p class="text-sm">30-40%</p>
+          </div>
+          <div class="bg-green-50 p-4 rounded-lg text-center">
+            <TrendingUp class="h-12 w-12 text-green-600 mx-auto mb-2" />
+            <h4 class="font-bold text-green-800 mb-1">海外株式</h4>
+            <p class="text-sm">40-50%</p>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg text-center">
+            <Award class="h-12 w-12 text-purple-600 mx-auto mb-2" />
+            <h4 class="font-bold text-purple-800 mb-1">債券・その他</h4>
+            <p class="text-sm">10-20%</p>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">リスク管理とリバランス</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>定期的にポートフォリオを見直す（年1-2回）</li>
+          <li>資産配分が目標から大きくずれた場合は調整する</li>
+          <li>市場の変動に一喜一憂せず、長期的な視点を持つ</li>
+          <li>自分のリスク許容度に合った運用を行う</li>
+        </ul>
+      `,
       readTime: "9分",
       date: "2024年10月30日",
     },
@@ -34,6 +182,52 @@ const Nisa = () => {
       id: "nisa-tax-benefit",
       title: "NISAの税制優遇と節税効果",
       excerpt: "NISAの税制優遇内容と、実際にどれくらいの節税効果があるのかを解説します。",
+      content: `
+        <h3 class="text-xl font-bold mb-3">NISAの税制優遇内容</h3>
+        <p class="mb-4">NISAでは、投資で得た利益（配当金・分配金・売却益）が非課税になります。これは、通常の特定口座では利益に応じて約20%の税金（所得税15%、住民税5%）がかかるのに対し、NISA口座ではその税金がかからないという大きなメリットです。</p>
+        
+        <h3 class="text-xl font-bold mb-3">節税効果の計算例</h3>
+        <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+          <h4 class="font-bold text-yellow-800 mb-2">例：年間120万円の利益を得た場合</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>通常の特定口座：120万円 × 20% = 24万円の税金</li>
+            <li>NISA口座：0円の税金</li>
+            <li><strong>節税効果：24万円</strong></li>
+          </ul>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">新NISAの節税効果</h3>
+        <p class="mb-4">2024年から始まった新NISAでは、年間180万円の非課税枠があります。そのうち120万円が分配金・配当金、60万円が譲渡益の非課税枠です。</p>
+        
+        <div class="bg-green-50 p-4 rounded-lg mb-4">
+          <h4 class="font-bold text-green-800 mb-2">新NISAの節税効果計算例</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>分配金・配当金：120万円 × 20% = 24万円の節税</li>
+            <li>譲渡益：60万円 × 20% = 12万円の節税</li>
+            <li><strong>合計節税効果：36万円</strong></li>
+          </ul>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">NISAと他の制度の併用</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="border border-blue-300 rounded-lg p-4">
+            <h4 class="font-bold text-blue-700 mb-2">iDeCoとの併用</h4>
+            <p class="text-sm">NISAとiDeCo（個人型確定拠出年金）は併用可能です。両制度を活用することで、より大きな節税効果と資産形成が期待できます。</p>
+          </div>
+          <div class="border border-green-300 rounded-lg p-4">
+            <h4 class="font-bold text-green-700 mb-2">一般の特定口座との併用</h4>
+            <p class="text-sm">NISA口座と一般の特定口座を併用することも可能です。目的に応じて使い分けることで、より効率的な資産運用ができます。</p>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">節税効果を最大限に活用するポイント</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>年間非課税枠を最大限に活用する</li>
+          <li>長期的な運用で複利効果を活かす</li>
+          <li>適切な分散投資でリスクを管理する</li>
+          <li>他の節税制度と組み合わせる</li>
+        </ul>
+      `,
       readTime: "8分",
       date: "2024年10月30日",
     },
@@ -129,29 +323,23 @@ const Nisa = () => {
               </p>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {articles.map((article, index) => (
                 <Card key={article.id} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 bg-gradient-to-br from-card to-card/80 hover:border-accent/30">
                   <CardContent className="p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge variant="secondary" className="rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                            {index + 1}
-                          </Badge>
-                          <h3 className="text-xl font-bold group-hover:text-accent transition-colors">{article.title}</h3>
-                        </div>
-                        <p className="text-muted-foreground mb-3 leading-relaxed">{article.excerpt}</p>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span className="flex items-center gap-1">📅 {article.date}</span>
-                          <span className="flex items-center gap-1">⏱️ {article.readTime}</span>
-                        </div>
-                      </div>
-                      <Button asChild className="group-hover:scale-105 transition-transform">
-                        <Link to={`/guide/${article.id}`}>
-                          記事を読む
-                        </Link>
-                      </Button>
+                    <div className="flex items-center gap-3 mb-4">
+                      <Badge variant="secondary" className="rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                        {index + 1}
+                      </Badge>
+                      <h3 className="text-2xl font-bold group-hover:text-accent transition-colors">{article.title}</h3>
+                    </div>
+                    <div 
+                      className="article-content mb-4"
+                      dangerouslySetInnerHTML={{ __html: article.content }}
+                    />
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">📅 {article.date}</span>
+                      <span className="flex items-center gap-1">⏱️ {article.readTime}</span>
                     </div>
                   </CardContent>
                 </Card>

@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-investment.jpg";
 const HeroSection = () => {
   // ご指定の内容に変更
   const features = [
-    { icon: Users, label: "投資便利ツール", value: "投資診断・計算ツール" },
+    { icon: Users, label: "投資便利ツール", value: "各種投資計算ツール" },
     { icon: TrendingUp, label: "投資業界徹底比較", value: "40社〜50社比較" },
     { icon: BookOpen, label: "学習リソース", value: "初心者〜中級" },
   ];
