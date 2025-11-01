@@ -46,7 +46,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/investcompass-guide">
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
