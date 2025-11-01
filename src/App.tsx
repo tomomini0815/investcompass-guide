@@ -20,6 +20,13 @@ import Nisa from "./pages/Nisa";
 import InvestmentTrust from "./pages/InvestmentTrust";
 import Crypto from "./pages/Crypto";
 import ToolsDetail from "./pages/ToolsDetail";
+// 新しいツールページのインポート
+import CompoundInterest from "./pages/tools/CompoundInterest";
+import SavingCalculator from "./pages/tools/SavingCalculator";
+import RiskAssessment from "./pages/tools/RiskAssessment";
+import StockReturn from "./pages/tools/StockReturn";
+import FundReturn from "./pages/tools/FundReturn";
+import CryptoReturn from "./pages/tools/CryptoReturn";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +61,13 @@ const App = () => (
           <Route path="/fx-comparison" element={<FXComparison />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
+          {/* 新しいツールページのルート */}
+          <Route path="/tools/compound-interest" element={<CompoundInterest />} />
+          <Route path="/tools/saving-calculator" element={<SavingCalculator />} />
+          <Route path="/tools/risk-assessment" element={<RiskAssessment />} />
+          <Route path="/tools/stock-return" element={<StockReturn />} />
+          <Route path="/tools/fund-return" element={<FundReturn />} />
+          <Route path="/tools/crypto-return" element={<CryptoReturn />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />

@@ -43,31 +43,6 @@ const Crypto = () => {
             </ul>
           </div>
         </div>
-        
-        <h3 class="text-xl font-bold mb-3">主要な仮想通貨</h3>
-        <div class="space-y-3 mb-4">
-          <div class="flex items-start">
-            <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 mr-4" />
-            <div>
-              <h4 class="font-bold">ビットコイン（BTC）</h4>
-              <p>最初の仮想通貨で、デジタルゴールドと呼ばれる。価値保存の手段として利用される。</p>
-            </div>
-          </div>
-          <div class="flex items-start">
-            <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 mr-4" />
-            <div>
-              <h4 class="font-bold">イーサリアム（ETH）</h4>
-              <p>スマートコントラクト機能を持つ。分散型アプリケーション（DApps）のプラットフォーム。</p>
-            </div>
-          </div>
-          <div class="flex items-start">
-            <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 mr-4" />
-            <div>
-              <h4 class="font-bold">リップル（XRP）</h4>
-              <p>銀行間の国際送金に特化した仮想通貨。高速かつ低コストな送金が可能。</p>
-            </div>
-          </div>
-        </div>
       `,
       readTime: "8分",
       date: "2024年10月30日",
