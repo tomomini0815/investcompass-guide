@@ -4,11 +4,34 @@ import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-investment.jpg";
 
 const HeroSection = () => {
-  const stats = [
-    { icon: Users, label: "利用者数", value: "100万人+" },
-    { icon: BookOpen, label: "記事数", value: "500本+" },
-    { icon: TrendingUp, label: "証券会社", value: "20社比較" },
+  // ご指定の内容に変更
+  const features = [
+    { icon: Users, label: "投資便利ツール", value: "投資診断・計算ツール" },
+    { icon: TrendingUp, label: "投資業界徹底比較", value: "40社〜50社比較" },
+    { icon: BookOpen, label: "学習リソース", value: "初心者〜中級" },
   ];
+
+  // 投資診断セクションにスムーズスクロールする関数
+  const scrollToDiagnostic = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // 少し遅延させてからスクロール（ページが完全にロードされるのを待つため）
+    setTimeout(() => {
+      const element = document.getElementById("診断");
+      if (element) {
+        // セクションタイトルがトップに来るようにスクロール位置を調整
+        const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        // タイトルが完全にトップに来るように、余白をヘッダーの高さのみにする
+        const offsetPosition = elementPosition - headerHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, 100);
+  };
 
   return (
     <section className="relative overflow-hidden">
@@ -38,12 +61,10 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent-hover text-white text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 shadow-xl w-full sm:w-auto" 
-              asChild
+              onClick={scrollToDiagnostic}
             >
-              <Link to="/#診断">
-                投資診断を始める
-                <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-              </Link>
+              投資診断を始める
+              <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
             </Button>
             <Button 
               size="lg" 
@@ -55,17 +76,17 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Stats */}
+          {/* Features - ご指定の内容に変更 */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
+            {features.map((feature) => (
+              <div key={feature.label} className="text-center">
                 <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-sm mb-2">
-                  <stat.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                  <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
                 <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-1">
-                  {stat.value}
+                  {feature.value}
                 </div>
-                <div className="text-xs sm:text-sm text-white/80">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-white/80">{feature.label}</div>
               </div>
             ))}
           </div>

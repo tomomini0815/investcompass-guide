@@ -35,7 +35,7 @@ const FXComparison = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-block mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-                <span className="text-sm font-semibold">🏆 2024年最新版</span>
+                <span className="text-sm font-semibold">🏆 2024年〜2025年現在</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
                 FX業者徹底比較

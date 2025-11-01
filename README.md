@@ -1,73 +1,95 @@
-# Welcome to your Lovable project
+# 投資総合ガイド
 
-## Project info
+## プロジェクト概要
 
-**URL**: https://lovable.dev/projects/e9f57958-9c46-4aa7-bc8c-0a3e93bfaf01
+このプロジェクトは、投資初心者から中級者までを対象とした包括的な投資ガイドサイトです。株式投資、NISA、iDeCo、仮想通貨など、あらゆる投資商品について徹底解説し、信頼できる情報でユーザーの資産形成をサポートします。
 
-## How can I edit this code?
+## 機能
 
-There are several ways of editing your application.
+- 証券会社比較機能
+- 暗号資産取引所比較機能
+- FX業者比較機能
+- 投資診断ツール
+- 投資ガイド記事
+- 計算ツール
 
-**Use Lovable**
+## 開発環境のセットアップ
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e9f57958-9c46-4aa7-bc8c-0a3e93bfaf01) and start prompting.
+### 必要条件
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js (推奨: 最新のLTSバージョン)
+- npm または yarn
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### セットアップ手順
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Step 1: リポジトリをクローン
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Step 2: プロジェクトディレクトリに移動
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
+# Step 3: 依存関係をインストール
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: 開発サーバーを起動
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 開発コマンド
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `npm run dev`: 開発サーバーを起動
+- `npm run build`: 本番ビルドを作成
+- `npm run preview`: ビルド後のプレビューを表示
+- `npm run lint`: コードのLintチェック
 
-**Use GitHub Codespaces**
+## 技術スタック
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+このプロジェクトは以下の技術で構築されています：
 
-## What technologies are used for this project?
+- **Vite**: 高速な開発ツール
+- **TypeScript**: 型安全なJavaScript
+- **React**: コンポーネントベースのUIライブラリ
+- **shadcn-ui**: アクセシブルなUIコンポーネント
+- **Tailwind CSS**: ユーティリティファーストのCSSフレームワーク
 
-This project is built with:
+## ディレクトリ構造
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+src/
+├── components/
+│   ├── features/     # 機能別コンポーネント
+│   ├── layout/       # レイアウトコンポーネント
+│   └── ui/           # UIコンポーネント
+├── pages/            # ページコンポーネント
+├── assets/           # 静的アセット
+├── hooks/            # カスタムフック
+└── lib/              # ユーティリティ関数
+```
 
-## How can I deploy this project?
+## デプロイ
 
-Simply open [Lovable](https://lovable.dev/projects/e9f57958-9c46-4aa7-bc8c-0a3e93bfaf01) and click on Share -> Publish.
+このプロジェクトは、以下の手順でデプロイできます：
 
-## Can I connect a custom domain to my Lovable project?
+1. `npm run build` で本番ビルドを作成
+2. ビルドされたファイルを任意のホスティングサービスにアップロード
 
-Yes, you can!
+一般的なホスティングサービス:
+- Vercel
+- Netlify
+- GitHub Pages
+- その他の静的サイトホスティングサービス
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 貢献
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+このプロジェクトに貢献する場合は、以下の手順に従ってください：
+
+1. リポジトリをフォーク
+2. 新しいブランチを作成 (`git checkout -b feature/AmazingFeature`)
+3. 変更をコミット (`git commit -m 'Add some AmazingFeature'`)
+4. ブランチにプッシュ (`git push origin feature/AmazingFeature`)
+5. プルリクエストを作成
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。詳細は[LICENSE](LICENSE)ファイルを参照してください。

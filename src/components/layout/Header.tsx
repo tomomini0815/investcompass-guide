@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, TrendingUp } from "lucide-react";
 import { useState } from "react";
@@ -6,13 +6,14 @@ import { useState } from "react";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navigation = [
     { name: "ホーム", href: "/" },
     { name: "証券会社比較", href: "/comparison" },
     { name: "暗号資産取引所比較", href: "/crypto-comparison" },
     { name: "FX業者比較", href: "/fx-comparison" },
-    { name: "投資ガイド", href: "/guide/nisa-beginner" },
+    { name: "投資ガイド", href: "/guide/investment-basics" },
     { name: "計算ツール", href: "/tools" },
   ];
 
@@ -22,6 +23,35 @@ const Header = () => {
       return location.pathname === "/";
     }
     return location.pathname.startsWith(path);
+  };
+
+  // 投資診断セクションにスクロールする関数
+  const scrollToDiagnostic = () => {
+    // ホームページでない場合はホームページに移動してからスクロール
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollToDiagnostic: true } });
+    } else {
+      // ホームページの場合は直接スクロール
+      // 少し遅延させてからスクロール（ページが完全にロードされるのを待つため）
+      setTimeout(() => {
+        const element = document.getElementById("診断");
+        if (element) {
+          // セクションタイトルがトップに来るようにスクロール位置を調整
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          // タイトルが完全にトップに来るように、余白をヘッダーの高さのみにする
+          const offsetPosition = elementPosition - headerHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+          
+          // モバイルメニューが開いている場合は閉じる
+          setIsMobileMenuOpen(false);
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -35,22 +65,22 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-1">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
               className={`text-sm font-medium transition-colors px-3 py-2 rounded-md ${
                 isActive(item.href)
-                  ? "text-primary bg-primary/15"
-                  : "text-foreground/80 bg-muted/50 hover:bg-primary/10"
+                  ? "text-primary bg-primary/20 font-semibold"
+                  : "text-foreground/80 hover:text-primary hover:bg-accent"
               }`}
             >
               {item.name}
             </Link>
           ))}
-          <Button variant="default" size="sm" asChild>
-            <Link to="/#診断">投資診断を始める</Link>
+          <Button variant="default" size="sm" onClick={scrollToDiagnostic} className="ml-2">
+            投資診断を始める
           </Button>
         </div>
 
@@ -75,18 +105,16 @@ const Header = () => {
                 to={item.href}
                 className={`block py-2 text-sm font-medium transition-colors px-3 rounded-md ${
                   isActive(item.href)
-                    ? "text-primary bg-primary/15"
-                    : "text-foreground/80 bg-muted/50 hover:bg-primary/10"
+                    ? "text-primary bg-primary/20 font-semibold"
+                    : "text-foreground/80 hover:text-primary hover:bg-accent"
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <Button variant="default" size="sm" className="w-full" asChild>
-              <Link to="/#診断" onClick={() => setIsMobileMenuOpen(false)}>
-                投資診断を始める
-              </Link>
+            <Button variant="default" size="sm" className="w-full mt-2" onClick={scrollToDiagnostic}>
+              投資診断を始める
             </Button>
           </div>
         </div>

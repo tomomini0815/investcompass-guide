@@ -6,50 +6,53 @@ import CategoryCard from "@/components/features/CategoryCard";
 import RankingCard from "@/components/features/RankingCard";
 import ArticleCard from "@/components/features/ArticleCard";
 import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
+  const location = useLocation();
+  const hasScrolledRef = useRef(false);
   const categories = [
     {
       icon: BookOpen,
       title: "投資の基礎知識",
       description: "投資を始める前に知っておくべき基本を解説",
-      href: "/guide/basics",
+      href: "/basics",
       color: "primary" as const,
     },
     {
       icon: TrendingUp,
       title: "株式投資",
       description: "個別株の選び方から取引方法まで",
-      href: "/guide/stocks",
+      href: "/stocks",
       color: "secondary" as const,
     },
     {
       icon: PieChart,
       title: "NISA・つみたてNISA",
       description: "非課税制度を活用した投資術",
-      href: "/guide/nisa-beginner",
+      href: "/nisa",
       color: "accent" as const,
     },
     {
       icon: LineChart,
       title: "投資信託",
       description: "プロに運用を任せる投資方法",
-      href: "/guide/investment-trust",
+      href: "/investment-trust",
       color: "primary" as const,
     },
     {
       icon: Coins,
       title: "仮想通貨",
       description: "暗号資産の基礎から取引まで",
-      href: "/guide/crypto",
+      href: "/crypto",
       color: "secondary" as const,
     },
     {
       icon: Calculator,
       title: "投資計算ツール",
       description: "複利計算やシミュレーション",
-      href: "/tools",
+      href: "/tools-detail",
       color: "accent" as const,
     },
   ];
@@ -219,6 +222,36 @@ const Index = () => {
   ];
 
   const [activeTab, setActiveTab] = useState<"domestic" | "international">("domestic");
+
+  // ページ遷移後に投資診断セクションにスクロールする
+  useEffect(() => {
+    // 既にスクロール済みの場合は処理をスキップ
+    if (hasScrolledRef.current) return;
+    
+    if (location.state && location.state.scrollToDiagnostic) {
+      // 少し遅延させてからスクロール（ページが完全にロードされるのを待つため）
+      const timer = setTimeout(() => {
+        const element = document.getElementById("診断");
+        if (element) {
+          // セクションタイトルがトップに来るようにスクロール位置を調整
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          // タイトルが完全にトップに来るように、余白をヘッダーの高さのみにする
+          const offsetPosition = elementPosition - headerHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+          
+          // スクロール済みフラグを立てる
+          hasScrolledRef.current = true;
+        }
+      }, 300);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   return (
     <div className="min-h-screen flex flex-col">
