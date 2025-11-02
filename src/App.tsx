@@ -13,6 +13,9 @@ import Tools from "./pages/Tools";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer";
+import Legal from "./pages/Legal";
+import Contact from "./pages/Contact";
+import Company from "./pages/Company";
 import NotFound from "./pages/NotFound";
 import Basics from "./pages/Basics";
 import Stocks from "./pages/Stocks";
@@ -71,6 +74,9 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/company" element={<Company />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

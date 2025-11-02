@@ -3,6 +3,10 @@ import { TrendingUp } from "lucide-react";
 
 const Footer = () => {
   const footerLinks = {
+    "ブランド情報": [
+      { name: "運営会社", href: "/company" },
+      { name: "お問い合わせ", href: "/contact" },
+    ],
     "投資の基礎": [
       { name: "投資とは", href: "/basics" },
       { name: "リスクとリターン", href: "/basics" },
@@ -23,6 +27,9 @@ const Footer = () => {
       { name: "証券会社", href: "/comparison" },
       { name: "FX業者", href: "/fx-comparison" },
       { name: "暗号資産", href: "/crypto-comparison" },
+    ],
+    "その他": [
+      { name: "特定商取引法", href: "/legal" },
     ],
   };
 
@@ -76,6 +83,12 @@ const Footer = () => {
             </Link>
             <Link to="/disclaimer" className="hover:text-primary transition-colors">
               免責事項
+            </Link>
+            <Link to="/legal" className="hover:text-primary transition-colors">
+              特定商取引法
+            </Link>
+            <Link to="/contact" className="hover:text-primary transition-colors">
+              お問い合わせ
             </Link>
           </div>
         </div>
