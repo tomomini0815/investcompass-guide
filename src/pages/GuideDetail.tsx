@@ -397,79 +397,61 @@ const GuideDetail = () => {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col gap-8">
               {/* Main Content */}
-              <article className="prose prose-slate max-w-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 shadow-xl">
+              <article className="prose prose-slate max-w-none bg-background/80 backdrop-blur-sm rounded-xl p-6 border border-primary/10 shadow-lg">
                 <div 
-                  className="article-content space-y-6"
+                  className="article-content"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
               </article>
 
               {/* CTA Card */}
-              <Card className="overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <Card className="overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-2xl"></div>
-                <CardHeader className="relative z-10 pb-4">
-                  <CardTitle className="text-2xl flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-gradient-to-r from-primary to-secondary shadow-md">
-                      <Rocket className="h-6 w-6 text-white" />
-                    </div>
-                    <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                      今すぐ始めよう
-                    </span>
+                <CardHeader className="relative z-10">
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <span className="text-2xl">🚀</span>
+                    今すぐ始めよう
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 relative z-10">
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    投資を始めるなら、まずは証券口座の開設から。専門家による比較で最適な証券会社を見つけましょう。
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    投資を始めるなら、まずは証券口座の開設から。
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Button className="flex-1 py-6 text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90" asChild>
-                      <Link to="/comparison">
-                        証券会社を比較する
-                        <ExternalLink className="ml-2 h-5 w-5" />
-                      </Link>
-                    </Button>
-                    <Button variant="outline" className="flex-1 py-6 text-base border-2 hover:border-primary/50 hover:scale-[1.02] transition-all duration-300" asChild>
-                      <Link to="/tools">
-                        投資をシミュレーション
-                      </Link>
-                    </Button>
-                  </div>
+                  <Button className="w-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]" asChild>
+                    <Link to="/comparison">
+                      証券会社を比較する
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="w-full border-2 hover:border-primary/50 hover:scale-[1.02] transition-all duration-300" asChild>
+                    <Link to="/tools">
+                      投資をシミュレーション
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
 
               {/* Related Articles */}
-              <Card className="border-2 hover:border-primary/30 transition-all duration-300 bg-gradient-to-br from-white/80 to-gray-50/80 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm shadow-xl rounded-2xl">
-                <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-1 rounded-t-2xl">
-                  <CardHeader className="pb-4">
-                    <CardTitle className="text-xl flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-gradient-to-r from-primary to-secondary shadow-md">
-                        <BookOpen className="h-5 w-5 text-white" />
-                      </div>
-                      <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                        関連記事
-                      </span>
-                    </CardTitle>
-                  </CardHeader>
-                </div>
-                <CardContent className="space-y-4 pt-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {Object.entries(articles)
-                      .filter(([key]) => key !== id)
-                      .slice(0, 4)
-                      .map(([key, relatedArticle]) => (
-                        <Link
-                          key={key}
-                          to={`/guide/${key}`}
-                          className="block p-4 rounded-xl text-base hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/20 group hover:scale-[1.01] duration-200 bg-white/50 dark:bg-gray-700/50 shadow-sm hover:shadow-md"
-                        >
-                          <span className="line-clamp-2 group-hover:underline font-medium">{relatedArticle.title}</span>
-                          <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-                            <Calendar className="h-3 w-3" />
-                            <span>{relatedArticle.date}</span>
-                          </div>
-                        </Link>
-                      ))}
-                  </div>
+              <Card className="border-2 hover:border-primary/30 transition-all duration-300 bg-gradient-to-br from-background/80 to-muted/20 backdrop-blur-sm shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="text-xl">📚</span>
+                    関連記事
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {Object.entries(articles)
+                    .filter(([key]) => key !== id)
+                    .slice(0, 3)
+                    .map(([key, relatedArticle]) => (
+                      <Link
+                        key={key}
+                        to={`/guide/${key}`}
+                        className="block p-3 rounded-lg text-sm hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/20 group hover:scale-[1.01] duration-200"
+                      >
+                        <span className="line-clamp-2 group-hover:underline">{relatedArticle.title}</span>
+                      </Link>
+                    ))}
                 </CardContent>
               </Card>
             </div>
