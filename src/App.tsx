@@ -49,7 +49,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/invest-navi">
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
