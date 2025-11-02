@@ -364,39 +364,26 @@ const GuideDetail = () => {
         </section>
 
         {/* Table of Contents (Desktop - Above Content) */}
-        <div className="container mx-auto px-4 mb-12">
+        <div className="container mx-auto px-4 mb-8">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white/80 to-gray-50/80 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm rounded-2xl overflow-hidden">
-              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-1">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xl flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-gradient-to-r from-primary to-secondary shadow-md">
-                      <Menu className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent font-bold">
-                      目次
-                    </span>
-                  </CardTitle>
-                </CardHeader>
-              </div>
-              <CardContent className="pt-0">
-                <nav className="grid grid-cols-1 md:grid-cols-2 gap-3 py-4">
+            <Card className="border-2 border-primary/20 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-background/80 to-muted/20 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Menu className="h-5 w-5" />
+                  目次
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <nav className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                   {headings.map((heading) => (
                     <button
                       key={heading.id}
-                      className={`block w-full text-left py-3 px-4 rounded-xl transition-all duration-200 text-base font-medium ${
-                        heading.level === 3 
-                          ? 'pl-8 text-muted-foreground hover:text-primary hover:bg-primary/5 border-l-2 border-primary/20' 
-                          : 'hover:bg-primary/10 border-l-4 border-primary/50'
-                      } hover:scale-[1.02] hover:shadow-sm group`}
+                      className={`block w-full text-left py-2 px-3 rounded-md transition-all duration-200 text-sm ${
+                        heading.level === 3 ? 'pl-6 text-muted-foreground hover:text-primary' : 'font-medium hover:bg-primary/10'
+                      } hover:scale-[1.02]`}
                       onClick={() => scrollToSection(heading.id)}
                     >
-                      <span className="flex items-center gap-2">
-                        <ChevronRight className={`h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 ${heading.level === 3 ? 'text-primary/50' : 'text-primary'}`} />
-                        <span className={heading.level === 3 ? 'text-sm' : ''}>
-                          {heading.text}
-                        </span>
-                      </span>
+                      {heading.text}
                     </button>
                   ))}
                 </nav>
