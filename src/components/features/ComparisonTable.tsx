@@ -105,7 +105,7 @@ const ComparisonTable = () => {
       features: "国内株式50万円以下なら無料、米国株式も無料。IPO抽選数も豊富で、初心者から上級者まで利用可能。",
     },
     {
-      name: "auカブコム証券",
+      name: "三菱UFJ eスマート証券（旧auカブコム証券）",
       commission: "国内株式:0円/米国株式:0.495%",
       minInvestment: "投資信託:100円〜",
       nisaSupport: true,
@@ -114,9 +114,9 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "Pontaポイント",
       rating: 4,
-      affiliateUrl: "https://kabu.com/",
+      affiliateUrl: "https://www.e-smart.co.jp/",
       isDomestic: true,
-      features: "auユーザーにはau PAY金利優遇。米国株式に手数料がかかるが、国内株式は無料で使いやすい。",
+      features: "auユーザーにはau PAY金利優遇。米国株式に手数料がかかるが、国内株式は無料で使いやすい。三菱UFJ銀行との連携で、auユーザーにはさらにお得なサービスが利用可能。",
     },
   ];
 
