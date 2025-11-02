@@ -34,7 +34,7 @@ const RankingCard = ({
   const rankClass = rankColors[rank as keyof typeof rankColors] || "bg-muted";
 
   return (
-    <Card className="hover:shadow-xl transition-shadow duration-300">
+    <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
       <CardHeader className="relative pb-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">

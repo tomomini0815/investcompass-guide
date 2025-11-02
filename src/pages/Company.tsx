@@ -19,41 +19,35 @@ const Company = () => {
 
       {/* メインコンテンツ */}
       <main className="flex-1">
-        <section className="relative py-20 container mx-auto px-4 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 animate-fade-in"></div>
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <div className="inline-block mb-6 px-6 py-2 text-sm font-semibold animate-fade-in hover:scale-105 transition-transform bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
-              運営会社情報
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent animate-fade-in">
+        <div className="container mx-auto px-4 py-12 md:py-20">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               運営会社情報
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              投資総合ガイドを運営するチームについてご紹介します
-            </p>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            
+            <div className="bg-card rounded-xl shadow-lg p-6 md:p-10 space-y-8">
               <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 p-8 rounded-lg mb-12">
                 <h2 className="text-2xl font-bold mb-6 text-center">会社概要</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <div className="p-6 bg-accent/10 rounded-lg">
                     <h3 className="font-bold mb-2">会社名</h3>
-                    <p>投資総合ガイド運営チーム</p>
+                    <p>株式会社ユーザーバリュー</p>
                   </div>
                   
                   <div className="p-6 bg-accent/10 rounded-lg">
                     <h3 className="font-bold mb-2">設立</h3>
-                    <p>2024年</p>
+                    <p>2021年2月</p>
                   </div>
                   
                   <div className="p-6 bg-accent/10 rounded-lg">
                     <h3 className="font-bold mb-2">所在地</h3>
-                    <p>東京都渋谷区</p>
+                    <p>神奈川県秦野市渋沢</p>
+                  </div>
+                  
+                  <div className="p-6 bg-accent/10 rounded-lg">
+                    <h3 className="font-bold mb-2">資本金</h3>
+                    <p>500万円</p>
                   </div>
                   
                   <div className="p-6 bg-accent/10 rounded-lg">
@@ -133,9 +127,16 @@ const Company = () => {
                   </div>
                 </div>
               </div>
+
+              {/* 更新日 */}
+              <div className="pt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground text-right">
+                  最終更新日：2025年10月30日
+                </p>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </div>
   );

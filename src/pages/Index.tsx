@@ -424,6 +424,13 @@ const Index = () => {
             ))}
           </div>
         </section>
+
+        {/* 更新日 */}
+        <div className="container mx-auto px-4 py-4">
+          <p className="text-xs text-muted-foreground text-right">
+            最終更新日：2025年10月30日
+          </p>
+        </div>
       </main>
 
       <Footer />

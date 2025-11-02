@@ -1,7 +1,62 @@
 import { Link } from "react-router-dom";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Building, MapPin, Phone, Mail, FileText, CreditCard, Truck, RotateCcw, Shield, Copyright } from "lucide-react";
 
 const Legal = () => {
+  // アイコンとラベルのマッピング
+  const infoItems = [
+    { icon: Building, label: "事業者名", value: "株式会社ユーザーバリュー" },
+    { icon: MapPin, label: "所在地", value: "神奈川県秦野市渋沢" },
+    { icon: Phone, label: "電話番号", value: "044-400-2258", desc: "受付時間：平日 10:00～18:00" },
+    { icon: Mail, label: "メールアドレス", value: "uservalue2021@gmail.com" },
+  ];
+
+  const serviceItems = [
+    { icon: FileText, label: "サービス名", value: "投資総合ナビ" },
+    { icon: CreditCard, label: "販売価格", value: "無料" },
+    { icon: CreditCard, label: "代金以外の必要料金", value: "インターネット接続料金等（ユーザー負担）" },
+    { icon: RotateCcw, label: "申込有効期限", value: "特になし" },
+    { icon: CreditCard, label: "支払方法", value: "当サイトは情報提供サービスであり、商品の販売は行っていません" },
+    { icon: Truck, label: "引き渡し時期", value: "即時" },
+    { icon: RotateCcw, label: "返品・交換について", value: "デジタルコンテンツの性質上、返品・交換はできません" },
+  ];
+
+  const additionalSections = [
+    {
+      icon: Shield,
+      title: "サイト上の表現について",
+      content: [
+        "当サイトのコンテンツは、投資判断の参考となる情報の提供を目的としております。投資に関する最終的な判断は、必ずご自身の責任において行ってください。",
+        "当サイトで掲載している情報は、正確性を期すよう努めておりますが、その完全性、正確性、有用性、安全性等について、いかなる保証も行うものではありません。",
+        "過去の投資実績は将来の成果を保証するものではありません。投資には元本の損失が伴う可能性があります。"
+      ]
+    },
+    {
+      icon: Shield,
+      title: "個人情報の取り扱いについて",
+      content: [
+        "当サイトでは、ユーザーの個人情報を適切に保護し、プライバシーを尊重することを重要な責務と考えております。",
+        "個人情報の取り扱いについては、別途「プライバシーポリシー」をご確認ください。"
+      ]
+    },
+    {
+      icon: Shield,
+      title: "免責事項",
+      content: [
+        "当サイトの情報を利用したことにより生じた、いかなる損害（直接的、間接的を問わず）についても、当サイトは一切の責任を負いません。",
+        "当サイトからリンクされている外部サイトの内容について、当サイトは一切の責任を負いません。",
+        "当サイトは、事前の予告なく、サービスの内容を変更、中断、または終了する場合があります。"
+      ]
+    },
+    {
+      icon: Copyright,
+      title: "著作権について",
+      content: [
+        "当サイトに掲載されているすべてのコンテンツ（文章、画像、動画等）の著作権は、株式会社ユーザーバリューに帰属します。",
+        "無断での複製、転載、改変等は固くお断りいたします。"
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* ヘッダー */}
@@ -19,108 +74,92 @@ const Legal = () => {
 
       {/* メインコンテンツ */}
       <main className="flex-1">
-        <section className="relative py-20 container mx-auto px-4 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 animate-fade-in"></div>
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <div className="inline-block mb-6 px-6 py-2 text-sm font-semibold animate-fade-in hover:scale-105 transition-transform bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
-              法律情報
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                特定商取引法に基づく表記
+              </h1>
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+                当サイトのサービスに関する特定商取引法に基づく表記です
+              </p>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent animate-fade-in">
-              特定商取引法に基づく表記
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              当サイトのサービスに関する特定商取引法に基づく表記です
-            </p>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 p-8 rounded-lg">
-                <div className="prose prose-lg max-w-none">
-                  <h2 className="text-2xl font-bold mb-6 text-center">事業者情報</h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">事業者名</h3>
-                      <p>投資総合ガイド運営チーム</p>
-                    </div>
-                    
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">所在地</h3>
-                      <p>東京都渋谷区</p>
-                    </div>
-                    
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">電話番号</h3>
-                      <p>03-XXXX-XXXX</p>
-                    </div>
-                    
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">メールアドレス</h3>
-                      <p>info@invest-navi.com</p>
-                    </div>
-                  </div>
-                  
-                  <h2 className="text-2xl font-bold mb-6 text-center mt-12">サービス内容</h2>
-                  
-                  <div className="mb-8 p-6 bg-accent/10 rounded-lg">
-                    <h3 className="font-bold mb-2">サービス名</h3>
-                    <p>投資総合ガイド</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">販売価格</h3>
-                      <p>無料</p>
-                    </div>
-                    
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">代金以外の必要料金</h3>
-                      <p>インターネット接続料金等（ユーザー負担）</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">申込有効期限</h3>
-                      <p>特になし</p>
-                    </div>
-                    
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">支払方法</h3>
-                      <p>当サイトは情報提供サービスであり、商品の販売は行っていません</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">引き渡し時期</h3>
-                      <p>即時</p>
-                    </div>
-                    
-                    <div className="p-6 bg-accent/10 rounded-lg">
-                      <h3 className="font-bold mb-2">返品・交換について</h3>
-                      <p>デジタルコンテンツの性質上、返品・交換はできません</p>
-                    </div>
-                  </div>
-                  
-                  <h2 className="text-2xl font-bold mb-6 text-center mt-12">免責事項</h2>
-                  
-                  <div className="mb-8 p-6 bg-accent/10 rounded-lg">
-                    <p>
-                      当サイトに掲載されている情報の正確性には万全を期していますが、
-                      利用者が当サイトの情報を用いて行う一切の行為に関しては、
-                      一切の責任を負いません。投資に係る最終的な判断は、
-                      お客様ご自身の責任において行ってください。
-                    </p>
-                  </div>
+            
+            <div className="bg-card rounded-xl shadow-lg p-6 md:p-8 space-y-10">
+              {/* 事業者情報セクション */}
+              <section>
+                <div className="flex items-center gap-3 mb-6 pb-3 border-b border-primary/20">
+                  <Building className="h-6 w-6 text-primary" />
+                  <h2 className="text-2xl font-bold text-primary">事業者情報</h2>
                 </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {infoItems.map((item, index) => (
+                    <div key={index} className="flex items-start p-5 bg-accent/5 rounded-lg border border-accent/10 hover:shadow-sm transition-shadow">
+                      <div className="flex-shrink-0 mt-1">
+                        <item.icon className="h-5 w-5 text-accent" />
+                      </div>
+                      <div className="ml-4">
+                        <h3 className="font-semibold text-foreground mb-1">{item.label}</h3>
+                        <p className="text-muted-foreground">{item.value}</p>
+                        {item.desc && (
+                          <p className="text-sm text-muted-foreground/80 mt-1">{item.desc}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* サービス内容セクション */}
+              <section>
+                <div className="flex items-center gap-3 mb-6 pb-3 border-b border-primary/20">
+                  <FileText className="h-6 w-6 text-primary" />
+                  <h2 className="text-2xl font-bold text-primary">サービス内容</h2>
+                </div>
+                
+                <div className="space-y-5">
+                  {serviceItems.map((item, index) => (
+                    <div key={index} className="flex items-start p-5 bg-accent/5 rounded-lg border border-accent/10 hover:shadow-sm transition-shadow">
+                      <div className="flex-shrink-0 mt-1">
+                        <item.icon className="h-5 w-5 text-accent" />
+                      </div>
+                      <div className="ml-4">
+                        <h3 className="font-semibold text-foreground mb-1">{item.label}</h3>
+                        <p className="text-muted-foreground">{item.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* 追加セクション */}
+              {additionalSections.map((section, index) => (
+                <section key={index}>
+                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-primary/20">
+                    <section.icon className="h-6 w-6 text-primary" />
+                    <h2 className="text-2xl font-bold text-primary">{section.title}</h2>
+                  </div>
+                  
+                  <div className="p-6 bg-accent/5 rounded-lg border border-accent/10">
+                    {section.content.map((paragraph, pIndex) => (
+                      <p key={pIndex} className="text-muted-foreground mb-4 last:mb-0">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </section>
+              ))}
+
+              {/* 更新日 */}
+              <div className="pt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground text-right">
+                  最終更新日：2025年10月30日
+                </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </div>
   );

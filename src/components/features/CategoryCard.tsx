@@ -24,10 +24,10 @@ const CategoryCard = ({ icon: Icon, title, description, href, color }: CategoryC
   };
 
   return (
-    <Card className={`h-full bg-gradient-to-br ${colorClasses[color]} border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}>
+    <Card className={`h-full bg-gradient-to-br ${colorClasses[color]} border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer overflow-hidden`}>
       <Link to={href} className="block h-full">
         <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-          <div className={`p-4 rounded-xl ${iconColorClasses[color]}`}>
+          <div className={`p-4 rounded-xl ${iconColorClasses[color]} transition-transform duration-300 group-hover:scale-110`}>
             <Icon className="h-8 w-8" />
           </div>
           <div>

@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, RotateCcw } from "lucide-react";
 
 const InvestmentDiagnostic = () => {
   const [step, setStep] = useState(0);
@@ -116,11 +117,14 @@ const InvestmentDiagnostic = () => {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button variant="outline" onClick={handleReset} className="flex-1 w-full">
+                  <RotateCcw className="mr-2 h-4 w-4" />
                   もう一度診断する
                 </Button>
-                <Button className="flex-1 w-full">
-                  証券会社を比較する
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button className="flex-1 w-full" asChild>
+                  <Link to="/comparison">
+                    証券会社を比較する
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </div>
             </CardContent>

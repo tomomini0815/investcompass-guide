@@ -24,7 +24,7 @@ const ArticleCard = ({
 }: ArticleCardProps) => {
   return (
     <Link to={`/guide/${id}`}>
-      <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer overflow-hidden">
+      <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden">
         {thumbnail && (
           <div className="h-48 overflow-hidden bg-muted">
             <img

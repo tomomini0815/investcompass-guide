@@ -17,7 +17,7 @@ const GuideDetail = () => {
     "nisa-beginner": {
       title: "【2024年最新版】NISA完全ガイド：初心者が知るべき全て",
       category: "NISA",
-      date: "2024年10月30日",
+      date: "2025年10月30日",
       readTime: "8分",
       content: `
         <h2 id="nisaとは" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">NISAとは？</h2>
@@ -69,7 +69,7 @@ const GuideDetail = () => {
     "stocks-beginner": {
       title: "株式投資の始め方：証券口座開設から銘柄選びまで",
       category: "株式投資",
-      date: "2024年10月30日",
+      date: "2025年10月30日",
       readTime: "10分",
       content: `
         <h2 id="株式投資とは" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">株式投資とは</h2>
@@ -106,7 +106,7 @@ const GuideDetail = () => {
     "investment-trust": {
       title: "投資信託とは？メリット・デメリットと選び方のポイント",
       category: "投資信託",
-      date: "2024年10月30日",
+      date: "2025年10月30日",
       readTime: "7分",
       content: `
         <h2 id="投資信託の基礎知識" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">投資信託の基礎知識</h2>
@@ -135,7 +135,7 @@ const GuideDetail = () => {
     "investment-basics": {
       title: "投資の基礎知識：初心者が必ず知っておくべきポイント",
       category: "投資基礎",
-      date: "2024年10月30日",
+      date: "2025年10月30日",
       readTime: "12分",
       content: `
         <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 mb-8">

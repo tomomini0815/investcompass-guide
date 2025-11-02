@@ -101,7 +101,7 @@ const Terms = () => {
 
               <div className="mt-8 pt-6 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  最終更新日：2025年1月
+                  最終更新日：2025年10月30日
                 </p>
               </div>
             </div>

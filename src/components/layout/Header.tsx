@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, TrendingUp } from "lucide-react";
+import { Menu, TrendingUp, X } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
@@ -61,7 +61,7 @@ const Header = () => {
           <div className="gradient-primary p-2 rounded-lg">
             <TrendingUp className="h-6 w-6 text-white" />
           </div>
-          <span className="hidden sm:inline text-primary">投資総合ガイド</span>
+          <span className="text-primary">投資総合ナビ</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -91,7 +91,7 @@ const Header = () => {
           className="md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <Menu className="h-5 w-5" />
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </Button>
       </nav>
 
