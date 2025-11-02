@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Users, BookOpen } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, BookOpen, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-investment.jpg";
 
 const HeroSection = () => {
   // ご指定の内容に変更
   const features = [
-    { icon: Users, label: "投資便利ツール", value: "各種投資計算ツール" },
-    { icon: TrendingUp, label: "投資業界徹底比較", value: "40社〜50社比較" },
-    { icon: BookOpen, label: "学習リソース", value: "初心者〜中級" },
+    { icon: Calculator, label: "投資計算ツール", value: "6種の投資計算ツール" },
+    { icon: TrendingUp, label: "各投資業界比較", value: "30社〜40社詳細比較" },
+    { icon: BookOpen, label: "学習リソース", value: "初心者〜中級者" },
   ];
 
   // 投資診断セクションにスムーズスクロールする関数
