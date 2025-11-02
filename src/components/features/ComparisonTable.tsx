@@ -60,7 +60,21 @@ const ComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.rakuten-sec.co.jp/",
       isDomestic: true,
-      features: "楽天グループとの連携でポイント還元が魅力。米国株式に手数料がかかるが、投資信託の選択肢が豊富。",
+      features: "楽天グループとの連携でポイント還元が魅力。投資信託の選択肢が豊富。",
+    },
+    {
+      name: "DMM証券",
+      commission: "国内株式:55円〜/米国株式:0ドル〜",
+      minInvestment: "投資信託:100円〜",
+      nisaSupport: true,
+      tsumitateNisa: true,
+      ipoCount: 20,
+      foreignStocks: true,
+      points: "DMM株ポイント",
+      rating: 4,
+      affiliateUrl: "https://securities.dmm.com/",
+      isDomestic: true,
+      features: "国内株式の手数料が安く、米国株式の手数料が無料。取引手数料の1%がDMM株ポイントとして還元される。",
     },
     {
       name: "マネックス証券",
@@ -104,83 +118,10 @@ const ComparisonTable = () => {
       isDomestic: true,
       features: "auユーザーにはau PAY金利優遇。米国株式に手数料がかかるが、国内株式は無料で使いやすい。",
     },
-    // 国外証券会社（人気ランキング順）
-    {
-      name: "Interactive Brokers",
-      commission: "$0.5/100株",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
-      rating: 5,
-      affiliateUrl: "https://www.interactivebrokers.com/",
-      isDomestic: false,
-      features: "世界中の市場にアクセス可能で、手数料が非常に安い。プロ向けの高度な取引ツールを提供。",
-    },
-    {
-      name: "Charles Schwab",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
-      rating: 4,
-      affiliateUrl: "https://www.schwab.com/",
-      isDomestic: false,
-      features: "米国大手証券会社で信頼性が高い。独自のリサーチツールが充実し、初心者から上級者まで対応。",
-    },
-    {
-      name: "Fidelity",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
-      rating: 4,
-      affiliateUrl: "https://www.fidelity.com/",
-      isDomestic: false,
-      features: "投資信託の選択肢が非常に豊富で、手数料も無料。独自のリサーチ情報が充実している。",
-    },
-    {
-      name: "E*TRADE",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
-      rating: 4,
-      affiliateUrl: "https://us.etrade.com/",
-      isDomestic: false,
-      features: "使いやすいプラットフォームと教育リソースが特徴。初心者向けのツールが充実している。",
-    },
-    {
-      name: "TD Ameritrade",
-      commission: "$0/取引",
-      minInvestment: "$0",
-      nisaSupport: false,
-      tsumitateNisa: false,
-      ipoCount: 0,
-      foreignStocks: true,
-      points: "キャッシュバック",
-      rating: 4,
-      affiliateUrl: "https://www.tdameritrade.com/",
-      isDomestic: false,
-      features: "Thinkorswimという高度な取引プラットフォームを提供。教育コンテンツが充実し、初心者に優しい。",
-    },
   ];
 
-  // 表示する証券会社をフィルタリング
-  const filteredCompanies = companies.filter(company => 
-    showDomestic ? company.isDomestic : !company.isDomestic
-  );
+  // 表示する証券会社をフィルタリング（国内証券会社のみを表示）
+  const filteredCompanies = companies.filter(company => company.isDomestic);
 
   const handleSort = (key: keyof SecurityCompany) => {
     if (sortBy === key) {
@@ -191,16 +132,8 @@ const ComparisonTable = () => {
     }
   };
 
-  const sortedCompanies = [...filteredCompanies].sort((a, b) => {
-    if (!sortBy) {
-      // デフォルトでは評価順にソート
-      if (b.rating !== a.rating) {
-        return b.rating - a.rating;
-      }
-      // 評価が同じ場合はIPO実績でソート
-      return b.ipoCount - a.ipoCount;
-    }
-    
+  // デフォルトではデータの配置順を維持（人気ランキング順）
+  const sortedCompanies = sortBy ? [...filteredCompanies].sort((a, b) => {
     const aValue = a[sortBy];
     const bValue = b[sortBy];
     
@@ -209,7 +142,7 @@ const ComparisonTable = () => {
     }
     
     return 0;
-  });
+  }) : filteredCompanies;
 
   // 評価を星アイコンで表示するコンポーネント
   const RatingStars = ({ rating }: { rating: number }) => (
@@ -318,33 +251,17 @@ const ComparisonTable = () => {
         <p className="text-sm text-muted-foreground text-center mt-4">
           各証券会社の手数料、最低投資額、NISA対応状況、IPO実績、評価などの情報を比較できます
         </p>
-        {/* 国内/国外切り替えボタン */}
-        <div className="flex justify-center mt-8 space-x-4">
-          <Button 
-            variant={showDomestic ? "default" : "outline"} 
-            onClick={() => setShowDomestic(true)}
-            className="px-6 py-2"
-          >
-            国内証券会社
-          </Button>
-          <Button 
-            variant={!showDomestic ? "default" : "outline"} 
-            onClick={() => setShowDomestic(false)}
-            className="px-6 py-2"
-          >
-            国外証券会社
-          </Button>
-        </div>
+        {/* 国内/国外切り替えボタンを削除（国内証券会社のみを表示） */}
       </CardHeader>
       <CardContent className="p-0">
         {/* モバイル向け表示 - 768px未満で表示 */}
         <div className="md:hidden px-4 py-2">
           <div className="mb-4">
             <h3 className="text-lg font-semibold text-center mb-2">
-              {showDomestic ? "国内" : "国外"}証券会社詳細比較
+              証券会社詳細比較
             </h3>
             <p className="text-sm text-muted-foreground text-center">
-              各{showDomestic ? "国内" : "国外"}証券会社の詳細情報を比較できます
+              各証券会社の詳細情報を比較できます
             </p>
           </div>
           {sortedCompanies.map((company) => (
@@ -467,7 +384,7 @@ const ComparisonTable = () => {
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
-                          className="whitespace-nowrap text-xs px-3 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
+                          className="whitespace-nowrap text-xs px-3 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 min-w-[100px]"
                           asChild
                         >
                           <a 

@@ -317,12 +317,12 @@ const GuideDetail = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background/90 to-muted/30">
       <Header />
       
       <main className="flex-1">
         {/* Breadcrumb */}
-        <div className="bg-gradient-to-r from-muted/50 to-muted/30 py-4 border-b">
+        <div className="bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 py-4 border-b border-primary/10">
           <div className="container mx-auto px-4">
             <Link 
               to="/" 
@@ -335,23 +335,27 @@ const GuideDetail = () => {
         </div>
 
         {/* Article Header */}
-        <section className="py-16 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <section className="py-16 container mx-auto px-4 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-secondary/10 rounded-full blur-3xl"></div>
+          </div>
+          <div className="max-w-4xl mx-auto relative z-10">
             <Badge 
               variant="secondary" 
-              className="mb-6 px-4 py-2 text-sm font-semibold"
+              className="mb-6 px-4 py-2 text-sm font-semibold bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30"
             >
               {article.category}
             </Badge>
-            <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
+            <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               {article.title}
             </h1>
-            <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8 pb-8 border-b">
-              <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+            <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8 pb-8 border-b border-primary/20">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border border-primary/20">
                 <Calendar className="h-4 w-4 text-primary" />
                 <span>{article.date}</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border border-primary/20">
                 <Clock className="h-4 w-4 text-secondary" />
                 <span>読了時間: {article.readTime}</span>
               </div>
@@ -359,78 +363,41 @@ const GuideDetail = () => {
           </div>
         </section>
 
-        {/* Table of Contents Button (Mobile) */}
-        <div className="lg:hidden container mx-auto px-4 mb-6">
-          <Button 
-            variant="outline" 
-            className="w-full flex items-center justify-between"
-            onClick={() => setIsTocOpen(true)}
-          >
-            <span>目次</span>
-            <Menu className="h-4 w-4" />
-          </Button>
-        </div>
-
-        {/* Table of Contents Sidebar (Desktop) and Mobile Overlay */}
-        {isTocOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setIsTocOpen(false)}>
-            <div 
-              className="fixed right-0 top-0 h-full w-4/5 max-w-sm bg-background p-6 shadow-lg transform transition-transform duration-300 ease-in-out"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold">目次</h3>
-                <Button variant="ghost" size="icon" onClick={() => setIsTocOpen(false)}>
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-              <nav className="space-y-2 max-h-[calc(100vh-120px)] overflow-y-auto">
-                {headings.map((heading) => (
-                  <button
-                    key={heading.id}
-                    className={`block w-full text-left py-2 px-3 rounded-md transition-colors text-sm ${
-                      heading.level === 3 ? 'pl-6 text-muted-foreground' : 'font-medium'
-                    } hover:bg-muted`}
-                    onClick={() => scrollToSection(heading.id)}
-                  >
-                    {heading.text}
-                  </button>
-                ))}
-              </nav>
-            </div>
+        {/* Table of Contents (Desktop - Above Content) */}
+        <div className="container mx-auto px-4 mb-8">
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-2 border-primary/20 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-background/80 to-muted/20 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Menu className="h-5 w-5" />
+                  目次
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <nav className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {headings.map((heading) => (
+                    <button
+                      key={heading.id}
+                      className={`block w-full text-left py-2 px-3 rounded-md transition-all duration-200 text-sm ${
+                        heading.level === 3 ? 'pl-6 text-muted-foreground hover:text-primary' : 'font-medium hover:bg-primary/10'
+                      } hover:scale-[1.02]`}
+                      onClick={() => scrollToSection(heading.id)}
+                    >
+                      {heading.text}
+                    </button>
+                  ))}
+                </nav>
+              </CardContent>
+            </Card>
           </div>
-        )}
+        </div>
 
         {/* Article Content */}
         <section className="pb-16 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-              {/* Table of Contents (Desktop) */}
-              <aside className="hidden lg:block lg:col-span-1">
-                <Card className="sticky top-24">
-                  <CardHeader>
-                    <CardTitle className="text-lg">目次</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <nav className="space-y-2">
-                      {headings.map((heading) => (
-                        <button
-                          key={heading.id}
-                          className={`block w-full text-left py-2 px-3 rounded-md transition-colors text-sm ${
-                            heading.level === 3 ? 'pl-6 text-muted-foreground' : 'font-medium'
-                          } hover:bg-muted`}
-                          onClick={() => scrollToSection(heading.id)}
-                        >
-                          {heading.text}
-                        </button>
-                      ))}
-                    </nav>
-                  </CardContent>
-                </Card>
-              </aside>
-
+            <div className="grid grid-cols-1 gap-8">
               {/* Main Content */}
-              <article className="lg:col-span-2 prose prose-slate max-w-none">
+              <article className="prose prose-slate max-w-none bg-background/80 backdrop-blur-sm rounded-xl p-6 border border-primary/10 shadow-lg">
                 <div 
                   className="article-content"
                   dangerouslySetInnerHTML={{ __html: article.content }}
@@ -438,9 +405,9 @@ const GuideDetail = () => {
               </article>
 
               {/* Sidebar */}
-              <aside className="space-y-6 lg:col-span-1">
+              <aside className="space-y-6">
                 {/* CTA Card */}
-                <Card className="sticky top-24 overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 border-2 border-primary/20 shadow-xl">
+                <Card className="overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-2xl"></div>
                   <CardHeader className="relative z-10">
                     <CardTitle className="text-xl flex items-center gap-2">
@@ -452,13 +419,13 @@ const GuideDetail = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       投資を始めるなら、まずは証券口座の開設から。
                     </p>
-                    <Button className="w-full shadow-lg hover:shadow-xl transition-shadow" asChild>
+                    <Button className="w-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]" asChild>
                       <Link to="/comparison">
                         証券会社を比較する
                         <ExternalLink className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
-                    <Button variant="outline" className="w-full border-2 hover:border-primary/50" asChild>
+                    <Button variant="outline" className="w-full border-2 hover:border-primary/50 hover:scale-[1.02] transition-all duration-300" asChild>
                       <Link to="/tools">
                         投資をシミュレーション
                       </Link>
@@ -467,7 +434,7 @@ const GuideDetail = () => {
                 </Card>
 
                 {/* Related Articles */}
-                <Card className="border-2 hover:border-primary/30 transition-colors">
+                <Card className="border-2 hover:border-primary/30 transition-all duration-300 bg-gradient-to-br from-background/80 to-muted/20 backdrop-blur-sm shadow-lg">
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <span className="text-xl">📚</span>
@@ -482,7 +449,7 @@ const GuideDetail = () => {
                         <Link
                           key={key}
                           to={`/guide/${key}`}
-                          className="block p-3 rounded-lg text-sm hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/20 group"
+                          className="block p-3 rounded-lg text-sm hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/20 group hover:scale-[1.01] duration-200"
                         >
                           <span className="line-clamp-2 group-hover:underline">{relatedArticle.title}</span>
                         </Link>
