@@ -6,9 +6,9 @@ import heroImage from "@/assets/hero-investment.jpg";
 const HeroSection = () => {
   // ご指定の内容に変更
   const features = [
-    { icon: BookOpen, label: "初心者〜中級者向け", value: "学習リソースを掲載" },
-    { icon: TrendingUp, label: "投資3業界を徹底比較", value: "30社〜40社比較" },
     { icon: Calculator, label: "各投資計算ツール", value: "計算ツールでサポート" },
+    { icon: TrendingUp, label: "投資3業界を徹底比較", value: "30社〜40社比較" },
+    { icon: BookOpen, label: "初心者〜中級者向け", value: "学習リソースを掲載" },
   ];
 
   // 投資診断セクションにスムーズスクロールする関数
