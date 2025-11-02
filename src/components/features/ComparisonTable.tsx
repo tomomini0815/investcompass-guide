@@ -114,9 +114,9 @@ const ComparisonTable = () => {
       foreignStocks: true,
       points: "Pontaポイント",
       rating: 4,
-      affiliateUrl: "https://www.e-smart.co.jp/",
+      affiliateUrl: "https://kabu.com/",
       isDomestic: true,
-      features: "auユーザーにはau PAY金利優遇。米国株式に手数料がかかるが、国内株式は無料で使いやすい。三菱UFJ銀行との連携で、auユーザーにはさらにお得なサービスが利用可能。",
+      features: "auユーザーにはau PAY金利優遇。米国株式に手数料がかかるが、国内株式は無料で使いやすい。三菱UFJ銀行との連携で、auユーザーにはさらにお得なサービスが利用可能。信頼性の高いMUFGグループの一員として、安心・安全な資産運用をサポート。",
     },
   ];
 
