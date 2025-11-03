@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, LineChart, Lightbulb, Shield } from "lucide-react";
+import RiskDiagnostic from "@/components/features/RiskDiagnostic";
 
 const RiskAssessment = () => {
   return (
@@ -172,7 +173,20 @@ const RiskAssessment = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Diagnostic Tool Section */}
+        <section className="py-16 bg-gradient-to-b from-background to-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">リスク許容度診断を開始</h2>
+              <p className="text-muted-foreground">
+                簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう
+              </p>
+            </div>
+            <RiskDiagnostic />
+          </div>
+        </section>
+
+        {/* Additional Info Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -182,20 +196,14 @@ const RiskAssessment = () => {
                   <div className="inline-block p-4 bg-background rounded-full mb-6 animate-pulse">
                     <Lightbulb className="h-12 w-12 text-accent" />
                   </div>
-                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">リスク許容度を診断して投資戦略を最適化</h2>
+                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">他のツールも活用しましょう</h2>
                   <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-                    リスク許容度診断ツールを使って、自分に合った投資戦略を見つけ、
-                    長期的な資産形成を実現しましょう。
+                    投資計算ツールを使って、より詳細な資産形成プランを立てることができます。
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button asChild size="lg" className="text-lg px-8 hover:scale-105 transition-transform">
                       <Link to="/tools">
                         他のツールを見る →
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="lg" className="text-lg px-8 hover:scale-105 transition-transform">
-                      <Link to="/#診断">
-                        投資診断を始める
                       </Link>
                     </Button>
                   </div>
