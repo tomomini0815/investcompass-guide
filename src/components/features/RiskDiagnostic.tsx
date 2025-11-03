@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
-import { TrendingUp, Bitcoin, DollarSign, Building2, type LucideIcon } from "lucide-react";
+import { TrendingUp, Bitcoin, DollarSign, Building2, LucideIcon } from "lucide-react";
 
 type Industry = "stocks" | "funds" | "crypto" | "fx";
 
