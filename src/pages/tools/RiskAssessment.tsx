@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, LineChart, Lightbulb, Shield } from "lucide-react";
-import RiskDiagnostic from "@/components/features/RiskDiagnostic";
 
 const RiskAssessment = () => {
   return (
@@ -182,7 +181,21 @@ const RiskAssessment = () => {
                 簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう
               </p>
             </div>
-            <RiskDiagnostic />
+            <div className="max-w-4xl mx-auto">
+              <Card className="border-2 hover:shadow-2xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-center">診断ツールは準備中です</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center py-8">
+                  <p className="text-muted-foreground mb-6">
+                    現在、より詳細な診断機能を準備しております。しばらくお待ちください。
+                  </p>
+                  <Button asChild size="lg">
+                    <Link to="/tools">他のツールを見る</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
 
