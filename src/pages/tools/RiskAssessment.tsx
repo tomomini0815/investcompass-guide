@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, LineChart, Lightbulb, Shield } from "lucide-react";
+import RiskDiagnostic from "@/components/features/RiskDiagnostic";
 
 const RiskAssessment = () => {
   return (
@@ -137,9 +138,9 @@ const RiskAssessment = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="p-6 bg-destructive/10 rounded-lg border-2 border-destructive/20">
-                    <h3 className="font-bold text-destructive mb-2">保守的（低リスク）</h3>
-                    <ul className="text-sm text-muted-foreground space-y-1">
+                  <div className="p-6 bg-red-50 rounded-lg border border-red-200">
+                    <h3 className="font-bold text-red-800 mb-2">保守的（低リスク）</h3>
+                    <ul className="text-sm text-red-700 space-y-1">
                       <li>• 損失を極力避けたい</li>
                       <li>• 安定したリターンを求める</li>
                       <li>• 短期的な目標が多い</li>
@@ -147,9 +148,9 @@ const RiskAssessment = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-6 bg-secondary/10 rounded-lg border-2 border-secondary/20">
-                    <h3 className="font-bold text-secondary-foreground mb-2">中立的（中リスク）</h3>
-                    <ul className="text-sm text-muted-foreground space-y-1">
+                  <div className="p-6 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <h3 className="font-bold text-yellow-800 mb-2">中立的（中リスク）</h3>
+                    <ul className="text-sm text-yellow-700 space-y-1">
                       <li>• 適度なリスクを受け入れる</li>
                       <li>• リターンとリスクのバランスを重視</li>
                       <li>• 中長期的な目標がある</li>
@@ -157,9 +158,9 @@ const RiskAssessment = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-6 bg-primary/10 rounded-lg border-2 border-primary/20">
-                    <h3 className="font-bold text-primary mb-2">積極的（高リスク）</h3>
-                    <ul className="text-sm text-muted-foreground space-y-1">
+                  <div className="p-6 bg-green-50 rounded-lg border border-green-200">
+                    <h3 className="font-bold text-green-800 mb-2">積極的（高リスク）</h3>
+                    <ul className="text-sm text-green-700 space-y-1">
                       <li>• 高いリターンを目指す</li>
                       <li>• 大きな損失も受け入れる</li>
                       <li>• 長期的な目標が多い</li>
@@ -181,21 +182,7 @@ const RiskAssessment = () => {
                 簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう
               </p>
             </div>
-            <div className="max-w-4xl mx-auto">
-              <Card className="border-2 hover:shadow-2xl transition-all duration-300">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-center">診断ツールは準備中です</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center py-8">
-                  <p className="text-muted-foreground mb-6">
-                    現在、より詳細な診断機能を準備しております。しばらくお待ちください。
-                  </p>
-                  <Button asChild size="lg">
-                    <Link to="/tools">他のツールを見る</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
+            <RiskDiagnostic />
           </div>
         </section>
 
