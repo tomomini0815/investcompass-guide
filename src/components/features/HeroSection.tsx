@@ -6,9 +6,9 @@ import heroImage from "@/assets/hero-investment.jpg";
 const HeroSection = () => {
   // ご指定の内容に変更
   const features = [
-    { icon: Calculator, label: "（サブ）計算ツールでサポート", value: "（メイン）各投資業界計算ツール" },
-    { icon: TrendingUp, label: "（サブ）投資3業界を徹底比較", value: "（メイン）30社〜40社比較" },
-    { icon: BookOpen, label: "（サブ）学習リソースを掲載", value: "（メイン）初心者〜中級者向け" },
+    { icon: Calculator, label: "（ラベル）計算ツールでサポート", value: "（値）各投資業界計算ツール" },
+    { icon: TrendingUp, label: "（ラベル）30社〜40社比較", value: "（値）投資3業界を徹底比較" },
+    { icon: BookOpen, label: "（ラベル）初心者〜中級者向け", value: "（値）学習リソースを掲載" },
   ];
 
   // 投資診断セクションにスムーズスクロールする関数
