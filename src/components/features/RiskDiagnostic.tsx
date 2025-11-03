@@ -228,17 +228,18 @@ const RiskDiagnostic = () => {
                     key={industry.id}
                     className={`flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
                       isSelected
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
+                        ? "border-primary bg-primary/10"
+                        : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
                     onClick={() => handleIndustryToggle(industry.id)}
                   >
                     <Checkbox
                       checked={isSelected}
                       onCheckedChange={() => handleIndustryToggle(industry.id)}
+                      className="h-5 w-5"
                     />
                     <Icon className={`h-6 w-6 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
-                    <Label className="cursor-pointer flex-1">{industry.label}</Label>
+                    <Label className="cursor-pointer flex-1 text-base font-medium">{industry.label}</Label>
                   </div>
                 );
               })}
