@@ -17,6 +17,18 @@ interface IndustryOption {
   path: string;
 }
 
+interface IndustryResult {
+  industryId: Industry;
+  recommendations: string[];
+}
+
+interface DiagnosticResult {
+  riskLevel: string;
+  title: string;
+  description: string;
+  industryResults: IndustryResult[];
+}
+
 const industries: IndustryOption[] = [
   { id: "stocks", label: "株式・証券", icon: TrendingUp, path: "/comparison" },
   { id: "funds", label: "投資信託", icon: Building2, path: "/comparison" },
@@ -76,7 +88,7 @@ const RiskDiagnostic = () => {
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([]);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<DiagnosticResult | null>(null);
 
   const handleIndustryToggle = (industryId: Industry) => {
     setSelectedIndustries((prev) =>
@@ -302,7 +314,7 @@ const RiskDiagnostic = () => {
             {/* 業界ごとの診断結果 */}
             <div className="space-y-6">
               <h3 className="text-2xl font-bold">各業界別の投資戦略</h3>
-              {result.industryResults.map((industryResult: any) => {
+              {result.industryResults.map((industryResult) => {
                 const industry = industries.find((i) => i.id === industryResult.industryId);
                 if (!industry) return null;
                 const Icon = industry.icon;
@@ -321,7 +333,7 @@ const RiskDiagnostic = () => {
                       <div>
                         <h4 className="text-lg font-bold mb-3">おすすめの投資戦略</h4>
                         <ul className="space-y-2">
-                          {industryResult.recommendations.map((rec: string, index: number) => (
+                          {industryResult.recommendations.map((rec, index) => (
                             <li key={index} className="flex items-start gap-2">
                               <span className="text-primary mt-1">✓</span>
                               <span className="text-muted-foreground">{rec}</span>
