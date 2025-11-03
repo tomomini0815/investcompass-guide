@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, CheckCircle2, RotateCcw } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ArrowRight, CheckCircle2, RotateCcw, X } from "lucide-react";
 
 const InvestmentDiagnostic = () => {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [result, setResult] = useState<string | null>(null);
 
   const questions = [
@@ -39,8 +39,11 @@ const InvestmentDiagnostic = () => {
   ];
 
   const getRecommendation = () => {
-    if (answers[0] === "beginner") {
-      if (answers[2] === "conservative") {
+    const answer0 = answers[0] || [];
+    const answer2 = answers[2] || [];
+    
+    if (answer0.includes("beginner")) {
+      if (answer2.includes("conservative")) {
         return {
           title: "つみたてNISA + インデックス投資",
           description: "初心者で安定志向のあなたには、つみたてNISAでインデックスファンドへの積立投資がおすすめです。",
@@ -54,7 +57,7 @@ const InvestmentDiagnostic = () => {
       };
     }
     
-    if (answers[2] === "aggressive") {
+    if (answer2.includes("aggressive")) {
       return {
         title: "個別株投資 + 成長株戦略",
         description: "積極的なあなたには、成長性の高い個別株への投資がおすすめです。",
@@ -70,7 +73,17 @@ const InvestmentDiagnostic = () => {
   };
 
   const handleAnswer = (value: string) => {
-    setAnswers({ ...answers, [step]: value });
+    setAnswers((prev) => {
+      const currentAnswers = prev[step] || [];
+      const isSelected = currentAnswers.includes(value);
+      
+      return {
+        ...prev,
+        [step]: isSelected
+          ? currentAnswers.filter((v) => v !== value)
+          : [...currentAnswers, value],
+      };
+    });
   };
 
   const handleNext = () => {
@@ -147,24 +160,57 @@ const InvestmentDiagnostic = () => {
         <Card className="max-w-2xl mx-auto shadow-lg">
           <CardHeader className="px-4 sm:px-6">
             <CardTitle className="text-lg sm:text-xl">質問 {step + 1} / {questions.length}</CardTitle>
-            <CardDescription className="text-sm sm:text-base">{questions[step].question}</CardDescription>
+            <CardDescription className="text-sm sm:text-base">
+              {questions[step].question}
+              <span className="block text-xs mt-1 text-muted-foreground">複数選択可能です</span>
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
-            <RadioGroup value={answers[step]} onValueChange={handleAnswer}>
-              <div className="space-y-2 sm:space-y-3">
-                {questions[step].options.map((option) => (
-                  <div key={option.value} className="flex items-center space-x-2 sm:space-x-3 p-3 sm:p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
-                    <RadioGroupItem value={option.value} id={option.value} />
+            <div className="space-y-2 sm:space-y-3">
+              {questions[step].options.map((option) => {
+                const isChecked = (answers[step] || []).includes(option.value);
+                return (
+                  <div 
+                    key={option.value} 
+                    className={`flex items-center space-x-2 sm:space-x-3 p-3 sm:p-4 border-2 rounded-lg transition-colors cursor-pointer ${
+                      isChecked ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                    }`}
+                    onClick={() => handleAnswer(option.value)}
+                  >
+                    <Checkbox
+                      checked={isChecked}
+                      onCheckedChange={() => handleAnswer(option.value)}
+                    />
                     <Label htmlFor={option.value} className="flex-1 cursor-pointer text-sm sm:text-base">
                       {option.label}
                     </Label>
                   </div>
-                ))}
-              </div>
-            </RadioGroup>
+                );
+              })}
+            </div>
 
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4">
-              <div className="flex gap-1 order-2 sm:order-1">
+            <div className="flex flex-col gap-3 pt-4">
+              <div className="flex gap-3">
+                {step > 0 && (
+                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg">
+                    戻る
+                  </Button>
+                )}
+                <Button
+                  onClick={handleNext}
+                  disabled={!answers[step] || answers[step].length === 0}
+                  className="gap-2 flex-1"
+                  size="lg"
+                >
+                  {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+                <Button onClick={handleReset} variant="destructive" size="lg">
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              <div className="flex gap-1 justify-center">
                 {questions.map((_, index) => (
                   <div
                     key={index}
@@ -174,14 +220,6 @@ const InvestmentDiagnostic = () => {
                   />
                 ))}
               </div>
-              <Button
-                onClick={handleNext}
-                disabled={!answers[step]}
-                className="gap-2 w-full sm:w-auto order-1 sm:order-2"
-              >
-                {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
             </div>
           </CardContent>
         </Card>

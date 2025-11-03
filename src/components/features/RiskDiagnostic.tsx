@@ -75,7 +75,7 @@ const questions = [
 const RiskDiagnostic = () => {
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([]);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [answers, setAnswers] = useState<Record<number, number[]>>({});
   const [result, setResult] = useState<any>(null);
 
   const handleIndustryToggle = (industryId: Industry) => {
@@ -87,12 +87,23 @@ const RiskDiagnostic = () => {
   };
 
   const handleAnswer = (questionId: number, score: number) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: score }));
+    setAnswers((prev) => {
+      const currentAnswers = prev[questionId] || [];
+      const isSelected = currentAnswers.includes(score);
+      
+      return {
+        ...prev,
+        [questionId]: isSelected
+          ? currentAnswers.filter((s) => s !== score)
+          : [...currentAnswers, score],
+      };
+    });
   };
 
   const calculateRisk = () => {
-    const totalScore = Object.values(answers).reduce((sum, score) => sum + score, 0);
-    const avgScore = totalScore / questions.length;
+    const allScores = Object.values(answers).flat();
+    const totalScore = allScores.reduce((sum, score) => sum + score, 0);
+    const avgScore = totalScore / allScores.length;
 
     let riskLevel: string;
     let title: string;
@@ -272,7 +283,7 @@ const RiskDiagnostic = () => {
   }
 
   const currentQuestion = questions[step];
-  const currentAnswer = answers[currentQuestion.id];
+  const currentAnswers = answers[currentQuestion.id] || [];
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -295,41 +306,48 @@ const RiskDiagnostic = () => {
             </div>
           </div>
           <CardTitle className="text-2xl">{currentQuestion.text}</CardTitle>
+          <p className="text-sm text-muted-foreground mt-2">複数選択可能です</p>
         </CardHeader>
         <CardContent className="space-y-6">
-          <RadioGroup
-            value={currentAnswer?.toString()}
-            onValueChange={(value) => handleAnswer(currentQuestion.id, parseInt(value))}
-          >
-            <div className="space-y-3">
-              {currentQuestion.options.map((option) => (
+          <div className="space-y-3">
+            {currentQuestion.options.map((option) => {
+              const isChecked = currentAnswers.includes(option.score);
+              return (
                 <div
                   key={option.value}
-                  className="flex items-center space-x-2 p-4 rounded-lg border-2 hover:border-primary transition-colors cursor-pointer"
+                  className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-colors cursor-pointer ${
+                    isChecked ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                  }`}
                   onClick={() => handleAnswer(currentQuestion.id, option.score)}
                 >
-                  <RadioGroupItem value={option.score.toString()} id={option.value} />
+                  <Checkbox
+                    checked={isChecked}
+                    onCheckedChange={() => handleAnswer(currentQuestion.id, option.score)}
+                  />
                   <Label htmlFor={option.value} className="cursor-pointer flex-1">
                     {option.label}
                   </Label>
                 </div>
-              ))}
-            </div>
-          </RadioGroup>
+              );
+            })}
+          </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {step > 0 && (
-              <Button onClick={() => setStep(step - 1)} variant="outline" size="lg" className="flex-1">
+              <Button onClick={() => setStep(step - 1)} variant="outline" size="lg">
                 戻る
               </Button>
             )}
             <Button
               onClick={handleNext}
-              disabled={!currentAnswer}
+              disabled={currentAnswers.length === 0}
               size="lg"
               className="flex-1 hover:scale-105 transition-transform"
             >
               {step === questions.length - 1 ? "診断結果を見る" : "次へ"}
+            </Button>
+            <Button onClick={handleReset} variant="destructive" size="lg">
+              診断をやめる
             </Button>
           </div>
 
