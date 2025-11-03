@@ -24,6 +24,7 @@ const industries: IndustryOption[] = [
   { id: "fx", label: "FX", icon: DollarSign, path: "/fx-comparison" },
 ];
 
+// 質問数を減らして効率化
 const questions = [
   {
     id: 1,
@@ -52,30 +53,12 @@ const questions = [
       { value: "long", label: "長期的な老後資金", score: 1 },
     ],
   },
-  {
-    id: 4,
-    text: "年齢を教えてください",
-    options: [
-      { value: "young", label: "20-30代", score: 3 },
-      { value: "middle", label: "40-50代", score: 2 },
-      { value: "senior", label: "60代以上", score: 1 },
-    ],
-  },
-  {
-    id: 5,
-    text: "投資に回せる余剰資金はどのくらいですか？",
-    options: [
-      { value: "small", label: "収入の10%未満", score: 1 },
-      { value: "medium", label: "収入の10-20%", score: 2 },
-      { value: "large", label: "収入の20%以上", score: 3 },
-    ],
-  },
 ];
 
 const RiskDiagnostic = () => {
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([]);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number[]>>({});
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [result, setResult] = useState<any>(null);
 
   const handleIndustryToggle = (industryId: Industry) => {
@@ -86,22 +69,16 @@ const RiskDiagnostic = () => {
     );
   };
 
+  // 単一選択に変更
   const handleAnswer = (questionId: number, score: number) => {
-    setAnswers((prev) => {
-      const currentAnswers = prev[questionId] || [];
-      const isSelected = currentAnswers.includes(score);
-      
-      return {
-        ...prev,
-        [questionId]: isSelected
-          ? currentAnswers.filter((s) => s !== score)
-          : [...currentAnswers, score],
-      };
-    });
+    setAnswers((prev) => ({
+      ...prev,
+      [questionId]: score,
+    }));
   };
 
   const calculateRisk = () => {
-    const allScores = Object.values(answers).flat();
+    const allScores = Object.values(answers);
     const totalScore = allScores.reduce((sum, score) => sum + score, 0);
     const avgScore = totalScore / allScores.length;
 
@@ -283,7 +260,7 @@ const RiskDiagnostic = () => {
   }
 
   const currentQuestion = questions[step];
-  const currentAnswers = answers[currentQuestion.id] || [];
+  const currentAnswer = answers[currentQuestion.id];
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -306,31 +283,32 @@ const RiskDiagnostic = () => {
             </div>
           </div>
           <CardTitle className="text-2xl">{currentQuestion.text}</CardTitle>
-          <p className="text-sm text-muted-foreground mt-2">複数選択可能です</p>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="space-y-3">
-            {currentQuestion.options.map((option) => {
-              const isChecked = currentAnswers.includes(option.score);
-              return (
-                <div
-                  key={option.value}
-                  className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-colors cursor-pointer ${
-                    isChecked ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
-                  }`}
-                  onClick={() => handleAnswer(currentQuestion.id, option.score)}
+          <RadioGroup
+            value={currentAnswer?.toString() || ""}
+            onValueChange={(value) => handleAnswer(currentQuestion.id, parseInt(value))}
+            className="space-y-3"
+          >
+            {currentQuestion.options.map((option) => (
+              <div
+                key={option.value}
+                className="flex items-center space-x-3 p-4 rounded-lg border-2 transition-colors"
+              >
+                <RadioGroupItem
+                  value={option.score.toString()}
+                  id={option.value}
+                  className="h-5 w-5"
+                />
+                <Label
+                  htmlFor={option.value}
+                  className="cursor-pointer flex-1 text-base"
                 >
-                  <Checkbox
-                    checked={isChecked}
-                    onCheckedChange={() => handleAnswer(currentQuestion.id, option.score)}
-                  />
-                  <Label htmlFor={option.value} className="cursor-pointer flex-1">
-                    {option.label}
-                  </Label>
-                </div>
-              );
-            })}
-          </div>
+                  {option.label}
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
 
           <div className="flex gap-3">
             {step > 0 && (
@@ -340,7 +318,7 @@ const RiskDiagnostic = () => {
             )}
             <Button
               onClick={handleNext}
-              disabled={currentAnswers.length === 0}
+              disabled={currentAnswer === undefined}
               size="lg"
               className="flex-1 hover:scale-105 transition-transform"
             >
