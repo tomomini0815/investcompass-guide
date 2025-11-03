@@ -90,6 +90,99 @@ const RiskDiagnostic = () => {
     setAnswers((prev) => ({ ...prev, [questionId]: score }));
   };
 
+  const getIndustryRecommendations = (industryId: Industry, avgScore: number) => {
+    const industryData: Record<Industry, { low: string[], medium: string[], high: string[] }> = {
+      stocks: {
+        low: [
+          "東証プライム上場の大型優良株への投資",
+          "高配当株による安定収入の確保",
+          "ETFを活用した分散投資",
+          "長期保有による複利効果の活用",
+        ],
+        medium: [
+          "大型株と中型株のバランス投資",
+          "成長株と配当株の組み合わせ",
+          "セクター分散による リスク管理",
+          "四半期ごとのポートフォリオ見直し",
+        ],
+        high: [
+          "グロース株への集中投資",
+          "新興市場（グロース市場）の活用",
+          "短期トレーディングの実施",
+          "テクニカル分析を活用した売買",
+        ],
+      },
+      funds: {
+        low: [
+          "インデックスファンドでの運用",
+          "債券型ファンドの組み入れ",
+          "バランス型ファンドの活用",
+          "つみたてNISAの最大活用",
+        ],
+        medium: [
+          "国内外の株式ファンドの組み合わせ",
+          "REITファンドでの分散投資",
+          "アクティブファンドとインデックスファンドのバランス",
+          "リバランスによるリスク調整",
+        ],
+        high: [
+          "テーマ型ファンドへの投資",
+          "新興国株式ファンドの活用",
+          "ハイイールド債券ファンドの組み入れ",
+          "レバレッジ型ファンドの検討",
+        ],
+      },
+      crypto: {
+        low: [
+          "ビットコインへの少額積立投資",
+          "時価総額上位の主要通貨のみに投資",
+          "総資産の5%以内での運用",
+          "長期保有（ガチホ）戦略の採用",
+        ],
+        medium: [
+          "ビットコインとイーサリアムのバランス投資",
+          "DeFiプロジェクトへの少額投資",
+          "ステーキングによる報酬獲得",
+          "定期的な利益確定とリバランス",
+        ],
+        high: [
+          "アルトコインへの積極投資",
+          "新規プロジェクトへの早期参入",
+          "レバレッジ取引の活用",
+          "短期トレーディングでの利益追求",
+        ],
+      },
+      fx: {
+        low: [
+          "主要通貨ペア（米ドル/円）のみの取引",
+          "低レバレッジ（2-3倍）での運用",
+          "スワップポイント重視の長期保有",
+          "損切りラインの厳格な設定",
+        ],
+        medium: [
+          "複数通貨ペアでのリスク分散",
+          "中程度のレバレッジ（5-10倍）活用",
+          "スイングトレードの実施",
+          "テクニカル指標を使った売買",
+        ],
+        high: [
+          "エキゾチック通貨ペアへの投資",
+          "高レバレッジ（10倍以上）の活用",
+          "デイトレード・スキャルピング",
+          "経済指標発表時の積極的な売買",
+        ],
+      },
+    };
+
+    if (avgScore <= 1.5) {
+      return industryData[industryId].low;
+    } else if (avgScore <= 2.5) {
+      return industryData[industryId].medium;
+    } else {
+      return industryData[industryId].high;
+    }
+  };
+
   const calculateRisk = () => {
     const totalScore = Object.values(answers).reduce((sum, score) => sum + score, 0);
     const avgScore = totalScore / questions.length;
@@ -97,46 +190,31 @@ const RiskDiagnostic = () => {
     let riskLevel: string;
     let title: string;
     let description: string;
-    let recommendations: string[];
 
     if (avgScore <= 1.5) {
       riskLevel = "低リスク";
       title = "保守的な投資家";
       description = "安定性を重視し、リスクを最小限に抑えた投資戦略が適しています。";
-      recommendations = [
-        "国債や安定した大型株への投資",
-        "分散投資でリスクを軽減",
-        "定期的な積立投資",
-        "投資信託やETFの活用",
-      ];
     } else if (avgScore <= 2.5) {
       riskLevel = "中リスク";
       title = "バランス型投資家";
       description = "リスクとリターンのバランスを取った投資戦略が適しています。";
-      recommendations = [
-        "株式と債券のバランス投資",
-        "成長株と配当株の組み合わせ",
-        "投資信託での分散投資",
-        "定期的なポートフォリオ見直し",
-      ];
     } else {
       riskLevel = "高リスク";
       title = "積極的な投資家";
       description = "高いリターンを目指す積極的な投資戦略が適しています。";
-      recommendations = [
-        "成長株への集中投資",
-        "新興市場への投資",
-        "レバレッジ商品の活用",
-        "短期的な市場機会の活用",
-      ];
     }
+
+    const industryResults = selectedIndustries.map((industryId) => ({
+      industryId,
+      recommendations: getIndustryRecommendations(industryId, avgScore),
+    }));
 
     setResult({
       riskLevel,
       title,
       description,
-      recommendations,
-      industries: selectedIndustries,
+      industryResults,
     });
   };
 
@@ -221,40 +299,49 @@ const RiskDiagnostic = () => {
           <CardContent className="space-y-6">
             <p className="text-lg text-muted-foreground">{result.description}</p>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">おすすめの投資戦略</h3>
-              <ul className="space-y-2">
-                {result.recommendations.map((rec: string, index: number) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>{rec}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold mb-4">選択した業界の比較ページ</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {result.industries.map((industryId: Industry) => {
-                  const industry = industries.find((i) => i.id === industryId);
-                  if (!industry) return null;
-                  const Icon = industry.icon;
-                  return (
-                    <Button
-                      key={industryId}
-                      asChild
-                      variant="outline"
-                      className="h-auto p-4 justify-start hover:scale-105 transition-transform"
-                    >
-                      <Link to={industry.path}>
-                        <Icon className="h-5 w-5 mr-2" />
-                        {industry.label}比較ページ →
-                      </Link>
-                    </Button>
-                  );
-                })}
-              </div>
+            {/* 業界ごとの診断結果 */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold">各業界別の投資戦略</h3>
+              {result.industryResults.map((industryResult: any) => {
+                const industry = industries.find((i) => i.id === industryResult.industryId);
+                if (!industry) return null;
+                const Icon = industry.icon;
+                
+                return (
+                  <Card key={industryResult.industryId} className="border-2 bg-gradient-to-br from-muted/30 to-background">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <Icon className="h-6 w-6 text-primary" />
+                        </div>
+                        {industry.label}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <h4 className="text-lg font-bold mb-3">おすすめの投資戦略</h4>
+                        <ul className="space-y-2">
+                          {industryResult.recommendations.map((rec: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2">
+                              <span className="text-primary mt-1">✓</span>
+                              <span className="text-muted-foreground">{rec}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="w-full hover:scale-105 transition-transform"
+                      >
+                        <Link to={industry.path}>
+                          {industry.label}の比較ページを見る →
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
             <div className="flex gap-4 pt-4">
