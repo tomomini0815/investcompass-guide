@@ -22,6 +22,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: List build output
+        run: |
+          echo "Build output directory contents:"
+          ls -la docs/
+          echo "CNAME file contents:"
+          cat docs/CNAME
+          echo "Index.html file size:"
+          wc -c docs/index.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
