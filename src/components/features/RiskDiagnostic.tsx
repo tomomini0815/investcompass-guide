@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
-import { TrendingUp, Bitcoin, DollarSign, Building2, LucideIcon } from "lucide-react";
+import { TrendingUp, Bitcoin, DollarSign, Building2, type LucideIcon } from "lucide-react";
 
 type Industry = "stocks" | "funds" | "crypto" | "fx";
 
@@ -102,8 +102,8 @@ const RiskDiagnostic = () => {
     setAnswers((prev) => ({ ...prev, [questionId]: score }));
   };
 
-  const getIndustryRecommendations = (industryId: Industry, avgScore: number) => {
-    const industryData: Record<Industry, { low: string[], medium: string[], high: string[] }> = {
+  const getIndustryRecommendations = (industryId: Industry, avgScore: number): string[] => {
+    const industryData: Record<Industry, { low: string[]; medium: string[]; high: string[] }> = {
       stocks: {
         low: [
           "東証プライム上場の大型優良株への投資",
@@ -114,7 +114,7 @@ const RiskDiagnostic = () => {
         medium: [
           "大型株と中型株のバランス投資",
           "成長株と配当株の組み合わせ",
-          "セクター分散による リスク管理",
+          "セクター分散によるリスク管理",
           "四半期ごとのポートフォリオ見直し",
         ],
         high: [
@@ -217,7 +217,7 @@ const RiskDiagnostic = () => {
       description = "高いリターンを目指す積極的な投資戦略が適しています。";
     }
 
-    const industryResults = selectedIndustries.map((industryId) => ({
+    const industryResults: IndustryResult[] = selectedIndustries.map((industryId) => ({
       industryId,
       recommendations: getIndustryRecommendations(industryId, avgScore),
     }));
@@ -311,7 +311,6 @@ const RiskDiagnostic = () => {
           <CardContent className="space-y-6">
             <p className="text-lg text-muted-foreground">{result.description}</p>
 
-            {/* 業界ごとの診断結果 */}
             <div className="space-y-6">
               <h3 className="text-2xl font-bold">各業界別の投資戦略</h3>
               {result.industryResults.map((industryResult) => {
