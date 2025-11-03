@@ -17,6 +17,66 @@ interface IndustryOption {
   path: string;
 }
 
+// 業界ごとのアドバイスを追加
+const industryAdvice = {
+  stocks: {
+    low: {
+      title: "株式投資（低リスク）",
+      advice: "低リスクの株式投資では、大型株や配当性向の高い株に投資することをおすすめします。ブルーチップ株を中心に組み立てたポートフォリオで、安定的なリターンを目指しましょう。"
+    },
+    medium: {
+      title: "株式投資（中リスク）",
+      advice: "中リスクの株式投資では、成長株と配当株のバランスを取ることが重要です。インデックスファンドやETFを活用して分散投資を行い、定期的なポートフォリオの見直しをしましょう。"
+    },
+    high: {
+      title: "株式投資（高リスク）",
+      advice: "高リスクの株式投資では、新興株や成長性の高い株に投資できます。ただし、リスク管理を徹底し、損失を最小限に抑えるためのストップロス注文を活用しましょう。"
+    }
+  },
+  funds: {
+    low: {
+      title: "投資信託（低リスク）",
+      advice: "低リスクの投資信託では、債券系やバランス型の商品を選びましょう。信託報酬が低く、実績のある運用会社の商品を選ぶことで、安定的な運用が期待できます。"
+    },
+    medium: {
+      title: "投資信託（中リスク）",
+      advice: "中リスクの投資信託では、株式と債券のバランスが取れた商品が適しています。インデックス型やアクティブ型の商品を組み合わせて、リスク分散を図りましょう。"
+    },
+    high: {
+      title: "投資信託（高リスク）",
+      advice: "高リスクの投資信託では、株式系の商品や新興国株式ファンドなどが選択肢になります。運用会社の実績やポートフォリオ構成をよく確認し、分散投資を心がけましょう。"
+    }
+  },
+  crypto: {
+    low: {
+      title: "仮想通貨（低リスク）",
+      advice: "低リスクの仮想通貨投資では、主要な通貨（ビットコイン、イーサリアム）に限定し、ドルコスト平均法で少額ずつ購入することをおすすめします。"
+    },
+    medium: {
+      title: "仮想通貨（中リスク）",
+      advice: "中リスクの仮想通貨投資では、主要通貨と一部の有望なアルトコインを組み合わせて投資できます。各プロジェクトの基本情報をよく確認し、適切なポートフォリオ構成を心がけましょう。"
+    },
+    high: {
+      title: "仮想通貨（高リスク）",
+      advice: "高リスクの仮想通貨投資では、新規プロジェクトやデリバティブ商品に投資できます。ただし、価格変動が大きいため、リスク管理を徹底し、損失を最小限に抑える必要があります。"
+    }
+  },
+  fx: {
+    low: {
+      title: "FX（低リスク）",
+      advice: "低リスクのFX投資では、主要通貨ペア（ドル/円、ユーロ/ドルなど）に限定し、レバレッジを低く抑えて取引することをおすすめします。スワップポイントを考慮した運用も有効です。"
+    },
+    medium: {
+      title: "FX（中リスク）",
+      advice: "中リスクのFX投資では、複数の通貨ペアに分散投資し、テクニカル分析とファンダメンタル分析を組み合わせて取引を行いましょう。リスク管理を徹底し、損切りラインを設定することが重要です。"
+    },
+    high: {
+      title: "FX（高リスク）",
+      advice: "高リスクのFX投資では、マイナー通貨ペアやCFD商品に投資できます。スキャルピングやデイトレードなどの短期取引も選択肢になりますが、リスク管理を徹底する必要があります。"
+    }
+  }
+};
+
 const industries: IndustryOption[] = [
   { id: "stocks", label: "株式・証券", icon: TrendingUp, path: "/comparison" },
   { id: "funds", label: "投資信託", icon: Building2, path: "/comparison" },
@@ -83,12 +143,14 @@ const RiskDiagnostic = () => {
     const avgScore = totalScore / allScores.length;
 
     let riskLevel: string;
+    let riskKey: "low" | "medium" | "high";
     let title: string;
     let description: string;
     let recommendations: string[];
 
     if (avgScore <= 1.5) {
       riskLevel = "低リスク";
+      riskKey = "low";
       title = "保守的な投資家";
       description = "安定性を重視し、リスクを最小限に抑えた投資戦略が適しています。";
       recommendations = [
@@ -99,6 +161,7 @@ const RiskDiagnostic = () => {
       ];
     } else if (avgScore <= 2.5) {
       riskLevel = "中リスク";
+      riskKey = "medium";
       title = "バランス型投資家";
       description = "リスクとリターンのバランスを取った投資戦略が適しています。";
       recommendations = [
@@ -109,6 +172,7 @@ const RiskDiagnostic = () => {
       ];
     } else {
       riskLevel = "高リスク";
+      riskKey = "high";
       title = "積極的な投資家";
       description = "高いリターンを目指す積極的な投資戦略が適しています。";
       recommendations = [
@@ -121,6 +185,7 @@ const RiskDiagnostic = () => {
 
     setResult({
       riskLevel,
+      riskKey,
       title,
       description,
       recommendations,
@@ -219,6 +284,33 @@ const RiskDiagnostic = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* 業界ごとのアドバイスを追加 */}
+            <div>
+              <h3 className="text-xl font-bold mb-4">業界ごとのアドバイス</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {result.industries.map((industryId: Industry) => {
+                  const industry = industries.find((i) => i.id === industryId);
+                  if (!industry) return null;
+                  const Icon = industry.icon;
+                  const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
+                  
+                  return (
+                    <Card key={industryId} className="hover:shadow-lg transition-shadow">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-lg">
+                          <Icon className="h-5 w-5" />
+                          {advice.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{advice.advice}</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
 
             <div>
