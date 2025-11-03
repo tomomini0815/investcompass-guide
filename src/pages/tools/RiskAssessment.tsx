@@ -137,9 +137,9 @@ const RiskAssessment = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="p-6 bg-red-50 rounded-lg border border-red-200">
-                    <h3 className="font-bold text-red-800 mb-2">保守的（低リスク）</h3>
-                    <ul className="text-sm text-red-700 space-y-1">
+                  <div className="p-6 bg-destructive/10 rounded-lg border-2 border-destructive/20">
+                    <h3 className="font-bold text-destructive mb-2">保守的（低リスク）</h3>
+                    <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• 損失を極力避けたい</li>
                       <li>• 安定したリターンを求める</li>
                       <li>• 短期的な目標が多い</li>
@@ -147,9 +147,9 @@ const RiskAssessment = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-6 bg-yellow-50 rounded-lg border border-yellow-200">
-                    <h3 className="font-bold text-yellow-800 mb-2">中立的（中リスク）</h3>
-                    <ul className="text-sm text-yellow-700 space-y-1">
+                  <div className="p-6 bg-secondary/10 rounded-lg border-2 border-secondary/20">
+                    <h3 className="font-bold text-secondary-foreground mb-2">中立的（中リスク）</h3>
+                    <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• 適度なリスクを受け入れる</li>
                       <li>• リターンとリスクのバランスを重視</li>
                       <li>• 中長期的な目標がある</li>
@@ -157,9 +157,9 @@ const RiskAssessment = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-6 bg-green-50 rounded-lg border border-green-200">
-                    <h3 className="font-bold text-green-800 mb-2">積極的（高リスク）</h3>
-                    <ul className="text-sm text-green-700 space-y-1">
+                  <div className="p-6 bg-primary/10 rounded-lg border-2 border-primary/20">
+                    <h3 className="font-bold text-primary mb-2">積極的（高リスク）</h3>
+                    <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• 高いリターンを目指す</li>
                       <li>• 大きな損失も受け入れる</li>
                       <li>• 長期的な目標が多い</li>
