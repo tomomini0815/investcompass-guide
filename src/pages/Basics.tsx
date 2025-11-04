@@ -96,7 +96,7 @@ const Basics = () => {
                   <td class="border-b border-gray-200 px-4 py-2 text-gray-600">高い</td>
                 </tr>
                 <tr class="bg-white even:bg-gray-50">
-                  <td class="border-r border-gray-200 px-4 py-2 font-medium text-gray-800">仮想通貨</td>
+                  <td class="border-r border-gray-200 px-4 py-2 font-medium text-gray-800">暗号資産</td>
                   <td class="border-r border-gray-200 px-4 py-2 text-gray-600">非常に高い</td>
                   <td class="px-4 py-2 text-gray-600">非常に高い</td>
                 </tr>

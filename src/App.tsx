@@ -30,6 +30,7 @@ import RiskAssessment from "./pages/tools/RiskAssessment";
 import StockReturn from "./pages/tools/StockReturn";
 import FundReturn from "./pages/tools/FundReturn";
 import CryptoReturn from "./pages/tools/CryptoReturn";
+import RiskToleranceDiagnosticPage from "./pages/RiskToleranceDiagnosticPage";
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,7 @@ const App = () => (
           <Route path="/tools/stock-return" element={<StockReturn />} />
           <Route path="/tools/fund-return" element={<FundReturn />} />
           <Route path="/tools/crypto-return" element={<CryptoReturn />} />
+          <Route path="/risk-diagnostic" element={<RiskToleranceDiagnosticPage />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />

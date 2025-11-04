@@ -7,8 +7,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -34,10 +40,10 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           publish_branch: gh-pages
           force_orphan: true
           enable_jekyll: false
-          disable_nojekyll: false
+          disable_nojekyll: true
           commit_message: "Deploy to GitHub Pages: ${{ github.sha }}"

@@ -49,16 +49,16 @@ const industryAdvice = {
   },
   crypto: {
     low: {
-      title: "仮想通貨（低リスク）",
-      advice: "低リスクの仮想通貨投資では、主要な通貨（ビットコイン、イーサリアム）に限定し、ドルコスト平均法で少額ずつ購入することをおすすめします。"
+      title: "暗号資産（低リスク）",
+      advice: "低リスクの暗号資産投資では、主要な通貨（ビットコイン、イーサリアム）に限定し、ドルコスト平均法で少額ずつ購入することをおすすめします。"
     },
     medium: {
-      title: "仮想通貨（中リスク）",
-      advice: "中リスクの仮想通貨投資では、主要通貨と一部の有望なアルトコインを組み合わせて投資できます。各プロジェクトの基本情報をよく確認し、適切なポートフォリオ構成を心がけましょう。"
+      title: "暗号資産（中リスク）",
+      advice: "中リスクの暗号資産投資では、主要通貨と一部の有望なアルトコインを組み合わせて投資できます。各プロジェクトの基本情報をよく確認し、適切なポートフォリオ構成を心がけましょう。"
     },
     high: {
-      title: "仮想通貨（高リスク）",
-      advice: "高リスクの仮想通貨投資では、新規プロジェクトやデリバティブ商品に投資できます。ただし、価格変動が大きいため、リスク管理を徹底し、損失を最小限に抑える必要があります。"
+      title: "暗号資産（高リスク）",
+      advice: "高リスクの暗号資産投資では、新規プロジェクトやデリバティブ商品に投資できます。ただし、価格変動が大きいため、リスク管理を徹底し、損失を最小限に抑える必要があります。"
     }
   },
   fx: {
@@ -80,7 +80,7 @@ const industryAdvice = {
 const industries: IndustryOption[] = [
   { id: "stocks", label: "株式・証券", icon: TrendingUp, path: "/comparison" },
   { id: "funds", label: "投資信託", icon: Building2, path: "/comparison" },
-  { id: "crypto", label: "仮想通貨", icon: Bitcoin, path: "/crypto-comparison" },
+  { id: "crypto", label: "暗号資産", icon: Bitcoin, path: "/crypto-comparison" },
   { id: "fx", label: "FX", icon: DollarSign, path: "/fx-comparison" },
 ];
 
@@ -215,7 +215,7 @@ const RiskDiagnostic = () => {
           <CardHeader>
             <CardTitle className="text-2xl">投資業界を選択してください</CardTitle>
             <p className="text-muted-foreground mt-2">
-              診断したい投資業界を1つ以上選択してください。選択した業界に合わせた診断結果をお届けします。
+              診断したい投資業界を1つ以上選択してください。選択した業界に合わせた診断結果と投資アドバイスをお届けします。
             </p>
           </CardHeader>
           <CardContent>
@@ -226,22 +226,21 @@ const RiskDiagnostic = () => {
                 return (
                   <div
                     key={industry.id}
-                    className={`flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                    className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-all ${
                       isSelected
                         ? "border-primary bg-primary/10"
                         : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
+                    onClick={() => handleIndustryToggle(industry.id)}
                   >
                     <Checkbox
                       checked={isSelected}
                       onCheckedChange={() => handleIndustryToggle(industry.id)}
                       className="h-5 w-5"
-                      onClick={(e) => e.stopPropagation()}
                     />
                     <Icon className={`h-6 w-6 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                     <Label 
                       className="cursor-pointer flex-1 text-base font-medium"
-                      onClick={() => handleIndustryToggle(industry.id)}
                     >
                       {industry.label}
                     </Label>
@@ -251,7 +250,10 @@ const RiskDiagnostic = () => {
             </div>
             <div className="mt-6 text-center">
               <Button
-                onClick={() => setStep(0)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setStep(0);
+                }}
                 disabled={selectedIndustries.length === 0}
                 size="lg"
                 className="hover:scale-105 transition-transform"
@@ -280,74 +282,76 @@ const RiskDiagnostic = () => {
           <CardContent className="space-y-6">
             <p className="text-lg text-muted-foreground">{result.description}</p>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">おすすめの投資戦略</h3>
-              <ul className="space-y-2">
-                {result.recommendations.map((rec: string, index: number) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>{rec}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">おすすめの投資戦略</h3>
+                <ul className="space-y-2">
+                  {result.recommendations.map((rec: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-primary mt-1">✓</span>
+                      <span>{rec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* 業界ごとのアドバイスを追加 */}
-            <div>
-              <h3 className="text-xl font-bold mb-4">業界ごとのアドバイス</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {result.industries.map((industryId: Industry) => {
-                  const industry = industries.find((i) => i.id === industryId);
-                  if (!industry) return null;
-                  const Icon = industry.icon;
-                  const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
-                  
-                  return (
-                    <Card key={industryId} className="hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-lg">
-                          <Icon className="h-5 w-5" />
-                          {advice.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-muted-foreground">{advice.advice}</p>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
+              {/* 業界ごとのアドバイスを追加 */}
+              <div>
+                <h3 className="text-xl font-bold mb-4">業界ごとのアドバイス</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {result.industries.map((industryId: Industry) => {
+                    const industry = industries.find((i) => i.id === industryId);
+                    if (!industry) return null;
+                    const Icon = industry.icon;
+                    const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
+                    
+                    return (
+                      <Card key={industryId} className="hover:shadow-lg transition-shadow border-2 border-primary/20">
+                        <CardHeader>
+                          <CardTitle className="flex items-center gap-2 text-lg">
+                            <Icon className="h-5 w-5 text-primary" />
+                            {advice.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground">{advice.advice}</p>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold mb-4">選択した業界の比較ページ</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {result.industries.map((industryId: Industry) => {
+                    const industry = industries.find((i) => i.id === industryId);
+                    if (!industry) return null;
+                    const Icon = industry.icon;
+                    return (
+                      <Button
+                        key={industryId}
+                        asChild
+                        variant="outline"
+                        className="h-auto p-4 justify-start hover:scale-105 transition-transform border-2 border-primary/30 hover:border-primary/50"
+                      >
+                        <Link to={industry.path}>
+                          <Icon className="h-5 w-5 mr-2 text-primary" />
+                          {industry.label}比較ページ →
+                        </Link>
+                      </Button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">選択した業界の比較ページ</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {result.industries.map((industryId: Industry) => {
-                  const industry = industries.find((i) => i.id === industryId);
-                  if (!industry) return null;
-                  const Icon = industry.icon;
-                  return (
-                    <Button
-                      key={industryId}
-                      asChild
-                      variant="outline"
-                      className="h-auto p-4 justify-start hover:scale-105 transition-transform"
-                    >
-                      <Link to={industry.path}>
-                        <Icon className="h-5 w-5 mr-2" />
-                        {industry.label}比較ページ →
-                      </Link>
-                    </Button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="flex gap-4 pt-4">
-              <Button onClick={handleReset} variant="outline" size="lg" className="flex-1">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button onClick={handleReset} variant="outline" size="lg" className="flex-1 hover:bg-primary hover:text-primary-foreground transition-colors">
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1">
+              <Button asChild size="lg" className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 <Link to="/tools">ツール一覧に戻る</Link>
               </Button>
             </div>

@@ -178,11 +178,14 @@ const RiskAssessment = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">リスク許容度診断を開始</h2>
-              <p className="text-muted-foreground">
-                簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう。
+                診断には約2〜3分かかります。あなたのリスク許容度に合った投資アドバイスを提供します。
               </p>
             </div>
-            <RiskDiagnostic />
+            <div className="max-w-4xl mx-auto">
+              <RiskDiagnostic />
+            </div>
           </div>
         </section>
 
