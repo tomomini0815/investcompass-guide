@@ -40,28 +40,37 @@ const InvestmentDiagnostic = () => {
 
   const getRecommendation = () => {
     const answer0 = answers[0] || [];
+    const answer1 = answers[1] || [];
     const answer2 = answers[2] || [];
     
-    if (answer0.includes("beginner")) {
-      if (answer2.includes("conservative")) {
+    // 各質問から最初の回答のみを使用
+    const firstAnswer0 = answer0.length > 0 ? answer0[0] : "";
+    const firstAnswer1 = answer1.length > 0 ? answer1[0] : "";
+    const firstAnswer2 = answer2.length > 0 ? answer2[0] : "";
+    
+    if (firstAnswer0 === "beginner") {
+      if (firstAnswer2 === "conservative") {
         return {
           title: "つみたてNISA + インデックス投資",
           description: "初心者で安定志向のあなたには、つみたてNISAでインデックスファンドへの積立投資がおすすめです。",
           features: ["月100円から始められる", "非課税枠を活用", "長期分散投資でリスク軽減"],
+          selectedAnswers: { answer0: [firstAnswer0], answer1: [firstAnswer1], answer2: [firstAnswer2] }
         };
       }
       return {
         title: "NISA + バランス型投資信託",
         description: "初心者のあなたには、NISAを活用したバランス型投資信託がおすすめです。",
         features: ["年120万円の非課税枠", "株式と債券のバランス投資", "プロによる運用"],
+        selectedAnswers: { answer0: [firstAnswer0], answer1: [firstAnswer1], answer2: [firstAnswer2] }
       };
     }
     
-    if (answer2.includes("aggressive")) {
+    if (firstAnswer2 === "aggressive") {
       return {
         title: "個別株投資 + 成長株戦略",
         description: "積極的なあなたには、成長性の高い個別株への投資がおすすめです。",
         features: ["高いリターンを狙える", "企業分析スキルが身につく", "配当金も期待できる"],
+        selectedAnswers: { answer0: [firstAnswer0], answer1: [firstAnswer1], answer2: [firstAnswer2] }
       };
     }
 
@@ -69,21 +78,23 @@ const InvestmentDiagnostic = () => {
       title: "NISA + 投資信託",
       description: "バランスの取れた投資スタイルで、着実に資産を増やしましょう。",
       features: ["非課税のメリット", "分散投資でリスク管理", "手間をかけずに運用"],
+      selectedAnswers: { answer0: [firstAnswer0], answer1: [firstAnswer1], answer2: [firstAnswer2] }
     };
   };
 
+  const renderSelectedOptions = (questionIndex: number, selectedValues: string[]) => {
+    const question = questions[questionIndex];
+    // 最初の選択肢のみ表示
+    const firstSelectedValue = selectedValues.length > 0 ? selectedValues[0] : '';
+    const option = question.options.find(opt => opt.value === firstSelectedValue);
+    return option ? option.label : 'なし';
+  };
+
   const handleAnswer = (value: string) => {
-    setAnswers((prev) => {
-      const currentAnswers = prev[step] || [];
-      const isSelected = currentAnswers.includes(value);
-      
-      return {
-        ...prev,
-        [step]: isSelected
-          ? currentAnswers.filter((v) => v !== value)
-          : [...currentAnswers, value],
-      };
-    });
+    setAnswers((prev) => ({
+      ...prev,
+      [step]: [value],
+    }));
   };
 
   const handleNext = () => {
@@ -117,6 +128,21 @@ const InvestmentDiagnostic = () => {
               <div className="text-center">
                 <h3 className="text-lg sm:text-xl font-bold text-primary mb-2">{recommendation.title}</h3>
                 <p className="text-sm sm:text-base text-muted-foreground">{recommendation.description}</p>
+              </div>
+
+              <div className="bg-muted/50 rounded-lg p-4 border border-muted">
+                <h4 className="font-medium mb-2 text-muted-foreground">あなたの選択:</h4>
+                <div className="space-y-2 text-sm">
+                  <div>
+                    <span className="font-medium">投資経験:</span> <span className="text-primary">{renderSelectedOptions(0, recommendation.selectedAnswers.answer0)}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium">投資目的:</span> <span className="text-primary">{renderSelectedOptions(1, recommendation.selectedAnswers.answer1)}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium">リスクに対する考え方:</span> <span className="text-primary">{renderSelectedOptions(2, recommendation.selectedAnswers.answer2)}</span>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-3">
@@ -162,7 +188,7 @@ const InvestmentDiagnostic = () => {
             <CardTitle className="text-lg sm:text-xl">質問 {step + 1} / {questions.length}</CardTitle>
             <CardDescription className="text-sm sm:text-base">
               {questions[step].question}
-              <span className="block text-xs mt-1 text-muted-foreground">複数選択可能です</span>
+              <span className="block text-xs mt-1 text-primary font-medium">1つの選択肢のみ選択してください</span>
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
@@ -172,16 +198,15 @@ const InvestmentDiagnostic = () => {
                 return (
                   <div 
                     key={option.value} 
-                    className={`flex items-center space-x-2 sm:space-x-3 p-3 sm:p-4 border-2 rounded-lg transition-colors cursor-pointer ${
-                      isChecked ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                    className={`flex items-center space-x-2 sm:space-x-3 p-3 sm:p-4 border-2 rounded-lg transition-all duration-200 cursor-pointer ${
+                      isChecked ? "border-primary bg-primary/10 shadow-sm" : "border-border hover:border-primary/50"
                     }`}
                     onClick={() => handleAnswer(option.value)}
                   >
-                    <Checkbox
-                      checked={isChecked}
-                      onCheckedChange={() => handleAnswer(option.value)}
-                    />
-                    <Label htmlFor={option.value} className="flex-1 cursor-pointer text-sm sm:text-base">
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground">
+                      {isChecked && <div className="h-2 w-2 rounded-full bg-primary" />}
+                    </div>
+                    <Label htmlFor={option.value} className="flex-1 cursor-pointer text-sm sm:text-base font-medium">
                       {option.label}
                     </Label>
                   </div>

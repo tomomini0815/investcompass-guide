@@ -7,20 +7,20 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Coins, Calculator, Lightbulb, Users, Award, BarChart3 } from "lucide-react";
 
 const Crypto = () => {
-  // 仮想通貨記事
+  // 暗号資産記事
   const articles = [
     {
       id: "crypto-basics",
-      title: "仮想通貨の基本と仕組み",
-      excerpt: "仮想通貨とは何か、基本的な仕組みと特徴について解説します。",
+      title: "暗号資産の基本と仕組み",
+      excerpt: "暗号資産とは何か、基本的な仕組みと特徴について解説します。",
       content: `
-        <h3 class="text-xl font-bold mb-3">仮想通貨とは？</h3>
-        <p class="mb-4">仮想通貨とは、インターネット上で利用されるデジタルな通貨の総称です。中央銀行や政府などの機関に発行・管理されず、暗号技術によって発行・管理される「暗号資産」の一種です。</p>
+        <h3 class="text-xl font-bold mb-3">暗号資産とは？</h3>
+        <p class="mb-4">暗号資産とは、インターネット上で利用されるデジタルな通貨の総称です。中央銀行や政府などの機関に発行・管理されず、暗号技術によって発行・管理される金融資産です。</p>
         
         <h3 class="text-xl font-bold mb-3">ブロックチェーン技術</h3>
         <p class="mb-4">仮想通貨の基盤となるのがブロックチェーン技術です。これは、取引記録を分散型ネットワークで管理する技術で、改ざんが困難で透明性が高いという特徴があります。</p>
         
-        <h3 class="text-xl font-bold mb-3">仮想通貨の特徴</h3>
+        <h3 class="text-xl font-bold mb-3">暗号資産の特徴</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div class="bg-blue-50 p-4 rounded-lg">
             <h4 class="font-bold text-blue-800 mb-2">メリット</h4>
@@ -49,16 +49,16 @@ const Crypto = () => {
     },
     {
       id: "how-to-buy-crypto",
-      title: "仮想通貨の買い方と取引所の選び方",
-      excerpt: "仮想通貨を購入する手順と、安全な取引所の選び方を詳しく説明します。",
+      title: "暗号資産の買い方と取引所の選び方",
+      excerpt: "暗号資産を購入する手順と、安全な取引所の選び方を詳しく説明します。",
       content: `
-        <h3 class="text-xl font-bold mb-3">仮想通貨の購入手順</h3>
+        <h3 class="text-xl font-bold mb-3">暗号資産の購入手順</h3>
         <ol class="list-decimal pl-5 mb-4 space-y-2">
-          <li>信頼できる仮想通貨取引所を選ぶ</li>
+          <li>信頼できる暗号資産取引所を選ぶ</li>
           <li>取引所にアカウント登録する</li>
           <li>本人確認（KYC）を行う</li>
           <li>銀行口座から取引所に日本円を入金</li>
-          <li>購入したい仮想通貨を選択して注文</li>
+          <li>購入したい暗号資産を選択して注文</li>
           <li>ウォレットに移動して安全に保管</li>
         </ol>
         
@@ -69,7 +69,7 @@ const Crypto = () => {
             <ul class="list-disc pl-5 space-y-1">
               <li>ライセンスと規制対応</li>
               <li>セキュリティ対策の充実度</li>
-              <li>取扱っている仮想通貨の種類</li>
+              <li>取扱っている暗号資産の種類</li>
               <li>手数料の安さ</li>
               <li>使いやすさとUI/UX</li>
             </ul>
@@ -113,10 +113,10 @@ const Crypto = () => {
     {
       id: "crypto-wallet",
       title: "ウォレットの種類と安全な管理方法",
-      excerpt: "仮想通貨を安全に保管するためのウォレットの種類と管理方法について解説します。",
+      excerpt: "暗号資産を安全に保管するためのウォレットの種類と管理方法について解説します。",
       content: `
         <h3 class="text-xl font-bold mb-3">ウォレットとは？</h3>
-        <p class="mb-4">ウォレットとは、仮想通貨を保管・管理するためのデジタルツールです。実際の通貨ではなく、通貨を所有していることを証明する「秘密鍵」と「公開鍵」を管理します。</p>
+        <p class="mb-4">ウォレットとは、暗号資産を保管・管理するためのデジタルツールです。実際の通貨ではなく、通貨を所有していることを証明する「秘密鍵」と「公開鍵」を管理します。</p>
         
         <h3 class="text-xl font-bold mb-3">ウォレットの種類</h3>
         <div class="overflow-x-auto mb-4">
@@ -180,14 +180,14 @@ const Crypto = () => {
     },
     {
       id: "crypto-risk",
-      title: "仮想通貨投資のリスクと注意点",
-      excerpt: "仮想通貨投資に伴うリスクと、安全な投資を行うための注意点について解説します。",
+      title: "暗号資産投資のリスクと注意点",
+      excerpt: "暗号資産投資に伴うリスクと、安全な投資を行うための注意点について解説します。",
       content: `
-        <h3 class="text-xl font-bold mb-3">仮想通貨投資の主なリスク</h3>
+        <h3 class="text-xl font-bold mb-3">暗号資産投資の主なリスク</h3>
         <div class="space-y-4 mb-4">
           <div class="border-l-4 border-red-500 pl-4">
             <h4 class="font-bold text-red-700 mb-2">1. 価格変動リスク</h4>
-            <p>仮想通貨は価格変動が非常に大きく、短期間で大きな損益が出る可能性があります。デリバティブ取引ではさらにリスクが高まります。</p>
+            <p>暗号資産は価格変動が非常に大きく、短期間で大きな損益が出る可能性があります。デリバティブ取引ではさらにリスクが高まります。</p>
           </div>
           
           <div class="border-l-4 border-orange-500 pl-4">
@@ -202,7 +202,7 @@ const Crypto = () => {
           
           <div class="border-l-4 border-green-500 pl-4">
             <h4 class="font-bold text-green-700 mb-2">4. 流動性リスク</h4>
-            <p>マイナーな仮想通貨は売買の際に価格が大きく変動したり、売買が成立しないリスクがあります。</p>
+            <p>マイナーな暗号資産は売買の際に価格が大きく変動したり、売買が成立しないリスクがあります。</p>
           </div>
         </div>
         
@@ -211,7 +211,7 @@ const Crypto = () => {
           <div class="bg-red-50 p-4 rounded-lg">
             <h4 class="font-bold text-red-800 mb-2">絶対に避けること</h4>
             <ul class="list-disc pl-5 space-y-1">
-              <li>全財産を仮想通貨に投資しない</li>
+              <li>全財産を暗号資産に投資しない</li>
               <li>借金してまで投資しない</li>
               <li>高槓桿レバレッジ取引を避ける</li>
               <li>怪しいプロジェクトやポンジスキームに騙されない</li>
@@ -253,14 +253,14 @@ const Crypto = () => {
   // 関連ツール
   const tools = [
     {
-      title: "仮想通貨リターン計算機",
-      description: "仮想通貨投資のリターンとリスクをシミュレーション",
+      title: "暗号資産リターン計算機",
+      description: "暗号資産投資のリターンとリスクをシミュレーション",
       href: "/tools/crypto-return",
       icon: Calculator,
     },
     {
       title: "ポートフォリオ分析ツール",
-      description: "仮想通貨ポートフォリオの分析とリスク評価",
+      description: "暗号資産ポートフォリオの分析とリスク評価",
       href: "/tools/crypto-portfolio",
       icon: BarChart3,
     },
@@ -289,13 +289,13 @@ const Crypto = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 animate-fade-in" />
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <Badge variant="secondary" className="mb-6 px-6 py-2 text-sm font-semibold animate-fade-in hover:scale-105 transition-transform">
-              仮想通貨
+              暗号資産
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent animate-fade-in">
-              仮想通貨投資を始めよう
+              暗号資産投資を始めよう
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              仮想通貨の基本から実践的な投資戦略まで、初心者から中級者まで対応したガイドです。
+              暗号資産の基本から実践的な投資戦略まで、初心者から中級者まで対応したガイドです。
             </p>
           </div>
         </section>
@@ -309,17 +309,17 @@ const Crypto = () => {
                   <div className="md:w-1/3 bg-gradient-to-br from-accent/20 via-accent/10 to-secondary/10 p-8 flex flex-col items-center justify-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <Coins className="h-20 w-20 text-accent mb-4 relative z-10 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
-                    <h3 className="text-xl font-bold text-center relative z-10">仮想通貨</h3>
+                    <h3 className="text-xl font-bold text-center relative z-10">暗号資産</h3>
                   </div>
                   <div className="md:w-2/3 p-8">
                     <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">未来の通貨への投資</h2>
                     <p className="text-muted-foreground mb-4 leading-relaxed">
-                      仮想通貨は、ブロックチェーン技術を基盤としたデジタル資産です。
+                      暗号資産は、ブロックチェーン技術を基盤としたデジタル資産です。
                       高いリターンの可能性がある一方、価格変動が大きくリスクも高い投資商品です。
-                      このセクションでは、仮想通貨の基本から始めて、安全な投資方法までを詳しく解説します。
+                      このセクションでは、暗号資産の基本から始めて、安全な投資方法までを詳しく解説します。
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">仮想通貨</Badge>
+                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">暗号資産</Badge>
                       <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">ブロックチェーン</Badge>
                       <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">リスク管理</Badge>
                     </div>
@@ -334,9 +334,9 @@ const Crypto = () => {
         <section className="py-16 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">仮想通貨記事一覧</h2>
+              <h2 className="text-3xl font-bold mb-4">暗号資産記事一覧</h2>
               <p className="text-muted-foreground">
-                仮想通貨の基本から応用まで、段階的に学ぶための記事です。
+                暗号資産の基本から応用まで、段階的に学ぶための記事です。
               </p>
             </div>
             
@@ -372,7 +372,7 @@ const Crypto = () => {
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold mb-4">関連ツール</h2>
                 <p className="text-muted-foreground">
-                  仮想通貨投資を安全に実践するための便利なツールをご紹介します。
+                  暗号資産投資を安全に実践するための便利なツールをご紹介します。
                 </p>
               </div>
               
@@ -412,9 +412,9 @@ const Crypto = () => {
                   <div className="inline-block p-4 bg-background rounded-full mb-6 animate-pulse">
                     <Lightbulb className="h-12 w-12 text-accent" />
                   </div>
-                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">仮想通貨投資を始める準備はできましたか？</h2>
+                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">暗号資産投資を始める準備はできましたか？</h2>
                   <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-                    仮想通貨の基本を学んだら、次は安全な取引所を選んで投資を始めてみましょう。
+                    暗号資産の基本を学んだら、次は安全な取引所を選んで投資を始めてみましょう。
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button asChild size="lg" className="text-lg px-8 hover:scale-105 transition-transform">

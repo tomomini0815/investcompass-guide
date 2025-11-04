@@ -16,7 +16,7 @@ const Footer = () => {
       { name: "株式投資", href: "/stocks" },
       { name: "NISA・つみたてNISA", href: "/nisa" },
       { name: "iDeCo", href: "/basics" },
-      { name: "仮想通貨", href: "/crypto" },
+      { name: "暗号資産", href: "/crypto" },
     ],
     "ツール": [
       { name: "複利計算", href: "/tools-detail" },

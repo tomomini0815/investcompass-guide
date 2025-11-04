@@ -53,7 +53,7 @@ const HeroSection = () => {
             成功に導く完全ガイド
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-8 leading-relaxed">
-            投資初心者から中級者まで。株式投資、NISA、iDeCo、仮想通貨など、
+            投資初心者から中級者まで。株式投資、NISA、iDeCo、暗号資産など、
             あらゆる投資商品を徹底解説。信頼できる情報で、あなたの資産形成をサポートします。
           </p>
 

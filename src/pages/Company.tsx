@@ -112,7 +112,7 @@ const Company = () => {
                     <div className="p-6 bg-accent/10 rounded-lg">
                       <h3 className="font-bold mb-2">投資アナリスト</h3>
                       <p>
-                        株式投資・仮想通貨・債券など、多様な投資商品に精通。
+                        株式投資・暗号資産・債券など、多様な投資商品に精通。
                         マクロ経済の動向を読み、的確な分析を行う。
                       </p>
                     </div>
