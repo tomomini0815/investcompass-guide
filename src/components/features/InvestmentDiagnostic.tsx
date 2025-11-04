@@ -230,7 +230,12 @@ const InvestmentDiagnostic = () => {
                   {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
-                <Button onClick={handleReset} variant="destructive" size="lg">
+                <Button 
+                  onClick={handleReset} 
+                  variant="destructive" 
+                  size="lg"
+                  disabled={step === 0 && (!answers[0] || answers[0].length === 0)}
+                >
                   <X className="h-4 w-4" />
                 </Button>
               </div>
