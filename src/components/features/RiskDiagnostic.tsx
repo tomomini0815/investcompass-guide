@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
-import { TrendingUp, Bitcoin, DollarSign, Building2, LucideIcon } from "lucide-react";
+import { TrendingUp, Bitcoin, DollarSign, Building2, LucideIcon, CheckCircle, ArrowLeft, ArrowRight, X, Lightbulb, RotateCcw, Home } from "lucide-react";
 
 type Industry = "stocks" | "funds" | "crypto" | "fx";
 
@@ -118,7 +117,7 @@ const questions = [
 const RiskDiagnostic = () => {
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([]);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [answers, setAnswers] = useState<Record<number, number[]>>({});
   const [result, setResult] = useState<any>(null);
 
   const handleIndustryToggle = (industryId: Industry) => {
@@ -129,16 +128,23 @@ const RiskDiagnostic = () => {
     );
   };
 
-  // 単一選択に変更
+  // 複数選択対応
   const handleAnswer = (questionId: number, score: number) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [questionId]: score,
-    }));
+    setAnswers((prev) => {
+      const currentAnswers = prev[questionId] || [];
+      const isSelected = currentAnswers.includes(score);
+      
+      return {
+        ...prev,
+        [questionId]: isSelected
+          ? currentAnswers.filter((s) => s !== score)
+          : [...currentAnswers, score],
+      };
+    });
   };
 
   const calculateRisk = () => {
-    const allScores = Object.values(answers);
+    const allScores = Object.values(answers).flat();
     const totalScore = allScores.reduce((sum, score) => sum + score, 0);
     const avgScore = totalScore / allScores.length;
 
@@ -269,90 +275,116 @@ const RiskDiagnostic = () => {
 
   if (result) {
     return (
-      <div className="max-w-4xl mx-auto space-y-6">
-        <Card className="border-2 hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-card to-card/80">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-3xl">{result.title}</CardTitle>
-              <Badge variant="secondary" className="text-lg px-4 py-2">
+      <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+        <Card className="border-2 shadow-2xl bg-gradient-to-br from-card via-card/95 to-card/90 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+          <CardHeader className="relative pb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-2xl sm:text-3xl font-bold">診断結果</CardTitle>
+              </div>
+              <Badge variant="secondary" className="text-base sm:text-lg px-6 py-2 w-fit">
                 {result.riskLevel}
               </Badge>
             </div>
+            <div className="bg-gradient-to-r from-accent/20 via-primary/10 to-secondary/20 rounded-lg p-6 border border-accent/20">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-primary">{result.title}</h3>
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{result.description}</p>
+            </div>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <p className="text-lg text-muted-foreground">{result.description}</p>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-bold mb-4">おすすめの投資戦略</h3>
-                <ul className="space-y-2">
-                  {result.recommendations.map((rec: string, index: number) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-primary mt-1">✓</span>
-                      <span>{rec}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* 業界ごとのアドバイスを追加 */}
-              <div>
-                <h3 className="text-xl font-bold mb-4">業界ごとのアドバイス</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {result.industries.map((industryId: Industry) => {
-                    const industry = industries.find((i) => i.id === industryId);
-                    if (!industry) return null;
-                    const Icon = industry.icon;
-                    const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
-                    
-                    return (
-                      <Card key={industryId} className="hover:shadow-lg transition-shadow border-2 border-primary/20">
-                        <CardHeader>
-                          <CardTitle className="flex items-center gap-2 text-lg">
-                            <Icon className="h-5 w-5 text-primary" />
-                            {advice.title}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-muted-foreground">{advice.advice}</p>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold mb-4">選択した業界の比較ページ</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {result.industries.map((industryId: Industry) => {
-                    const industry = industries.find((i) => i.id === industryId);
-                    if (!industry) return null;
-                    const Icon = industry.icon;
-                    return (
-                      <Button
-                        key={industryId}
-                        asChild
-                        variant="outline"
-                        className="h-auto p-4 justify-start hover:scale-105 transition-transform border-2 border-primary/30 hover:border-primary/50"
-                      >
-                        <Link to={industry.path}>
-                          <Icon className="h-5 w-5 mr-2 text-primary" />
-                          {industry.label}比較ページ →
-                        </Link>
-                      </Button>
-                    );
-                  })}
-                </div>
+          <CardContent className="space-y-8 relative">
+            <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
+              <h3 className="text-lg sm:text-xl font-bold mb-6 flex items-center gap-2">
+                <Lightbulb className="h-5 w-5 text-accent" />
+                おすすめの投資戦略
+              </h3>
+              <div className="grid gap-4">
+                {result.recommendations.map((rec: string, index: number) => (
+                  <div 
+                    key={index} 
+                    className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-200 hover:shadow-md"
+                  >
+                    <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm sm:text-base leading-relaxed">{rec}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
+            {result.industries.length > 0 && (
+              <>
+                <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
+                  <h3 className="text-lg sm:text-xl font-bold mb-6">業界ごとのアドバイス</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {result.industries.map((industryId: Industry) => {
+                      const industry = industries.find((i) => i.id === industryId);
+                      if (!industry) return null;
+                      const Icon = industry.icon;
+                      const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
+                      
+                      return (
+                        <Card key={industryId} className="hover:shadow-lg transition-all duration-200 border-2 border-primary/20 hover:border-primary/40">
+                          <CardHeader>
+                            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                              <Icon className="h-5 w-5 text-primary" />
+                              {advice.title}
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground leading-relaxed">{advice.advice}</p>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
+                  <h3 className="text-lg sm:text-xl font-bold mb-6">選択した業界の比較ページ</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {result.industries.map((industryId: Industry) => {
+                      const industry = industries.find((i) => i.id === industryId);
+                      if (!industry) return null;
+                      const Icon = industry.icon;
+                      return (
+                        <Button
+                          key={industryId}
+                          asChild
+                          variant="outline"
+                          className="h-auto p-4 justify-start hover:scale-105 transition-transform border-2 border-primary/30 hover:border-primary/50"
+                        >
+                          <Link to={industry.path}>
+                            <Icon className="h-5 w-5 mr-2 text-primary" />
+                            {industry.label}比較ページ →
+                          </Link>
+                        </Button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
+
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button onClick={handleReset} variant="outline" size="lg" className="flex-1 hover:bg-primary hover:text-primary-foreground transition-colors">
+              <Button 
+                onClick={handleReset} 
+                variant="outline" 
+                size="lg" 
+                className="flex-1 hover:scale-105 transition-transform"
+              >
+                <RotateCcw className="mr-2 h-4 w-4" />
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                <Link to="/tools">ツール一覧に戻る</Link>
+              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform">
+                <Link to="/tools">
+                  <Home className="mr-2 h-4 w-4" />
+                  ツール一覧に戻る
+                </Link>
               </Button>
             </div>
           </CardContent>
@@ -362,80 +394,126 @@ const RiskDiagnostic = () => {
   }
 
   const currentQuestion = questions[step];
-  const currentAnswer = answers[currentQuestion.id];
+  const currentAnswers = answers[currentQuestion.id] || [];
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <Card className="border-2 hover:shadow-2xl transition-all duration-300">
-        <CardHeader>
-          <div className="flex items-center justify-between mb-4">
-            <Badge variant="outline">質問 {step + 1} / {questions.length}</Badge>
-            <div className="flex gap-2">
-              {selectedIndustries.map((industryId) => {
-                const industry = industries.find((i) => i.id === industryId);
-                if (!industry) return null;
-                const Icon = industry.icon;
-                return (
-                  <Badge key={industryId} variant="secondary" className="flex items-center gap-1">
-                    <Icon className="h-3 w-3" />
-                    {industry.label}
-                  </Badge>
-                );
-              })}
-            </div>
-          </div>
-          <CardTitle className="text-2xl">{currentQuestion.text}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <RadioGroup
-            value={currentAnswer?.toString() || ""}
-            onValueChange={(value) => handleAnswer(currentQuestion.id, parseInt(value))}
-            className="space-y-3"
-          >
-            {currentQuestion.options.map((option) => (
-              <div
-                key={option.value}
-                className="flex items-center space-x-3 p-4 rounded-lg border-2 transition-colors"
-              >
-                <RadioGroupItem
-                  value={option.score.toString()}
-                  id={option.value}
-                  className="h-5 w-5"
-                />
-                <Label
-                  htmlFor={option.value}
-                  className="cursor-pointer flex-1 text-base"
-                >
-                  {option.label}
-                </Label>
+    <div className="max-w-4xl mx-auto animate-fade-in">
+      <Card className="border-2 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 pointer-events-none" />
+        <CardHeader className="relative">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <Badge variant="outline" className="text-sm px-4 py-2 w-fit">
+              質問 {step + 1} / {questions.length}
+            </Badge>
+            {selectedIndustries.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {selectedIndustries.map((industryId) => {
+                  const industry = industries.find((i) => i.id === industryId);
+                  if (!industry) return null;
+                  const Icon = industry.icon;
+                  return (
+                    <Badge key={industryId} variant="secondary" className="flex items-center gap-1.5 px-3 py-1.5">
+                      <Icon className="h-3.5 w-3.5" />
+                      <span className="text-xs">{industry.label}</span>
+                    </Badge>
+                  );
+                })}
               </div>
-            ))}
-          </RadioGroup>
-
-          <div className="flex gap-3">
-            {step > 0 && (
-              <Button onClick={() => setStep(step - 1)} variant="outline" size="lg">
-                戻る
-              </Button>
             )}
-            <Button
-              onClick={handleNext}
-              disabled={currentAnswer === undefined}
-              size="lg"
-              className="flex-1 hover:scale-105 transition-transform"
-            >
-              {step === questions.length - 1 ? "診断結果を見る" : "次へ"}
-            </Button>
-            <Button onClick={handleReset} variant="destructive" size="lg">
-              診断をやめる
-            </Button>
+          </div>
+          <CardTitle className="text-xl sm:text-2xl leading-relaxed">{currentQuestion.text}</CardTitle>
+          <p className="text-sm text-muted-foreground mt-3 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            複数選択可能です
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-6 relative">
+          <div className="space-y-3">
+            {currentQuestion.options.map((option) => {
+              const isChecked = currentAnswers.includes(option.score);
+              return (
+                <div
+                  key={option.value}
+                  className={`group flex items-center space-x-3 sm:space-x-4 p-4 sm:p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer ${
+                    isChecked
+                      ? "border-primary bg-primary/10 shadow-md scale-[1.02]"
+                      : "border-border hover:border-primary/50 hover:bg-accent/5 hover:shadow-sm"
+                  }`}
+                  onClick={() => handleAnswer(currentQuestion.id, option.score)}
+                >
+                  <Checkbox
+                    checked={isChecked}
+                    onCheckedChange={() => handleAnswer(currentQuestion.id, option.score)}
+                    className="h-5 w-5 border-2"
+                  />
+                  <Label
+                    htmlFor={option.value}
+                    className="cursor-pointer flex-1 text-sm sm:text-base font-medium leading-relaxed"
+                  >
+                    {option.label}
+                  </Label>
+                  {isChecked && (
+                    <CheckCircle className="h-5 w-5 text-primary animate-fade-in" />
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          <div className="w-full bg-muted rounded-full h-2">
-            <div
-              className="bg-primary h-2 rounded-full transition-all duration-300"
-              style={{ width: `${((step + 1) / questions.length) * 100}%` }}
-            />
+          <div className="space-y-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3">
+              {step > 0 && (
+                <Button 
+                  onClick={() => setStep(step - 1)} 
+                  variant="outline" 
+                  size="lg"
+                  className="hover:scale-105 transition-transform"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  戻る
+                </Button>
+              )}
+              <Button
+                onClick={handleNext}
+                disabled={currentAnswers.length === 0}
+                size="lg"
+                className="flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {step === questions.length - 1 ? (
+                  <>
+                    <CheckCircle className="mr-2 h-4 w-4" />
+                    診断結果を見る
+                  </>
+                ) : (
+                  <>
+                    次へ
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+              <Button 
+                onClick={handleReset} 
+                variant="destructive" 
+                size="lg"
+                className="hover:scale-105 transition-transform"
+              >
+                <X className="mr-2 h-4 w-4" />
+                やめる
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <span>進捗状況</span>
+                <span>{Math.round(((step + 1) / questions.length) * 100)}%</span>
+              </div>
+              <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-primary to-accent h-3 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${((step + 1) / questions.length) * 100}%` }}
+                />
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
