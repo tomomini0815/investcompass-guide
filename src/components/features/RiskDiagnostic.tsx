@@ -117,7 +117,7 @@ const questions = [
 const RiskDiagnostic = () => {
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([]);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number[]>>({});
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [result, setResult] = useState<any>(null);
 
   const handleIndustryToggle = (industryId: Industry) => {
@@ -128,23 +128,16 @@ const RiskDiagnostic = () => {
     );
   };
 
-  // 複数選択対応
+  // 単一選択
   const handleAnswer = (questionId: number, score: number) => {
-    setAnswers((prev) => {
-      const currentAnswers = prev[questionId] || [];
-      const isSelected = currentAnswers.includes(score);
-      
-      return {
-        ...prev,
-        [questionId]: isSelected
-          ? currentAnswers.filter((s) => s !== score)
-          : [...currentAnswers, score],
-      };
-    });
+    setAnswers((prev) => ({
+      ...prev,
+      [questionId]: score,
+    }));
   };
 
   const calculateRisk = () => {
-    const allScores = Object.values(answers).flat();
+    const allScores = Object.values(answers);
     const totalScore = allScores.reduce((sum, score) => sum + score, 0);
     const avgScore = totalScore / allScores.length;
 
@@ -232,17 +225,16 @@ const RiskDiagnostic = () => {
                 return (
                   <div
                     key={industry.id}
-                    className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-all ${
+                    className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-all cursor-pointer ${
                       isSelected
-                        ? "border-primary bg-primary/10"
+                        ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
                     onClick={() => handleIndustryToggle(industry.id)}
                   >
                     <Checkbox
                       checked={isSelected}
-                      onCheckedChange={() => handleIndustryToggle(industry.id)}
-                      className="h-5 w-5"
+                      className="h-5 w-5 pointer-events-none"
                     />
                     <Icon className={`h-6 w-6 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                     <Label 
@@ -394,7 +386,7 @@ const RiskDiagnostic = () => {
   }
 
   const currentQuestion = questions[step];
-  const currentAnswers = answers[currentQuestion.id] || [];
+  const currentAnswer = answers[currentQuestion.id];
 
   return (
     <div className="max-w-4xl mx-auto animate-fade-in">
@@ -424,13 +416,13 @@ const RiskDiagnostic = () => {
           <CardTitle className="text-xl sm:text-2xl leading-relaxed">{currentQuestion.text}</CardTitle>
           <p className="text-sm text-muted-foreground mt-3 flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            複数選択可能です
+            1つ選択してください
           </p>
         </CardHeader>
         <CardContent className="space-y-6 relative">
           <div className="space-y-3">
             {currentQuestion.options.map((option) => {
-              const isChecked = currentAnswers.includes(option.score);
+              const isChecked = currentAnswer === option.score;
               return (
                 <div
                   key={option.value}
@@ -441,11 +433,11 @@ const RiskDiagnostic = () => {
                   }`}
                   onClick={() => handleAnswer(currentQuestion.id, option.score)}
                 >
-                  <Checkbox
-                    checked={isChecked}
-                    onCheckedChange={() => handleAnswer(currentQuestion.id, option.score)}
-                    className="h-5 w-5 border-2"
-                  />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-primary">
+                    {isChecked && (
+                      <div className="h-2.5 w-2.5 rounded-full bg-primary animate-scale-in" />
+                    )}
+                  </div>
                   <Label
                     htmlFor={option.value}
                     className="cursor-pointer flex-1 text-sm sm:text-base font-medium leading-relaxed"
@@ -475,7 +467,7 @@ const RiskDiagnostic = () => {
               )}
               <Button
                 onClick={handleNext}
-                disabled={currentAnswers.length === 0}
+                disabled={currentAnswer === undefined}
                 size="lg"
                 className="flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
