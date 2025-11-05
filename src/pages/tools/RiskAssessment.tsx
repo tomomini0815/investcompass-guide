@@ -111,6 +111,22 @@ const RiskAssessment = () => {
           </div>
         </section>
 
+        {/* Diagnostic Tool Section */}
+        <section className="py-16 bg-gradient-to-b from-background to-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">投資総合診断を開始</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう。
+                診断には約1〜3分かかります。あなたの投資適性に合った詳細なアドバイスを提供します。
+              </p>
+            </div>
+            <div className="max-w-6xl mx-auto" id="diagnostic-tool">
+              <RiskDiagnostic />
+            </div>
+          </div>
+        </section>
+
         {/* Risk Assessment Explanation */}
         <section className="py-16 container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -210,22 +226,6 @@ const RiskAssessment = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Diagnostic Tool Section */}
-        <section className="py-16 bg-gradient-to-b from-background to-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">投資総合診断を開始</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう。
-                診断には約5〜10分かかります。あなたの投資適性に合った詳細なアドバイスを提供します。
-              </p>
-            </div>
-            <div className="max-w-6xl mx-auto">
-              <RiskDiagnostic />
-            </div>
           </div>
         </section>
 

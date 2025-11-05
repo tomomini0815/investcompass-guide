@@ -21,57 +21,130 @@ const industryAdvice = {
   stocks: {
     low: {
       title: "株式投資（低リスク）",
-      advice: "低リスクの株式投資では、大型株や配当性向の高い株に投資することをおすすめします。ブルーチップ株を中心に組み立てたポートフォリオで、安定的なリターンを目指しましょう。"
+      advice: "低リスクの株式投資では、大型株や配当性向の高い株に投資することをおすすめします。ブルーチップ株を中心に組み立てたポートフォリオで、安定的なリターンを目指しましょう。",
+      examples: [
+        "日経225銘柄（トヨタ7203、ソフトバンク9984など）",
+        "高配当株（日本通信9431、イオン8277など）",
+        "インデックスファンド（eMAXIS Slim 全世界株式（オールカントリー）1591など）"
+      ],
+      strategy: "ドルコスト平均法で毎月定期的に購入し、5年以上の長期保有を基本とします。年1回のポートフォリオ見直しを行い、必要に応じてリバランスします。"
     },
     medium: {
       title: "株式投資（中リスク）",
-      advice: "中リスクの株式投資では、成長株と配当株のバランスを取ることが重要です。インデックスファンドやETFを活用して分散投資を行い、定期的なポートフォリオの見直しをしましょう。"
+      advice: "中リスクの株式投資では、成長株と配当株のバランスを取ることが重要です。インデックスファンドやETFを活用して分散投資を行い、定期的なポートフォリオの見直しをしましょう。",
+      examples: [
+        "成長株（任天堂7974、ファーストリテイリング9983など）",
+        "バランス型ETF（楽天・野村 バランスファンド1354など）",
+        "米国株ETF（VYM、SCHDなど）"
+      ],
+      strategy: "ポートフォリオの株式・債券比率を6:4または7:3に保ち、四半期ごとにリバランスを行います。個別株は5〜10銘柄程度に分散投資します。"
     },
     high: {
       title: "株式投資（高リスク）",
-      advice: "高リスクの株式投資では、新興株や成長性の高い株に投資できます。ただし、リスク管理を徹底し、損失を最小限に抑えるためのストップロス注文を活用しましょう。"
+      advice: "高リスクの株式投資では、新興株や成長性の高い株に投資できます。ただし、リスク管理を徹底し、損失を最小限に抑えるためのストップロス注文を活用しましょう。",
+      examples: [
+        "新興株（メドピア4441、GMOペパボ3754など）",
+        "米国テクノロジー株（Tesla、NVIDIAなど）",
+        "小型株ETF（VTI、IJRなど）"
+      ],
+      strategy: "ポートフォリオの70%以上を株式に割り当て、月次のテクニカル分析で売買タイミングを判断します。個別銘柄の割合は3%以内に制限し、損切りラインを15%に設定します。"
     }
   },
   funds: {
     low: {
       title: "投資信託（低リスク）",
-      advice: "低リスクの投資信託では、債券系やバランス型の商品を選びましょう。信託報酬が低く、実績のある運用会社の商品を選ぶことで、安定的な運用が期待できます。"
+      advice: "低リスクの投資信託では、債券系やバランス型の商品を選びましょう。信託報酬が低く、実績のある運用会社の商品を選ぶことで、安定的な運用が期待できます。",
+      examples: [
+        "債券系投資信託（ニッセイ・コクサイ ワールドボンドファンドなど）",
+        "バランス型投資信託（三井住友・アセットマネジメント バランスファンドなど）",
+        "インデックス型投資信託（楽天VTI、楽天全世界株式インデックスなど）"
+      ],
+      strategy: "信託報酬が0.3%以下の商品を選び、3年以上の長期保有を基本とします。毎年の積立額は年収の10%を目安とし、年1回のポートフォリオ見直しを行います。"
     },
     medium: {
       title: "投資信託（中リスク）",
-      advice: "中リスクの投資信託では、株式と債券のバランスが取れた商品が適しています。インデックス型やアクティブ型の商品を組み合わせて、リスク分散を図りましょう。"
+      advice: "中リスクの投資信託では、株式と債券のバランスが取れた商品が適しています。インデックス型やアクティブ型の商品を組み合わせて、リスク分散を図りましょう。",
+      examples: [
+        "バランス型投資信託（野村バランスファンドなど）",
+        "株式系投資信託（ニッセイ外国株式インデックスファンドなど）",
+        "債券系投資信託（ニッセイ・コクサイ ワールドボンドファンドなど）"
+      ],
+      strategy: "株式系投資信託と債券系投資信託を6:4の比率で組み合わせ、年2回のリバランスを行います。信託報酬は0.5%以下を目安とし、複数の運用会社に分散投資します。"
     },
     high: {
       title: "投資信託（高リスク）",
-      advice: "高リスクの投資信託では、株式系の商品や新興国株式ファンドなどが選択肢になります。運用会社の実績やポートフォリオ構成をよく確認し、分散投資を心がけましょう。"
+      advice: "高リスクの投資信託では、株式系の商品や新興国株式ファンドなどが選択肢になります。運用会社の実績やポートフォリオ構成をよく確認し、分散投資を心がけましょう。",
+      examples: [
+        "株式系投資信託（eMAXIS Slim 米国株式（S&P500）など）",
+        "新興国株式ファンド（ニッセイ新興国株式インデックスファンドなど）",
+        "アクティブ型投資信託（野村アジア成長株ファンドなど）"
+      ],
+      strategy: "株式系投資信託の割合を70%以上とし、月次のリバランスを行います。信託報酬は1.0%以下を目安とし、新興市場への投資割合は20%以内に制限します。"
     }
   },
   crypto: {
     low: {
       title: "暗号資産（低リスク）",
-      advice: "低リスクの暗号資産投資では、主要な通貨（ビットコイン、イーサリアム）に限定し、ドルコスト平均法で少額ずつ購入することをおすすめします。"
+      advice: "低リスクの暗号資産投資では、主要な通貨（ビットコイン、イーサリアム）に限定し、ドルコスト平均法で少額ずつ購入することをおすすめします。",
+      examples: [
+        "ビットコイン（BTC）",
+        "イーサリアム（ETH）",
+        "リップル（XRP）"
+      ],
+      strategy: "主要通貨に限定し、ドルコスト平均法で毎月定期的に購入します。ポートフォリオの80%をBTCとETHに分配し、残り20%を他の主要通貨に分配します。"
     },
     medium: {
       title: "暗号資産（中リスク）",
-      advice: "中リスクの暗号資産投資では、主要通貨と一部の有望なアルトコインを組み合わせて投資できます。各プロジェクトの基本情報をよく確認し、適切なポートフォリオ構成を心がけましょう。"
+      advice: "中リスクの暗号資産投資では、主要通貨と一部の有望なアルトコインを組み合わせて投資できます。各プロジェクトの基本情報をよく確認し、適切なポートフォリオ構成を心がけましょう。",
+      examples: [
+        "ビットコイン（BTC）",
+        "イーサリアム（ETH）",
+        "ビットコインキャッシュ（BCH）",
+        "ライトコイン（LTC）"
+      ],
+      strategy: "ポートフォリオの60%をBTCとETHに分配し、40%を有望なアルトコインに分配します。月次のテクニカル分析で売買タイミングを判断し、損切りラインを20%に設定します。"
     },
     high: {
       title: "暗号資産（高リスク）",
-      advice: "高リスクの暗号資産投資では、新規プロジェクトやデリバティブ商品に投資できます。ただし、価格変動が大きいため、リスク管理を徹底し、損失を最小限に抑える必要があります。"
+      advice: "高リスクの暗号資脂投資では、新規プロジェクトやデリバティブ商品に投資できます。ただし、価格変動が大きいため、リスク管理を徹底し、損失を最小限に抑える必要があります。",
+      examples: [
+        "新規プロジェクトトークン（DeFi、NFT関連など）",
+        "レバレッジ・トークン（BTCUP、ETHBULLなど）",
+        "マイニング関連トークン（Filecoin、Chiaなど）"
+      ],
+      strategy: "ポートフォリオの50%を主要通貨に分配し、50%を新規プロジェクトトークンに分配します。週次のテクニカル分析で売買タイミングを判断し、損切りラインを25%に設定します。"
     }
   },
   fx: {
     low: {
       title: "FX（低リスク）",
-      advice: "低リスクのFX投資では、主要通貨ペア（ドル/円、ユーロ/ドルなど）に限定し、レバレッジを低く抑えて取引することをおすすめします。スワップポイントを考慮した運用も有効です。"
+      advice: "低リスクのFX投資では、主要通貨ペア（ドル/円、ユーロ/ドルなど）に限定し、レバレッジを低く抑えて取引することをおすすめします。スワップポイントを考慮した運用も有効です。",
+      examples: [
+        "ドル/円（USD/JPY）",
+        "ユーロ/ドル（EUR/USD）",
+        "豪ドル/円（AUD/JPY）"
+      ],
+      strategy: "レバレッジを5倍以下に抑え、主要通貨ペアに限定して取引します。スワップポイントを重視したポジションを月1回の頻度で見直し、必要に応じてロールオーバーします。"
     },
     medium: {
       title: "FX（中リスク）",
-      advice: "中リスクのFX投資では、複数の通貨ペアに分散投資し、テクニカル分析とファンダメンタル分析を組み合わせて取引を行いましょう。リスク管理を徹底し、損切りラインを設定することが重要です。"
+      advice: "中リスクのFX投資では、複数の通貨ペアに分散投資し、テクニカル分析とファンダメンタル分析を組み合わせて取引を行いましょう。リスク管理を徹底し、損切りラインを設定することが重要です。",
+      examples: [
+        "ドル/円（USD/JPY）",
+        "ユーロ/ドル（EUR/USD）",
+        "豪ドル/ドル（AUD/USD）"
+      ],
+      strategy: "レバレッジを10倍以下に抑え、3〜5つの通貨ペアに分散投資します。週次のテクニカル分析と日次のファンダメンタル分析を組み合わせ、損切りラインを10%に設定します。"
     },
     high: {
       title: "FX（高リスク）",
-      advice: "高リスクのFX投資では、マイナー通貨ペアやCFD商品に投資できます。スキャルピングやデイトレードなどの短期取引も選択肢になりますが、リスク管理を徹底する必要があります。"
+      advice: "高リスクのFX投資では、マイナー通貨ペアやCFD商品に投資できます。スキャルピングやデイトレードなどの短期取引も選択肢になりますが、リスク管理を徹底する必要があります。",
+      examples: [
+        "南アフリカランド/円（ZAR/JPY）",
+        "トルコリラ/ドル（TRY/USD）",
+        "株価指数CFD（日経225、NYダウなど）"
+      ],
+      strategy: "レバレッジを20倍以下に抑え、テクニカル分析を主軸とした短期取引を行います。日次の損益管理を行い、1日の損失上限をアカウント残高の2%以内に設定します。"
     }
   }
 };
@@ -285,9 +358,6 @@ const RiskDiagnostic = () => {
         <Card className="border-2 hover:shadow-2xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">投資業界を選択してください</CardTitle>
-            <p className="text-muted-foreground mt-2">
-              診断したい投資業界を1つ以上選択してください。選択した業界に合わせた診断結果と投資アドバイスをお届けします。
-            </p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -361,78 +431,103 @@ const RiskDiagnostic = () => {
             </div>
           </CardHeader>
           <CardContent className="space-y-8 relative">
-            <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
-              <h3 className="text-lg sm:text-xl font-bold mb-6 flex items-center gap-2">
-                <Lightbulb className="h-5 w-5 text-accent" />
-                おすすめの投資戦略
-              </h3>
-              <div className="grid gap-4">
-                {result.recommendations.map((rec: string, index: number) => (
-                  <div 
-                    key={index} 
-                    className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-200 hover:shadow-md"
-                  >
-                    <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle className="h-4 w-4 text-primary" />
-                    </div>
-                    <span className="text-sm sm:text-base leading-relaxed">{rec}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {result.industries.length > 0 && (
+            {result.industries.length > 0 ? (
               <>
                 <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
-                  <h3 className="text-lg sm:text-xl font-bold mb-6">業界ごとのアドバイス</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {result.industries.map((industryId: Industry) => {
-                      const industry = industries.find((i) => i.id === industryId);
-                      if (!industry) return null;
-                      const Icon = industry.icon;
-                      const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
-                      
-                      return (
-                        <Card key={industryId} className="hover:shadow-lg transition-all duration-200 border-2 border-primary/20 hover:border-primary/40">
-                          <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                              <Icon className="h-5 w-5 text-primary" />
-                              {advice.title}
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-sm text-muted-foreground leading-relaxed">{advice.advice}</p>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
-                  </div>
-                </div>
+                  <h3 className="text-lg sm:text-xl font-bold mb-6">おすすめの投資戦略と業界ごとのアドバイス</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* おすすめの投資戦略 */}
+                    <div className="bg-card rounded-xl p-6 border-2 border-primary/20">
+                      <h4 className="text-lg font-bold mb-6 flex items-center gap-2">
+                        <Lightbulb className="h-5 w-5 text-accent" />
+                        おすすめの投資戦略
+                      </h4>
+                      <div className="space-y-4">
+                        {result.recommendations.map((rec: string, index: number) => (
+                          <div 
+                            key={index} 
+                            className="flex items-start gap-3 p-4 bg-muted rounded-lg border border-border"
+                          >
+                            <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <CheckCircle className="h-4 w-4 text-primary" />
+                            </div>
+                            <span className="text-sm sm:text-base leading-relaxed">{rec}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
 
-                <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
-                  <h3 className="text-lg sm:text-xl font-bold mb-6">選択した業界の比較ページ</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {result.industries.map((industryId: Industry) => {
-                      const industry = industries.find((i) => i.id === industryId);
-                      if (!industry) return null;
-                      const Icon = industry.icon;
-                      return (
-                        <Button
-                          key={industryId}
-                          asChild
-                          variant="outline"
-                          className="h-auto p-4 justify-start hover:scale-105 transition-transform border-2 border-primary/30 hover:border-primary/50"
-                        >
-                          <Link to={industry.path}>
-                            <Icon className="h-5 w-5 mr-2 text-primary" />
-                            {industry.label}比較ページ →
-                          </Link>
-                        </Button>
-                      );
-                    })}
+                    {/* 業界ごとのアドバイス */}
+                    <div className="bg-card rounded-xl p-6 border-2 border-primary/20">
+                      <h4 className="text-lg font-bold mb-6">業界ごとのアドバイス</h4>
+                      <div className="space-y-6">
+                        {result.industries.map((industryId: Industry) => {
+                          const industry = industries.find((i) => i.id === industryId);
+                          if (!industry) return null;
+                          const Icon = industry.icon;
+                          const advice = industryAdvice[industryId][result.riskKey as "low" | "medium" | "high"];
+                          
+                          return (
+                            <div key={industryId} className="border-b border-border pb-6 last:border-b-0 last:pb-0">
+                              <div className="flex items-center gap-2 mb-3">
+                                <Icon className="h-5 w-5 text-primary" />
+                                <h5 className="font-semibold text-base">{advice.title}</h5>
+                              </div>
+                              <p className="text-sm text-muted-foreground mb-3">{advice.advice}</p>
+                              <div className="space-y-2">
+                                <div>
+                                  <h6 className="font-medium text-xs mb-1">具体的な商品例:</h6>
+                                  <ul className="text-xs text-muted-foreground space-y-1">
+                                    {advice.examples.slice(0, 2).map((example: string, index: number) => (
+                                      <li key={index} className="flex items-start gap-1.5">
+                                        <span className="h-1 w-1 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                                        <span>{example}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div>
+                                  <h6 className="font-medium text-xs mb-1">投資戦略:</h6>
+                                  <p className="text-xs text-muted-foreground">{advice.strategy}</p>
+                                </div>
+                              </div>
+                              {/* 業界比較ページへのボタン */}
+                              <div className="mt-4">
+                                <Button asChild variant="outline" className="w-full hover:scale-105 transition-transform border-2 border-primary/30 hover:border-primary/50">
+                                  <Link to={industry.path}>
+                                    <Icon className="h-4 w-4 mr-2 text-primary" />
+                                    {industry.label}比較ページ →
+                                  </Link>
+                                </Button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </>
+            ) : (
+              <div className="bg-muted/30 rounded-xl p-6 border-2 border-muted">
+                <h3 className="text-lg sm:text-xl font-bold mb-6 flex items-center gap-2">
+                  <Lightbulb className="h-5 w-5 text-accent" />
+                  おすすめの投資戦略
+                </h3>
+                <div className="grid gap-4">
+                  {result.recommendations.map((rec: string, index: number) => (
+                    <div 
+                      key={index} 
+                      className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-200 hover:shadow-md"
+                    >
+                      <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="h-4 w-4 text-primary" />
+                      </div>
+                      <span className="text-sm sm:text-base leading-relaxed">{rec}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">

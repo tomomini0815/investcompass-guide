@@ -27,31 +27,27 @@ const Header = () => {
 
   // 投資診断セクションにスクロールする関数
   const scrollToDiagnostic = () => {
-    // ホームページでない場合はホームページに移動してからスクロール
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollToDiagnostic: true } });
-    } else {
-      // ホームページの場合は直接スクロール
-      // 少し遅延させてからスクロール（ページが完全にロードされるのを待つため）
-      setTimeout(() => {
-        const element = document.getElementById("診断");
-        if (element) {
-          // セクションタイトルがトップに来るようにスクロール位置を調整
-          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-          // タイトルが完全にトップに来るように、余白をヘッダーの高さのみにする
-          const offsetPosition = elementPosition - headerHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
-          
-          // モバイルメニューが開いている場合は閉じる
-          setIsMobileMenuOpen(false);
-        }
-      }, 100);
+    // risk-assessmentページでない場合はrisk-assessmentページに移動
+    if (location.pathname !== "/tools/risk-assessment") {
+      navigate("/tools/risk-assessment");
     }
+    // ページ遷移後に診断ツールセクションにスクロール
+    setTimeout(() => {
+      const element = document.getElementById("diagnostic-tool");
+      if (element) {
+        const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+        
+        // モバイルメニューが開いている場合は閉じる
+        setIsMobileMenuOpen(false);
+      }
+    }, 100);
   };
 
   return (
