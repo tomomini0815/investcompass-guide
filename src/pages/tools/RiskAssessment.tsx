@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, LineChart, Lightbulb, Shield } from "lucide-react";
+import { ArrowLeft, LineChart, Lightbulb, Shield, TrendingUp, Calculator, Award } from "lucide-react";
 import RiskDiagnostic from "@/components/features/RiskDiagnostic";
 
 const RiskAssessment = () => {
@@ -31,13 +31,13 @@ const RiskAssessment = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 animate-fade-in" />
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <Badge variant="secondary" className="mb-6 px-6 py-2 text-sm font-semibold animate-fade-in hover:scale-105 transition-transform">
-              診断ツール
+              総合診断ツール
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent animate-fade-in">
-              リスク許容度診断
+              投資総合診断
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              自分のリスク許容度を診断し、適切な投資戦略を見つけましょう
+              自分の投資適性を多角的に診断し、最適な投資戦略を見つけましょう
             </p>
           </div>
         </section>
@@ -45,25 +45,64 @@ const RiskAssessment = () => {
         {/* Introduction */}
         <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+                  <div className="p-6">
+                    <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                      <TrendingUp className="h-6 w-6 text-accent" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">リスク適性診断</h3>
+                    <p className="text-muted-foreground">
+                      あなたのリスク許容度を正確に把握し、適切な投資戦略を提案します。
+                    </p>
+                  </div>
+                </Card>
+                
+                <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+                  <div className="p-6">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                      <Calculator className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">資産配分診断</h3>
+                    <p className="text-muted-foreground">
+                      年齢、収入、目標に応じた最適な資産配分を診断します。
+                    </p>
+                  </div>
+                </Card>
+                
+                <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+                  <div className="p-6">
+                    <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-4">
+                      <Award className="h-6 w-6 text-secondary" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">投資商品診断</h3>
+                    <p className="text-muted-foreground">
+                      適した投資商品（株式、投資信託、FX等）を業界別に診断します。
+                    </p>
+                  </div>
+                </Card>
+              </div>
+              
+              <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-card to-card/50">
                 <div className="md:flex">
                   <div className="md:w-1/3 bg-gradient-to-br from-accent/20 via-accent/10 to-primary/10 p-8 flex flex-col items-center justify-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <LineChart className="h-20 w-20 text-accent mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="text-xl font-bold text-center relative z-10">リスク診断</h3>
+                    <h3 className="text-xl font-bold text-center relative z-10">総合診断</h3>
                   </div>
                   <div className="md:w-2/3 p-8">
                     <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">自分に合った投資戦略を見つける</h2>
                     <p className="text-muted-foreground mb-4 leading-relaxed">
-                      リスク許容度とは、投資における価格変動や損失に対する忍耐力のことです。
-                      自分のリスク許容度を正しく理解することで、
-                      適切な資産配分と投資戦略を選択できます。
+                      投資総合診断では、あなたのリスク許容度、資産状況、投資目標、知識レベルなど、
+                      多角的な視点から最適な投資戦略を診断します。
+                      診断結果には、具体的な投資アドバイスと業界別の推奨商品も含まれます。
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">リスク許容度</Badge>
                       <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">資産配分</Badge>
                       <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">投資戦略</Badge>
+                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">業界別アドバイス</Badge>
                     </div>
                   </div>
                 </div>
@@ -74,11 +113,12 @@ const RiskAssessment = () => {
 
         {/* Risk Assessment Explanation */}
         <section className="py-16 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">リスク許容度診断の重要性</h2>
-              <p className="text-muted-foreground">
-                適切なリスク許容度を把握することで、投資の成功確率を高めることができます。
+              <h2 className="text-3xl font-bold mb-4">投資診断の重要性</h2>
+              <p className="text-muted-foreground max-w-3xl mx-auto">
+                適切な投資診断を受けることで、自分の特性に合った投資戦略を選択し、
+                投資の成功確率を高めることができます。
               </p>
             </div>
             
@@ -177,13 +217,13 @@ const RiskAssessment = () => {
         <section className="py-16 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">リスク許容度診断を開始</h2>
+              <h2 className="text-3xl font-bold mb-4">投資総合診断を開始</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 簡単な質問に答えて、あなたに最適な投資戦略を見つけましょう。
-                診断には約2〜3分かかります。あなたのリスク許容度に合った投資アドバイスを提供します。
+                診断には約5〜10分かかります。あなたの投資適性に合った詳細なアドバイスを提供します。
               </p>
             </div>
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <RiskDiagnostic />
             </div>
           </div>
@@ -192,7 +232,7 @@ const RiskAssessment = () => {
         {/* Additional Info Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <Card className="relative overflow-hidden bg-gradient-to-br from-accent/20 via-primary/10 to-secondary/20 border-2 border-accent/30 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent opacity-50" />
                 <CardContent className="p-10 text-center relative z-10">
