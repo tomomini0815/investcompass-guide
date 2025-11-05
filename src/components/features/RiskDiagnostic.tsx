@@ -83,7 +83,7 @@ const industries: IndustryOption[] = [
   { id: "fx", label: "FX", icon: DollarSign, path: "/fx-comparison" },
 ];
 
-// 質問数を減らして効率化
+// 質問数を増やして詳細化
 const questions = [
   {
     id: 1,
@@ -110,6 +110,71 @@ const questions = [
       { value: "short", label: "短期的な利益", score: 3 },
       { value: "medium", label: "中期的な資産形成", score: 2 },
       { value: "long", label: "長期的な老後資金", score: 1 },
+    ],
+  },
+  {
+    id: 4,
+    text: "あなたの年齢層はどれですか？",
+    options: [
+      { value: "20s", label: "20代", score: 3 },
+      { value: "30s", label: "30代", score: 2 },
+      { value: "40s", label: "40代", score: 2 },
+      { value: "50s", label: "50代", score: 1 },
+      { value: "60s", label: "60代以上", score: 1 },
+    ],
+  },
+  {
+    id: 5,
+    text: "年間の収入状況はどのくらいですか？",
+    options: [
+      { value: "low", label: "300万円未満", score: 1 },
+      { value: "medium", label: "300万円〜500万円", score: 2 },
+      { value: "high", label: "500万円以上", score: 3 },
+    ],
+  },
+  {
+    id: 6,
+    text: "投資に関する知識はどのくらいありますか？",
+    options: [
+      { value: "basic", label: "基本的な知識のみ", score: 1 },
+      { value: "intermediate", label: "中級者レベル", score: 2 },
+      { value: "advanced", label: "上級者レベル", score: 3 },
+    ],
+  },
+  {
+    id: 7,
+    text: "投資期間はどのくらいを見込んでいますか？",
+    options: [
+      { value: "short", label: "1〜3年", score: 3 },
+      { value: "medium", label: "3〜10年", score: 2 },
+      { value: "long", label: "10年以上", score: 1 },
+    ],
+  },
+  {
+    id: 8,
+    text: "期待する年間リターンはどれくらいですか？",
+    options: [
+      { value: "low", label: "3%未満", score: 1 },
+      { value: "medium", label: "3%〜7%", score: 2 },
+      { value: "high", label: "7%以上", score: 3 },
+    ],
+  },
+  {
+    id: 9,
+    text: "投資のリスクについて、どれくらい許容できますか？",
+    options: [
+      { value: "low", label: "元本保証が前提", score: 1 },
+      { value: "medium", label: "多少の値下がりは許容", score: 2 },
+      { value: "high", label: "大きな値下がりも許容", score: 3 },
+    ],
+  },
+  {
+    id: 10,
+    text: "投資にかける時間はどれくらい確保できますか？",
+    options: [
+      { value: "little", label: "月1〜2時間程度", score: 1 },
+      { value: "some", label: "週1〜2時間程度", score: 2 },
+      { value: "lot", label: "日々チェックできる", score: 3 },
     ],
   },
 ];
@@ -147,38 +212,44 @@ const RiskDiagnostic = () => {
     let description: string;
     let recommendations: string[];
 
-    if (avgScore <= 1.5) {
+    if (avgScore <= 1.6) {
       riskLevel = "低リスク";
       riskKey = "low";
       title = "保守的な投資家";
-      description = "安定性を重視し、リスクを最小限に抑えた投資戦略が適しています。";
+      description = "安定性を重視し、リスクを最小限に抑えた投資戦略が適しています。元本の保護を最優先とし、長期的な資産形成を目指します。";
       recommendations = [
         "国債や安定した大型株への投資",
         "分散投資でリスクを軽減",
         "定期的な積立投資",
         "投資信託やETFの活用",
+        "頻繁な売買を避け、長期保有を意識",
+        "リスクの高い商品（仮想通貨、CFD等）は避ける"
       ];
-    } else if (avgScore <= 2.5) {
+    } else if (avgScore <= 2.4) {
       riskLevel = "中リスク";
       riskKey = "medium";
       title = "バランス型投資家";
-      description = "リスクとリターンのバランスを取った投資戦略が適しています。";
+      description = "リスクとリターンのバランスを取った投資戦略が適しています。一定のリターンを目指しつつ、リスク管理も重要視します。";
       recommendations = [
         "株式と債券のバランス投資",
         "成長株と配当株の組み合わせ",
         "投資信託での分散投資",
         "定期的なポートフォリオ見直し",
+        "ドルコスト平均法による積立投資",
+        "適切なリバランスの実施"
       ];
     } else {
       riskLevel = "高リスク";
       riskKey = "high";
       title = "積極的な投資家";
-      description = "高いリターンを目指す積極的な投資戦略が適しています。";
+      description = "高いリターンを目指す積極的な投資戦略が適しています。市場の変動に敏感に対応でき、リスク管理能力も高いことが前提です。";
       recommendations = [
         "成長株への集中投資",
         "新興市場への投資",
         "レバレッジ商品の活用",
         "短期的な市場機会の活用",
+        "テクニカル分析とファンダメンタル分析の併用",
+        "ストップロス注文によるリスク管理"
       ];
     }
 
@@ -189,6 +260,7 @@ const RiskDiagnostic = () => {
       description,
       recommendations,
       industries: selectedIndustries,
+      score: avgScore
     });
   };
 
@@ -285,6 +357,7 @@ const RiskDiagnostic = () => {
             <div className="bg-gradient-to-r from-accent/20 via-primary/10 to-secondary/20 rounded-lg p-6 border border-accent/20">
               <h3 className="text-xl sm:text-2xl font-bold mb-3 text-primary">{result.title}</h3>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{result.description}</p>
+              <p className="text-sm text-muted-foreground mt-2">診断スコア: {result.score.toFixed(2)}/3.00</p>
             </div>
           </CardHeader>
           <CardContent className="space-y-8 relative">
