@@ -47,3 +47,11 @@ jobs:
           enable_jekyll: false
           disable_nojekyll: true
           commit_message: "Deploy to GitHub Pages: ${{ github.sha }}"
+
+      - name: Notify on success
+        if: success()
+        run: echo "Deployment successful!"
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "Deployment failed!"
