@@ -266,6 +266,11 @@ const RiskDiagnostic = () => {
     );
   };
 
+  // 複数選択対応のため、クリックイベントを分離
+  const handleIndustryClick = (industryId: Industry) => {
+    handleIndustryToggle(industryId);
+  };
+
   // 単一選択
   const handleAnswer = (questionId: number, score: number) => {
     setAnswers((prev) => ({
@@ -373,10 +378,7 @@ const RiskDiagnostic = () => {
                         ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleIndustryToggle(industry.id);
-                    }}
+                    onClick={() => handleIndustryClick(industry.id)}
                   >
                     <Checkbox
                       checked={isSelected}
