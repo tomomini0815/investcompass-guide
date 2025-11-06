@@ -333,22 +333,12 @@ const ComparisonTable = () => {
                           <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
-                        ) : company.nisaSupport ? (
+                        ) : company.nisaSupport || company.tsumitateNisa ? (
                           <div className="flex flex-col items-center">
                             <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                               <Check className="h-3 w-3 text-green-600" />
                             </div>
-                            <span className="text-xs">/</span>
-                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                              <X className="h-3 w-3 text-red-600" />
-                            </div>
-                          </div>
-                        ) : company.tsumitateNisa ? (
-                          <div className="flex flex-col items-center">
-                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                              <X className="h-3 w-3 text-red-600" />
-                            </div>
-                            <span className="text-xs">/</span>
+                            <span className="text-xs my-1">/</span>
                             <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                               <Check className="h-3 w-3 text-green-600" />
                             </div>
