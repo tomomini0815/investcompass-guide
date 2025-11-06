@@ -678,6 +678,24 @@ const RiskDiagnostic = () => {
                   戻る
                 </Button>
               )}
+              <Button
+                onClick={handleNext}
+                disabled={currentAnswer === undefined}
+                className="gap-2 flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed sm:flex-none sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
+                size="lg"
+              >
+                {step === questions.length - 1 ? (
+                  <>
+                    <CheckCircle className="mr-2 h-5 w-5" />
+                    診断結果を見る
+                  </>
+                ) : (
+                  <>
+                    次へ
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </>
+                )}
+              </Button>
               <Button 
                 onClick={handleReset} 
                 variant="destructive" 
