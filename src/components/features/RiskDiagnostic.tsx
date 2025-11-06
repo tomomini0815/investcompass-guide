@@ -545,12 +545,12 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="outline" 
                 size="lg" 
-                className="flex-1 hover:scale-105 transition-transform"
+                className="flex-1 hover:scale-105 transition-transform py-6"
               >
                 <RotateCcw className="mr-2 h-4 w-4" />
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform">
+              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform py-6">
                 <Link to="/tools">
                   <Home className="mr-2 h-4 w-4" />
                   ツール一覧に戻る
