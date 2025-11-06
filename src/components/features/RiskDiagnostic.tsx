@@ -366,7 +366,7 @@ const RiskDiagnostic = () => {
             <p className="text-muted-foreground">複数選択可能です。関心のある業界をすべて選択してください。</p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {industries.map((industry) => {
                 const Icon = industry.icon;
                 const isSelected = selectedIndustries.includes(industry.id);
@@ -403,7 +403,7 @@ const RiskDiagnostic = () => {
                 }}
                 disabled={selectedIndustries.length === 0}
                 size="lg"
-                className="hover:scale-105 transition-transform"
+                className="hover:scale-105 transition-transform w-full sm:w-auto"
               >
                 診断を開始する
               </Button>
