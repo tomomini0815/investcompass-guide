@@ -628,13 +628,13 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
               {step > 0 && (
                 <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
-                  size="sm"
-                  className="hover:scale-105 transition-transform"
+                  size="lg"
+                  className="hover:scale-105 transition-transform sm:size-sm"
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   戻る
@@ -661,8 +661,8 @@ const RiskDiagnostic = () => {
               <Button 
                 onClick={handleReset} 
                 variant="destructive" 
-                size="sm"
-                className="hover:scale-105 transition-transform"
+                size="lg"
+                className="hover:scale-105 transition-transform sm:size-sm"
               >
                 <X className="mr-2 h-4 w-4" />
                 やめる
