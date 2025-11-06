@@ -700,6 +700,7 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="destructive" 
                 size="lg"
+                disabled={step === 0 && currentAnswer === undefined}
               >
                 <X className="mr-2 h-4 w-4" />
                 やめる
