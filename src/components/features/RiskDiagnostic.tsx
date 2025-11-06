@@ -628,12 +628,12 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               {step > 0 && (
                 <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
-                  size="lg"
+                  size="sm"
                   className="hover:scale-105 transition-transform"
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
@@ -644,7 +644,7 @@ const RiskDiagnostic = () => {
                 onClick={handleNext}
                 disabled={currentAnswer === undefined}
                 size="lg"
-                className="flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed sm:flex-none"
               >
                 {step === questions.length - 1 ? (
                   <>
@@ -661,7 +661,7 @@ const RiskDiagnostic = () => {
               <Button 
                 onClick={handleReset} 
                 variant="destructive" 
-                size="lg"
+                size="sm"
                 className="hover:scale-105 transition-transform"
               >
                 <X className="mr-2 h-4 w-4" />
