@@ -77,7 +77,7 @@ const Header = () => {
             </Link>
           ))}
           <Button variant="default" size="sm" onClick={scrollToDiagnostic} className="ml-2">
-            投資総合診断を始める
+            総合診断を始める
           </Button>
         </div>
 
@@ -111,7 +111,7 @@ const Header = () => {
               </Link>
             ))}
             <Button variant="default" size="sm" className="w-full mt-2" onClick={scrollToDiagnostic}>
-              投資総合診断を始める
+              総合診断を始める
             </Button>
           </div>
         </div>
