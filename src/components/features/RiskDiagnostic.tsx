@@ -630,13 +630,13 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-row gap-3 justify-center sm:justify-center">
+            <div className="flex flex-row gap-3 justify-center sm:justify-center sm:hidden">
               {step > 0 && (
                 <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
                   size="icon"
-                  className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10 sm:hidden"
+                  className="hover:scale-105 transition-transform h-10 w-10"
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
@@ -644,7 +644,7 @@ const RiskDiagnostic = () => {
               <Button
                 onClick={handleNext}
                 disabled={currentAnswer === undefined}
-                className="gap-2 flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed sm:flex-none sm:w-auto"
+                className="gap-2 flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
                 size="lg"
               >
                 {step === questions.length - 1 ? (
@@ -663,7 +663,7 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="destructive" 
                 size="icon"
-                className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10 sm:hidden"
+                className="hover:scale-105 transition-transform h-10 w-10"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -681,7 +681,7 @@ const RiskDiagnostic = () => {
               <Button
                 onClick={handleNext}
                 disabled={currentAnswer === undefined}
-                className="gap-2 flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                className="gap-2 flex-1"
                 size="lg"
               >
                 {step === questions.length - 1 ? (
