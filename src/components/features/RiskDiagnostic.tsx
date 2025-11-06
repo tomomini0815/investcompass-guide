@@ -363,7 +363,6 @@ const RiskDiagnostic = () => {
         <Card className="border-2 hover:shadow-2xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">投資業界を選択してください</CardTitle>
-            <p className="text-muted-foreground">複数選択可能です。関心のある業界をすべて選択してください。</p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -545,12 +544,12 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="outline" 
                 size="lg" 
-                className="flex-1 hover:scale-105 transition-transform py-6"
+                className="flex-1 hover:scale-105 transition-transform sm:py-6"
               >
                 <RotateCcw className="mr-2 h-4 w-4" />
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform py-6">
+              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform sm:py-6">
                 <Link to="/tools">
                   <Home className="mr-2 h-4 w-4" />
                   ツール一覧に戻る
@@ -631,14 +630,15 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-center">
+            <div className="flex flex-row gap-3 justify-center sm:justify-center">
               {step > 0 && (
                 <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
-                  className="hidden sm:inline-flex hover:scale-105 transition-transform"
+                  size="icon"
+                  className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10 sm:hidden"
                 >
-                  戻る
+                  <ArrowLeft className="h-4 w-4" />
                 </Button>
               )}
               <Button
@@ -666,6 +666,13 @@ const RiskDiagnostic = () => {
                 className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10 sm:hidden"
               >
                 <X className="h-4 w-4" />
+              </Button>
+              <Button 
+                  onClick={() => setStep(step - 1)} 
+                  variant="outline" 
+                  className="hidden sm:inline-flex hover:scale-105 transition-transform"
+                >
+                  戻る
               </Button>
               <Button 
                 onClick={handleReset} 
