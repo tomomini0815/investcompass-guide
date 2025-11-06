@@ -166,6 +166,20 @@ const Index = () => {
     },
     {
       rank: 2,
+      name: "DMMfx",
+      features: [
+        "DMMグループ傘下のFX業者",
+        "スプレッドが適度に狭く、スキャルピングも可能",
+        "独自の取引ツール「DMM FX Viewer」が特徴",
+      ],
+      commission: "取引手数料:無料",
+      minInvestment: "1,000通貨〜",
+      nisaSupport: false,
+      highlight: "ツール使いやすさNo.1",
+      affiliateUrl: "https://fx.dmm.com/",
+    },
+    {
+      rank: 3,
       name: "GMOクリック証券",
       features: [
         "スワップポイントが業界最高水準",
@@ -176,21 +190,53 @@ const Index = () => {
       minInvestment: "1,000通貨〜",
       nisaSupport: false,
       highlight: "スワップポイントNo.1",
-      affiliateUrl: "https://click-sec.com/fxneo/",
+      affiliateUrl: "https://www.click-sec.com/corp/guide/fxneo/",
+    },
+  ];
+
+  // 国外FX業者ランキング
+  const internationalFxBrokers = [
+    {
+      rank: 1,
+      name: "Interactive Brokers",
+      features: [
+        "世界中の市場にアクセス可能で、手数料が非常に安い",
+        "プロ向けの高度な取引ツールを提供",
+        "スキャルピングも可能",
+      ],
+      commission: "取引手数料:$0.5/100株",
+      minInvestment: "$0",
+      nisaSupport: false,
+      highlight: "世界最大",
+      affiliateUrl: "https://www.interactivebrokers.com/",
+    },
+    {
+      rank: 2,
+      name: "IG証券",
+      features: [
+        "日本語対応が充実し、初心者にも使いやすい",
+        "通貨ペア数が多く、スキャルピングも可能",
+        "教育コンテンツも豊富",
+      ],
+      commission: "取引手数料:取引画面で確認",
+      minInvestment: "1万通貨",
+      nisaSupport: false,
+      highlight: "使いやすい",
+      affiliateUrl: "https://www.ig.com/jp",
     },
     {
       rank: 3,
-      name: "松井証券",
+      name: "XM",
       features: [
-        "1通貨から取引可能（最小100円相当）",
-        "スプレッドは業界最狭水準",
-        "株式や投資信託との連携が可能",
+        "ゼロスプレッドプランが人気",
+        "最低取引単位が小さく、初心者にも使いやすい",
+        "スキャルピングも可能",
       ],
-      commission: "取引手数料:無料",
-      minInvestment: "1通貨〜",
+      commission: "取引手数料:0.0 pips",
+      minInvestment: "$5",
       nisaSupport: false,
       highlight: "初心者向け",
-      affiliateUrl: "https://www.matsui-fx.com/",
+      affiliateUrl: "https://www.xm.com/",
     },
   ];
 
@@ -268,6 +314,7 @@ const Index = () => {
   ];
 
   const [activeTab, setActiveTab] = useState<"domestic" | "international">("domestic");
+  const [activeFxTab, setActiveFxTab] = useState<"domestic" | "international">("domestic");
 
   // ページ遷移後に投資診断セクションにスクロールする
   useEffect(() => {
@@ -353,10 +400,42 @@ const Index = () => {
                 人気のFX業者を徹底比較。あなたに最適なFX業者を見つけましょう
               </p>
             </div>
+            
+            {/* Tabs for Domestic and International */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex p-1 bg-muted rounded-lg">
+                <button
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                    activeFxTab === "domestic"
+                      ? "bg-background text-foreground shadow"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  onClick={() => setActiveFxTab("domestic")}
+                >
+                  国内FX業者
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                    activeFxTab === "international"
+                      ? "bg-background text-foreground shadow"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  onClick={() => setActiveFxTab("international")}
+                >
+                  国外FX業者
+                </button>
+              </div>
+            </div>
+            
+            {/* Ranking Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
-              {domesticFxBrokers.map((broker) => (
-                <RankingCard key={broker.rank} {...broker} />
-              ))}
+              {activeFxTab === "domestic"
+                ? domesticFxBrokers.map((broker) => (
+                    <RankingCard key={broker.rank} {...broker} />
+                  ))
+                : internationalFxBrokers.map((broker) => (
+                    <RankingCard key={broker.rank} {...broker} />
+                  ))}
             </div>
           </div>
         </section>
