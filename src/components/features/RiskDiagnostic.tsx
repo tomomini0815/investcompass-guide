@@ -395,7 +395,10 @@ const RiskDiagnostic = () => {
             </div>
             <div className="mt-6 text-center">
               <Button
-                onClick={() => setStep(0)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setStep(0);
+                }}
                 disabled={selectedIndustries.length === 0}
                 size="lg"
                 className="hover:scale-105 transition-transform"
