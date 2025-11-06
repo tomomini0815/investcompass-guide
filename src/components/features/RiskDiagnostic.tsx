@@ -378,7 +378,10 @@ const RiskDiagnostic = () => {
                         ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
-                    onClick={() => handleIndustryClick(industry.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleIndustryClick(industry.id);
+                    }}
                   >
                     <Checkbox
                       checked={isSelected}
