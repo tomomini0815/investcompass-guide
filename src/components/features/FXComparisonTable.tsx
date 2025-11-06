@@ -45,6 +45,18 @@ const FXComparisonTable = () => {
       features: "GMOグループ傘下で信頼性が高く、スプレッドが非常に狭い。スキャルピングも可能で、初心者から上級者まで利用可能。",
     },
     {
+      name: "DMMfx",
+      spread: "0.3銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "34種類",
+      swapPoint: true,
+      scalping: true,
+      rating: 4,
+      affiliateUrl: "https://fx.dmm.com/",
+      isDomestic: true,
+      features: "DMMグループ傘下のFX業者。スプレッドが適度に狭く、スキャルピングも可能。独自の取引ツール「DMM FX Viewer」が特徴。",
+    },
+    {
       name: "みんなのFX",
       spread: "0.2銭",
       minInvestment: "1,000通貨",
