@@ -29,25 +29,26 @@ const Header = () => {
   const scrollToDiagnostic = () => {
     // risk-assessmentページでない場合はrisk-assessmentページに移動
     if (location.pathname !== "/tools/risk-assessment") {
-      navigate("/tools/risk-assessment");
-    }
-    // ページ遷移後に診断ツールセクションにスクロール
-    setTimeout(() => {
-      const element = document.getElementById("diagnostic-tool");
-      if (element) {
-        const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerHeight;
+      navigate("/tools/risk-assessment#diagnostic-tool");
+    } else {
+      // ページ遷移後に診断ツールセクションにスクロール
+      setTimeout(() => {
+        const element = document.getElementById("diagnostic-tool");
+        if (element) {
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-        
-        // モバイルメニューが開いている場合は閉じる
-        setIsMobileMenuOpen(false);
-      }
-    }, 100);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+          
+          // モバイルメニューが開いている場合は閉じる
+          setIsMobileMenuOpen(false);
+        }
+      }, 100);
+    }
   };
 
   return (
