@@ -636,10 +636,9 @@ const RiskDiagnostic = () => {
                 <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
-                  size="icon"
-                  className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10"
+                  className="hidden sm:inline-flex hover:scale-105 transition-transform"
                 >
-                  <ArrowLeft className="h-4 w-4" />
+                  戻る
                 </Button>
               )}
               <Button
@@ -664,9 +663,17 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="destructive" 
                 size="icon"
-                className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10"
+                className="hover:scale-105 transition-transform h-10 w-10 sm:h-10 sm:w-10 sm:hidden"
               >
                 <X className="h-4 w-4" />
+              </Button>
+              <Button 
+                onClick={handleReset} 
+                variant="destructive" 
+                className="hidden sm:inline-flex hover:scale-105 transition-transform"
+              >
+                <X className="mr-2 h-4 w-4" />
+                やめる
               </Button>
             </div>
 
