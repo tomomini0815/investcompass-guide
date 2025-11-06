@@ -358,6 +358,7 @@ const RiskDiagnostic = () => {
         <Card className="border-2 hover:shadow-2xl transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl">投資業界を選択してください</CardTitle>
+            <p className="text-muted-foreground">複数選択可能です。関心のある業界をすべて選択してください。</p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
