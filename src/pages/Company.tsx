@@ -75,7 +75,7 @@ const Company = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-4">ビジョン</h3>
                   <p className="text-muted-foreground">
-                    日本一信頼される投資情報プラットフォームを目指し、
+                    信頼される投資情報プラットフォームを目指し、
                     透明性と専門性を重視したコンテンツ提供を続けます。
                   </p>
                 </div>
@@ -92,6 +92,7 @@ const Company = () => {
                 </div>
               </div>
               
+              {/* チーム紹介セクションを非表示
               <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 p-8 rounded-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center">チーム紹介</h2>
                 <div className="prose prose-lg max-w-none">
@@ -127,7 +128,8 @@ const Company = () => {
                   </div>
                 </div>
               </div>
-
+              */}
+              
               {/* 更新日 */}
               <div className="pt-6 border-t border-border">
                 <p className="text-sm text-muted-foreground text-right">
