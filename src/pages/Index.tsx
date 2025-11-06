@@ -43,7 +43,7 @@ const Index = () => {
     },
     {
       icon: Coins,
-      title: "仮想通貨",
+      title: "暗号資産",
       description: "暗号資産の基礎から取引まで",
       href: "/crypto",
       color: "secondary" as const,

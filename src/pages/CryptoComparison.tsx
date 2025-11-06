@@ -122,7 +122,7 @@ const CryptoComparison = () => {
                     セキュリティを重視する方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    冷蔵庫（コールドウォレット）の導入や、JASA認定を取得している取引所を選ぶことで、資産の安全性を高めることができます。
+                    コールドウォレットの導入や、JASA認定を取得している取引所を選ぶことで、資産の安全性を高めることができます。
                   </p>
                 </div>
               </CardContent>
