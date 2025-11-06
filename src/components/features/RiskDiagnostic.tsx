@@ -628,7 +628,7 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
+            <div className="flex flex-row gap-3 justify-center sm:justify-start">
               {step > 0 && (
                 <Button 
                   onClick={() => setStep(step - 1)} 
