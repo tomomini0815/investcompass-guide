@@ -544,12 +544,12 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="outline" 
                 size="lg" 
-                className="flex-1 hover:scale-105 transition-transform sm:py-6"
+                className="flex-1 hover:scale-105 transition-transform py-6"
               >
                 <RotateCcw className="mr-2 h-4 w-4" />
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform sm:py-6">
+              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform py-6">
                 <Link to="/tools">
                   <Home className="mr-2 h-4 w-4" />
                   ツール一覧に戻る
@@ -667,17 +667,23 @@ const RiskDiagnostic = () => {
               >
                 <X className="h-4 w-4" />
               </Button>
-              <Button 
+            </div>
+            <div className="hidden sm:flex gap-3 justify-center">
+              {step > 0 && (
+                <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
-                  className="hidden sm:inline-flex hover:scale-105 transition-transform"
+                  size="lg"
+                  className="hover:scale-105 transition-transform"
                 >
                   戻る
-              </Button>
+                </Button>
+              )}
               <Button 
                 onClick={handleReset} 
                 variant="destructive" 
-                className="hidden sm:inline-flex hover:scale-105 transition-transform"
+                size="lg"
+                className="hover:scale-105 transition-transform"
               >
                 <X className="mr-2 h-4 w-4" />
                 やめる
