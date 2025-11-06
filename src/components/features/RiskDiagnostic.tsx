@@ -373,11 +373,15 @@ const RiskDiagnostic = () => {
                         ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
-                    onClick={() => handleIndustryToggle(industry.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleIndustryToggle(industry.id);
+                    }}
                   >
                     <Checkbox
                       checked={isSelected}
-                      className="h-5 w-5 pointer-events-none"
+                      onCheckedChange={() => handleIndustryToggle(industry.id)}
+                      className="h-5 w-5"
                     />
                     <Icon className={`h-6 w-6 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                     <Label 
@@ -391,10 +395,7 @@ const RiskDiagnostic = () => {
             </div>
             <div className="mt-6 text-center">
               <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setStep(0);
-                }}
+                onClick={() => setStep(0)}
                 disabled={selectedIndustries.length === 0}
                 size="lg"
                 className="hover:scale-105 transition-transform"
