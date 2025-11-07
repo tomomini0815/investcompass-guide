@@ -532,7 +532,7 @@ const Crypto = () => {
               </Card>
 
               {/* 記事4: 暗号資産投資のリスクと注意点 */}
-              <Card>
+              <Card className="mb-12">
                 <CardHeader>
                   <CardTitle className="text-2xl">暗号資産投資のリスクと注意点</CardTitle>
                 </CardHeader>
@@ -599,6 +599,35 @@ const Crypto = () => {
                       <li>定期的なポートフォリオの見直し</li>
                       <li>投資額の記録と分析</li>
                     </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* 暗号資産取引所を開設して投資を始めようセクション（一番下に配置） */}
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
+            <div className="max-w-4xl mx-auto">
+              <Card className="bg-gradient-to-r from-blue-50 to-indigo-50">
+                <CardContent className="p-10 text-center">
+                  <Lightbulb className="h-16 w-16 mx-auto mb-6" />
+                  <h2 className="text-3xl font-bold mb-6">暗号資産取引所を開設して投資を始めよう</h2>
+                  <p className="mb-8 text-xl max-w-2xl mx-auto">
+                    暗号資産の基本を学んだら、次は実際に取引所を開設して投資を始めてみましょう。
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                    <Button asChild size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform">
+                      <Link to="/crypto-comparison">
+                        取引所を比較する →
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform bg-white text-primary">
+                      <Link to="/#診断">
+                        投資診断を始める
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
