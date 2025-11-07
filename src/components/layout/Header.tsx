@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, TrendingUp, X } from "lucide-react";
+import { Menu, TrendingUp, X, PanelLeft, PanelRight, AlignJustify } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
@@ -88,7 +88,7 @@ const Header = () => {
           className="md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+          {isMobileMenuOpen ? <X className="h-8 w-8" /> : <AlignJustify className="h-8 w-8" />}
         </Button>
       </nav>
 
