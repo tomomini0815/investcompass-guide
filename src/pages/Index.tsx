@@ -53,7 +53,7 @@ const Index = () => {
       icon: Calculator,
       title: "投資計算ツール",
       description: "複利計算やシミュレーション",
-      href: "/tools-detail",
+      href: "/tools",
       color: "accent" as const,
     },
   ];
