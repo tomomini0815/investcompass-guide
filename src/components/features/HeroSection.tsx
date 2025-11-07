@@ -42,7 +42,7 @@ const HeroSection = () => {
           alt="投資イメージ" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-secondary/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-secondary/70" />
       </div>
 
       {/* Content */}
