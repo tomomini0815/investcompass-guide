@@ -88,7 +88,7 @@ const Header = () => {
           className="md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="h-8 w-8" /> : <AlignJustify className="h-8 w-8" />}
+          {isMobileMenuOpen ? <X className="h-10 w-10" /> : <AlignJustify className="h-10 w-10" />}
         </Button>
       </nav>
 
