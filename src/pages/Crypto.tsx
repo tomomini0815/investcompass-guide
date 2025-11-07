@@ -302,7 +302,7 @@ const Crypto = () => {
           </ol>
         </nav>
 
-        {/* ヒーローセクション */}
+        {/* 暗号資産投資ガイドセクション（トップに配置） */}
         <section className="py-16 sm:py-20 bg-gradient-to-r from-purple-50 to-indigo-50">
           <div className="container mx-auto px-8 text-center">
             <Badge variant="secondary" className="mb-6">投資の基礎知識</Badge>
@@ -317,113 +317,6 @@ const Crypto = () => {
               <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base">
                 <Link to="/crypto-comparison">取引所を比較</Link>
               </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* 記事一覧セクション */}
-        <section className="py-16 sm:py-20">
-          <div className="container mx-auto px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {articles.map((article) => (
-                <Card key={article.id} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-xl">
-                      <Link to={`/crypto/${article.id}`} className="hover:text-primary transition-colors">
-                        {article.title}
-                      </Link>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-6">{article.excerpt}</p>
-                    <div className="flex justify-between items-center text-sm text-muted-foreground">
-                      <span>{article.date}</span>
-                      <span>{article.readTime}読了</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 暗号資産投資シミュレーションツール */}
-        <section className="py-16 sm:py-20 bg-muted/30">
-          <div className="container mx-auto px-8">
-            <div className="max-w-4xl mx-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-2xl">
-                    <Calculator className="h-8 w-8 text-primary" />
-                    暗号資産投資シミュレーション
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-8 text-lg">
-                    投資額と期待リターンを入力して、将来の資産形成イメージをシミュレーションできます。
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <label htmlFor="investmentAmount" className="block text-base font-medium mb-3">
-                        投資額（円）
-                      </label>
-                      <input
-                        type="number"
-                        id="investmentAmount"
-                        className="w-full px-4 py-3 border border-input rounded-lg text-lg"
-                        placeholder="100,000"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="cryptoReturn" className="block text-base font-medium mb-3">
-                        期待リターン（%）
-                      </label>
-                      <input
-                        type="number"
-                        id="cryptoReturn"
-                        className="w-full px-4 py-3 border border-input rounded-lg text-lg"
-                        placeholder="10"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-8">
-                    <label htmlFor="holdingPeriod" className="block text-base font-medium mb-3">
-                      保有期間（年）
-                    </label>
-                    <input
-                      type="range"
-                      id="holdingPeriod"
-                      min="1"
-                      max="10"
-                      step="1"
-                      defaultValue="1"
-                      className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                    />
-                    <div className="flex justify-between text-base text-muted-foreground mt-2">
-                      <span>1年</span>
-                      <span className="font-medium text-lg">1年</span>
-                      <span>10年</span>
-                    </div>
-                  </div>
-                  <div className="mt-10 p-6 bg-primary/5 rounded-xl">
-                    <h3 className="font-bold text-xl mb-4">シミュレーション結果</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="text-center p-4 bg-white rounded-lg shadow">
-                        <p className="text-base text-muted-foreground">投資額</p>
-                        <p className="text-2xl font-bold mt-2">¥100,000</p>
-                      </div>
-                      <div className="text-center p-4 bg-white rounded-lg shadow">
-                        <p className="text-base text-muted-foreground">評価額</p>
-                        <p className="text-2xl font-bold text-primary mt-2">¥110,000</p>
-                      </div>
-                      <div className="text-center p-4 bg-white rounded-lg shadow">
-                        <p className="text-base text-muted-foreground">利益</p>
-                        <p className="text-2xl font-bold text-green-600 mt-2">¥10,000</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
@@ -712,7 +605,6 @@ const Crypto = () => {
             </div>
           </div>
         </section>
-
       </main>
 
       <Footer />
