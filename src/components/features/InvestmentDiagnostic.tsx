@@ -155,14 +155,14 @@ const InvestmentDiagnostic = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button variant="outline" onClick={handleReset} className="flex-1 w-full py-6">
-                  <RotateCcw className="mr-2 h-4 w-4" />
+                <Button variant="outline" onClick={handleReset} className="flex-1 w-full py-6 text-base">
+                  <RotateCcw className="mr-2 h-5 w-5" />
                   もう一度診断する
                 </Button>
-                <Button className="flex-1 w-full py-6" asChild>
+                <Button className="flex-1 w-full py-6 text-base" asChild>
                   <Link to="/comparison">
                     証券会社を比較する
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
@@ -230,11 +230,9 @@ const InvestmentDiagnostic = () => {
                 <Button
                   onClick={handleNext}
                   disabled={!answers[step] || answers[step].length === 0}
-                  className="flex-1 h-12"
-                  size="lg"
+                  className="flex-1 h-12 text-base font-medium"
                 >
                   {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
-                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button 
                   onClick={handleReset} 
@@ -249,29 +247,38 @@ const InvestmentDiagnostic = () => {
               {/* PC用のボタンレイアウト */}
               <div className="hidden sm:flex gap-3">
                 {step > 0 && (
-                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg" className="px-6">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
+                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg" className="px-6 py-6">
+                    <ArrowLeft className="mr-2 h-5 w-5" />
                     戻る
                   </Button>
                 )}
                 <Button
                   onClick={handleNext}
                   disabled={!answers[step] || answers[step].length === 0}
-                  className="gap-2 flex-1"
+                  className="gap-2 flex-1 px-8 py-6 text-lg"
                   size="lg"
                 >
-                  {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
-                  <ArrowRight className="h-4 w-4" />
+                  {step < questions.length - 1 ? (
+                    <>
+                      次へ
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="mr-2 h-5 w-5" />
+                      診断結果を見る
+                    </>
+                  )}
                 </Button>
                 <Button 
                   onClick={handleReset} 
                   variant="destructive" 
                   size="lg"
                   disabled={step === 0 && (!answers[0] || answers[0].length === 0)}
-                  className="px-6"
+                  className="px-6 py-6"
                 >
-                  <X className="mr-2 h-4 w-4" />
                   やめる
+                  <X className="ml-2 h-5 w-5" />
                 </Button>
               </div>
               
