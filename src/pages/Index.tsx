@@ -450,46 +450,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* 国内暗号資産取引所ランキングセクション */}
-        <section className="py-16 sm:py-20">
-          <div className="container mx-auto px-8">
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">国内暗号資産取引所ランキング</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                安全性・手数料・使いやすさを比較して、最適な取引所を選びましょう
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-              {domesticCryptoExchanges.map((exchange) => (
-                <RankingCard key={exchange.rank} {...exchange} />
-              ))}
-            </div>
-            <div className="text-center mt-10">
-              <a
-                href="/crypto-comparison"
-                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                style={{ backgroundColor: '#10B77F' }}
-              >
-                詳細比較を見る
-                <svg
-                  className="ml-3 h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
-
         {/* FX業者ランキングセクション */}
         <section className="py-16 sm:py-20 bg-muted/30">
           <div className="container mx-auto px-8">
