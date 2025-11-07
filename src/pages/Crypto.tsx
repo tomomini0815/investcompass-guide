@@ -302,7 +302,7 @@ const Crypto = () => {
           </ol>
         </nav>
 
-        {/* 暗号資産投資ガイドセクション（トップに配置） */}
+        {/* 暗号資産投資ガイドセクション */}
         <section className="py-16 sm:py-20 bg-gradient-to-r from-purple-50 to-indigo-50">
           <div className="container mx-auto px-8 text-center">
             <Badge variant="secondary" className="mb-6">投資の基礎知識</Badge>
