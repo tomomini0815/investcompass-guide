@@ -374,10 +374,18 @@ const Index = () => {
       <HeroSection />
       
       <main className="flex-grow">
-        {/* 投資総合診断セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+        {/* 投資適性診断セクション */}
+        <section className="py-16 sm:py-20 bg-muted/30">
           <div className="container mx-auto px-8">
-            <InvestmentDiagnostic />
+            <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">あなたに最適な投資方法を診断</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                簡単な質問に答えて、あなたに合った投資スタイルを見つけましょう
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <InvestmentDiagnostic />
+            </div>
           </div>
         </section>
 

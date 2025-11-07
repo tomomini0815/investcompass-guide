@@ -117,7 +117,7 @@ const InvestmentDiagnostic = () => {
     return (
       <section id="診断" className="py-8 sm:py-12 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto shadow-lg">
+          <Card className="max-w-3xl mx-auto shadow-lg">
             <CardHeader className="text-center px-4 sm:px-6">
               <div className="mx-auto w-12 h-12 sm:w-16 sm:h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-3 sm:mb-4">
                 <CheckCircle2 className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />
@@ -215,9 +215,42 @@ const InvestmentDiagnostic = () => {
             </div>
 
             <div className="flex flex-col gap-3 pt-4">
-              <div className="flex gap-3">
+              {/* モバイル用のボタンレイアウト */}
+              <div className="flex gap-3 sm:hidden">
                 {step > 0 && (
-                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg" className="sm:flex-1">
+                  <Button 
+                    onClick={() => setStep(step - 1)} 
+                    variant="outline" 
+                    size="icon"
+                    className="h-12 w-12"
+                  >
+                    <ArrowLeft className="h-5 w-5" />
+                  </Button>
+                )}
+                <Button
+                  onClick={handleNext}
+                  disabled={!answers[step] || answers[step].length === 0}
+                  className="flex-1 h-12"
+                  size="lg"
+                >
+                  {step < questions.length - 1 ? "次へ" : "診断結果を見る"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button 
+                  onClick={handleReset} 
+                  variant="destructive" 
+                  size="icon"
+                  className="h-12 w-12"
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+              
+              {/* PC用のボタンレイアウト */}
+              <div className="hidden sm:flex gap-3">
+                {step > 0 && (
+                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg" className="px-6">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
                     戻る
                   </Button>
                 )}
@@ -235,32 +268,10 @@ const InvestmentDiagnostic = () => {
                   variant="destructive" 
                   size="lg"
                   disabled={step === 0 && (!answers[0] || answers[0].length === 0)}
-                  className="sm:flex-1"
+                  className="px-6"
                 >
-                  <X className="h-4 w-4" />
-                  <span className="sm:ml-2">やめる</span>
-                </Button>
-              </div>
-              
-              {/* モバイル用のボタンレイアウト */}
-              <div className="flex gap-3 sm:hidden">
-                {step > 0 && (
-                  <Button 
-                    onClick={() => setStep(step - 1)} 
-                    variant="outline" 
-                    size="icon"
-                    className="flex-1 h-12 w-12"
-                  >
-                    <ArrowLeft className="h-5 w-5" />
-                  </Button>
-                )}
-                <Button 
-                  onClick={handleReset} 
-                  variant="destructive" 
-                  size="icon"
-                  className="flex-1 h-12 w-12"
-                >
-                  <X className="h-5 w-5" />
+                  <X className="mr-2 h-4 w-4" />
+                  やめる
                 </Button>
               </div>
               
