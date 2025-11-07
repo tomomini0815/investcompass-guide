@@ -5,10 +5,13 @@ import InvestmentDiagnostic from "@/components/features/InvestmentDiagnostic";
 import CategoryCard from "@/components/features/CategoryCard";
 import RankingCard from "@/components/features/RankingCard";
 import ArticleCard from "@/components/features/ArticleCard";
-import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins } from "lucide-react";
+import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins, Check, ExternalLink, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const location = useLocation();
@@ -149,6 +152,52 @@ const Index = () => {
     },
   ];
 
+  // 国外暗号資産取引所ランキング
+  const internationalCryptoExchanges = [
+    {
+      rank: 1,
+      name: "Binance",
+      features: [
+        "世界最大の暗号資産取引所",
+        "手数料が非常に安い",
+        "豊富な取扱暗号資産",
+      ],
+      commission: "取引手数料:0.1%",
+      minInvestment: "$0",
+      nisaSupport: false,
+      highlight: "世界最大",
+      affiliateUrl: "https://www.binance.com/",
+    },
+    {
+      rank: 2,
+      name: "Coinbase",
+      features: [
+        "米国発の信頼性の高い取引所",
+        "初心者向けの使いやすいインターフェース",
+        "米国で規制に対応",
+      ],
+      commission: "取引手数料:0.5%",
+      minInvestment: "$0",
+      nisaSupport: false,
+      highlight: "信頼性No.1",
+      affiliateUrl: "https://www.coinbase.com/",
+    },
+    {
+      rank: 3,
+      name: "Kraken",
+      features: [
+        "高度な取引ツールを提供",
+        "プロ向けの機能が充実",
+        "セキュリティが高い",
+      ],
+      commission: "取引手数料:0.26%",
+      minInvestment: "$0",
+      nisaSupport: false,
+      highlight: "プロ向け",
+      affiliateUrl: "https://www.kraken.com/",
+    },
+  ];
+
   // 国内FX業者ランキング
   const domesticFxBrokers = [
     {
@@ -241,52 +290,6 @@ const Index = () => {
     },
   ];
 
-  // 国外暗号資産取引所ランキング
-  const internationalCryptoExchanges = [
-    {
-      rank: 1,
-      name: "Binance",
-      features: [
-        "世界最大級の暗号資産取引所",
-        "300種類以上の取引銘柄",
-        "レバレッジ取引に対応",
-      ],
-      commission: "取引手数料:0.1%",
-      minInvestment: "1ドル〜",
-      nisaSupport: false,
-      highlight: "世界最大",
-      affiliateUrl: "https://www.binance.com/ja",
-    },
-    {
-      rank: 2,
-      name: "Bybit",
-      features: [
-        "使いやすいアプリとリーズナブルな手数料",
-        "35種類の取扱仮想通貨",
-        "入金手数料無料",
-      ],
-      commission: "取引手数料:0.1%",
-      minInvestment: "500円相当額〜",
-      nisaSupport: false,
-      highlight: "使いやすい",
-      affiliateUrl: "https://www.bybit.com/ja-JP/",
-    },
-    {
-      rank: 3,
-      name: "Coinbase",
-      features: [
-        "アメリカ最大の仮想通貨取引所",
-        "初心者にも使いやすいインターフェース",
-        "セキュリティ対策が充実",
-      ],
-      commission: "取引手数料:約1.99%",
-      minInvestment: "1ドル〜",
-      nisaSupport: false,
-      highlight: "信頼性高",
-      affiliateUrl: "https://www.coinbase.com/ja",
-    },
-  ];
-
   const articles = [
     {
       id: "nisa-beginner",
@@ -316,6 +319,7 @@ const Index = () => {
 
   const [activeTab, setActiveTab] = useState<"domestic" | "international">("domestic");
   const [activeFxTab, setActiveFxTab] = useState<"domestic" | "international">("domestic");
+  const [activeCryptoTab, setActiveCryptoTab] = useState<'domestic' | 'international'>('domestic');
 
   // ページ遷移後に投資診断セクションにスクロールする
   useEffect(() => {
@@ -550,6 +554,93 @@ const Index = () => {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 暗号資産取引所ランキング */}
+        <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">暗号資産取引所ランキング</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                国内外の人気暗号資産取引所を比較ランキング形式でご紹介
+              </p>
+            </div>
+
+            {/* タブ切り替えボタン */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex p-1 bg-white rounded-lg shadow-md">
+                <button
+                  onClick={() => setActiveCryptoTab('domestic')}
+                  className={`px-6 py-3 rounded-md text-base font-medium transition-colors ${
+                    activeCryptoTab === 'domestic'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  国内取引所
+                </button>
+                <button
+                  onClick={() => setActiveCryptoTab('international')}
+                  className={`px-6 py-3 rounded-md text-base font-medium transition-colors ${
+                    activeCryptoTab === 'international'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  国外取引所
+                </button>
+              </div>
+            </div>
+
+            {/* ランキング表示 */}
+            <div className="max-w-4xl mx-auto">
+              {(activeCryptoTab === 'domestic' ? domesticCryptoExchanges : internationalCryptoExchanges).map((exchange) => (
+                <Card key={exchange.name} className="mb-6 hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
+                        {exchange.rank}
+                      </div>
+                      <div className="flex-grow">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h3 className="text-xl font-bold">{exchange.name}</h3>
+                          <Badge variant="secondary">{exchange.highlight}</Badge>
+                        </div>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 mb-3">
+                          {exchange.features.map((feature, index) => (
+                            <li key={index} className="flex items-center text-sm text-muted-foreground">
+                              <Check className="h-4 w-4 mr-2 text-green-500 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex flex-wrap gap-4 text-sm">
+                          <span className="font-medium">手数料: {exchange.commission}</span>
+                          <span className="font-medium">最小投資額: {exchange.minInvestment}</span>
+                        </div>
+                      </div>
+                      <Button asChild className="w-full sm:w-auto">
+                        <a href={exchange.affiliateUrl} target="_blank" rel="noopener noreferrer">
+                          取引所を見る
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <a
+                href="/crypto-comparison"
+                className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                詳細比較を見る
+                <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </div>
           </div>
