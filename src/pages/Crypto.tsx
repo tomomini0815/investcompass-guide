@@ -310,14 +310,6 @@ const Crypto = () => {
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
               ビットコイン・イーサリアムなどの暗号資産で、未来の資産形成を始めましょう
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="px-8 py-6 text-base">
-                <Link to="/#診断">投資診断を始める</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base">
-                <Link to="/crypto-comparison">取引所を比較</Link>
-              </Button>
-            </div>
           </div>
         </section>
 
@@ -596,7 +588,7 @@ const Crypto = () => {
                     </Button>
                     <Button asChild variant="outline" size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform bg-white text-primary">
                       <Link to="/#診断">
-                        投資診断を始める
+                        総合診断を始める
                       </Link>
                     </Button>
                   </div>
