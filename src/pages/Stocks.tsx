@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, TrendingUp, Calculator, PieChart, LineChart, Lightbulb, Users, Award, BarChart3 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const Stocks = () => {
   // 株式投資記事
@@ -185,6 +186,25 @@ const Stocks = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>株式投資ガイド | 投資総合ナビ</title>
+        <meta name="description" content="株式投資の基本から実践的なテクニックまで、初心者から中級者まで幅広く対応した株式投資ガイド。企業分析、配当金投資、銘柄選びの方法を詳しく解説します。" />
+        <meta name="keywords" content="株式投資,企業分析,配当金投資,銘柄選び,投資総合ナビ,株式,証券会社,投資ガイド" />
+        <link rel="canonical" href="https://www.toushi-navi.com/stocks" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="株式投資ガイド | 投資総合ナビ" />
+        <meta property="og:description" content="株式投資の基本から実践的なテクニックまで、初心者から中級者まで幅広く対応した株式投資ガイド。企業分析、配当金投資、銘柄選びの方法を詳しく解説します。" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://www.toushi-navi.com/stocks" />
+        <meta property="og:site_name" content="投資総合ナビ" />
+        <meta property="og:locale" content="ja_JP" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@toushi_navi" />
+      </Helmet>
+      
       <Header />
       
       <main className="flex-1">
