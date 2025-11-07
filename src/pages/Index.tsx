@@ -375,22 +375,22 @@ const Index = () => {
       
       <main className="flex-grow">
         {/* 投資総合診断セクション */}
-        <section className="py-12 sm:py-16 bg-gradient-to-r from-primary/5 to-accent/5">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+          <div className="container mx-auto px-8">
             <InvestmentDiagnostic />
           </div>
         </section>
 
         {/* 投資カテゴリセクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3">投資カテゴリ</h2>
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">投資カテゴリ</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 あなたの投資目標に合わせて、最適な投資方法を見つけましょう
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {categories.map((category, index) => (
                 <CategoryCard key={index} {...category} />
               ))}
@@ -399,27 +399,28 @@ const Index = () => {
         </section>
 
         {/* 証券会社ランキングセクション */}
-        <section className="py-12 sm:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3">証券会社比較ランキング</h2>
+        <section className="py-16 sm:py-20 bg-muted/30">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">証券会社比較ランキング</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 手数料やサービス内容を比較して、あなたに最適な証券会社を選びましょう
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {rankings.map((ranking) => (
                 <RankingCard key={ranking.rank} {...ranking} />
               ))}
             </div>
-            <div className="text-center mt-8">
+            <div className="text-center mt-10">
               <a
                 href="/comparison"
-                className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
                 <svg
-                  className="ml-2 h-4 w-4"
+                  className="ml-3 h-6 w-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -438,27 +439,28 @@ const Index = () => {
         </section>
 
         {/* 国内暗号資産取引所ランキングセクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3">国内暗号資産取引所ランキング</h2>
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">国内暗号資産取引所ランキング</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 安全性・手数料・使いやすさを比較して、最適な取引所を選びましょう
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {domesticCryptoExchanges.map((exchange) => (
                 <RankingCard key={exchange.rank} {...exchange} />
               ))}
             </div>
-            <div className="text-center mt-8">
+            <div className="text-center mt-10">
               <a
                 href="/crypto-comparison"
-                className="inline-flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
+                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
                 <svg
-                  className="ml-2 h-4 w-4"
+                  className="ml-3 h-6 w-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -477,21 +479,21 @@ const Index = () => {
         </section>
 
         {/* FX業者ランキングセクション */}
-        <section className="py-12 sm:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3">FX業者ランキング</h2>
+        <section className="py-16 sm:py-20 bg-muted/30">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">FX業者ランキング</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 スプレッド・スワップポイント・使いやすさを比較して、最適なFX業者を選びましょう
               </p>
             </div>
             
             {/* 国内外の切替ボタン */}
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-10">
               <div className="inline-flex rounded-md shadow-sm" role="group">
                 <button
                   type="button"
-                  className={`px-4 py-2 text-sm font-medium rounded-l-lg border ${
+                  className={`px-6 py-3 text-base font-medium rounded-l-lg border ${
                     activeTab === 'domestic'
                       ? 'bg-primary text-white border-primary'
                       : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100'
@@ -502,7 +504,7 @@ const Index = () => {
                 </button>
                 <button
                   type="button"
-                  className={`px-4 py-2 text-sm font-medium rounded-r-lg border ${
+                  className={`px-6 py-3 text-base font-medium rounded-r-lg border ${
                     activeTab === 'international'
                       ? 'bg-primary text-white border-primary'
                       : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100'
@@ -514,19 +516,20 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {(activeTab === 'domestic' ? domesticFxBrokers : internationalFxBrokers).map((broker) => (
                 <RankingCard key={broker.rank} {...broker} />
               ))}
             </div>
-            <div className="text-center mt-8">
+            <div className="text-center mt-10">
               <a
                 href="/fx-comparison"
-                className="inline-flex items-center px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors"
+                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
                 <svg
-                  className="ml-2 h-4 w-4"
+                  className="ml-3 h-6 w-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -545,15 +548,15 @@ const Index = () => {
         </section>
 
         {/* 新着記事セクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3">新着記事</h2>
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">新着記事</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 最新の投資ニュースやテクニカル分析をチェック
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {articles.map((article) => (
                 <ArticleCard key={article.id} {...article} />
               ))}
@@ -562,8 +565,8 @@ const Index = () => {
         </section>
 
         {/* 更新日 */}
-        <div className="container mx-auto px-4 py-4">
-          <p className="text-xs text-muted-foreground text-right">
+        <div className="container mx-auto px-8 py-8">
+          <p className="text-sm text-muted-foreground text-right">
             最終更新日：2025年10月30日
           </p>
         </div>

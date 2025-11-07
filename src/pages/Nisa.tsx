@@ -310,7 +310,7 @@ const Nisa = () => {
       
       <main className="flex-grow">
         {/* パンくずリスト */}
-        <nav className="container mx-auto px-4 py-4">
+        <nav className="container mx-auto px-8 py-6">
           <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
             <li>
               <Link to="/" className="hover:text-primary transition-colors">ホーム</Link>
@@ -321,18 +321,18 @@ const Nisa = () => {
         </nav>
 
         {/* ヒーローセクション */}
-        <section className="py-12 sm:py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
-          <div className="container mx-auto px-4 text-center">
-            <Badge variant="secondary" className="mb-4">投資の基礎知識</Badge>
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
+          <div className="container mx-auto px-8 text-center">
+            <Badge variant="secondary" className="mb-6">投資の基礎知識</Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">NISA・つみたてNISA投資ガイド</h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
               非課税制度を活用した資産運用で、あなたの未来をしっかりサポート
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="px-8 py-6 text-base">
                 <Link to="/#診断">投資診断を始める</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base">
                 <Link to="/comparison">証券会社を比較</Link>
               </Button>
             </div>
@@ -340,8 +340,8 @@ const Nisa = () => {
         </section>
 
         {/* 記事一覧セクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {articles.map((article) => (
                 <Card key={article.id} className="hover:shadow-lg transition-shadow">
@@ -353,7 +353,7 @@ const Nisa = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground mb-4">{article.excerpt}</p>
+                    <p className="text-muted-foreground mb-6">{article.excerpt}</p>
                     <div className="flex justify-between items-center text-sm text-muted-foreground">
                       <span>{article.date}</span>
                       <span>{article.readTime}読了</span>
@@ -366,50 +366,50 @@ const Nisa = () => {
         </section>
 
         {/* NISA投資シミュレーションツール */}
-        <section className="py-12 sm:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20 bg-muted/30">
+          <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calculator className="h-6 w-6 text-primary" />
+                  <CardTitle className="flex items-center gap-3 text-2xl">
+                    <Calculator className="h-8 w-8 text-primary" />
                     NISA投資シミュレーション
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-8 text-lg">
                     月々の積立額と運用年数を入力して、将来の資産形成イメージをシミュレーションできます。
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label htmlFor="monthlyAmount" className="block text-sm font-medium mb-2">
+                      <label htmlFor="monthlyAmount" className="block text-base font-medium mb-3">
                         月々の積立額（円）
                       </label>
                       <input
                         type="number"
                         id="monthlyAmount"
-                        className="w-full px-3 py-2 border border-input rounded-md"
+                        className="w-full px-4 py-3 border border-input rounded-lg text-lg"
                         placeholder="5,000"
                         value={monthlyAmount}
                         onChange={(e) => setMonthlyAmount(e.target.value)}
                       />
                     </div>
                     <div>
-                      <label htmlFor="years" className="block text-sm font-medium mb-2">
+                      <label htmlFor="years" className="block text-base font-medium mb-3">
                         運用年数
                       </label>
                       <input
                         type="number"
                         id="years"
-                        className="w-full px-3 py-2 border border-input rounded-md"
+                        className="w-full px-4 py-3 border border-input rounded-lg text-lg"
                         placeholder="20"
                         value={years}
                         onChange={(e) => setYears(e.target.value)}
                       />
                     </div>
                   </div>
-                  <div className="mt-6">
-                    <label htmlFor="annualReturn" className="block text-sm font-medium mb-2">
+                  <div className="mt-8">
+                    <label htmlFor="annualReturn" className="block text-base font-medium mb-3">
                       年間リターン（%）
                     </label>
                     <input
@@ -420,28 +420,28 @@ const Nisa = () => {
                       step="0.1"
                       value={annualReturn}
                       onChange={(e) => setAnnualReturn(e.target.value)}
-                      className="w-full"
+                      className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                     />
-                    <div className="flex justify-between text-sm text-muted-foreground">
+                    <div className="flex justify-between text-base text-muted-foreground mt-2">
                       <span>1%</span>
-                      <span className="font-medium">{annualReturn}%</span>
+                      <span className="font-medium text-lg">{annualReturn}%</span>
                       <span>15%</span>
                     </div>
                   </div>
-                  <div className="mt-8 p-4 bg-primary/5 rounded-lg">
-                    <h3 className="font-bold mb-2">シミュレーション結果</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">総投資額</p>
-                        <p className="text-xl font-bold">¥{totalInvestment.toLocaleString()}</p>
+                  <div className="mt-10 p-6 bg-primary/5 rounded-xl">
+                    <h3 className="font-bold text-xl mb-4">シミュレーション結果</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="text-center p-4 bg-white rounded-lg shadow">
+                        <p className="text-base text-muted-foreground">総投資額</p>
+                        <p className="text-2xl font-bold mt-2">¥{totalInvestment.toLocaleString()}</p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">評価額</p>
-                        <p className="text-xl font-bold text-primary">¥{futureValue.toLocaleString()}</p>
+                      <div className="text-center p-4 bg-white rounded-lg shadow">
+                        <p className="text-base text-muted-foreground">評価額</p>
+                        <p className="text-2xl font-bold text-primary mt-2">¥{futureValue.toLocaleString()}</p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">利益</p>
-                        <p className="text-xl font-bold text-green-600">¥{profit.toLocaleString()}</p>
+                      <div className="text-center p-4 bg-white rounded-lg shadow">
+                        <p className="text-base text-muted-foreground">利益</p>
+                        <p className="text-2xl font-bold text-green-600 mt-2">¥{profit.toLocaleString()}</p>
                       </div>
                     </div>
                   </div>
@@ -452,23 +452,23 @@ const Nisa = () => {
         </section>
 
         {/* NISA口座開設の勧誘セクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <Card className="bg-gradient-to-r from-primary to-blue-600 text-primary-foreground">
-                <CardContent className="p-8 text-center">
-                  <Lightbulb className="h-12 w-12 mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold mb-4">NISA口座開設で投資を始めよう</h2>
-                  <p className="mb-6 max-w-2xl mx-auto">
+                <CardContent className="p-10 text-center">
+                  <Lightbulb className="h-16 w-16 mx-auto mb-6" />
+                  <h2 className="text-3xl font-bold mb-6">NISA口座開設で投資を始めよう</h2>
+                  <p className="mb-8 text-xl max-w-2xl mx-auto">
                     NISAの基本を学んだら、次は実際に口座を開設して投資を始めてみましょう。
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button asChild size="lg" className="text-lg px-8 hover:scale-105 transition-transform">
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                    <Button asChild size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform">
                       <Link to="/comparison">
                         証券会社を比較する →
                       </Link>
                     </Button>
-                    <Button asChild variant="outline" size="lg" className="text-lg px-8 hover:scale-105 transition-transform">
+                    <Button asChild variant="outline" size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform bg-white text-primary">
                       <Link to="/#診断">
                         投資診断を始める
                       </Link>

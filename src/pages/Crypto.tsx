@@ -292,7 +292,7 @@ const Crypto = () => {
       
       <main className="flex-grow">
         {/* パンくずリスト */}
-        <nav className="container mx-auto px-4 py-4">
+        <nav className="container mx-auto px-8 py-6">
           <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
             <li>
               <Link to="/" className="hover:text-primary transition-colors">ホーム</Link>
@@ -303,18 +303,18 @@ const Crypto = () => {
         </nav>
 
         {/* ヒーローセクション */}
-        <section className="py-12 sm:py-16 bg-gradient-to-r from-purple-50 to-indigo-50">
-          <div className="container mx-auto px-4 text-center">
-            <Badge variant="secondary" className="mb-4">投資の基礎知識</Badge>
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-purple-50 to-indigo-50">
+          <div className="container mx-auto px-8 text-center">
+            <Badge variant="secondary" className="mb-6">投資の基礎知識</Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">暗号資産投資ガイド</h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
               ビットコイン・イーサリアムなどの暗号資産で、未来の資産形成を始めましょう
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="px-8 py-6 text-base">
                 <Link to="/#診断">投資診断を始める</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base">
                 <Link to="/crypto-comparison">取引所を比較</Link>
               </Button>
             </div>
@@ -322,8 +322,8 @@ const Crypto = () => {
         </section>
 
         {/* 記事一覧セクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {articles.map((article) => (
                 <Card key={article.id} className="hover:shadow-lg transition-shadow">
@@ -335,7 +335,7 @@ const Crypto = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground mb-4">{article.excerpt}</p>
+                    <p className="text-muted-foreground mb-6">{article.excerpt}</p>
                     <div className="flex justify-between items-center text-sm text-muted-foreground">
                       <span>{article.date}</span>
                       <span>{article.readTime}読了</span>
@@ -348,46 +348,46 @@ const Crypto = () => {
         </section>
 
         {/* 暗号資産投資シミュレーションツール */}
-        <section className="py-12 sm:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20 bg-muted/30">
+          <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calculator className="h-6 w-6 text-primary" />
+                  <CardTitle className="flex items-center gap-3 text-2xl">
+                    <Calculator className="h-8 w-8 text-primary" />
                     暗号資産投資シミュレーション
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-8 text-lg">
                     投資額と期待リターンを入力して、将来の資産形成イメージをシミュレーションできます。
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label htmlFor="investmentAmount" className="block text-sm font-medium mb-2">
+                      <label htmlFor="investmentAmount" className="block text-base font-medium mb-3">
                         投資額（円）
                       </label>
                       <input
                         type="number"
                         id="investmentAmount"
-                        className="w-full px-3 py-2 border border-input rounded-md"
+                        className="w-full px-4 py-3 border border-input rounded-lg text-lg"
                         placeholder="100,000"
                       />
                     </div>
                     <div>
-                      <label htmlFor="cryptoReturn" className="block text-sm font-medium mb-2">
+                      <label htmlFor="cryptoReturn" className="block text-base font-medium mb-3">
                         期待リターン（%）
                       </label>
                       <input
                         type="number"
                         id="cryptoReturn"
-                        className="w-full px-3 py-2 border border-input rounded-md"
+                        className="w-full px-4 py-3 border border-input rounded-lg text-lg"
                         placeholder="10"
                       />
                     </div>
                   </div>
-                  <div className="mt-6">
-                    <label htmlFor="holdingPeriod" className="block text-sm font-medium mb-2">
+                  <div className="mt-8">
+                    <label htmlFor="holdingPeriod" className="block text-base font-medium mb-3">
                       保有期間（年）
                     </label>
                     <input
@@ -397,28 +397,28 @@ const Crypto = () => {
                       max="10"
                       step="1"
                       defaultValue="1"
-                      className="w-full"
+                      className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                     />
-                    <div className="flex justify-between text-sm text-muted-foreground">
+                    <div className="flex justify-between text-base text-muted-foreground mt-2">
                       <span>1年</span>
-                      <span className="font-medium">1年</span>
+                      <span className="font-medium text-lg">1年</span>
                       <span>10年</span>
                     </div>
                   </div>
-                  <div className="mt-8 p-4 bg-primary/5 rounded-lg">
-                    <h3 className="font-bold mb-2">シミュレーション結果</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">投資額</p>
-                        <p className="text-xl font-bold">¥100,000</p>
+                  <div className="mt-10 p-6 bg-primary/5 rounded-xl">
+                    <h3 className="font-bold text-xl mb-4">シミュレーション結果</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="text-center p-4 bg-white rounded-lg shadow">
+                        <p className="text-base text-muted-foreground">投資額</p>
+                        <p className="text-2xl font-bold mt-2">¥100,000</p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">評価額</p>
-                        <p className="text-xl font-bold text-primary">¥110,000</p>
+                      <div className="text-center p-4 bg-white rounded-lg shadow">
+                        <p className="text-base text-muted-foreground">評価額</p>
+                        <p className="text-2xl font-bold text-primary mt-2">¥110,000</p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground">利益</p>
-                        <p className="text-xl font-bold text-green-600">¥10,000</p>
+                      <div className="text-center p-4 bg-white rounded-lg shadow">
+                        <p className="text-base text-muted-foreground">利益</p>
+                        <p className="text-2xl font-bold text-green-600 mt-2">¥10,000</p>
                       </div>
                     </div>
                   </div>
@@ -429,23 +429,23 @@ const Crypto = () => {
         </section>
 
         {/* 暗号資産投資の勧誘セクション */}
-        <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <Card className="bg-gradient-to-r from-primary to-purple-600 text-primary-foreground">
-                <CardContent className="p-8 text-center">
-                  <Lightbulb className="h-12 w-12 mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold mb-4">暗号資産取引所を開設して投資を始めよう</h2>
-                  <p className="mb-6 max-w-2xl mx-auto">
+                <CardContent className="p-10 text-center">
+                  <Lightbulb className="h-16 w-16 mx-auto mb-6" />
+                  <h2 className="text-3xl font-bold mb-6">暗号資産取引所を開設して投資を始めよう</h2>
+                  <p className="mb-8 text-xl max-w-2xl mx-auto">
                     暗号資産の基本を学んだら、次は実際に取引所を開設して投資を始めてみましょう。
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button asChild size="lg" className="text-lg px-8 hover:scale-105 transition-transform">
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                    <Button asChild size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform">
                       <Link to="/crypto-comparison">
                         取引所を比較する →
                       </Link>
                     </Button>
-                    <Button asChild variant="outline" size="lg" className="text-lg px-8 hover:scale-105 transition-transform">
+                    <Button asChild variant="outline" size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform bg-white text-primary">
                       <Link to="/#診断">
                         投資診断を始める
                       </Link>
