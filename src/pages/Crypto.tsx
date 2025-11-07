@@ -16,10 +16,10 @@ const Crypto = () => {
       excerpt: "暗号資産とは何か、基本的な仕組みと特徴について解説します。",
       content: `
         <h3 class="text-xl font-bold mb-3">暗号資産とは？</h3>
-        <p class="mb-4">暗号資産とは、インターネット上で利用されるデジタルな通貨の総称です。中央銀行や政府などの機関に発行・管理されず、暗号技術によって発行・管理される金融資産です。</p>
+        <p class="mb-4">暗号資産とは、ブロックチェーン技術を基盤としているデジタルな資産で、日本では金融商品取引法に基づき「暗号資産」と定義されています。中央銀行や政府などの機関に発行・管理されず、暗号技術によって発行・管理される金融資産です。</p>
         
         <h3 class="text-xl font-bold mb-3">ブロックチェーン技術</h3>
-        <p class="mb-4">暗号資産の基盤となるのがブロックチェーン技術です。これは、取引記録を分散型ネットワークで管理する技術で、改ざんが困難で透明性が高いという特徴があります。</p>
+        <p class="mb-4">暗号資産の基盤となるのがブロックチェーン技術です。これは、取引記録を分散型ネットワークで管理する技術で、改ざんが困難で透明性が高いという特徴があります。各取引はブロックとして記録され、チェーン状に連結されていきます。</p>
         
         <h3 class="text-xl font-bold mb-3">暗号資産の特徴</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -42,6 +42,24 @@ const Crypto = () => {
               <li>投資家保護が不十分</li>
               <li>詐欺や不正取引のリスク</li>
             </ul>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3">主要な暗号資産</h3>
+        <div class="space-y-4 mb-4">
+          <div class="border-l-4 border-blue-500 pl-4">
+            <h4 class="font-bold text-blue-700 mb-2">ビットコイン（Bitcoin）</h4>
+            <p>最も有名で最初の暗号資産。2009年に誕生し、分散型の電子現金システムとして設計されています。</p>
+          </div>
+          
+          <div class="border-l-4 border-green-500 pl-4">
+            <h4 class="font-bold text-green-700 mb-2">イーサリアム（Ethereum）</h4>
+            <p>スマートコントラクト機能を持つプラットフォーム。ビットコインとは異なり、アプリケーションの開発も可能です。</p>
+          </div>
+          
+          <div class="border-l-4 border-purple-500 pl-4">
+            <h4 class="font-bold text-purple-700 mb-2"> Ripple（XRP）</h4>
+            <p>銀行間の国際送金を効率化することを目的とした暗号資産。高速で低コストな決済を実現します。</p>
           </div>
         </div>
       `,
@@ -68,8 +86,8 @@ const Crypto = () => {
           <div class="bg-green-50 p-4 rounded-lg">
             <h4 class="font-bold text-green-800 mb-2">チェックポイント</h4>
             <ul class="list-disc pl-5 space-y-1">
-              <li>ライセンスと規制対応</li>
-              <li>セキュリティ対策の充実度</li>
+              <li>ライセンスと規制対応（金融庁登録など）</li>
+              <li>セキュリティ対策の充実度（二段階認証、コールドウォレットなど）</li>
               <li>取扱っている暗号資産の種類</li>
               <li>手数料の安さ</li>
               <li>使いやすさとUI/UX</li>
@@ -79,8 +97,8 @@ const Crypto = () => {
             <h4 class="font-bold text-blue-800 mb-2">国内主要取引所</h4>
             <ul class="list-disc pl-5 space-y-1">
               <li>bitFlyer</li>
-              <li>Coinbase</li>
               <li>GMOコイン</li>
+              <li>Coinbase</li>
               <li>liquid（旧Quoine）</li>
               <li>BITPOINT</li>
             </ul>
@@ -117,7 +135,7 @@ const Crypto = () => {
       excerpt: "暗号資産を安全に保管するためのウォレットの種類と管理方法について解説します。",
       content: `
         <h3 class="text-xl font-bold mb-3">ウォレットとは？</h3>
-        <p class="mb-4">ウォレットとは、暗号資産を保管・管理するためのデジタルツールです。実際の通貨ではなく、通貨を所有していることを証明する「秘密鍵」と「公開鍵」を管理します。</p>
+        <p class="mb-4">ウォレットとは、暗号資産を保管・管理するためのデジタルツールです。実際の通貨ではなく、通貨を所有していることを証明する「秘密鍵」と「公開鍵」を管理します。秘密鍵は絶対に他人に知られてはいけません。</p>
         
         <h3 class="text-xl font-bold mb-3">ウォレットの種類</h3>
         <div class="overflow-x-auto mb-4">
@@ -432,7 +450,7 @@ const Crypto = () => {
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
-              <Card className="bg-gradient-to-r from-primary to-purple-600 text-primary-foreground">
+              <Card className="bg-gradient-to-r from-blue-50 to-indigo-50">
                 <CardContent className="p-10 text-center">
                   <Lightbulb className="h-16 w-16 mx-auto mb-6" />
                   <h2 className="text-3xl font-bold mb-6">暗号資産取引所を開設して投資を始めよう</h2>
