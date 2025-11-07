@@ -605,12 +605,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* 更新日 */}
-        <div className="container mx-auto px-8 py-8">
-          <p className="text-sm text-muted-foreground text-right">
-            最終更新日：2025年10月30日
-          </p>
-        </div>
       </main>
 
       <Footer />
