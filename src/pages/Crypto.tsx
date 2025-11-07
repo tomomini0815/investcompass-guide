@@ -587,7 +587,7 @@ const Crypto = () => {
                       </Link>
                     </Button>
                     <Button asChild variant="outline" size="lg" className="px-8 py-6 text-xl hover:scale-105 transition-transform bg-white text-primary">
-                      <Link to="/tools/risk-assessment#diagnostic-tool">
+                      <Link to="/tools/risk-assessment">
                         総合診断を始める
                       </Link>
                     </Button>
