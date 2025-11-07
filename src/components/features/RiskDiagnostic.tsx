@@ -630,26 +630,7 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-row gap-3 justify-center sm:justify-center sm:hidden">
-              {step > 0 && (
-                <Button 
-                  onClick={() => setStep(step - 1)} 
-                  variant="outline" 
-                  size="icon"
-                  className="hover:scale-105 transition-transform h-10 w-10"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-              )}
-              <Button 
-                onClick={handleReset} 
-                variant="destructive" 
-                size="icon"
-                className="hover:scale-105 transition-transform h-10 w-10"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
+            {/* PC用のボタンレイアウト */}
             <div className="hidden sm:flex gap-3 justify-center">
               {step > 0 && (
                 <Button 
@@ -686,6 +667,40 @@ const RiskDiagnostic = () => {
               >
                 <X className="mr-2 h-4 w-4" />
                 やめる
+              </Button>
+            </div>
+            
+            {/* モバイル用のボタンレイアウト */}
+            <div className="flex flex-row gap-3 justify-center sm:hidden">
+              {step > 0 && (
+                <Button 
+                  onClick={() => setStep(step - 1)} 
+                  variant="outline" 
+                  size="icon"
+                  className="hover:scale-105 transition-transform h-12 w-12"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </Button>
+              )}
+              <Button
+                onClick={handleNext}
+                disabled={currentAnswer === undefined}
+                size="icon"
+                className="hover:scale-105 transition-transform h-12 w-12"
+              >
+                {step === questions.length - 1 ? (
+                  <CheckCircle className="h-5 w-5" />
+                ) : (
+                  <ArrowRight className="h-5 w-5" />
+                )}
+              </Button>
+              <Button 
+                onClick={handleReset} 
+                variant="destructive" 
+                size="icon"
+                className="hover:scale-105 transition-transform h-12 w-12"
+              >
+                <X className="h-5 w-5" />
               </Button>
             </div>
 

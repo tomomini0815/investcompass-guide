@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, CheckCircle2, RotateCcw, X } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, RotateCcw, X } from "lucide-react";
 
 const InvestmentDiagnostic = () => {
   const [step, setStep] = useState(0);
@@ -155,11 +155,11 @@ const InvestmentDiagnostic = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button variant="outline" onClick={handleReset} className="flex-1 w-full">
+                <Button variant="outline" onClick={handleReset} className="flex-1 w-full py-6">
                   <RotateCcw className="mr-2 h-4 w-4" />
                   もう一度診断する
                 </Button>
-                <Button className="flex-1 w-full" asChild>
+                <Button className="flex-1 w-full py-6" asChild>
                   <Link to="/comparison">
                     証券会社を比較する
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -217,7 +217,7 @@ const InvestmentDiagnostic = () => {
             <div className="flex flex-col gap-3 pt-4">
               <div className="flex gap-3">
                 {step > 0 && (
-                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg">
+                  <Button onClick={() => setStep(step - 1)} variant="outline" size="lg" className="sm:flex-1">
                     戻る
                   </Button>
                 )}
@@ -235,8 +235,32 @@ const InvestmentDiagnostic = () => {
                   variant="destructive" 
                   size="lg"
                   disabled={step === 0 && (!answers[0] || answers[0].length === 0)}
+                  className="sm:flex-1"
                 >
                   <X className="h-4 w-4" />
+                  <span className="sm:ml-2">やめる</span>
+                </Button>
+              </div>
+              
+              {/* モバイル用のボタンレイアウト */}
+              <div className="flex gap-3 sm:hidden">
+                {step > 0 && (
+                  <Button 
+                    onClick={() => setStep(step - 1)} 
+                    variant="outline" 
+                    size="icon"
+                    className="flex-1 h-12 w-12"
+                  >
+                    <ArrowLeft className="h-5 w-5" />
+                  </Button>
+                )}
+                <Button 
+                  onClick={handleReset} 
+                  variant="destructive" 
+                  size="icon"
+                  className="flex-1 h-12 w-12"
+                >
+                  <X className="h-5 w-5" />
                 </Button>
               </div>
               
