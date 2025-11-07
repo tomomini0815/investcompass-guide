@@ -544,14 +544,14 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="outline" 
                 size="lg" 
-                className="flex-1 hover:scale-105 transition-transform py-6"
+                className="flex-1 hover:scale-105 transition-transform py-6 text-base"
               >
-                <RotateCcw className="mr-2 h-4 w-4" />
+                <RotateCcw className="mr-2 h-5 w-5" />
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform py-6">
+              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform py-6 text-base">
                 <Link to="/tools">
-                  <Home className="mr-2 h-4 w-4" />
+                  <Home className="mr-2 h-5 w-5" />
                   ツール一覧に戻る
                 </Link>
               </Button>
@@ -644,18 +644,18 @@ const RiskDiagnostic = () => {
               <Button
                 onClick={handleNext}
                 disabled={currentAnswer === undefined}
-                className="gap-2 flex-1"
+                className="gap-2 flex-1 px-8 py-6 text-lg"
                 size="lg"
               >
                 {step === questions.length - 1 ? (
                   <>
-                    <CheckCircle className="mr-2 h-4 w-4" />
+                    <CheckCircle className="mr-2 h-5 w-5" />
                     診断結果を見る
                   </>
                 ) : (
                   <>
                     次へ
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </>
                 )}
               </Button>
@@ -663,9 +663,7 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="destructive" 
                 size="lg"
-                disabled={step === 0 && currentAnswer === undefined}
               >
-                <X className="mr-2 h-4 w-4" />
                 やめる
               </Button>
             </div>
@@ -685,13 +683,12 @@ const RiskDiagnostic = () => {
               <Button
                 onClick={handleNext}
                 disabled={currentAnswer === undefined}
-                size="icon"
-                className="hover:scale-105 transition-transform h-12 w-12"
+                className="flex-1 hover:scale-105 transition-transform h-12 text-base font-medium"
               >
                 {step === questions.length - 1 ? (
                   <CheckCircle className="h-5 w-5" />
                 ) : (
-                  <ArrowRight className="h-5 w-5" />
+                  "次へ"
                 )}
               </Button>
               <Button 
