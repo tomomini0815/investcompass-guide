@@ -560,87 +560,69 @@ const Index = () => {
         </section>
 
         {/* 暗号資産取引所ランキング */}
-        <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">暗号資産取引所ランキング</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <section className="py-16 sm:py-20 bg-muted/30">
+          <div className="container mx-auto px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">暗号資産取引所ランキング</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
                 国内外の人気暗号資産取引所を比較ランキング形式でご紹介
               </p>
             </div>
-
-            {/* タブ切り替えボタン */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex p-1 bg-white rounded-lg shadow-md">
+            
+            {/* 国内外の切替ボタン */}
+            <div className="flex justify-center mb-10">
+              <div className="inline-flex rounded-md shadow-sm" role="group">
                 <button
-                  onClick={() => setActiveCryptoTab('domestic')}
-                  className={`px-6 py-3 rounded-md text-base font-medium transition-colors ${
+                  type="button"
+                  className={`px-6 py-3 text-base font-medium rounded-l-lg border ${
                     activeCryptoTab === 'domestic'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100'
                   }`}
+                  onClick={() => setActiveCryptoTab('domestic')}
                 >
                   国内取引所
                 </button>
                 <button
-                  onClick={() => setActiveCryptoTab('international')}
-                  className={`px-6 py-3 rounded-md text-base font-medium transition-colors ${
+                  type="button"
+                  className={`px-6 py-3 text-base font-medium rounded-r-lg border ${
                     activeCryptoTab === 'international'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100'
                   }`}
+                  onClick={() => setActiveCryptoTab('international')}
                 >
                   国外取引所
                 </button>
               </div>
             </div>
-
-            {/* ランキング表示 */}
-            <div className="max-w-4xl mx-auto">
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {(activeCryptoTab === 'domestic' ? domesticCryptoExchanges : internationalCryptoExchanges).map((exchange) => (
-                <Card key={exchange.name} className="mb-6 hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
-                        {exchange.rank}
-                      </div>
-                      <div className="flex-grow">
-                        <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <h3 className="text-xl font-bold">{exchange.name}</h3>
-                          <Badge variant="secondary">{exchange.highlight}</Badge>
-                        </div>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 mb-3">
-                          {exchange.features.map((feature, index) => (
-                            <li key={index} className="flex items-center text-sm text-muted-foreground">
-                              <Check className="h-4 w-4 mr-2 text-green-500 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex flex-wrap gap-4 text-sm">
-                          <span className="font-medium">手数料: {exchange.commission}</span>
-                          <span className="font-medium">最小投資額: {exchange.minInvestment}</span>
-                        </div>
-                      </div>
-                      <Button asChild className="w-full sm:w-auto">
-                        <a href={exchange.affiliateUrl} target="_blank" rel="noopener noreferrer">
-                          取引所を見る
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <RankingCard key={exchange.rank} {...exchange} />
               ))}
             </div>
-
             <div className="text-center mt-10">
               <a
                 href="/crypto-comparison"
-                className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <svg
+                  className="ml-3 h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </a>
             </div>
           </div>
