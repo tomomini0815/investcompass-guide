@@ -85,10 +85,10 @@ const Header = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden h-10 w-10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </Button>
       </nav>
 
