@@ -266,6 +266,11 @@ const RiskDiagnostic = () => {
     );
   };
 
+  // 複数選択対応のため、クリックイベントを分離
+  const handleIndustryClick = (industryId: Industry) => {
+    handleIndustryToggle(industryId);
+  };
+
   // 単一選択
   const handleAnswer = (questionId: number, score: number) => {
     setAnswers((prev) => ({
@@ -360,7 +365,7 @@ const RiskDiagnostic = () => {
             <CardTitle className="text-2xl">投資業界を選択してください</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {industries.map((industry) => {
                 const Icon = industry.icon;
                 const isSelected = selectedIndustries.includes(industry.id);
@@ -372,11 +377,15 @@ const RiskDiagnostic = () => {
                         ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50 hover:bg-muted/50"
                     }`}
-                    onClick={() => handleIndustryToggle(industry.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleIndustryClick(industry.id);
+                    }}
                   >
                     <Checkbox
                       checked={isSelected}
-                      className="h-5 w-5 pointer-events-none"
+                      onCheckedChange={() => handleIndustryToggle(industry.id)}
+                      className="h-5 w-5"
                     />
                     <Icon className={`h-6 w-6 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                     <Label 
@@ -396,7 +405,7 @@ const RiskDiagnostic = () => {
                 }}
                 disabled={selectedIndustries.length === 0}
                 size="lg"
-                className="hover:scale-105 transition-transform"
+                className="hover:scale-105 transition-transform w-full sm:w-auto"
               >
                 診断を開始する
               </Button>
@@ -535,14 +544,14 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="outline" 
                 size="lg" 
-                className="flex-1 hover:scale-105 transition-transform"
+                className="flex-1 hover:scale-105 transition-transform py-6 text-base"
               >
-                <RotateCcw className="mr-2 h-4 w-4" />
+                <RotateCcw className="mr-2 h-5 w-5" />
                 もう一度診断する
               </Button>
-              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform">
+              <Button asChild size="lg" className="flex-1 hover:scale-105 transition-transform py-6 text-base">
                 <Link to="/tools">
-                  <Home className="mr-2 h-4 w-4" />
+                  <Home className="mr-2 h-5 w-5" />
                   ツール一覧に戻る
                 </Link>
               </Button>
@@ -621,33 +630,32 @@ const RiskDiagnostic = () => {
           </div>
 
           <div className="space-y-4 pt-4">
-            <div className="flex flex-col sm:flex-row gap-3">
+            {/* PC用のボタンレイアウト */}
+            <div className="hidden sm:flex gap-3 justify-center">
               {step > 0 && (
                 <Button 
                   onClick={() => setStep(step - 1)} 
                   variant="outline" 
                   size="lg"
-                  className="hover:scale-105 transition-transform"
                 >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
                   戻る
                 </Button>
               )}
               <Button
                 onClick={handleNext}
                 disabled={currentAnswer === undefined}
+                className="gap-2 flex-1 px-8 py-6 text-lg"
                 size="lg"
-                className="flex-1 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {step === questions.length - 1 ? (
                   <>
-                    <CheckCircle className="mr-2 h-4 w-4" />
+                    <CheckCircle className="mr-2 h-5 w-5" />
                     診断結果を見る
                   </>
                 ) : (
                   <>
                     次へ
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </>
                 )}
               </Button>
@@ -655,10 +663,41 @@ const RiskDiagnostic = () => {
                 onClick={handleReset} 
                 variant="destructive" 
                 size="lg"
-                className="hover:scale-105 transition-transform"
               >
-                <X className="mr-2 h-4 w-4" />
                 やめる
+              </Button>
+            </div>
+            
+            {/* モバイル用のボタンレイアウト */}
+            <div className="flex flex-row gap-3 justify-center sm:hidden">
+              {step > 0 && (
+                <Button 
+                  onClick={() => setStep(step - 1)} 
+                  variant="outline" 
+                  size="icon"
+                  className="hover:scale-105 transition-transform h-12 w-12"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </Button>
+              )}
+              <Button
+                onClick={handleNext}
+                disabled={currentAnswer === undefined}
+                className="flex-1 hover:scale-105 transition-transform h-12 text-base font-medium"
+              >
+                {step === questions.length - 1 ? (
+                  <CheckCircle className="h-5 w-5" />
+                ) : (
+                  "次へ"
+                )}
+              </Button>
+              <Button 
+                onClick={handleReset} 
+                variant="destructive" 
+                size="icon"
+                className="hover:scale-105 transition-transform h-12 w-12"
+              >
+                <X className="h-5 w-5" />
               </Button>
             </div>
 

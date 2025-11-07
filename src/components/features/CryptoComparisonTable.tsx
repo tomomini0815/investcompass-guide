@@ -340,14 +340,6 @@ const CryptoComparisonTable = () => {
       <CardContent className="p-0">
         {/* モバイル向け表示 - 768px未満で表示 */}
         <div className="md:hidden px-4 py-2">
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-center mb-2">
-              {showDomestic ? "国内" : "国外"}暗号資産取引所詳細比較
-            </h3>
-            <p className="text-sm text-muted-foreground text-center">
-              各{showDomestic ? "国内" : "国外"}暗号資産取引所の詳細情報を比較できます
-            </p>
-          </div>
           {sortedExchanges.map((exchange) => (
             <MobileExchangeCard key={exchange.name} exchange={exchange} />
           ))}

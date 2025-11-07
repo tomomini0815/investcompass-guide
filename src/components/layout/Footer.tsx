@@ -3,7 +3,7 @@ import { TrendingUp } from "lucide-react";
 
 const Footer = () => {
   const footerLinks = {
-    "ブランド情報": [
+    "運営会社情報": [
       { name: "運営会社", href: "/company" },
       { name: "お問い合わせ", href: "/contact" },
     ],
@@ -72,10 +72,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground order-2 md:order-1">
             © 2024-2025 投資総合ナビ. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
+          <div className="flex gap-6 text-sm text-muted-foreground order-1 md:order-2">
             <Link to="/privacy" className="hover:text-primary transition-colors">
               プライバシーポリシー
             </Link>

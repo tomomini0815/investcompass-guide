@@ -78,7 +78,7 @@ const Contact = () => {
                   </button>
                 </form>
               </div>
-              
+
               {/* 連絡先情報 */}
               <div>
                 <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 p-8 rounded-lg mb-8">

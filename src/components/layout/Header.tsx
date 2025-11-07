@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, TrendingUp, X } from "lucide-react";
+import { Menu, TrendingUp, X, PanelLeft, PanelRight, AlignJustify } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
@@ -29,25 +29,26 @@ const Header = () => {
   const scrollToDiagnostic = () => {
     // risk-assessmentページでない場合はrisk-assessmentページに移動
     if (location.pathname !== "/tools/risk-assessment") {
-      navigate("/tools/risk-assessment");
-    }
-    // ページ遷移後に診断ツールセクションにスクロール
-    setTimeout(() => {
-      const element = document.getElementById("diagnostic-tool");
-      if (element) {
-        const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerHeight;
+      navigate("/tools/risk-assessment#diagnostic-tool");
+    } else {
+      // ページ遷移後に診断ツールセクションにスクロール
+      setTimeout(() => {
+        const element = document.getElementById("diagnostic-tool");
+        if (element) {
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-        
-        // モバイルメニューが開いている場合は閉じる
-        setIsMobileMenuOpen(false);
-      }
-    }, 100);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+          
+          // モバイルメニューが開いている場合は閉じる
+          setIsMobileMenuOpen(false);
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -84,10 +85,10 @@ const Header = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden p-1"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isMobileMenuOpen ? <X className="h-8 w-8" /> : <AlignJustify className="h-8 w-8" />}
         </Button>
       </nav>
 

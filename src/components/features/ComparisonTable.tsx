@@ -256,14 +256,6 @@ const ComparisonTable = () => {
       <CardContent className="p-0">
         {/* モバイル向け表示 - 768px未満で表示 */}
         <div className="md:hidden px-4 py-2">
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-center mb-2">
-              証券会社詳細比較
-            </h3>
-            <p className="text-sm text-muted-foreground text-center">
-              各証券会社の詳細情報を比較できます
-            </p>
-          </div>
           {sortedCompanies.map((company) => (
             <MobileCompanyCard key={company.name} company={company} />
           ))}
@@ -333,22 +325,12 @@ const ComparisonTable = () => {
                           <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
-                        ) : company.nisaSupport ? (
+                        ) : company.nisaSupport || company.tsumitateNisa ? (
                           <div className="flex flex-col items-center">
                             <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                               <Check className="h-3 w-3 text-green-600" />
                             </div>
-                            <span className="text-xs">/</span>
-                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                              <X className="h-3 w-3 text-red-600" />
-                            </div>
-                          </div>
-                        ) : company.tsumitateNisa ? (
-                          <div className="flex flex-col items-center">
-                            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                              <X className="h-3 w-3 text-red-600" />
-                            </div>
-                            <span className="text-xs">/</span>
+                            <span className="text-xs my-1">/</span>
                             <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
                               <Check className="h-3 w-3 text-green-600" />
                             </div>

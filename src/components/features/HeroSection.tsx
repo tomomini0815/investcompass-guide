@@ -42,7 +42,7 @@ const HeroSection = () => {
           alt="投資イメージ" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-secondary/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-secondary/70" />
       </div>
 
       {/* Content */}
@@ -93,18 +93,17 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Decorative wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg className="w-full h-16 text-background" viewBox="0 0 1440 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Decorative wave - 背景画像と連動 */}
+      <div className="absolute bottom-0 left-0 right-0" style={{ height: 'auto' }}>
+        <svg 
+          className="w-full text-background"
+          viewBox="0 0 1440 74" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
           <path d="M0 74L60 65.3C120 56.7 240 39.3 360 32.7C480 26 600 30 720 36.7C840 43.3 960 52.7 1080 52.7C1200 52.7 1320 43.3 1380 38.7L1440 34V74H1380C1320 74 1200 74 1080 74C960 74 840 74 720 74C600 74 480 74 360 74C240 74 120 74 60 74H0Z" fill="currentColor"/>
         </svg>
-      </div>
-
-      {/* 更新日 */}
-      <div className="absolute bottom-4 right-4">
-        <p className="text-xs text-white/70">
-          最終更新日：2025年10月30日
-        </p>
       </div>
     </section>
   );

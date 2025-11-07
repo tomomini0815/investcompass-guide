@@ -45,6 +45,18 @@ const FXComparisonTable = () => {
       features: "GMOグループ傘下で信頼性が高く、スプレッドが非常に狭い。スキャルピングも可能で、初心者から上級者まで利用可能。",
     },
     {
+      name: "DMMfx",
+      spread: "0.3銭",
+      minInvestment: "1,000通貨",
+      currencyPairs: "34種類",
+      swapPoint: true,
+      scalping: true,
+      rating: 4,
+      affiliateUrl: "https://fx.dmm.com/",
+      isDomestic: true,
+      features: "DMMグループ傘下のFX業者。スプレッドが適度に狭く、スキャルピングも可能。独自の取引ツール「DMM FX Viewer」が特徴。",
+    },
+    {
       name: "みんなのFX",
       spread: "0.2銭",
       minInvestment: "1,000通貨",
@@ -307,14 +319,6 @@ const FXComparisonTable = () => {
       <CardContent className="p-0">
         {/* モバイル向け表示 - 768px未満で表示 */}
         <div className="md:hidden px-4 py-2">
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-center mb-2">
-              {showDomestic ? "国内" : "国外"}FX業者詳細比較
-            </h3>
-            <p className="text-sm text-muted-foreground text-center">
-              各{showDomestic ? "国内" : "国外"}FX業者の詳細情報を比較できます
-            </p>
-          </div>
           {sortedCompanies.map((company) => (
             <MobileCompanyCard key={company.name} company={company} />
           ))}

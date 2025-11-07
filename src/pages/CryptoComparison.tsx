@@ -34,9 +34,6 @@ const CryptoComparison = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-block mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-                <span className="text-sm font-semibold">🏆 2024年〜2025年現在</span>
-              </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
                 暗号資産取引所徹底比較
               </h1>
@@ -45,16 +42,6 @@ const CryptoComparison = () => {
                 <br />
                 あなたに最適な暗号資産取引所を見つけましょう。
               </p>
-              <div className="flex flex-wrap gap-6 justify-center text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
-                  <span>主要10社を完全比較</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-                  <span>リアルタイム情報</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -135,7 +122,7 @@ const CryptoComparison = () => {
                     セキュリティを重視する方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    冷蔵庫（コールドウォレット）の導入や、JASA認定を取得している取引所を選ぶことで、資産の安全性を高めることができます。
+                    コールドウォレットの導入や、JASA認定を取得している取引所を選ぶことで、資産の安全性を高めることができます。
                   </p>
                 </div>
               </CardContent>
