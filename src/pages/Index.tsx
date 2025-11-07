@@ -8,6 +8,7 @@ import ArticleCard from "@/components/features/ArticleCard";
 import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Index = () => {
   const location = useLocation();
@@ -347,160 +348,216 @@ const Index = () => {
   }, [location.state]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>投資総合ガイド | 初心者から始める資産運用・投資の完全ガイド</title>
+        <meta name="description" content="投資初心者から中級者まで、株式投資・NISA・iDeCo・暗号資産など、あらゆる投資商品を徹底解説。証券会社比較ランキングや投資シミュレーターで、あなたに最適な投資方法を見つけましょう。" />
+        <meta name="keywords" content="投資,資産運用,株式投資,NISA,つみたてNISA,iDeCo,証券会社,比較,ランキング,初心者,暗号資産,FX,REIT" />
+        <link rel="canonical" href="https://www.toushi-navi.com" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="投資総合ガイド | 初心者から始める資産運用・投資の完全ガイド" />
+        <meta property="og:description" content="投資初心者から中級者まで、株式投資・NISA・iDeCo・暗号資産など、あらゆる投資商品を徹底解説。証券会社比較ランキングや投資シミュレーターで、あなたに最適な投資方法を見つけましょう。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.toushi-navi.com" />
+        <meta property="og:site_name" content="投資総合ガイド" />
+        <meta property="og:locale" content="ja_JP" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@toushi_navi" />
+      </Helmet>
+      
       <Header />
       
-      <main className="flex-1">
-        {/* Hero Section */}
-        <HeroSection />
-
-        {/* Investment Diagnostic */}
-        <InvestmentDiagnostic />
-
-        {/* Categories */}
-        <section className="py-8 sm:py-12 md:py-16 container mx-auto px-4">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">投資カテゴリーから探す</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-4">
-              あなたの興味のある投資商品を選んで、詳しく学びましょう
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {categories.map((category, index) => (
-              <div key={category.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CategoryCard {...category} />
-              </div>
-            ))}
+      {/* Hero Section */}
+      <HeroSection />
+      
+      <main className="flex-grow">
+        {/* 投資総合診断セクション */}
+        <section className="py-12 sm:py-16 bg-gradient-to-r from-primary/5 to-accent/5">
+          <div className="container mx-auto px-4">
+            <InvestmentDiagnostic />
           </div>
         </section>
 
-        {/* Securities Ranking */}
-        <section className="py-8 sm:py-12 md:py-16 bg-muted/30">
+        {/* 投資カテゴリセクション */}
+        <section className="py-12 sm:py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">証券会社おすすめランキング</h2>
-              <p className="text-sm sm:text-base text-muted-foreground px-4">
-                人気の証券会社を徹底比較。あなたに最適な証券会社を見つけましょう
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">投資カテゴリ</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                あなたの投資目標に合わせて、最適な投資方法を見つけましょう
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
-              {rankings.map((ranking) => (
-                <RankingCard key={ranking.rank} {...ranking} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {categories.map((category, index) => (
+                <CategoryCard key={index} {...category} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* FX Broker Ranking */}
-        <section className="py-8 sm:py-12 md:py-16 bg-muted/30">
+        {/* 証券会社ランキングセクション */}
+        <section className="py-12 sm:py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">FX業者ランキング</h2>
-              <p className="text-sm sm:text-base text-muted-foreground px-4">
-                人気のFX業者を徹底比較。あなたに最適なFX業者を見つけましょう
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">証券会社比較ランキング</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                手数料やサービス内容を比較して、あなたに最適な証券会社を選びましょう
               </p>
             </div>
-            
-            {/* Tabs for Domestic and International */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex p-1 bg-muted rounded-lg">
-                <button
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeFxTab === "domestic"
-                      ? "bg-background text-foreground shadow"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  onClick={() => setActiveFxTab("domestic")}
-                >
-                  国内FX業者
-                </button>
-                <button
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeFxTab === "international"
-                      ? "bg-background text-foreground shadow"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  onClick={() => setActiveFxTab("international")}
-                >
-                  国外FX業者
-                </button>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {rankings.map((ranking) => (
+                <RankingCard key={ranking.rank} {...ranking} />
+              ))}
             </div>
-            
-            {/* Ranking Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
-              {activeFxTab === "domestic"
-                ? domesticFxBrokers.map((broker) => (
-                    <RankingCard key={broker.rank} {...broker} />
-                  ))
-                : internationalFxBrokers.map((broker) => (
-                    <RankingCard key={broker.rank} {...broker} />
-                  ))}
+            <div className="text-center mt-8">
+              <a
+                href="/comparison"
+                className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                詳細比較を見る
+                <svg
+                  className="ml-2 h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </section>
 
-        {/* Cryptocurrency Exchange Ranking */}
-        <section className="py-8 sm:py-12 md:py-16">
+        {/* 国内暗号資産取引所ランキングセクション */}
+        <section className="py-12 sm:py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">暗号資産取引所ランキング</h2>
-              <p className="text-sm sm:text-base text-muted-foreground px-4">
-                国内外の人気暗号資産取引所を比較。あなたに最適な取引所を見つけましょう
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">国内暗号資産取引所ランキング</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                安全性・手数料・使いやすさを比較して、最適な取引所を選びましょう
               </p>
             </div>
-            
-            {/* Tabs for Domestic and International */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex p-1 bg-muted rounded-lg">
-                <button
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeTab === "domestic"
-                      ? "bg-background text-foreground shadow"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  onClick={() => setActiveTab("domestic")}
-                >
-                  国内取引所
-                </button>
-                <button
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeTab === "international"
-                      ? "bg-background text-foreground shadow"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  onClick={() => setActiveTab("international")}
-                >
-                  国外取引所
-                </button>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {domesticCryptoExchanges.map((exchange) => (
+                <RankingCard key={exchange.rank} {...exchange} />
+              ))}
             </div>
-            
-            {/* Ranking Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
-              {activeTab === "domestic"
-                ? domesticCryptoExchanges.map((exchange) => (
-                    <RankingCard key={exchange.rank} {...exchange} />
-                  ))
-                : internationalCryptoExchanges.map((exchange) => (
-                    <RankingCard key={exchange.rank} {...exchange} />
-                  ))}
+            <div className="text-center mt-8">
+              <a
+                href="/crypto-comparison"
+                className="inline-flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
+              >
+                詳細比較を見る
+                <svg
+                  className="ml-2 h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </section>
 
-        {/* Popular Articles */}
-        <section className="py-8 sm:py-12 md:py-16 container mx-auto px-4">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">人気の投資ガイド記事</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-4">
-              投資の基礎から実践まで、役立つ情報をお届けします
-            </p>
+        {/* FX業者ランキングセクション */}
+        <section className="py-12 sm:py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">FX業者ランキング</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                スプレッド・スワップポイント・使いやすさを比較して、最適なFX業者を選びましょう
+              </p>
+            </div>
+            
+            {/* 国内外の切替ボタン */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex rounded-md shadow-sm" role="group">
+                <button
+                  type="button"
+                  className={`px-4 py-2 text-sm font-medium rounded-l-lg border ${
+                    activeTab === 'domestic'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100'
+                  }`}
+                  onClick={() => setActiveTab('domestic')}
+                >
+                  国内業者
+                </button>
+                <button
+                  type="button"
+                  className={`px-4 py-2 text-sm font-medium rounded-r-lg border ${
+                    activeTab === 'international'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100'
+                  }`}
+                  onClick={() => setActiveTab('international')}
+                >
+                  国外業者
+                </button>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {(activeTab === 'domestic' ? domesticFxBrokers : internationalFxBrokers).map((broker) => (
+                <RankingCard key={broker.rank} {...broker} />
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <a
+                href="/fx-comparison"
+                className="inline-flex items-center px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors"
+              >
+                詳細比較を見る
+                <svg
+                  className="ml-2 h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} {...article} />
-            ))}
+        </section>
+
+        {/* 新着記事セクション */}
+        <section className="py-12 sm:py-16">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">新着記事</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                最新の投資ニュースやテクニカル分析をチェック
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {articles.map((article) => (
+                <ArticleCard key={article.id} {...article} />
+              ))}
+            </div>
           </div>
         </section>
 
