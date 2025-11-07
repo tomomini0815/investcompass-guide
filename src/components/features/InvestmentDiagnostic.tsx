@@ -231,7 +231,7 @@ const InvestmentDiagnostic = () => {
   if (result) {
     const recommendation = getRecommendation();
     return (
-      <section id="診断" className="py-8 sm:py-12 md:py-16 bg-muted/30">
+      <section id="診断" className="py-8 sm:py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <Card className="max-w-3xl mx-auto shadow-lg">
             <CardHeader className="text-center px-4 sm:px-6">
@@ -311,7 +311,7 @@ const InvestmentDiagnostic = () => {
   }
 
   return (
-    <section id="診断" className="py-8 sm:py-12 md:py-16 bg-muted/30">
+    <section id="診断" className="py-8 sm:py-12 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <Card className="shadow-lg">
