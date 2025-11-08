@@ -104,7 +104,7 @@ const CryptoComparisonTable = () => {
       isDomestic: true,
       features: "世界に進出している日本の取引所。低手数料と高流動性が特徴で、プロトレーダーにも人気。",
     },
-    // 国外取引所（人気ランキング順）
+    // 海外取引所（人気ランキング順）
     {
       name: "Binance",
       tradingFee: "0.10%",
@@ -207,7 +207,7 @@ const CryptoComparisonTable = () => {
 
   const sortedExchanges = [...filteredExchanges].sort((a, b) => {
     if (!sortBy) {
-      // デフォルトでは国外取引所の場合評価順にソート
+      // デフォルトでは海外取引所の場合評価順にソート
       if (!showDomestic) {
         if (b.rating !== a.rating) {
           return b.rating - a.rating;
@@ -333,7 +333,7 @@ const CryptoComparisonTable = () => {
             onClick={() => setShowDomestic(false)}
             className="px-6 py-2"
           >
-            国外取引所
+            海外取引所
           </Button>
         </div>
       </CardHeader>

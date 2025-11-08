@@ -104,7 +104,7 @@ const FXComparisonTable = () => {
       isDomestic: true,
       features: "スワップポイントが非常に高く、長期保有向き。通貨ペア数も多く、初心者に人気。スキャルピングは不可。",
     },
-    // 国外FX業者（人気ランキング順）
+    // 海外FX業者（人気ランキング順）
     {
       name: "Interactive Brokers",
       spread: "$0.5/100株",
@@ -312,7 +312,7 @@ const FXComparisonTable = () => {
             onClick={() => setShowDomestic(false)}
             className="px-6 py-2"
           >
-            国外FX業者
+            海外FX業者
           </Button>
         </div>
       </CardHeader>

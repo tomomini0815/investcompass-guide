@@ -4,12 +4,14 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Clock, TrendingUp, Calendar, Share2 } from "lucide-react";
+import { ArrowLeft, Clock, TrendingUp, Calendar, Share2, X, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
 
 const ArticleDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const articles = [
     {
@@ -451,7 +453,7 @@ const ArticleDetail = () => {
               </ul>
             </div>
             <div class="bg-blue-50 p-6 rounded-xl">
-              <h3 class="font-bold text-blue-800 mb-3">運用的メリット</h3>
+              <h3 class="font-bold text-blue-800 mb-3">運用のメリット</h3>
               <ul class="list-disc pl-5 space-y-2">
                 <li>手間がかからない</li>
                 <li>定期的な情報提供を受ける</li>
@@ -932,14 +934,14 @@ const ArticleDetail = () => {
     },
     {
       id: "crypto-exchange-comparison",
-      title: "暗号資産取引所比較：国内と国外の違いと選び方",
-      excerpt: "国内と国外の暗号資産取引所の特徴と違いを比較し、自分に合った取引所の選び方を解説します。",
+      title: "暗号資産取引所比較：国内と海外の違いと選び方",
+      excerpt: "国内と海外の暗号資産取引所の特徴と違いを比較し、自分に合った取引所の選び方を解説します。",
       category: "暗号資産",
       readTime: "14分",
       date: "2024年6月15日",
       content: `
         <div class="prose max-w-none">
-          <p class="text-lg leading-relaxed mb-6">暗号資産投資を始める際、どの取引所を選ぶかは非常に重要な決定です。国内と国外の取引所にはそれぞれ特徴があり、投資家のニーズに応じて最適な選択肢が異なります。ここでは、国内と国外の暗号資産取引所の違いと選び方について詳しく解説します。</p>
+          <p class="text-lg leading-relaxed mb-6">暗号資産投資を始める際、どの取引所を選ぶかは非常に重要な決定です。国内と海外の取引所にはそれぞれ特徴があり、投資家のニーズに応じて最適な選択肢が異なります。ここでは、国内と海外の暗号資産取引所の違いと選び方について詳しく解説します。</p>
           
           <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">国内取引所の特徴</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
@@ -962,7 +964,7 @@ const ArticleDetail = () => {
             </div>
           </div>
           
-          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">国外取引所の特徴</h2>
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">海外取引所の特徴</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div class="bg-green-50 p-6 rounded-xl">
               <h3 class="font-bold text-green-800 mb-3">メリット</h3>
@@ -996,11 +998,139 @@ const ArticleDetail = () => {
           </div>
         </div>
       `,
+    },
+    {
+      id: "fx-broker-comparison",
+      title: "FX業者比較：国内と海外の違いと選び方のポイント",
+      excerpt: "国内と海外のFX業者の特徴と違いを比較し、自分に合ったFX業者の選び方を解説します。",
+      category: "FX",
+      readTime: "13分",
+      date: "2024年6月20日",
+      content: `
+        <div class="prose max-w-none">
+          <p class="text-lg leading-relaxed mb-6">FX（外国為替証拠金取引）を始める際、どの業者を選ぶかは非常に重要な決定です。国内と海外のFX業者にはそれぞれ特徴があり、トレーダーのニーズに応じて最適な選択肢が異なります。ここでは、国内と海外のFX業者の違いと選び方について詳しく解説します。</p>
+          
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">国内FX業者の特徴</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+            <div class="bg-blue-50 p-6 rounded-xl">
+              <h3 class="font-bold text-blue-800 mb-3">メリット</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>金融庁の登録・監督を受けている</li>
+                <li>日本語対応が充実</li>
+                <li>信託保全による資金保護</li>
+                <li>税務処理が明確</li>
+              </ul>
+            </div>
+            <div class="bg-red-50 p-6 rounded-xl">
+              <h3 class="font-bold text-red-800 mb-3">デメリット</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>レバレッジの上限が低い（最大25倍）</li>
+                <li>スプレッドがやや広い場合がある</li>
+                <li>取扱通貨ペアが限られている</li>
+              </ul>
+            </div>
+          </div>
+          
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">海外FX業者の特徴</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+            <div class="bg-green-50 p-6 rounded-xl">
+              <h3 class="font-bold text-green-800 mb-3">メリット</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>高レバレッジ（1000倍など）が利用可能</li>
+                <li>狭いスプレッド</li>
+                <li>豊富な通貨ペア</li>
+                <li>高度な取引プラットフォーム</li>
+              </ul>
+            </div>
+            <div class="bg-orange-50 p-6 rounded-xl">
+              <h3 class="font-bold text-orange-800 mb-3">デメリット</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>国内法規制の適用外</li>
+                <li>日本語対応が不十分な場合がある</li>
+                <li>税務処理が複雑</li>
+                <li>出入金方法に制限がある場合がある</li>
+              </ul>
+            </div>
+          </div>
+          
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">自分に合ったFX業者の選び方</h2>
+          <div class="bg-gray-50 p-6 rounded-xl my-8">
+            <p class="mb-3">FX業者を選ぶ際には、以下のポイントを考慮すると良いでしょう：</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>自分のトレードスタイル（スイングトレード、デイトレード、スキャルピングなど）</li>
+              <li>必要とするレバレッジ</li>
+              <li>取引コスト（スプレッド、スワップポイント、手数料など）</li>
+              <li>取引プラットフォームの使いやすさ</li>
+              <li>サポート体制（カスタマーサポートの対応時間、言語対応など）</li>
+            </ul>
+          </div>
+          
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">主要FX業者比較</h2>
+          <div class="overflow-x-auto my-8">
+            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="py-3 px-4 border-b text-left">業者名</th>
+                  <th class="py-3 px-4 border-b text-left">最大レバレッジ</th>
+                  <th class="py-3 px-4 border-b text-left">主要通貨ペアのスプレッド</th>
+                  <th class="py-3 px-4 border-b text-left">特徴</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-3 px-4 border-b font-semibold">外為どっとコム</td>
+                  <td class="py-3 px-4 border-b">25倍</td>
+                  <td class="py-3 px-4 border-b">USD/JPY: 0.2銭</td>
+                  <td class="py-3 px-4 border-b">業界最狭水準のスプレッド</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="py-3 px-4 border-b font-semibold">DMM FX</td>
+                  <td class="py-3 px-4 border-b">25倍</td>
+                  <td class="py-3 px-4 border-b">USD/JPY: 0.3銭</td>
+                  <td class="py-3 px-4 border-b">DMMグループ傘下</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 border-b font-semibold">GMOクリック証券</td>
+                  <td class="py-3 px-4 border-b">25倍</td>
+                  <td class="py-3 px-4 border-b">USD/JPY: 0.3銭</td>
+                  <td class="py-3 px-4 border-b">スワップポイントが業界最高水準</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="py-3 px-4 border-b font-semibold">FXCM</td>
+                  <td class="py-3 px-4 border-b">400倍</td>
+                  <td class="py-3 px-4 border-b">USD/JPY: 0.5pips</td>
+                  <td class="py-3 px-4 border-b">海外業者、高レバレッジ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">まとめ</h2>
+          <div class="bg-blue-50 p-6 rounded-xl my-8">
+            <p class="mb-3">FX業者を選ぶ際は、自分のトレードスタイルや目的に合った業者から始めることが重要です。初心者の場合は、国内業者で信頼性の高い業者から始めるのがおすすめです。経験を積んだ後は、自分のニーズに合った海外業者に切り替えることも検討してみてください。</p>
+          </div>
+        </div>
+      `,
     }
   ];
 
   // 記事をIDで検索
-  const article = articles.find(article => article.id === id) || articles[0];
+  const article = articles.find(article => article.id === id);
+
+  // 記事が見つからない場合は404ページを表示するための処理を追加
+  if (!article) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-4">記事が見つかりません</h1>
+          <p className="text-muted-foreground mb-8">お探しの記事は存在しないか、URLが間違っている可能性があります。</p>
+          <Button onClick={() => navigate('/articles')}>
+            記事一覧に戻る
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   // 関連記事（同じカテゴリの他の記事）
   const relatedArticles = articles.filter(articleItem => 
@@ -1071,7 +1201,11 @@ const ArticleDetail = () => {
               <div className="bg-card border rounded-xl p-6 mb-10">
                 <div className="flex flex-wrap justify-between items-center gap-4">
                   <p className="text-muted-foreground">{article.excerpt}</p>
-                  <Button variant="outline" className="flex items-center gap-2">
+                  <Button 
+                    variant="outline" 
+                    className="flex items-center gap-2"
+                    onClick={() => setShowShareModal(true)}
+                  >
                     <Share2 className="h-4 w-4" />
                     記事を共有
                   </Button>
@@ -1083,6 +1217,70 @@ const ArticleDetail = () => {
                 dangerouslySetInnerHTML={{ __html: article.content }} 
               />
               
+              {/* ソーシャルメディア共有モーダル */}
+              {showShareModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                  <div className="bg-white rounded-xl p-6 w-full max-w-md">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-bold">記事を共有</h3>
+                      <button 
+                        onClick={() => setShowShareModal(false)}
+                        className="text-gray-500 hover:text-gray-700"
+                      >
+                        <X className="h-6 w-6" />
+                      </button>
+                    </div>
+                    <p className="text-muted-foreground mb-6">共有先を選択してください</p>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button 
+                        variant="outline" 
+                        className="flex flex-col items-center justify-center h-24 gap-2"
+                        onClick={() => {
+                          window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`, '_blank');
+                          setShowShareModal(false);
+                        }}
+                      >
+                        <X className="h-8 w-8 text-black" />
+                        <span>X (Twitter)</span>
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="flex flex-col items-center justify-center h-24 gap-2"
+                        onClick={() => {
+                          window.open(`https://www.instagram.com/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+                          setShowShareModal(false);
+                        }}
+                      >
+                        <Instagram className="h-8 w-8" />
+                        <span>Instagram</span>
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="flex flex-col items-center justify-center h-24 gap-2"
+                        onClick={() => {
+                          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+                          setShowShareModal(false);
+                        }}
+                      >
+                        <Facebook className="h-8 w-8 text-blue-600" />
+                        <span>Facebook</span>
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="flex flex-col items-center justify-center h-24 gap-2"
+                        onClick={() => {
+                          window.open(`https://line.me/R/msg/text/?${encodeURIComponent(article.title + ' ' + window.location.href)}`, '_blank');
+                          setShowShareModal(false);
+                        }}
+                      >
+                        <MessageCircle className="h-8 w-8 text-green-500" />
+                        <span>LINE</span>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* 関連記事 */}
               {relatedArticles.length > 0 && (
                 <div className="border-t pt-12 mt-16">

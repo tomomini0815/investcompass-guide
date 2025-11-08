@@ -30,7 +30,7 @@ interface SecurityCompany {
 const ComparisonTable = () => {
   const [sortBy, setSortBy] = useState<keyof SecurityCompany | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [showDomestic, setShowDomestic] = useState<boolean>(true); // 国内/国外切り替えの状態
+  const [showDomestic, setShowDomestic] = useState<boolean>(true); // 国内/海外切り替えの状態
 
   const companies: SecurityCompany[] = [
     // 国内証券会社（人気ランキング順）
