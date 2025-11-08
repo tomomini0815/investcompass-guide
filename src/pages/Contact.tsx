@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { ChevronLeft, Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* ヘッダー */}
@@ -29,13 +32,22 @@ const Contact = () => {
               {/* お問い合わせフォーム */}
               <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 p-8 rounded-lg">
                 <h2 className="text-2xl font-bold mb-6">お問い合わせフォーム</h2>
+                
+                {isSubmitted ? (
+                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                    <p className="font-bold">送信成功</p>
+                    <p>お問い合わせありがとうございます。内容を確認後、折り返しご連絡いたします。</p>
+                  </div>
+                ) : null}
+                
                 <form 
                   action="https://formspree.io/f/xvgdpkpe" 
                   method="POST"
+                  onSubmit={() => setIsSubmitted(true)}
                   className="space-y-6"
                 >
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">お名前</label>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">お名前 <span className="text-red-500">*</span></label>
                     <input
                       type="text"
                       id="name"
@@ -47,7 +59,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">メールアドレス</label>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">メールアドレス <span className="text-red-500">*</span></label>
                     <input
                       type="email"
                       id="email"
@@ -59,7 +71,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">件名</label>
+                    <label htmlFor="subject" className="block text-sm font-medium mb-2">件名 <span className="text-red-500">*</span></label>
                     <input
                       type="text"
                       id="subject"
@@ -71,7 +83,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">メッセージ</label>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">メッセージ <span className="text-red-500">*</span></label>
                     <textarea
                       id="message"
                       name="message"
@@ -80,6 +92,12 @@ const Contact = () => {
                       placeholder="お問い合わせ内容を詳しくご記入ください"
                       required
                     ></textarea>
+                  </div>
+                  
+                  <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-md">
+                    <p className="mb-2"><span className="font-bold">個人情報の取り扱いについて</span></p>
+                    <p className="mb-2">お問い合わせの際にご提供いただいた個人情報は、お問い合わせへの回答のみに利用し、他の目的では使用いたしません。</p>
+                    <p>個人情報の取り扱いについては、当サイトのプライバシーポリシーをご確認ください。</p>
                   </div>
                   
                   <button
