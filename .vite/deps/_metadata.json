@@ -1,52 +1,58 @@
 {
-  "hash": "0ec4f493",
+  "hash": "6a53ff17",
   "configHash": "95243142",
-  "lockfileHash": "2284caff",
-  "browserHash": "6a9a4af3",
+  "lockfileHash": "6fbbb547",
+  "browserHash": "f27a4018",
   "optimized": {
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "7f665a76",
+      "fileHash": "8e08ce5c",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "1383e6cb",
+      "fileHash": "c25e3df7",
       "needsInterop": true
+    },
+    "react-helmet-async": {
+      "src": "../../node_modules/react-helmet-async/lib/index.esm.js",
+      "file": "react-helmet-async.js",
+      "fileHash": "7de21149",
+      "needsInterop": false
     },
     "@tanstack/react-query": {
       "src": "../../node_modules/@tanstack/react-query/build/modern/index.js",
       "file": "@tanstack_react-query.js",
-      "fileHash": "48aec1aa",
+      "fileHash": "0911f9be",
       "needsInterop": false
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "84cc8b7b",
+      "fileHash": "ca5725c5",
       "needsInterop": false
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "2b00fc80",
+      "fileHash": "fc7f9f1e",
       "needsInterop": true
     },
     "lucide-react": {
       "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
       "file": "lucide-react.js",
-      "fileHash": "65ebfbc7",
+      "fileHash": "a8aeb6c1",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-7LVE3BO7": {
-      "file": "chunk-7LVE3BO7.js"
+    "chunk-NEXMQ5JR": {
+      "file": "chunk-NEXMQ5JR.js"
     },
-    "chunk-ZCND2HWC": {
-      "file": "chunk-ZCND2HWC.js"
+    "chunk-5Q4NG4DT": {
+      "file": "chunk-5Q4NG4DT.js"
     }
   }
 }

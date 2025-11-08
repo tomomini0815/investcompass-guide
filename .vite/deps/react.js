@@ -1,5 +1,5 @@
 import {
   require_react
-} from "./chunk-ZCND2HWC.js";
+} from "./chunk-5Q4NG4DT.js";
 export default require_react();
 //# sourceMappingURL=react.js.map
