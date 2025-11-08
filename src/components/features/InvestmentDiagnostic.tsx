@@ -63,6 +63,14 @@ const InvestmentDiagnostic = () => {
       futureValue: Math.round(futureValue).toLocaleString(),
       profit: Math.round(profit).toLocaleString()
     });
+    
+    // モバイル時の自動スクロール
+    setTimeout(() => {
+      const resultElement = document.getElementById('sip-result');
+      if (resultElement) {
+        resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 100);
   };
 
   // 個別株投資シミュレーションの実行
@@ -84,6 +92,14 @@ const InvestmentDiagnostic = () => {
       profitLoss: Math.round(profitLoss).toLocaleString(),
       dividendIncome: Math.round(dividendIncome).toLocaleString()
     });
+    
+    // モバイル時の自動スクロール
+    setTimeout(() => {
+      const resultElement = document.getElementById('stock-result');
+      if (resultElement) {
+        resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 100);
   };
 
   // FX計算の実行
@@ -164,6 +180,14 @@ const InvestmentDiagnostic = () => {
       totalProfit: totalProfit,
       advice: advice
     });
+    
+    // モバイル時の自動スクロール
+    setTimeout(() => {
+      const resultElement = document.getElementById('risk-result');
+      if (resultElement) {
+        resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 100);
   };
 
   const questions = [
@@ -608,10 +632,10 @@ const InvestmentDiagnostic = () => {
 
         {/* 計算ツールモーダル */}
         {showCalculator && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="sticky top-0 bg-white border-b p-4 flex justify-between items-center rounded-t-xl">
-                <h3 className="text-xl font-bold">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 z-50">
+            <div className="bg-white rounded-xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[95vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white border-b p-3 sm:p-4 flex justify-between items-center rounded-t-xl">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
                   {calculatorType === 'sip' && '積立投資シミュレータ'}
                   {calculatorType === 'stock' && '個別株投資シミュレータ'}
                   {calculatorType === 'risk' && 'FX計算ツール'}
@@ -619,19 +643,20 @@ const InvestmentDiagnostic = () => {
                 <Button 
                   variant="ghost" 
                   size="icon"
+                  className="h-6 w-6 sm:h-8 sm:w-8"
                   onClick={() => setShowCalculator(false)}
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </div>
-              <div className="p-6">
+              <div className="p-3 sm:p-4 md:p-6">
                 {calculatorType === 'sip' && (
                   <div className="space-y-3">
-                    <p className="text-muted-foreground">つみたてNISAや投資信託など、定期的な積立投資の効果を簡単にシミュレーションできます。複利の力で資産がどのように増えていくかを試算しましょう。</p>
+                    <p className="text-muted-foreground text-sm">つみたてNISAや投資信託など、定期的な積立投資の効果を簡単にシミュレーションできます。複利の力で資産がどのように増えていくかを試算しましょう。</p>
                     
                     <div className="bg-blue-50 p-3 rounded-lg">
-                      <h5 className="font-bold text-blue-800 mb-1">積立投資初心者向けガイド</h5>
-                      <ul className="list-disc pl-4 space-y-1 text-sm">
+                      <h5 className="font-bold text-blue-800 mb-1 text-sm">積立投資初心者向けガイド</h5>
+                      <ul className="list-disc pl-4 space-y-1 text-xs">
                         <li>毎月の投資額：毎月積み立てる金額（例：1万円）</li>
                         <li>期待リターン：年間の平均リターン（例：5%）</li>
                         <li>投資期間：積立を続ける年数（例：30年）</li>
@@ -639,9 +664,9 @@ const InvestmentDiagnostic = () => {
                       </ul>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="space-y-3">
                       <div>
-                        <Label htmlFor="monthlyInvestment">毎月の投資額（円）</Label>
+                        <Label htmlFor="monthlyInvestment" className="text-sm">毎月の投資額（円）</Label>
                         <p className="text-xs text-muted-foreground mb-1">毎月積み立てる金額（例：10000）</p>
                         <input
                           id="monthlyInvestment"
@@ -653,7 +678,7 @@ const InvestmentDiagnostic = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="expectedReturn">期待リターン（%）</Label>
+                        <Label htmlFor="expectedReturn" className="text-sm">期待リターン（%）</Label>
                         <p className="text-xs text-muted-foreground mb-1">年間の平均リターン（例：5.0）</p>
                         <input
                           id="expectedReturn"
@@ -666,7 +691,7 @@ const InvestmentDiagnostic = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="investmentPeriod">投資期間（年）</Label>
+                        <Label htmlFor="investmentPeriod" className="text-sm">投資期間（年）</Label>
                         <p className="text-xs text-muted-foreground mb-1">積立を続ける年数（例：30）</p>
                         <input
                           id="investmentPeriod"
@@ -678,7 +703,7 @@ const InvestmentDiagnostic = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="initialAmount">初期投資額（円）</Label>
+                        <Label htmlFor="initialAmount" className="text-sm">初期投資額（円）</Label>
                         <p className="text-xs text-muted-foreground mb-1">最初に投資する金額（例：100000）</p>
                         <input
                           id="initialAmount"
@@ -692,16 +717,16 @@ const InvestmentDiagnostic = () => {
                     </div>
                     <Button className="w-full py-2 text-sm" onClick={runSipSimulation}>シミュレーションを実行</Button>
                     {calculationResult && calculationResult.type === 'sip' && (
-                      <div className="bg-blue-50 p-3 rounded-lg">
-                        <h5 className="font-bold text-blue-800 mb-1">シミュレーション結果</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 text-sm">
+                      <div id="sip-result" className="bg-blue-50 p-3 rounded-lg mt-3 sm:mt-4">
+                        <h5 className="font-bold text-blue-800 mb-1 text-sm">シミュレーション結果</h5>
+                        <div className="space-y-1 text-sm">
                           <p className="font-semibold">投資総額: <span className="font-normal">{calculationResult.totalInvestment}円</span></p>
                           <p className="font-semibold">将来価値: <span className="font-normal">{calculationResult.futureValue}円</span></p>
                           <p className="font-semibold">利益: <span className="font-normal">{calculationResult.profit}円</span></p>
                         </div>
                         <div className="mt-2 p-2 bg-yellow-50 rounded">
-                          <p className="font-semibold text-yellow-800 text-sm">投資アドバイス:</p>
-                          <p className="text-yellow-700 text-sm">
+                          <p className="font-semibold text-yellow-800 text-xs">投資アドバイス:</p>
+                          <p className="text-yellow-700 text-xs">
                             {parseInt(calculationResult.profit.replace(/,/g, "")) > 0 
                               ? "利益が出ています。複利の効果により、長期的な資産形成が期待できます。" 
                               : "利益が少ないようです。投資期間を延ばすか、リターンの高い商品を検討してみましょう。"}
@@ -714,11 +739,11 @@ const InvestmentDiagnostic = () => {
                 
                 {calculatorType === 'stock' && (
                   <div className="space-y-3">
-                    <p className="text-muted-foreground">個別株への投資で期待されるリターンとリスクを簡単にシミュレーションできます。株価の変動と配当収入による収益を試算しましょう。</p>
+                    <p className="text-muted-foreground text-sm">個別株への投資で期待されるリターンとリスクを簡単にシミュレーションできます。株価の変動と配当収入による収益を試算しましょう。</p>
                     
                     <div className="bg-green-50 p-3 rounded-lg">
-                      <h5 className="font-bold text-green-800 mb-1">個別株投資初心者向けガイド</h5>
-                      <ul className="list-disc pl-4 space-y-1 text-sm">
+                      <h5 className="font-bold text-green-800 mb-1 text-sm">個別株投資初心者向けガイド</h5>
+                      <ul className="list-disc pl-4 space-y-1 text-xs">
                         <li>株価：現在の株価（例：3000円）</li>
                         <li>株数：購入する株の数（例：100株）</li>
                         <li>購入価格：株を買った時の価格（例：2500円）</li>
@@ -726,9 +751,9 @@ const InvestmentDiagnostic = () => {
                       </ul>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="space-y-3">
                       <div>
-                        <Label htmlFor="stockPrice">株価（円）</Label>
+                        <Label htmlFor="stockPrice" className="text-sm">株価（円）</Label>
                         <p className="text-xs text-muted-foreground mb-1">現在の株価（例：3000）</p>
                         <input
                           id="stockPrice"
@@ -740,7 +765,7 @@ const InvestmentDiagnostic = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="shares">株数</Label>
+                        <Label htmlFor="shares" className="text-sm">株数</Label>
                         <p className="text-xs text-muted-foreground mb-1">購入する株の数（例：100）</p>
                         <input
                           id="shares"
@@ -752,7 +777,7 @@ const InvestmentDiagnostic = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="purchasePrice">購入価格（円）</Label>
+                        <Label htmlFor="purchasePrice" className="text-sm">購入価格（円）</Label>
                         <p className="text-xs text-muted-foreground mb-1">株を買った時の価格（例：2500）</p>
                         <input
                           id="purchasePrice"
@@ -764,7 +789,7 @@ const InvestmentDiagnostic = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="dividendYield">配当利回り（%）</Label>
+                        <Label htmlFor="dividendYield" className="text-sm">配当利回り（%）</Label>
                         <p className="text-xs text-muted-foreground mb-1">年間の配当金の割合（例：2.5）</p>
                         <input
                           id="dividendYield"
@@ -779,16 +804,16 @@ const InvestmentDiagnostic = () => {
                     </div>
                     <Button className="w-full py-2 text-sm" onClick={runStockSimulation}>シミュレーションを実行</Button>
                     {calculationResult && calculationResult.type === 'stock' && (
-                      <div className="bg-green-50 p-3 rounded-lg">
-                        <h5 className="font-bold text-green-800 mb-1">シミュレーション結果</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 text-sm">
+                      <div id="stock-result" className="bg-green-50 p-3 rounded-lg mt-3 sm:mt-4">
+                        <h5 className="font-bold text-green-800 mb-1 text-sm">シミュレーション結果</h5>
+                        <div className="space-y-1 text-sm">
                           <p className="font-semibold">投資総額: <span className="font-normal">{calculationResult.investmentAmount}円</span></p>
                           <p className="font-semibold">評価損益: <span className="font-normal">{calculationResult.profitLoss}円</span></p>
                           <p className="font-semibold">配当収入: <span className="font-normal">{calculationResult.dividendIncome}円</span></p>
                         </div>
                         <div className="mt-2 p-2 bg-yellow-50 rounded">
-                          <p className="font-semibold text-yellow-800 text-sm">投資アドバイス:</p>
-                          <p className="text-yellow-700 text-sm">
+                          <p className="font-semibold text-yellow-800 text-xs">投資アドバイス:</p>
+                          <p className="text-yellow-700 text-xs">
                             {parseInt(calculationResult.profitLoss.replace(/,/g, "")) > 0 
                               ? "評価損益がプラスです。株価が上がったことで利益が出ています。" 
                               : "評価損益がマイナスです。株価が下がったことで損失が出ています。"}
@@ -905,7 +930,7 @@ const InvestmentDiagnostic = () => {
                     </div>
                     <Button className="w-full" onClick={runRiskAssessment}>計算を実行</Button>
                     {calculationResult && calculationResult.type === 'risk' && (
-                      <div className="bg-purple-50 p-4 rounded-lg">
+                      <div id="risk-result" className="bg-purple-50 p-4 rounded-lg mt-3 sm:mt-4">
                         <h5 className="font-bold text-purple-800 mb-2">FX計算結果</h5>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <p className="font-semibold">利益/損失: <span className="font-normal">{calculationResult.profit}円</span></p>
