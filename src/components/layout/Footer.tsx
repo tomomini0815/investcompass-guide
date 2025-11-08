@@ -15,13 +15,11 @@ const Footer = () => {
     "投資商品": [
       { name: "株式投資", href: "/stocks" },
       { name: "NISA・つみたてNISA", href: "/nisa" },
-      { name: "iDeCo", href: "/basics" },
       { name: "暗号資産", href: "/crypto" },
     ],
     "ツール": [
       { name: "複利計算", href: "/tools-detail" },
       { name: "投資診断", href: "/#診断" },
-      { name: "証券会社比較", href: "/comparison" },
     ],
     "比較": [
       { name: "証券会社", href: "/comparison" },

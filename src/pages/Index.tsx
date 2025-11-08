@@ -298,7 +298,9 @@ const Index = () => {
       excerpt: "AIがどのように投資に活用されているのか、基礎から実践的な活用法まで詳しく解説します。初心者から上級者まで使えるAI投資手法を徹底紹介。",
       category: "投資AI",
       readTime: "15分",
-      date: "2024年6月1日",
+      date: "2025年11月3日",
+      isNew: true,
+      isPopular: true,
     },
     {
       id: "trading-indicators-overview",
@@ -306,7 +308,9 @@ const Index = () => {
       excerpt: "初心者から上級者まで使える主要なテクニカル指標を解説します。",
       category: "インジケータ",
       readTime: "12分",
-      date: "2024年6月5日",
+      date: "2025年11月3日",
+      isNew: true,
+      isPopular: true,
     },
     {
       id: "tradingview-beginner",
@@ -314,7 +318,9 @@ const Index = () => {
       excerpt: "無料で使える人気チャート分析ツール「トレーディングビュー」の基本操作を解説します。",
       category: "トレーディングビュー",
       readTime: "15分",
-      date: "2024年6月10日",
+      date: "2025年11月3日",
+      isNew: true,
+      isPopular: true,
     },
     {
       id: "crypto-exchange-comparison",
@@ -323,6 +329,7 @@ const Index = () => {
       category: "暗号資産",
       readTime: "14分",
       date: "2024年6月15日",
+      isPopular: true,
     },
     {
       id: "fx-broker-comparison",
@@ -331,6 +338,7 @@ const Index = () => {
       category: "FX",
       readTime: "13分",
       date: "2024年6月20日",
+      isPopular: true,
     },
     {
       id: "crypto-trends-2024",
@@ -690,43 +698,49 @@ const Index = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {articles.slice(0, 6).map((article) => (
-                <Card key={article.id} className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-3">
-                      <Badge variant="secondary">{article.category}</Badge>
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Clock className="h-3 w-3" />
-                        {article.readTime}
+              {articles
+                .filter(article => article.isPopular)
+                .slice(0, 6)
+                .map((article) => (
+                  <Card key={article.id} className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-3">
+                        <Badge variant="secondary">{article.category}</Badge>
+                        {article.isNew && (
+                          <Badge className="ml-2" style={{ backgroundColor: '#FFA500' }}>
+                            New
+                          </Badge>
+                        )}
                       </div>
-                    </div>
-                    <CardTitle className="text-xl line-clamp-2">
-                      <a href={`/articles/${article.id}`} className="hover:text-primary transition-colors">
-                        {article.title}
-                      </a>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground line-clamp-3 mb-4">{article.excerpt}</p>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{article.date}</span>
+                      <CardTitle className="text-xl line-clamp-2">
+                        <a href={`/articles/${article.id}`} className="hover:text-primary transition-colors">
+                          {article.title}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground line-clamp-3 mb-4">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-4 w-4" />
+                          <span>{article.date}</span>
+                        </div>
+                        {article.isPopular && (
+                          <div className="flex items-center gap-1">
+                            <TrendingUp className="h-4 w-4" />
+                            <span>人気記事</span>
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <TrendingUp className="h-4 w-4" />
-                        <span>人気記事</span>
-                      </div>
-                    </div>
-                    <button 
-                      className="w-full mt-6 px-4 py-2 bg-blue-100 text-primary rounded-md hover:bg-blue-200 transition-colors"
-                      onClick={() => navigate(`/articles/${article.id}`)}
-                    >
-                      記事を読む
-                    </button>
-                  </CardContent>
-                </Card>
-              ))}
+                      <button 
+                        className="w-full mt-6 px-4 py-2 bg-blue-100 text-primary rounded-md hover:bg-blue-200 transition-colors"
+                        onClick={() => navigate(`/articles/${article.id}`)}
+                      >
+                        記事を読む
+                      </button>
+                    </CardContent>
+                  </Card>
+                ))}
             </div>
             <div className="text-center mt-10">
               <a

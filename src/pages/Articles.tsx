@@ -16,7 +16,9 @@ const Articles = () => {
       excerpt: "AIがどのように投資に活用されているのか、基礎から実践的な活用法まで詳しく解説します。初心者から上級者まで使えるAI投資手法を徹底紹介。",
       category: "投資AI",
       readTime: "15分",
-      date: "2024年6月1日",
+      date: "2025年11月3日",
+      isNew: true,
+      isPopular: true,
       content: `
         <div class="prose max-w-none">
           <p class="text-lg leading-relaxed mb-6">人工知能（AI）は、投資の世界でも急速に普及しています。高度なアルゴリズムと膨大なデータ処理能力により、従来の投資手法では見逃しがちなパターンや機会を捉えることが可能になっています。ここでは、AI投資の基礎知識から実践的な活用法まで詳しく解説します。</p>
@@ -154,6 +156,7 @@ const Articles = () => {
       category: "暗号資産",
       readTime: "12分",
       date: "2024年5月20日",
+      isPopular: true,
       content: `
         <p>2024年は暗号資産市場にとって画期的な年となっています。AI技術の進化に伴い、AI関連トークンが注目を集めています。特に、人工知能の開発を支援するプラットフォームトークンや、AIを活用したDeFiプロトコルが市場を席巻しています。</p>
         
@@ -183,6 +186,7 @@ const Articles = () => {
       category: "投資戦略",
       readTime: "10分",
       date: "2024年5月15日",
+      isPopular: true,
       content: `
         <p>金利は経済全体に大きな影響を与える重要な指標であり、個人投資家にとっても資産運用戦略を考える上で欠かせない要素です。2024年現在、世界の主要国では異なる金利政策が採られていますが、それぞれが投資環境にどのような影響を及ぼしているのでしょうか。</p>
         
@@ -216,6 +220,7 @@ const Articles = () => {
       category: "投資戦略",
       readTime: "15分",
       date: "2024年5月10日",
+      isPopular: true,
       content: `
         <p>人工知能（AI）は、投資の世界でも急速に普及しています。高度なアルゴリズムと膨大なデータ処理能力により、従来の投資手法では見逃しがちなパターンや機会を捉えることが可能になっています。ここでは、AIを活用した投資戦略の実際について詳しく解説します。</p>
         
@@ -248,6 +253,7 @@ const Articles = () => {
       category: "NISA",
       readTime: "8分",
       date: "2024年1月15日",
+      isPopular: true,
       content: `
         <p>2024年から新NISA制度が始まりました。年間180万円の非課税枠（うち120万円が分配金・配当金、60万円が譲渡益）が導入され、従来のNISAとつみたてNISAが統合されました。新NISAは、従来の制度のメリットを活かしつつ、より柔軟な運用が可能になっています。</p>
         
@@ -287,6 +293,7 @@ const Articles = () => {
       category: "株式投資",
       readTime: "10分",
       date: "2024年1月12日",
+      isPopular: true,
       content: `
         <p>株式投資は、多くの人々が資産形成のために選ぶ投資方法の一つです。しかし、初めて株式投資を始める方にとっては、何から始めれば良いのかわからないという人も多いのではないでしょうか。ここでは、株式投資の始め方について、基礎からわかりやすく解説します。</p>
         
@@ -326,6 +333,7 @@ const Articles = () => {
       category: "投資信託",
       readTime: "7分",
       date: "2024年1月10日",
+      isPopular: true,
       content: `
         <p>投資信託とは、多くの投資家の資金を pooling して、プロのファンドマネージャーに運用を委ねる仕組みです。個人投資家が直接株式や債券を購入するよりも、手軽に分散投資を行うことができるのが特徴です。</p>
         
@@ -360,7 +368,9 @@ const Articles = () => {
       excerpt: "移動平均線、RSI、MACDなど主要なテクニカル指標の使い方と活用ポイントを徹底解説。チャート分析の基本をマスターして投資スキルをアップさせましょう。",
       category: "インジケータ",
       readTime: "18分",
-      date: "2024年6月5日",
+      date: "2025年11月3日",
+      isNew: true,
+      isPopular: true,
       content: `
         <div class="prose max-w-none">
           <p class="text-lg leading-relaxed mb-6">テクニカルインジケーターは、価格変動や取引量の統計的分析を通じて、将来の価格変動を予測するための強力なツールです。ここでは、初心者から上級者まで使える主要なテクニカル指標を徹底解説します。</p>
@@ -551,7 +561,9 @@ const Articles = () => {
       excerpt: "無料で使える人気チャート分析ツール「トレーディングビュー」の基本操作を解説します。",
       category: "トレーディングビュー",
       readTime: "15分",
-      date: "2024年6月10日",
+      date: "2025年11月3日",
+      isNew: true,
+      isPopular: true,
       content: `
         <div class="prose max-w-none">
           <p class="text-lg leading-relaxed mb-6">トレーディングビューは、世界中の投資家に広く利用されている無料のチャート分析ツールです。豊富なテクニカル指標、直感的なインターフェース、強力なコミュニティ機能を備えており、初心者からプロトレーダーまで幅広く利用されています。</p>
@@ -822,10 +834,11 @@ const Articles = () => {
                     <CardHeader>
                       <div className="flex items-center justify-between mb-3">
                         <Badge variant="secondary">{article.category}</Badge>
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Clock className="h-3 w-3" />
-                          {article.readTime}
-                        </div>
+                        {article.isNew && (
+                          <Badge className="ml-2" style={{ backgroundColor: '#FFA500' }}>
+                            New
+                          </Badge>
+                        )}
                       </div>
                       <CardTitle className="text-xl line-clamp-2">{article.title}</CardTitle>
                     </CardHeader>
@@ -836,10 +849,12 @@ const Articles = () => {
                           <Calendar className="h-4 w-4" />
                           <span>{article.date}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <TrendingUp className="h-4 w-4" />
-                          <span>人気記事</span>
-                        </div>
+                        {article.isPopular && (
+                          <div className="flex items-center gap-1">
+                            <TrendingUp className="h-4 w-4" />
+                            <span>人気記事</span>
+                          </div>
+                        )}
                       </div>
                       <button 
                         className="w-full mt-6 px-4 py-2 bg-blue-100 text-primary rounded-md hover:bg-blue-200 transition-colors"
