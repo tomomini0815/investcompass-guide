@@ -145,7 +145,7 @@ const Nisa = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <Button asChild size="lg" className="px-8 py-6 text-lg hover:scale-105 transition-transform">
-                <Link to="/#診断">投資診断を始める</Link>
+                <a href="/#診断">投資診断を始める</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="px-8 py-6 text-lg hover:scale-105 transition-transform">
                 <Link to="/comparison">証券会社を比較</Link>

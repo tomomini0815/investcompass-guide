@@ -423,12 +423,9 @@ const Index = () => {
 
   // ページ遷移後に投資診断セクションにスクロールする
   useEffect(() => {
-    // 既にスクロール済みの場合は処理をスキップ
-    if (hasScrolledRef.current) return;
-    
     // ハッシュが#診断の場合、またはlocation.state.scrollToDiagnosticがtrueの場合にスクロール
     if (location.hash === '#診断' || (location.state && location.state.scrollToDiagnostic)) {
-      // 少し遅延させてからスクロール（ページが完全にロードされるのを待つため）
+      // ページが完全にロードされるのを待つため、より長い遅延を設定
       const timer = setTimeout(() => {
         const element = document.getElementById("診断");
         if (element) {
@@ -442,11 +439,8 @@ const Index = () => {
             top: offsetPosition,
             behavior: "smooth"
           });
-          
-          // スクロール済みフラグを立てる
-          hasScrolledRef.current = true;
         }
-      }, 300);
+      }, 500); // 500msの遅延を設定
       
       return () => clearTimeout(timer);
     }
