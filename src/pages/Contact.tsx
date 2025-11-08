@@ -29,14 +29,20 @@ const Contact = () => {
               {/* お問い合わせフォーム */}
               <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 p-8 rounded-lg">
                 <h2 className="text-2xl font-bold mb-6">お問い合わせフォーム</h2>
-                <form className="space-y-6">
+                <form 
+                  action="https://formspree.io/f/xvgdpkpe" 
+                  method="POST"
+                  className="space-y-6"
+                >
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">お名前</label>
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="山田太郎"
+                      required
                     />
                   </div>
                   
@@ -45,8 +51,10 @@ const Contact = () => {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="example@email.com"
+                      required
                     />
                   </div>
                   
@@ -55,8 +63,10 @@ const Contact = () => {
                     <input
                       type="text"
                       id="subject"
+                      name="subject"
                       className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="お問い合わせ内容"
+                      required
                     />
                   </div>
                   
@@ -64,9 +74,11 @@ const Contact = () => {
                     <label htmlFor="message" className="block text-sm font-medium mb-2">メッセージ</label>
                     <textarea
                       id="message"
+                      name="message"
                       rows={5}
                       className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="お問い合わせ内容を詳しくご記入ください"
+                      required
                     ></textarea>
                   </div>
                   
