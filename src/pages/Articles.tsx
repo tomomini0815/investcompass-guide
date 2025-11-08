@@ -6,9 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Clock, TrendingUp, Calendar } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { useState, useMemo } from "react";
 
 const Articles = () => {
   const navigate = useNavigate();
+  const [sortOption, setSortOption] = useState("newest"); // newest, oldest, popular, category
+
   const articles = [
     {
       id: "ai-investment-fundamentals",
@@ -771,6 +774,49 @@ const Articles = () => {
     },
   ];
 
+  // 記事を並べ替えるロジック
+  const sortedArticles = useMemo(() => {
+    let sorted = [...articles];
+    
+    switch (sortOption) {
+      case "newest":
+        // 新着順（日付の降順）
+        sorted.sort((a, b) => {
+          // dateプロパティをDateオブジェクトに変換
+          const dateA = new Date(a.date.replace("年", "-").replace("月", "-").replace("日", ""));
+          const dateB = new Date(b.date.replace("年", "-").replace("月", "-").replace("日", ""));
+          return dateB.getTime() - dateA.getTime();
+        });
+        break;
+      case "oldest":
+        // 古い順（日付の昇順）
+        sorted.sort((a, b) => {
+          const dateA = new Date(a.date.replace("年", "-").replace("月", "-").replace("日", ""));
+          const dateB = new Date(b.date.replace("年", "-").replace("月", "-").replace("日", ""));
+          return dateA.getTime() - dateB.getTime();
+        });
+        break;
+      case "popular":
+        // 人気順（isPopularがtrueのものを先に、isNewのものを次に）
+        sorted.sort((a, b) => {
+          if (a.isPopular && !b.isPopular) return -1;
+          if (!a.isPopular && b.isPopular) return 1;
+          if (a.isNew && !b.isNew) return -1;
+          if (!a.isNew && b.isNew) return 1;
+          return 0;
+        });
+        break;
+      case "category":
+        // カテゴリ順（アルファベット順）
+        sorted.sort((a, b) => a.category.localeCompare(b.category));
+        break;
+      default:
+        break;
+    }
+    
+    return sorted;
+  }, [articles, sortOption]);
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -821,6 +867,27 @@ const Articles = () => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
               最新の投資ニュースやテクニカル分析をチェック
             </p>
+            
+            {/* 並べ替えセレクトボックス */}
+            <div className="mt-8 flex justify-center">
+              <div className="relative">
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                >
+                  <option value="newest">新着順</option>
+                  <option value="oldest">古い順</option>
+                  <option value="popular">人気順</option>
+                  <option value="category">カテゴリ順</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -829,7 +896,7 @@ const Articles = () => {
           <div className="container mx-auto px-8">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {articles.map((article) => (
+                {sortedArticles.map((article) => (
                   <Card key={article.id} className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
                     <CardHeader>
                       <div className="flex items-center justify-between mb-3">
