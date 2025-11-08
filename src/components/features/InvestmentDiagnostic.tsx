@@ -33,6 +33,16 @@ const InvestmentDiagnostic = () => {
     investmentPeriod: '',
     investmentPurpose: ''
   });
+  
+  // FX計算ツール専用の入力状態を追加
+  const [fxInputs, setFxInputs] = useState({
+    currencyPair: 'USD/JPY',
+    lotSize: '',
+    entryPrice: '',
+    exitPrice: '',
+    leverage: '1',
+    currency: 'JPY'
+  });
 
   // 積立投資シミュレーションの実行
   const runSipSimulation = () => {
@@ -105,29 +115,33 @@ const InvestmentDiagnostic = () => {
   // FX計算の実行
   const runRiskAssessment = () => {
     // FX計算ロジック
-    const currencyPair = riskInputs.riskTolerance;
-    const lotSize = parseFloat(riskInputs.investmentPeriod) || 0;
-    const entryPrice = parseFloat(riskInputs.investmentPurpose) || 0;
-    const exitPrice = parseFloat(sipInputs.expectedReturn) || 0;
-    const leverage = parseInt(stockInputs.shares) || 1;
-    const currency = stockInputs.stockPrice || 'USD';
+    const currencyPair = fxInputs.currencyPair;
+    const lotSize = parseFloat(fxInputs.lotSize) || 0;
+    const entryPrice = parseFloat(fxInputs.entryPrice) || 0;
+    const exitPrice = parseFloat(fxInputs.exitPrice) || 0;
+    const leverage = parseInt(fxInputs.leverage) || 1;
+    const currency = fxInputs.currency || 'USD';
     
-    // 通貨ペアごとの1pipの価値（10000通貨ロット基準）
+    // 通貨ペアごとの1pipの価値（10,000通貨ロット基準）
     const pipValues: Record<string, number> = {
-      'USD/JPY': 1000,
-      'EUR/JPY': 1000,
-      'GBP/JPY': 1000,
-      'AUD/JPY': 1000
+      'USD/JPY': 100,  // 10,000通貨で100円
+      'EUR/JPY': 100,
+      'GBP/JPY': 100,
+      'AUD/JPY': 100
     };
     
-    const pipValue = pipValues[currencyPair] || 1000;
+    // JPYペアの場合は価格差に100をかける（小数点第2位まで）
+    // それ以外のペアは価格差に10000をかける（小数点第4位まで）
     const priceDifference = exitPrice - entryPrice;
-    
-    // JPYペアの場合はpipの小数点が第2位なので調整
     const pipDifference = currencyPair.includes('JPY') ? priceDifference * 100 : priceDifference * 10000;
     
-    // 利益/損失計算
-    const profit = pipDifference * pipValue * lotSize;
+    // 1pipの価値を取得（10,000通貨ロット基準）
+    const pipValuePer10kLot = pipValues[currencyPair] || 100;
+    
+    // 実際のロット数で利益/損失を計算
+    // lotSizeは実際のロット数（例：0.1ロット、1.0ロットなど）
+    // 1ロット = 10,000通貨なので、pipDifference * pipValuePer10kLot * lotSizeで計算
+    const profit = pipDifference * pipValuePer10kLot * lotSize;
     
     // 取引手数料（10,000通貨あたり500円を基準）
     const fee = (lotSize * 500).toFixed(0);
@@ -135,8 +149,8 @@ const InvestmentDiagnostic = () => {
     // 必要証拠金計算（10,000通貨あたり100,000円を基準）
     const margin = ((lotSize * 100000) / leverage).toFixed(0);
     
-    // リスクリワード比の計算（簡略化）
-    const riskRewardRatio = Math.abs(profit / 1000).toFixed(2);
+    // リスクリワード比の計算（利益/損失の絶対値 ÷ 取引手数料）
+    const riskRewardRatio = (Math.abs(profit) / parseFloat(fee)).toFixed(2);
     
     // 1日あたりのスワップポイント（10,000通貨あたり100円を基準）
     const swap = (lotSize * 100).toFixed(0);
@@ -848,8 +862,8 @@ const InvestmentDiagnostic = () => {
                         <select
                           id="currencyPair"
                           className="w-full px-3 py-2 border border-input rounded-md"
-                          value={riskInputs.riskTolerance}
-                          onChange={(e) => setRiskInputs({ ...riskInputs, riskTolerance: e.target.value })}
+                          value={fxInputs.currencyPair}
+                          onChange={(e) => setFxInputs({ ...fxInputs, currencyPair: e.target.value })}
                         >
                           <option value="USD/JPY">USD/JPY（ドル/円）</option>
                           <option value="EUR/JPY">EUR/JPY（ユーロ/円）</option>
@@ -866,8 +880,8 @@ const InvestmentDiagnostic = () => {
                           step="0.01"
                           className="w-full px-3 py-2 border border-input rounded-md"
                           placeholder="例: 0.1"
-                          value={riskInputs.investmentPeriod}
-                          onChange={(e) => setRiskInputs({ ...riskInputs, investmentPeriod: e.target.value })}
+                          value={fxInputs.lotSize}
+                          onChange={(e) => setFxInputs({ ...fxInputs, lotSize: e.target.value })}
                         />
                       </div>
                       <div>
@@ -879,8 +893,8 @@ const InvestmentDiagnostic = () => {
                           step="0.001"
                           className="w-full px-3 py-2 border border-input rounded-md"
                           placeholder="例: 110.000"
-                          value={riskInputs.investmentPurpose}
-                          onChange={(e) => setRiskInputs({ ...riskInputs, investmentPurpose: e.target.value })}
+                          value={fxInputs.entryPrice}
+                          onChange={(e) => setFxInputs({ ...fxInputs, entryPrice: e.target.value })}
                         />
                       </div>
                       <div>
@@ -892,8 +906,8 @@ const InvestmentDiagnostic = () => {
                           step="0.001"
                           className="w-full px-3 py-2 border border-input rounded-md"
                           placeholder="例: 111.000"
-                          value={sipInputs.expectedReturn}
-                          onChange={(e) => setSipInputs({ ...sipInputs, expectedReturn: e.target.value })}
+                          value={fxInputs.exitPrice}
+                          onChange={(e) => setFxInputs({ ...fxInputs, exitPrice: e.target.value })}
                         />
                       </div>
                       <div>
@@ -902,8 +916,8 @@ const InvestmentDiagnostic = () => {
                         <select
                           id="leverage"
                           className="w-full px-3 py-2 border border-input rounded-md"
-                          value={stockInputs.shares}
-                          onChange={(e) => setStockInputs({ ...stockInputs, shares: e.target.value })}
+                          value={fxInputs.leverage}
+                          onChange={(e) => setFxInputs({ ...fxInputs, leverage: e.target.value })}
                         >
                           <option value="1">1:1（レバレッジなし）</option>
                           <option value="10">1:10（10倍）</option>
@@ -919,8 +933,8 @@ const InvestmentDiagnostic = () => {
                         <select
                           id="currency"
                           className="w-full px-3 py-2 border border-input rounded-md"
-                          value={stockInputs.stockPrice}
-                          onChange={(e) => setStockInputs({ ...stockInputs, stockPrice: e.target.value })}
+                          value={fxInputs.currency}
+                          onChange={(e) => setFxInputs({ ...fxInputs, currency: e.target.value })}
                         >
                           <option value="USD">USD（米ドル）</option>
                           <option value="JPY">JPY（日本円）</option>
@@ -933,12 +947,30 @@ const InvestmentDiagnostic = () => {
                       <div id="risk-result" className="bg-purple-50 p-4 rounded-lg mt-3 sm:mt-4">
                         <h5 className="font-bold text-purple-800 mb-2">FX計算結果</h5>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                          <p className="font-semibold">利益/損失: <span className="font-normal">{calculationResult.profit}円</span></p>
-                          <p className="font-semibold">取引手数料: <span className="font-normal">{calculationResult.fee}円</span></p>
-                          <p className="font-semibold">必要証拠金: <span className="font-normal">{calculationResult.margin}円</span></p>
-                          <p className="font-semibold">リスクリワード比: <span className="font-normal">{calculationResult.riskRewardRatio}</span></p>
-                          <p className="font-semibold">1日スワップ: <span className="font-normal">{calculationResult.swap}円</span></p>
-                          <p className="font-semibold">総利益/損失: <span className="font-normal">{calculationResult.totalProfit}円</span></p>
+                          <div>
+                            <p className="font-semibold">利益/損失: <span className="font-normal">{calculationResult.profit}円</span></p>
+                            <p className="text-xs text-muted-foreground">計算式: (イグジット価格 - エントリー価格) × 1pipの価値 × ロット数</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold">取引手数料: <span className="font-normal">{calculationResult.fee}円</span></p>
+                            <p className="text-xs text-muted-foreground">10,000通貨あたり500円を基準</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold">必要証拠金: <span className="font-normal">{calculationResult.margin}円</span></p>
+                            <p className="text-xs text-muted-foreground">計算式: (ロット数 × 100,000) ÷ レバレッジ</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold">リスクリワード比: <span className="font-normal">{calculationResult.riskRewardRatio}</span></p>
+                            <p className="text-xs text-muted-foreground">利益/損失の絶対値 ÷ 取引手数料</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold">1日スワップ: <span className="font-normal">{calculationResult.swap}円</span></p>
+                            <p className="text-xs text-muted-foreground">10,000通貨あたり100円を基準</p>
+                          </div>
+                          <div>
+                            <p className="font-semibold">総利益/損失: <span className="font-normal">{calculationResult.totalProfit}円</span></p>
+                            <p className="text-xs text-muted-foreground">計算式: 利益/損失 - 取引手数料</p>
+                          </div>
                         </div>
                         <div className="mt-3 p-3 bg-yellow-50 rounded">
                           <p className="font-semibold text-yellow-800">リスク管理のポイント:</p>
