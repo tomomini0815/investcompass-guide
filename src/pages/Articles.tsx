@@ -11,6 +11,7 @@ import { useState, useMemo } from "react";
 const Articles = () => {
   const navigate = useNavigate();
   const [sortOption, setSortOption] = useState("newest"); // newest, oldest, popular, category
+  const [selectedCategory, setSelectedCategory] = useState("all"); // all, 投資AI, 暗号資産, 投資戦略, NISA, 株式投資, 投資信託, インジケータ, トレーディングビュー, FX
 
   const articles = [
     {
@@ -774,9 +775,21 @@ const Articles = () => {
     },
   ];
 
-  // 記事を並べ替えるロジック
-  const sortedArticles = useMemo(() => {
-    let sorted = [...articles];
+  // 利用可能なカテゴリを抽出
+  const categories = useMemo(() => {
+    const uniqueCategories = [...new Set(articles.map(article => article.category))];
+    return ["all", ...uniqueCategories];
+  }, [articles]);
+
+  // 記事をフィルタリングして並べ替えるロジック
+  const filteredAndSortedArticles = useMemo(() => {
+    // カテゴリでフィルタリング
+    let filtered = selectedCategory === "all" 
+      ? articles 
+      : articles.filter(article => article.category === selectedCategory);
+    
+    // 並べ替え
+    let sorted = [...filtered];
     
     switch (sortOption) {
       case "newest":
@@ -815,7 +828,7 @@ const Articles = () => {
     }
     
     return sorted;
-  }, [articles, sortOption]);
+  }, [articles, sortOption, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -874,9 +887,27 @@ const Articles = () => {
         <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-6xl mx-auto">
-              {/* 並べ替えセレクトボックスを記事カードのすぐ上の左側に配置 */}
-              <div className="mb-6">
-                <div className="relative inline-block">
+              {/* フィルターと並べ替えセレクトボックスを記事カードのすぐ上の左側に配置 */}
+              <div className="mb-6 flex flex-wrap items-center gap-4">
+                {/* カテゴリフィルター */}
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                        selectedCategory === category
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted text-muted-foreground hover:bg-muted/80"
+                      }`}
+                    >
+                      {category === "all" ? "すべて" : category}
+                    </button>
+                  ))}
+                </div>
+                
+                {/* 並べ替えセレクトボックス */}
+                <div className="relative">
                   <select
                     value={sortOption}
                     onChange={(e) => setSortOption(e.target.value)}
@@ -896,7 +927,7 @@ const Articles = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {sortedArticles.map((article) => (
+                {filteredAndSortedArticles.map((article) => (
                   <Card key={article.id} className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
                     <CardHeader>
                       <div className="flex items-center justify-between mb-3">
