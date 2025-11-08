@@ -15,7 +15,6 @@ const AIPortfolioOptimization = () => {
     title: "AIによるポートフォリオ最適化の実践",
     excerpt: "機械学習と最適化アルゴリズムを使用して、リスクとリターンのバランスを取った最適な資産配分を実現する方法を解説します。",
     category: "投資AI",
-    readTime: "18分",
     date: "2024年6月27日",
     content: `
       <div class="prose max-w-none">
@@ -302,10 +301,6 @@ def risk_parity_weights(cov_matrix, max_iter=100, tolerance=1e-6):
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
                     <span>{article.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{article.readTime}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <TrendingUp className="h-4 w-4" />

@@ -18,7 +18,6 @@ const GuideDetail = () => {
       title: "【2024年最新版】NISA完全ガイド：初心者が知るべき全て",
       category: "NISA",
       date: "2025年10月30日",
-      readTime: "8分",
       content: `
         <h2 id="nisaとは" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">NISAとは？</h2>
         <p class="mb-8 text-base leading-relaxed">NISA（ニーサ：少額投資非課税制度）は、投資で得た利益が非課税になる制度です。2024年から新しいNISA制度が始まり、より使いやすくなりました。</p>
@@ -70,7 +69,6 @@ const GuideDetail = () => {
       title: "株式投資の始め方：証券口座開設から銘柄選びまで",
       category: "株式投資",
       date: "2025年10月30日",
-      readTime: "10分",
       content: `
         <h2 id="株式投資とは" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">株式投資とは</h2>
         <p class="mb-8 text-base leading-relaxed">株式投資は、企業が発行する株式を購入し、その企業の成長や配当金によって利益を得る投資方法です。</p>
@@ -107,7 +105,6 @@ const GuideDetail = () => {
       title: "投資信託とは？メリット・デメリットと選び方のポイント",
       category: "投資信託",
       date: "2025年10月30日",
-      readTime: "7分",
       content: `
         <h2 id="投資信託の基礎知識" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">投資信託の基礎知識</h2>
         <p class="mb-8 text-base leading-relaxed">投資信託は、多くの投資家から集めた資金を、専門家が株式や債券などに投資・運用する金融商品です。</p>
@@ -136,7 +133,6 @@ const GuideDetail = () => {
       title: "投資の基礎知識：初心者が必ず知っておくべきポイント",
       category: "投資基礎",
       date: "2025年10月30日",
-      readTime: "12分",
       content: `
         <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 mb-8">
           <div class="flex items-start gap-3">
@@ -354,10 +350,6 @@ const GuideDetail = () => {
               <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border border-primary/20">
                 <Calendar className="h-4 w-4 text-primary" />
                 <span>{article.date}</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border border-primary/20">
-                <Clock className="h-4 w-4 text-secondary" />
-                <span>読了時間: {article.readTime}</span>
               </div>
             </div>
           </div>

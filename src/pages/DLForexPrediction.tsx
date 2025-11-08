@@ -15,7 +15,6 @@ const DLForexPrediction = () => {
     title: "ディープラーニングを用いた為替予測の実際",
     excerpt: "LSTMやTransformerなどの深層学習モデルを使用して、為替相場の動向を予測する実践的なアプローチを解説します。",
     category: "投資AI",
-    readTime: "22分",
     date: "2024年6月26日",
     content: `
       <div class="prose max-w-none">
@@ -264,10 +263,6 @@ def predict_with_uncertainty(model, X, n_iter=100):
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
                     <span>{article.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{article.readTime}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <TrendingUp className="h-4 w-4" />

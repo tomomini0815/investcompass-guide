@@ -8,7 +8,6 @@ interface ArticleCardProps {
   title: string;
   excerpt: string;
   category: string;
-  readTime: string;
   date: string;
   thumbnail?: string;
 }
@@ -18,7 +17,6 @@ const ArticleCard = ({
   title,
   excerpt,
   category,
-  readTime,
   date,
   thumbnail,
 }: ArticleCardProps) => {
@@ -37,10 +35,6 @@ const ArticleCard = ({
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between mb-2">
             <Badge variant="secondary">{category}</Badge>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Clock className="h-3 w-3" />
-              {readTime}
-            </div>
           </div>
           <h3 className="font-bold text-lg leading-tight line-clamp-2">{title}</h3>
         </CardHeader>

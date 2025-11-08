@@ -21,7 +21,6 @@ const Articles = () => {
       title: "AI投資の基礎知識：アルゴリズム取引からロボアドバイザーまで完全解説",
       excerpt: "AIがどのように投資に活用されているのか、基礎から実践的な活用法まで詳しく解説します。初心者から上級者まで使えるAI投資手法を徹底紹介。",
       category: "投資AI",
-      readTime: "15分",
       date: "2025年11月3日",
       isNew: true,
       isPopular: true,
@@ -160,7 +159,6 @@ const Articles = () => {
       title: "【2024年最新】暗号資産投資トレンド：AIコインからDeFiまで",
       excerpt: "2024年の暗号資産市場の最新動向を徹底解説。AI関連トークン、DeFi、NFTの今後を予測します。",
       category: "暗号資産",
-      readTime: "12分",
       date: "2024年5月20日",
       isPopular: true,
       content: `
@@ -190,7 +188,6 @@ const Articles = () => {
       title: "金利変動が投資に与える影響と対策：2024年版",
       excerpt: "日本銀行の金融政策が個人投資家に与える影響と、各資産クラスへの対応策を詳しく解説します。",
       category: "投資戦略",
-      readTime: "10分",
       date: "2024年5月15日",
       isPopular: true,
       content: `
@@ -224,7 +221,6 @@ const Articles = () => {
       title: "AIを活用した投資戦略の実際：機械学習からファンダメンタル分析まで",
       excerpt: "人工知能を活用した投資手法を実例とともに解説。初心者から上級者まで使えるテクニックを紹介します。",
       category: "投資戦略",
-      readTime: "15分",
       date: "2024年5月10日",
       isPopular: true,
       content: `
@@ -257,7 +253,6 @@ const Articles = () => {
       title: "【2024年最新版】NISA完全ガイド：初心者が知るべき全て",
       excerpt: "新NISAが始まり、より使いやすくなった非課税制度。制度の概要から活用方法まで徹底解説します。",
       category: "NISA",
-      readTime: "8分",
       date: "2024年1月15日",
       isPopular: true,
       content: `
@@ -297,7 +292,6 @@ const Articles = () => {
       title: "株式投資の始め方：証券口座開設から銘柄選びまで",
       excerpt: "株式投資を始めたい方へ。口座開設の手順から最初の銘柄選びまで、わかりやすく解説します。",
       category: "株式投資",
-      readTime: "10分",
       date: "2024年1月12日",
       isPopular: true,
       content: `
@@ -337,7 +331,6 @@ const Articles = () => {
       title: "投資信託とは？メリット・デメリットと選び方のポイント",
       excerpt: "投資信託の基本から、自分に合った商品の選び方まで詳しく説明します。",
       category: "投資信託",
-      readTime: "7分",
       date: "2024年1月10日",
       isPopular: true,
       content: `
@@ -373,7 +366,6 @@ const Articles = () => {
       title: "主要トレーディングインジケーター完全ガイド：初心者から上級者まで使えるテクニカル指標",
       excerpt: "移動平均線、RSI、MACDなど主要なテクニカル指標の使い方と活用ポイントを徹底解説。チャート分析の基本をマスターして投資スキルをアップさせましょう。",
       category: "インジケータ",
-      readTime: "18分",
       date: "2025年11月3日",
       isNew: true,
       isPopular: true,
@@ -566,7 +558,6 @@ const Articles = () => {
       title: "トレーディングビュー入門：初心者が最初に覚えるべきチャート分析術",
       excerpt: "無料で使える人気チャート分析ツール「トレーディングビュー」の基本操作を解説します。",
       category: "トレーディングビュー",
-      readTime: "15分",
       date: "2025年11月3日",
       isNew: true,
       isPopular: true,
@@ -618,7 +609,6 @@ const Articles = () => {
       title: "暗号資産取引所比較：国内と海外の違いと選び方",
       excerpt: "国内と海外の暗号資産取引所の特徴と違いを比較し、自分に合った取引所の選び方を解説します。",
       category: "暗号資産",
-      readTime: "14分",
       date: "2024年6月15日",
       content: `
         <div class="prose max-w-none">
@@ -685,7 +675,6 @@ const Articles = () => {
       title: "FX業者比較：国内と海外の違いと選び方のポイント",
       excerpt: "国内と海外のFX業者の特徴と違いを比較し、自分に合ったFX業者の選び方を解説します。",
       category: "FX",
-      readTime: "13分",
       date: "2024年6月20日",
       content: `
         <div class="prose max-w-none">

@@ -127,7 +127,6 @@ const Crypto = () => {
       <h3 className="text-xl font-bold mb-4 mt-8">最新の規制動向</h3>
       <p className="mb-6 hover:bg-muted/50 transition-all duration-300 p-6 rounded-xl leading-relaxed shadow-sm hover:shadow-md">日本では2017年に暗号資産交換業者法が施行され、取引所の登録制が導入されました。また、2023年には仮想通貨の支払手段としての利用が全面的に禁止されました。規制は今後も変化していく可能性があるため、最新の情報を確認することが重要です。</p>
     `,
-      readTime: "9分",
       date: "2024年10月30日",
     },
     {

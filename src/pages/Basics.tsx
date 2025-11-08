@@ -45,7 +45,6 @@ const Basics = () => {
           </ul>
         </div>
       `,
-      readTime: "5分",
       date: "2024年10月30日",
     },
     {
@@ -113,7 +112,6 @@ const Basics = () => {
           <p class="text-blue-700 text-base leading-relaxed">自分のリスク許容度を理解することで、適切な投資商品を選ぶことができます。リスク許容度診断ツールを使って、自分の適した投資スタイルを見つけてみましょう。</p>
         </div>
       `,
-      readTime: "7分",
       date: "2024年10月30日",
     },
     {
@@ -166,7 +164,6 @@ const Basics = () => {
           <p class="text-green-700 text-base leading-relaxed">分散投資により、特定の資産や地域の不調による損失を他の資産の利益で補うことができ、全体のリスクを軽減できます。ただし、分散しすぎるとリターンも低下する可能性があるため、適度な分散が重要です。</p>
         </div>
       `,
-      readTime: "8分",
       date: "2024年10月30日",
     },
     {
@@ -231,7 +228,6 @@ const Basics = () => {
           <p class="text-purple-700 text-base leading-relaxed">長期投資の成功には、継続的な積立、分散投資、そして市場の変動に一喜一憂しない冷静な姿勢が重要です。感情に左右されず、計画的に投資を続けることが、資産形成の鍵となります。</p>
         </div>
       `,
-      readTime: "6分",
       date: "2024年10月30日",
     },
   ];
@@ -341,7 +337,6 @@ const Basics = () => {
                     />
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">📅 {article.date}</span>
-                      <span className="flex items-center gap-1">⏱️ {article.readTime}</span>
                     </div>
                   </CardContent>
                 </Card>
