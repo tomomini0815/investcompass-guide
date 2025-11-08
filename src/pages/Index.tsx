@@ -482,7 +482,7 @@ const Index = () => {
         <section className="py-16 sm:py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">あなたに最適な投資方法を診断</h2>
+              <h2 id="診断" className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">あなたに最適な投資方法を診断</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
                 簡単な質問に答えて、あなたに合った投資スタイルを見つけましょう
               </p>
