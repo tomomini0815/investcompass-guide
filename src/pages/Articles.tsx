@@ -867,27 +867,6 @@ const Articles = () => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
               最新の投資ニュースやテクニカル分析をチェック
             </p>
-            
-            {/* 並べ替えセレクトボックス */}
-            <div className="mt-8 flex justify-center">
-              <div className="relative">
-                <select
-                  value={sortOption}
-                  onChange={(e) => setSortOption(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                >
-                  <option value="newest">新着順</option>
-                  <option value="oldest">古い順</option>
-                  <option value="popular">人気順</option>
-                  <option value="category">カテゴリ順</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -895,6 +874,27 @@ const Articles = () => {
         <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-6xl mx-auto">
+              {/* 並べ替えセレクトボックスを記事カードのすぐ上の左側に配置 */}
+              <div className="mb-6">
+                <div className="relative inline-block">
+                  <select
+                    value={sortOption}
+                    onChange={(e) => setSortOption(e.target.value)}
+                    className="appearance-none bg-white border border-gray-300 rounded-lg py-2 px-3 pr-8 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  >
+                    <option value="newest">新着順</option>
+                    <option value="oldest">古い順</option>
+                    <option value="popular">人気順</option>
+                    <option value="category">カテゴリ順</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {sortedArticles.map((article) => (
                   <Card key={article.id} className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
