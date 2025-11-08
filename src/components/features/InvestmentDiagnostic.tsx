@@ -4,12 +4,167 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, ArrowLeft, CheckCircle2, RotateCcw, X } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, RotateCcw, X, TrendingUp, BarChart3, Shield, Calculator } from "lucide-react";
 
 const InvestmentDiagnostic = () => {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [result, setResult] = useState<string | null>(null);
+  const [showCalculator, setShowCalculator] = useState(false);
+  const [calculatorType, setCalculatorType] = useState<'sip' | 'stock' | 'risk'>('sip');
+  // 計算結果の状態を追加
+  const [calculationResult, setCalculationResult] = useState<any>(null);
+  // 入力値の状態を追加
+  const [sipInputs, setSipInputs] = useState({
+    monthlyInvestment: '',
+    expectedReturn: '',
+    investmentPeriod: '',
+    initialAmount: ''
+  });
+  const [stockInputs, setStockInputs] = useState({
+    stockPrice: '',
+    shares: '',
+    purchasePrice: '',
+    dividendYield: ''
+  });
+  // リスク評価ツールの選択状態を追加
+  const [riskInputs, setRiskInputs] = useState({
+    riskTolerance: '',
+    investmentPeriod: '',
+    investmentPurpose: ''
+  });
+
+  // 積立投資シミュレーションの実行
+  const runSipSimulation = () => {
+    const monthlyInvestment = parseFloat(sipInputs.monthlyInvestment) || 0;
+    const expectedReturn = parseFloat(sipInputs.expectedReturn) || 0;
+    const investmentPeriod = parseFloat(sipInputs.investmentPeriod) || 0;
+    const initialAmount = parseFloat(sipInputs.initialAmount) || 0;
+    
+    // 月利を計算
+    const monthlyRate = expectedReturn / 100 / 12;
+    // 総月数を計算
+    const totalMonths = investmentPeriod * 12;
+    
+    // 複利計算で将来価値を算出
+    let futureValue = initialAmount * Math.pow(1 + monthlyRate, totalMonths);
+    if (monthlyRate > 0) {
+      futureValue += monthlyInvestment * (Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate;
+    } else {
+      futureValue += monthlyInvestment * totalMonths;
+    }
+    
+    const totalInvestment = initialAmount + (monthlyInvestment * totalMonths);
+    const profit = futureValue - totalInvestment;
+    
+    setCalculationResult({
+      type: 'sip',
+      totalInvestment: totalInvestment.toLocaleString(),
+      futureValue: Math.round(futureValue).toLocaleString(),
+      profit: Math.round(profit).toLocaleString()
+    });
+  };
+
+  // 個別株投資シミュレーションの実行
+  const runStockSimulation = () => {
+    const stockPrice = parseFloat(stockInputs.stockPrice) || 0;
+    const shares = parseFloat(stockInputs.shares) || 0;
+    const purchasePrice = parseFloat(stockInputs.purchasePrice) || 0;
+    const dividendYield = parseFloat(stockInputs.dividendYield) || 0;
+    
+    const investmentAmount = purchasePrice * shares;
+    const currentValue = stockPrice * shares;
+    const profitLoss = currentValue - investmentAmount;
+    const dividendIncome = currentValue * (dividendYield / 100);
+    
+    setCalculationResult({
+      type: 'stock',
+      investmentAmount: investmentAmount.toLocaleString(),
+      currentValue: currentValue.toLocaleString(),
+      profitLoss: Math.round(profitLoss).toLocaleString(),
+      dividendIncome: Math.round(dividendIncome).toLocaleString()
+    });
+  };
+
+  // FX計算の実行
+  const runRiskAssessment = () => {
+    // FX計算ロジック
+    const currencyPair = riskInputs.riskTolerance;
+    const lotSize = parseFloat(riskInputs.investmentPeriod) || 0;
+    const entryPrice = parseFloat(riskInputs.investmentPurpose) || 0;
+    const exitPrice = parseFloat(sipInputs.expectedReturn) || 0;
+    const leverage = parseInt(stockInputs.shares) || 1;
+    const currency = stockInputs.stockPrice || 'USD';
+    
+    // 通貨ペアごとの1pipの価値（10000通貨ロット基準）
+    const pipValues: Record<string, number> = {
+      'USD/JPY': 1000,
+      'EUR/JPY': 1000,
+      'GBP/JPY': 1000,
+      'AUD/JPY': 1000
+    };
+    
+    const pipValue = pipValues[currencyPair] || 1000;
+    const priceDifference = exitPrice - entryPrice;
+    
+    // JPYペアの場合はpipの小数点が第2位なので調整
+    const pipDifference = currencyPair.includes('JPY') ? priceDifference * 100 : priceDifference * 10000;
+    
+    // 利益/損失計算
+    const profit = pipDifference * pipValue * lotSize;
+    
+    // 取引手数料（10,000通貨あたり500円を基準）
+    const fee = (lotSize * 500).toFixed(0);
+    
+    // 必要証拠金計算（10,000通貨あたり100,000円を基準）
+    const margin = ((lotSize * 100000) / leverage).toFixed(0);
+    
+    // リスクリワード比の計算（簡略化）
+    const riskRewardRatio = Math.abs(profit / 1000).toFixed(2);
+    
+    // 1日あたりのスワップポイント（10,000通貨あたり100円を基準）
+    const swap = (lotSize * 100).toFixed(0);
+    
+    // 総利益/損失（利益/損失 - 手数料）
+    const totalProfit = (profit - parseFloat(fee)).toFixed(0);
+    
+    // 初心者向けアドバイス
+    let advice = 'FX取引はリスクがあります。まずはデモ口座で練習してみましょう。';
+    
+    if (profit > 0) {
+      advice = '利益が出ていますが、利益確定のタイミングも重要です。';
+      if (parseFloat(totalProfit) < 0) {
+        advice += '手数料を考慮すると損失が出ています。取引コストも考慮した運用を心がけましょう。';
+      }
+    } else if (profit < 0) {
+      advice = '損失が出ています。損切りラインを設定し、損失を最小限に抑えましょう。';
+    }
+    
+    // レバレッジに関するアドバイス
+    if (leverage > 100) {
+      advice += '高レバレッジはリスクが高くなります。初心者には10倍以下のレバレッジをおすすめします。';
+    } else if (leverage > 25) {
+      advice += '中程度のレバレッジを使用しています。リスク管理に注意してください。';
+    } else {
+      advice += '適切なレバレッジを使用しています。';
+    }
+    
+    // 必要証拠金に関するアドバイス
+    if (parseFloat(margin) > 100000) {
+      advice += '必要証拠金が高額です。少額から始めるのが初心者にはおすすめです。';
+    }
+    
+    setCalculationResult({
+      type: 'risk',
+      profit: Math.round(profit).toLocaleString(),
+      fee: fee,
+      margin: margin,
+      riskRewardRatio: riskRewardRatio,
+      swap: swap,
+      totalProfit: totalProfit,
+      advice: advice
+    });
+  };
 
   const questions = [
     {
@@ -269,11 +424,11 @@ const InvestmentDiagnostic = () => {
         answer2: [firstAnswer2],
         answer3: [firstAnswer3],
         answer4: [firstAnswer4],
-        answer5: [firstAnswer5],
-        answer6: [firstAnswer6],
-        answer7: [firstAnswer7],
-        answer8: [firstAnswer8],
-        answer9: [firstAnswer9]
+          answer5: [firstAnswer5],
+          answer6: [firstAnswer6],
+          answer7: [firstAnswer7],
+          answer8: [firstAnswer8],
+          answer9: [firstAnswer9]
       }
     };
   };
@@ -306,6 +461,11 @@ const InvestmentDiagnostic = () => {
     setStep(0);
     setAnswers({});
     setResult(null);
+    // 診断セクションの上部にスクロール
+    const diagnosticSection = document.getElementById("診断");
+    if (diagnosticSection) {
+      diagnosticSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   if (result) {
@@ -326,11 +486,6 @@ const InvestmentDiagnostic = () => {
                 <p className="text-sm sm:text-base text-muted-foreground">{recommendation.description}</p>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <h4 className="font-bold text-blue-800 mb-2">ありがとうございます！</h4>
-                <p className="text-blue-700">この診断結果が参考になったでしょうか？具体的なアドバイスと業界別の推奨商品をご紹介します。</p>
-              </div>
-
               <div className="space-y-3">
                 {recommendation.features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-2 sm:gap-3">
@@ -338,6 +493,85 @@ const InvestmentDiagnostic = () => {
                     <span className="text-sm sm:text-base">{feature}</span>
                   </div>
                 ))}
+              </div>
+
+              {/* 計算ツールセクションをアドバイスセクションの上に配置 */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+                <h3 className="text-xl font-bold mb-4 text-center text-blue-800">投資シミュレーションツール</h3>
+                <p className="text-blue-700 text-center mb-6">
+                  各シミュレーションツールで将来の資産がどのようになるかを試算できます。
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card 
+                    className="border-2 hover:shadow-lg transition-shadow cursor-pointer hover:scale-105"
+                    onClick={() => {
+                      setCalculatorType('sip');
+                      setShowCalculator(true);
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-lg flex items-center gap-2">
+                        <TrendingUp className="h-5 w-5 text-blue-500" />
+                        積立投資シミュレータ
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        つみたてNISAや投資信託など、定期的な積立投資の効果をシミュレーションします。
+                      </p>
+                      <Button size="sm" className="w-full bg-orange-500 hover:bg-orange-600">
+                        使ってみる
+                      </Button>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card 
+                    className="border-2 hover:shadow-lg transition-shadow cursor-pointer hover:scale-105"
+                    onClick={() => {
+                      setCalculatorType('stock');
+                      setShowCalculator(true);
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-lg flex items-center gap-2">
+                        <BarChart3 className="h-5 w-5 text-green-500" />
+                        個別株投資シミュレータ
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        個別株への投資で期待されるリターンとリスクをシミュレーションします。
+                      </p>
+                      <Button size="sm" className="w-full bg-orange-500 hover:bg-orange-600">
+                        使ってみる
+                      </Button>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card 
+                    className="border-2 hover:shadow-lg transition-shadow cursor-pointer hover:scale-105"
+                    onClick={() => {
+                      setCalculatorType('risk');
+                      setShowCalculator(true);
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-lg flex items-center gap-2">
+                        <Shield className="h-5 w-5 text-purple-500" />
+                        FX計算ツール
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        FX（外国為替証拠金取引）の利益とリスクを簡単に計算できます。初心者でもわかりやすいように設計されています。
+                      </p>
+                      <Button size="sm" className="w-full bg-orange-500 hover:bg-orange-600">
+                        使ってみる
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -371,6 +605,328 @@ const InvestmentDiagnostic = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* 計算ツールモーダル */}
+        {showCalculator && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white border-b p-4 flex justify-between items-center rounded-t-xl">
+                <h3 className="text-xl font-bold">
+                  {calculatorType === 'sip' && '積立投資シミュレータ'}
+                  {calculatorType === 'stock' && '個別株投資シミュレータ'}
+                  {calculatorType === 'risk' && 'FX計算ツール'}
+                </h3>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  onClick={() => setShowCalculator(false)}
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+              <div className="p-6">
+                {calculatorType === 'sip' && (
+                  <div className="space-y-3">
+                    <p className="text-muted-foreground">つみたてNISAや投資信託など、定期的な積立投資の効果を簡単にシミュレーションできます。複利の力で資産がどのように増えていくかを試算しましょう。</p>
+                    
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      <h5 className="font-bold text-blue-800 mb-1">積立投資初心者向けガイド</h5>
+                      <ul className="list-disc pl-4 space-y-1 text-sm">
+                        <li>毎月の投資額：毎月積み立てる金額（例：1万円）</li>
+                        <li>期待リターン：年間の平均リターン（例：5%）</li>
+                        <li>投資期間：積立を続ける年数（例：30年）</li>
+                        <li>初期投資額：最初に投資する金額（例：10万円）</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <Label htmlFor="monthlyInvestment">毎月の投資額（円）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">毎月積み立てる金額（例：10000）</p>
+                        <input
+                          id="monthlyInvestment"
+                          type="number"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 10000"
+                          value={sipInputs.monthlyInvestment}
+                          onChange={(e) => setSipInputs({ ...sipInputs, monthlyInvestment: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="expectedReturn">期待リターン（%）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">年間の平均リターン（例：5.0）</p>
+                        <input
+                          id="expectedReturn"
+                          type="number"
+                          step="0.1"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 5.0"
+                          value={sipInputs.expectedReturn}
+                          onChange={(e) => setSipInputs({ ...sipInputs, expectedReturn: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="investmentPeriod">投資期間（年）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">積立を続ける年数（例：30）</p>
+                        <input
+                          id="investmentPeriod"
+                          type="number"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 10"
+                          value={sipInputs.investmentPeriod}
+                          onChange={(e) => setSipInputs({ ...sipInputs, investmentPeriod: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="initialAmount">初期投資額（円）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">最初に投資する金額（例：100000）</p>
+                        <input
+                          id="initialAmount"
+                          type="number"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 100000"
+                          value={sipInputs.initialAmount}
+                          onChange={(e) => setSipInputs({ ...sipInputs, initialAmount: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <Button className="w-full py-2 text-sm" onClick={runSipSimulation}>シミュレーションを実行</Button>
+                    {calculationResult && calculationResult.type === 'sip' && (
+                      <div className="bg-blue-50 p-3 rounded-lg">
+                        <h5 className="font-bold text-blue-800 mb-1">シミュレーション結果</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 text-sm">
+                          <p className="font-semibold">投資総額: <span className="font-normal">{calculationResult.totalInvestment}円</span></p>
+                          <p className="font-semibold">将来価値: <span className="font-normal">{calculationResult.futureValue}円</span></p>
+                          <p className="font-semibold">利益: <span className="font-normal">{calculationResult.profit}円</span></p>
+                        </div>
+                        <div className="mt-2 p-2 bg-yellow-50 rounded">
+                          <p className="font-semibold text-yellow-800 text-sm">投資アドバイス:</p>
+                          <p className="text-yellow-700 text-sm">
+                            {parseInt(calculationResult.profit.replace(/,/g, "")) > 0 
+                              ? "利益が出ています。複利の効果により、長期的な資産形成が期待できます。" 
+                              : "利益が少ないようです。投資期間を延ばすか、リターンの高い商品を検討してみましょう。"}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                
+                {calculatorType === 'stock' && (
+                  <div className="space-y-3">
+                    <p className="text-muted-foreground">個別株への投資で期待されるリターンとリスクを簡単にシミュレーションできます。株価の変動と配当収入による収益を試算しましょう。</p>
+                    
+                    <div className="bg-green-50 p-3 rounded-lg">
+                      <h5 className="font-bold text-green-800 mb-1">個別株投資初心者向けガイド</h5>
+                      <ul className="list-disc pl-4 space-y-1 text-sm">
+                        <li>株価：現在の株価（例：3000円）</li>
+                        <li>株数：購入する株の数（例：100株）</li>
+                        <li>購入価格：株を買った時の価格（例：2500円）</li>
+                        <li>配当利回り：年間の配当金の割合（例：2.5%）</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <Label htmlFor="stockPrice">株価（円）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">現在の株価（例：3000）</p>
+                        <input
+                          id="stockPrice"
+                          type="number"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 3000"
+                          value={stockInputs.stockPrice}
+                          onChange={(e) => setStockInputs({ ...stockInputs, stockPrice: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="shares">株数</Label>
+                        <p className="text-xs text-muted-foreground mb-1">購入する株の数（例：100）</p>
+                        <input
+                          id="shares"
+                          type="number"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 100"
+                          value={stockInputs.shares}
+                          onChange={(e) => setStockInputs({ ...stockInputs, shares: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="purchasePrice">購入価格（円）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">株を買った時の価格（例：2500）</p>
+                        <input
+                          id="purchasePrice"
+                          type="number"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 2500"
+                          value={stockInputs.purchasePrice}
+                          onChange={(e) => setStockInputs({ ...stockInputs, purchasePrice: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="dividendYield">配当利回り（%）</Label>
+                        <p className="text-xs text-muted-foreground mb-1">年間の配当金の割合（例：2.5）</p>
+                        <input
+                          id="dividendYield"
+                          type="number"
+                          step="0.1"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
+                          placeholder="例: 2.5"
+                          value={stockInputs.dividendYield}
+                          onChange={(e) => setStockInputs({ ...stockInputs, dividendYield: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <Button className="w-full py-2 text-sm" onClick={runStockSimulation}>シミュレーションを実行</Button>
+                    {calculationResult && calculationResult.type === 'stock' && (
+                      <div className="bg-green-50 p-3 rounded-lg">
+                        <h5 className="font-bold text-green-800 mb-1">シミュレーション結果</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 text-sm">
+                          <p className="font-semibold">投資総額: <span className="font-normal">{calculationResult.investmentAmount}円</span></p>
+                          <p className="font-semibold">評価損益: <span className="font-normal">{calculationResult.profitLoss}円</span></p>
+                          <p className="font-semibold">配当収入: <span className="font-normal">{calculationResult.dividendIncome}円</span></p>
+                        </div>
+                        <div className="mt-2 p-2 bg-yellow-50 rounded">
+                          <p className="font-semibold text-yellow-800 text-sm">投資アドバイス:</p>
+                          <p className="text-yellow-700 text-sm">
+                            {parseInt(calculationResult.profitLoss.replace(/,/g, "")) > 0 
+                              ? "評価損益がプラスです。株価が上がったことで利益が出ています。" 
+                              : "評価損益がマイナスです。株価が下がったことで損失が出ています。"}
+                            {parseInt(calculationResult.dividendIncome.replace(/,/g, "")) > 0 
+                              ? "また、配当収入も得られています。" 
+                              : "配当収入はまだ得られていません。"}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                
+                {calculatorType === 'risk' && (
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground">FX（外国為替証拠金取引）の利益とリスクを簡単に計算できます。実際の取引前にシミュレーションして、自分の投資計画を立てましょう。</p>
+                    
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h5 className="font-bold text-blue-800 mb-2">FX初心者向けガイド</h5>
+                      <ul className="list-disc pl-5 space-y-1 text-sm">
+                        <li>ロット数：取引の単位（0.1ロット = 1,000通貨）</li>
+                        <li>エントリー価格：買う時の価格</li>
+                        <li>イグジット価格：売る時の価格</li>
+                        <li>レバレッジ：少ないお金で大きな取引をする機能</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="currencyPair">通貨ペア</Label>
+                        <p className="text-xs text-muted-foreground mb-1">取引する通貨の組み合わせを選んでください</p>
+                        <select
+                          id="currencyPair"
+                          className="w-full px-3 py-2 border border-input rounded-md"
+                          value={riskInputs.riskTolerance}
+                          onChange={(e) => setRiskInputs({ ...riskInputs, riskTolerance: e.target.value })}
+                        >
+                          <option value="USD/JPY">USD/JPY（ドル/円）</option>
+                          <option value="EUR/JPY">EUR/JPY（ユーロ/円）</option>
+                          <option value="GBP/JPY">GBP/JPY（ポンド/円）</option>
+                          <option value="AUD/JPY">AUD/JPY（オーストラリアドル/円）</option>
+                        </select>
+                      </div>
+                      <div>
+                        <Label htmlFor="lotSize">ロット数</Label>
+                        <p className="text-xs text-muted-foreground mb-1">取引の単位（例：0.1 = 1,000通貨、1.0 = 10,000通貨）</p>
+                        <input
+                          id="lotSize"
+                          type="number"
+                          step="0.01"
+                          className="w-full px-3 py-2 border border-input rounded-md"
+                          placeholder="例: 0.1"
+                          value={riskInputs.investmentPeriod}
+                          onChange={(e) => setRiskInputs({ ...riskInputs, investmentPeriod: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="entryPrice">エントリー価格</Label>
+                        <p className="text-xs text-muted-foreground mb-1">買う時の為替レート（例：110.000）</p>
+                        <input
+                          id="entryPrice"
+                          type="number"
+                          step="0.001"
+                          className="w-full px-3 py-2 border border-input rounded-md"
+                          placeholder="例: 110.000"
+                          value={riskInputs.investmentPurpose}
+                          onChange={(e) => setRiskInputs({ ...riskInputs, investmentPurpose: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="exitPrice">イグジット価格</Label>
+                        <p className="text-xs text-muted-foreground mb-1">売る時の為替レート（例：111.000）</p>
+                        <input
+                          id="exitPrice"
+                          type="number"
+                          step="0.001"
+                          className="w-full px-3 py-2 border border-input rounded-md"
+                          placeholder="例: 111.000"
+                          value={sipInputs.expectedReturn}
+                          onChange={(e) => setSipInputs({ ...sipInputs, expectedReturn: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="leverage">レバレッジ</Label>
+                        <p className="text-xs text-muted-foreground mb-1">少ないお金で大きな取引をする倍率</p>
+                        <select
+                          id="leverage"
+                          className="w-full px-3 py-2 border border-input rounded-md"
+                          value={stockInputs.shares}
+                          onChange={(e) => setStockInputs({ ...stockInputs, shares: e.target.value })}
+                        >
+                          <option value="1">1:1（レバレッジなし）</option>
+                          <option value="10">1:10（10倍）</option>
+                          <option value="25">1:25（25倍）</option>
+                          <option value="50">1:50（50倍）</option>
+                          <option value="100">1:100（100倍）</option>
+                          <option value="200">1:200（200倍）</option>
+                        </select>
+                      </div>
+                      <div>
+                        <Label htmlFor="currency">基軸通貨</Label>
+                        <p className="text-xs text-muted-foreground mb-1">利益を計算する通貨</p>
+                        <select
+                          id="currency"
+                          className="w-full px-3 py-2 border border-input rounded-md"
+                          value={stockInputs.stockPrice}
+                          onChange={(e) => setStockInputs({ ...stockInputs, stockPrice: e.target.value })}
+                        >
+                          <option value="USD">USD（米ドル）</option>
+                          <option value="JPY">JPY（日本円）</option>
+                          <option value="EUR">EUR（ユーロ）</option>
+                        </select>
+                      </div>
+                    </div>
+                    <Button className="w-full" onClick={runRiskAssessment}>計算を実行</Button>
+                    {calculationResult && calculationResult.type === 'risk' && (
+                      <div className="bg-purple-50 p-4 rounded-lg">
+                        <h5 className="font-bold text-purple-800 mb-2">FX計算結果</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          <p className="font-semibold">利益/損失: <span className="font-normal">{calculationResult.profit}円</span></p>
+                          <p className="font-semibold">取引手数料: <span className="font-normal">{calculationResult.fee}円</span></p>
+                          <p className="font-semibold">必要証拠金: <span className="font-normal">{calculationResult.margin}円</span></p>
+                          <p className="font-semibold">リスクリワード比: <span className="font-normal">{calculationResult.riskRewardRatio}</span></p>
+                          <p className="font-semibold">1日スワップ: <span className="font-normal">{calculationResult.swap}円</span></p>
+                          <p className="font-semibold">総利益/損失: <span className="font-normal">{calculationResult.totalProfit}円</span></p>
+                        </div>
+                        <div className="mt-3 p-3 bg-yellow-50 rounded">
+                          <p className="font-semibold text-yellow-800">リスク管理のポイント:</p>
+                          <p className="text-yellow-700">{calculationResult.advice}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     );
   }
