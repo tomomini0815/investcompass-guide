@@ -212,7 +212,8 @@ const RiskToleranceDiagnosticPage = () => {
               })}
             </div>
           </div>
-          <CardTitle className="text-2xl">{currentQuestion.text}</CardTitle>
+          <CardTitle className="text-2xl">投資総合診断を開始</CardTitle>
+          <p className="text-muted-foreground">{currentQuestion.text}</p>
         </CardHeader>
         <CardContent className="space-y-6">
           <RadioGroup

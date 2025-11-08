@@ -27,13 +27,13 @@ const Header = () => {
 
   // 投資診断セクションにスクロールする関数
   const scrollToDiagnostic = () => {
-    // risk-assessmentページでない場合はrisk-assessmentページに移動
-    if (location.pathname !== "/tools/risk-assessment") {
-      navigate("/tools/risk-assessment#diagnostic-tool");
+    // トップページでない場合はトップページに移動
+    if (location.pathname !== "/") {
+      navigate("/#診断");
     } else {
       // ページ遷移後に診断ツールセクションにスクロール
       setTimeout(() => {
-        const element = document.getElementById("diagnostic-tool");
+        const element = document.getElementById("診断");
         if (element) {
           const headerHeight = document.querySelector('header')?.offsetHeight || 0;
           const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;

@@ -125,7 +125,27 @@ const InvestmentDiagnostic = () => {
         return {
           title: "つみたてNISA + インデックス投資",
           description: "初心者で安定志向のあなたには、つみたてNISAでインデックスファンドへの積立投資がおすすめです。",
-          features: ["月100円から始められる", "非課税枠を活用", "長期分散投資でリスク軽減"],
+          features: [
+            "月100円から始められる",
+            "非課税枠を活用",
+            "長期分散投資でリスク軽減",
+            "具体的な商品例：eMAXIS Slim 全世界株式（オールカントリー）",
+            "投資戦略：毎月10日に自動積立設定を推奨"
+          ],
+          industryAdvice: [
+            {
+              industry: "株式投資",
+              advice: "楽天証券やSBI証券など、手数料が安く初心者向けの証券会社で口座を開設しましょう。eMAXIS Slim 全世界株式（オールカントリー）を毎月1万円で積立投資します。",
+              buttonLabel: "証券会社を比較する",
+              buttonLink: "/comparison"
+            },
+            {
+              industry: "投資信託",
+              advice: "つみたてNISA枠を活用して、eMAXIS Slim 全世界株式（オールカントリー）を毎月積立投資します。分散投資によりリスクを軽減できます。",
+              buttonLabel: "証券会社を比較する",
+              buttonLink: "/comparison"
+            }
+          ],
           selectedAnswers: { 
             answer0: [firstAnswer0], 
             answer1: [firstAnswer1], 
@@ -143,7 +163,27 @@ const InvestmentDiagnostic = () => {
       return {
         title: "NISA + バランス型投資信託",
         description: "初心者のあなたには、NISAを活用したバランス型投資信託がおすすめです。",
-        features: ["年120万円の非課税枠", "株式と債券のバランス投資", "プロによる運用"],
+        features: [
+          "年120万円の非課税枠",
+          "株式と債のバランス投資",
+          "プロによる運用",
+          "具体的な商品例：ニッセイ・バランスファンド",
+          "投資戦略：毎月5日に自動積立設定を推奨"
+        ],
+        industryAdvice: [
+          {
+            industry: "株式投資",
+            advice: "SBI証券や楽天証券などでNISA口座を開設し、ニッセイ・バランスファンドを毎月1万円で積立投資します。株式と債券のバランスにより、リスクとリターンのバランスが取れています。",
+            buttonLabel: "証券会社を比較する",
+            buttonLink: "/comparison"
+          },
+          {
+            industry: "投資信託",
+            advice: "NISA枠を活用して、ニッセイ・バランスファンドを毎月積立投資します。プロのファンドマネージャーによる運用により、手間をかけずに資産を増やせます。",
+            buttonLabel: "証券会社を比較する",
+            buttonLink: "/comparison"
+          }
+        ],
         selectedAnswers: { 
           answer0: [firstAnswer0], 
           answer1: [firstAnswer1], 
@@ -163,7 +203,27 @@ const InvestmentDiagnostic = () => {
       return {
         title: "個別株投資 + 成長株戦略",
         description: "積極的なあなたには、成長性の高い個別株への投資がおすすめです。",
-        features: ["高いリターンを狙える", "企業分析スキルが身につく", "配当金も期待できる"],
+        features: [
+          "高いリターンを狙える",
+          "企業分析スキルが身につく",
+          "配当金も期待できる",
+          "具体的な銘柄例：ソフトバンクグループ、メルカリ",
+          "投資戦略：四半期ごとの業績レビューと調整を推奨"
+        ],
+        industryAdvice: [
+          {
+            industry: "株式投資",
+            advice: "SBI証券やマネックス証券などで口座を開設し、ソフトバンクグループやメルカリなどの成長株を購入します。四半期ごとに業績をレビューし、必要に応じて売買します。",
+            buttonLabel: "証券会社を比較する",
+            buttonLink: "/comparison"
+          },
+          {
+            industry: "FX",
+            advice: "積極的な投資家には、為替相場の変動を活用したスキャルピングやデイトレードがおすすめです。GMOクリック証券やDMM FXなどの低スプレッドな業者を利用しましょう。",
+            buttonLabel: "FX業者を比較する",
+            buttonLink: "/fx-comparison"
+          }
+        ],
         selectedAnswers: { 
           answer0: [firstAnswer0], 
           answer1: [firstAnswer1], 
@@ -182,7 +242,27 @@ const InvestmentDiagnostic = () => {
     return {
       title: "NISA + 投資信託",
       description: "バランスの取れた投資スタイルで、着実に資産を増やしましょう。",
-      features: ["非課税のメリット", "分散投資でリスク管理", "手間をかけずに運用"],
+      features: [
+        "非課税のメリット",
+        "分散投資でリスク管理",
+        "手間をかけずに運用",
+        "具体的な商品例：楽天・全米株式インデックスファンド",
+        "投資戦略：毎月15日に自動積立設定を推奨"
+      ],
+      industryAdvice: [
+        {
+          industry: "株式投資",
+          advice: "SBI証券や楽天証券などでNISA口座を開設し、楽天・全米株式インデックスファンドを毎月1万円で積立投資します。米国株式の成長性と分散投資の効果を享受できます。",
+          buttonLabel: "証券会社を比較する",
+          buttonLink: "/comparison"
+        },
+        {
+          industry: "投資信託",
+          advice: "NISA枠を活用して、楽天・全米株式インデックスファンドを毎月積立投資します。米国株式の成長性とインデックス投資の低コストを活かせます。",
+          buttonLabel: "証券会社を比較する",
+          buttonLink: "/comparison"
+        }
+      ],
       selectedAnswers: { 
         answer0: [firstAnswer0], 
         answer1: [firstAnswer1], 
@@ -246,40 +326,9 @@ const InvestmentDiagnostic = () => {
                 <p className="text-sm sm:text-base text-muted-foreground">{recommendation.description}</p>
               </div>
 
-              <div className="bg-muted/50 rounded-lg p-4 border border-muted">
-                <h4 className="font-medium mb-2 text-muted-foreground">あなたの選択:</h4>
-                <div className="space-y-2 text-sm">
-                  <div>
-                    <span className="font-medium">投資経験:</span> <span className="text-primary">{renderSelectedOptions(0, recommendation.selectedAnswers.answer0)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">投資目的:</span> <span className="text-primary">{renderSelectedOptions(1, recommendation.selectedAnswers.answer1)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">リスクに対する考え方:</span> <span className="text-primary">{renderSelectedOptions(2, recommendation.selectedAnswers.answer2)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">年齢層:</span> <span className="text-primary">{renderSelectedOptions(3, recommendation.selectedAnswers.answer3)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">収入状況:</span> <span className="text-primary">{renderSelectedOptions(4, recommendation.selectedAnswers.answer4)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">投資知識:</span> <span className="text-primary">{renderSelectedOptions(5, recommendation.selectedAnswers.answer5)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">投資期間:</span> <span className="text-primary">{renderSelectedOptions(6, recommendation.selectedAnswers.answer6)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">期待リターン:</span> <span className="text-primary">{renderSelectedOptions(7, recommendation.selectedAnswers.answer7)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">投資時間:</span> <span className="text-primary">{renderSelectedOptions(8, recommendation.selectedAnswers.answer8)}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium">元本保証:</span> <span className="text-primary">{renderSelectedOptions(9, recommendation.selectedAnswers.answer9)}</span>
-                  </div>
-                </div>
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 className="font-bold text-blue-800 mb-2">ありがとうございます！</h4>
+                <p className="text-blue-700">この診断結果が参考になったでしょうか？具体的なアドバイスと業界別の推奨商品をご紹介します。</p>
               </div>
 
               <div className="space-y-3">
@@ -291,16 +340,32 @@ const InvestmentDiagnostic = () => {
                 ))}
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {recommendation.industryAdvice && recommendation.industryAdvice.map((advice, index) => (
+                  <Card key={index} className="border-2 hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{advice.industry}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">{advice.advice}</p>
+                      <Button asChild size="sm" className="w-full">
+                        <Link to={advice.buttonLink}>{advice.buttonLabel}</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button variant="outline" onClick={handleReset} className="flex-1 w-full py-6 text-base">
                   <RotateCcw className="mr-2 h-5 w-5" />
                   もう一度診断する
                 </Button>
-                <Button className="flex-1 w-full py-6 text-base" asChild>
-                  <Link to="/comparison">
-                    証券会社を比較する
+                <Button className="flex-1 w-full py-6 text-base bg-[#10b77f] hover:bg-[#0ea66e] text-white" asChild>
+                  <a href="/tools/risk-assessment#diagnostic-tool">
+                    総合診断ツール
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </CardContent>
