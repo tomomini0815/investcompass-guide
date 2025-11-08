@@ -5,16 +5,17 @@ import InvestmentDiagnostic from "@/components/features/InvestmentDiagnostic";
 import CategoryCard from "@/components/features/CategoryCard";
 import RankingCard from "@/components/features/RankingCard";
 import ArticleCard from "@/components/features/ArticleCard";
-import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins, Check, ExternalLink, ArrowRight } from "lucide-react";
+import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins, Check, ExternalLink, ArrowRight, Clock, Calendar } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const hasScrolledRef = useRef(false);
   const categories = [
     {
@@ -292,6 +293,70 @@ const Index = () => {
 
   const articles = [
     {
+      id: "ai-investment-fundamentals",
+      title: "AI投資の基礎知識：アルゴリズム取引からロボアドバイザーまで完全解説",
+      excerpt: "AIがどのように投資に活用されているのか、基礎から実践的な活用法まで詳しく解説します。初心者から上級者まで使えるAI投資手法を徹底紹介。",
+      category: "投資AI",
+      readTime: "15分",
+      date: "2024年6月1日",
+    },
+    {
+      id: "trading-indicators-overview",
+      title: "主要トレーディングインジケーターの使い方と活用ポイント",
+      excerpt: "初心者から上級者まで使える主要なテクニカル指標を解説します。",
+      category: "インジケータ",
+      readTime: "12分",
+      date: "2024年6月5日",
+    },
+    {
+      id: "tradingview-beginner",
+      title: "トレーディングビュー入門：初心者が最初に覚えるべきチャート分析術",
+      excerpt: "無料で使える人気チャート分析ツール「トレーディングビュー」の基本操作を解説します。",
+      category: "トレーディングビュー",
+      readTime: "15分",
+      date: "2024年6月10日",
+    },
+    {
+      id: "crypto-exchange-comparison",
+      title: "暗号資産取引所比較：国内と国外の違いと選び方",
+      excerpt: "国内と国外の暗号資産取引所の特徴と違いを比較し、自分に合った取引所の選び方を解説します。",
+      category: "暗号資産",
+      readTime: "14分",
+      date: "2024年6月15日",
+    },
+    {
+      id: "fx-broker-comparison",
+      title: "FX業者比較：国内と国外の違いと選び方のポイント",
+      excerpt: "国内と国外のFX業者の特徴と違いを比較し、自分に合ったFX業者の選び方を解説します。",
+      category: "FX",
+      readTime: "13分",
+      date: "2024年6月20日",
+    },
+    {
+      id: "crypto-trends-2024",
+      title: "【2024年最新】暗号資産投資トレンド：AIコインからDeFiまで",
+      excerpt: "2024年の暗号資産市場の最新動向を徹底解説。AI関連トークン、DeFi、NFTの今後を予測します。",
+      category: "暗号資産",
+      readTime: "12分",
+      date: "2024年5月20日",
+    },
+    {
+      id: "interest-rate-impact",
+      title: "金利変動が投資に与える影響と対策：2024年版",
+      excerpt: "日本銀行の金融政策が個人投資家に与える影響と、各資産クラスへの対応策を詳しく解説します。",
+      category: "投資戦略",
+      readTime: "10分",
+      date: "2024年5月15日",
+    },
+    {
+      id: "ai-investment-strategy",
+      title: "AIを活用した投資戦略の実際：機械学習からファンダメンタル分析まで",
+      excerpt: "人工知能を活用した投資手法を実例とともに解説。初心者から上級者まで使えるテクニックを紹介します。",
+      category: "投資戦略",
+      readTime: "15分",
+      date: "2024年5月10日",
+    },
+    {
       id: "nisa-beginner",
       title: "【2024年最新版】NISA完全ガイド：初心者が知るべき全て",
       excerpt: "新NISAが始まり、より使いやすくなった非課税制度。制度の概要から活用方法まで徹底解説します。",
@@ -314,6 +379,33 @@ const Index = () => {
       category: "投資信託",
       readTime: "7分",
       date: "2024年1月10日",
+    },
+    // 新規記事: 機械学習を活用した株式予測モデルの構築方法
+    {
+      id: "ml-stock-prediction",
+      title: "機械学習を活用した株式予測モデルの構築方法",
+      excerpt: "Pythonと機械学習アルゴリズムを使用して、株式の価格予測モデルを構築する実践的な方法を解説します。",
+      category: "投資AI",
+      readTime: "20分",
+      date: "2024年6月25日",
+    },
+    // 新規記事: ディープラーニングを用いた為替予測の実際
+    {
+      id: "dl-forex-prediction",
+      title: "ディープラーニングを用いた為替予測の実際",
+      excerpt: "LSTMやTransformerなどの深層学習モデルを使用して、為替相場の動向を予測する実践的なアプローチを解説します。",
+      category: "投資AI",
+      readTime: "22分",
+      date: "2024年6月26日",
+    },
+    // 新規記事: AIによるポートフォリオ最適化の実践
+    {
+      id: "ai-portfolio-optimization",
+      title: "AIによるポートフォリオ最適化の実践",
+      excerpt: "機械学習と最適化アルゴリズムを使用して、リスクとリターンのバランスを取った最適な資産配分を実現する方法を解説します。",
+      category: "投資AI",
+      readTime: "18分",
+      date: "2024年6月27日",
     },
   ];
 
@@ -355,13 +447,13 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>投資総合ナビ | 株式・FX・暗号資産・投資信託の比較と診断</title>
-        <meta name="description" content="投資総合ナビは、株式投資・FX・暗号資産・投資信託など、すべての投資商品を比較・診断する総合投資ガイドです。初心者から中級者まで、最適な投資方法を見つけましょう。" />
-        <meta name="keywords" content="投資,資産運用,株式投資,NISA,つみたてNISA,iDeCo,証券会社,比較,ランキング,初心者,暗号資産,FX,REIT,投資信託,投資総合ナビ" />
+        <meta name="description" content="投資総合ナビは、株式投資・FX・暗号資産・投資信託など、すべての投資商品を比較・診断する総合投資ガイドです。初心者から中級者まで、最適な投資方法を見つけましょう。2024年最新の投資情報も提供しています。" />
+        <meta name="keywords" content="投資,資産運用,株式投資,NISA,つみたてNISA,iDeCo,証券会社,比較,ランキング,初心者,暗号資産,FX,REIT,投資信託,投資総合ナビ,2024年最新情報" />
         <link rel="canonical" href="https://www.toushi-navi.com" />
         
         {/* Open Graph */}
         <meta property="og:title" content="投資総合ナビ | 株式・FX・暗号資産・投資信託の比較と診断" />
-        <meta property="og:description" content="投資総合ナビは、株式投資・FX・暗号資産・投資信託など、すべての投資商品を比較・診断する総合投資ガイドです。初心者から中級者まで、最適な投資方法を見つけましょう。" />
+        <meta property="og:description" content="投資総合ナビは、株式投資・FX・暗号資産・投資信託など、すべての投資商品を比較・診断する総合投資ガイドです。初心者から中級者まで、最適な投資方法を見つけましょう。2024年最新の投資情報も提供しています。" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.toushi-navi.com" />
         <meta property="og:site_name" content="投資総合ナビ" />
@@ -598,9 +690,53 @@ const Index = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {articles.map((article) => (
-                <ArticleCard key={article.id} {...article} />
+              {articles.slice(0, 6).map((article) => (
+                <Card key={article.id} className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-3">
+                      <Badge variant="secondary">{article.category}</Badge>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <Clock className="h-3 w-3" />
+                        {article.readTime}
+                      </div>
+                    </div>
+                    <CardTitle className="text-xl line-clamp-2">
+                      <a href={`/articles/${article.id}`} className="hover:text-primary transition-colors">
+                        {article.title}
+                      </a>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground line-clamp-3 mb-4">{article.excerpt}</p>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        <span>{article.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <TrendingUp className="h-4 w-4" />
+                        <span>人気記事</span>
+                      </div>
+                    </div>
+                    <button 
+                      className="w-full mt-6 px-4 py-2 bg-blue-100 text-primary rounded-md hover:bg-blue-200 transition-colors"
+                      onClick={() => navigate(`/articles/${article.id}`)}
+                    >
+                      記事を読む
+                    </button>
+                  </CardContent>
+                </Card>
               ))}
+            </div>
+            <div className="text-center mt-10">
+              <a
+                href="/articles"
+                className="inline-flex items-center px-6 py-3 text-white rounded-lg hover:opacity-90 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                style={{ backgroundColor: '#10B77F' }}
+              >
+                すべての記事を見る
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </div>
           </div>
         </section>

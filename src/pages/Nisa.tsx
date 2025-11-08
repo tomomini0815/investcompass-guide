@@ -43,6 +43,19 @@ const Nisa = () => {
     setProfit(Math.round(futureValue - total));
   }, [monthlyAmount, years, annualReturn, futureValue]);
 
+  // 目次項目
+  const tableOfContents = [
+    { id: "nisa-basics", title: "NISA・つみたてNISAの基本と違い" },
+    { id: "nisa-trends", title: "2024年〜2025年最新のNISA動向" },
+    { id: "nisa-account", title: "NISA口座の開設手順" },
+    { id: "nisa-campaigns", title: "2024年〜2025年最新の開設キャンペーン" },
+    { id: "nisa-strategy", title: "NISAでの投資戦略とおすすめ商品" },
+    { id: "nisa-products", title: "2024年〜2025年おすすめの新商品" },
+    { id: "nisa-simulation", title: "NISA投資シミュレーション" },
+    { id: "nisa-tax", title: "NISAの税制優遇と節税効果" },
+    { id: "nisa-tax-changes", title: "2024年〜2025年最新の税制改正動向" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -141,8 +154,41 @@ const Nisa = () => {
           </div>
         </section>
 
+        {/* 目次セクション */}
+        <section className="py-4 bg-gradient-to-b from-muted/30 to-background border-b">
+          <div className="container mx-auto px-8">
+            <div className="max-w-4xl mx-auto">
+              <Card className="border-2 hover:shadow-lg transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <PieChart className="h-5 w-5 text-primary" />
+                    目次
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {tableOfContents.map((item, index) => (
+                      <div key={item.id} className="flex items-start gap-2 p-1 rounded hover:bg-muted/50 transition-colors">
+                        <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
+                          {index + 1}
+                        </span>
+                        <a 
+                          href={`#${item.id}`} 
+                          className="text-base text-primary hover:text-secondary hover:underline transition-colors"
+                        >
+                          {item.title}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* NISA基本情報セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-basics" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">NISA・つみたてNISAの基本と違い</h2>
@@ -208,7 +254,7 @@ const Nisa = () => {
         </section>
 
         {/* 2024年最新のNISA動向セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-trends" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">2024年〜2025年最新のNISA動向</h2>
@@ -252,7 +298,7 @@ const Nisa = () => {
         </section>
 
         {/* NISA口座開設手順セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-account" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">NISA口座の開設手順</h2>
@@ -317,7 +363,7 @@ const Nisa = () => {
         </section>
 
         {/* 2024年最新の開設キャンペーンセクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-campaigns" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">2024年〜2025年最新の開設キャンペーン</h2>
@@ -377,7 +423,7 @@ const Nisa = () => {
         </section>
 
         {/* NISA投資戦略とおすすめ商品セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-strategy" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">NISAでの投資戦略とおすすめ商品</h2>
@@ -442,7 +488,7 @@ const Nisa = () => {
         </section>
 
         {/* 2024年おすすめの新商品セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-products" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">2024年〜2025年おすすめの新商品</h2>
@@ -509,7 +555,7 @@ const Nisa = () => {
         </section>
 
         {/* NISA投資シミュレーションツール */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-simulation" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-card to-card/50">
@@ -595,7 +641,7 @@ const Nisa = () => {
         </section>
 
         {/* NISAの税制優遇と節税効果セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-tax" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">NISAの税制優遇と節税効果</h2>
@@ -657,7 +703,7 @@ const Nisa = () => {
         </section>
 
         {/* 2024年最新の税制改正動向セクション */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
+        <section id="nisa-tax-changes" className="py-16 sm:py-20 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">2024年〜2025年最新の税制改正動向</h2>

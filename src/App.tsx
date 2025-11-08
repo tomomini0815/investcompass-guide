@@ -31,6 +31,13 @@ import StockReturn from "./pages/tools/StockReturn";
 import FundReturn from "./pages/tools/FundReturn";
 import CryptoReturn from "./pages/tools/CryptoReturn";
 import RiskToleranceDiagnosticPage from "./pages/RiskToleranceDiagnosticPage";
+// 記事ページのインポート
+import Articles from "./pages/Articles";
+import ArticleDetail from "./pages/ArticleDetail";
+// 新規記事ページのインポート
+import MLStockPrediction from "./pages/MLStockPrediction";
+import DLForexPrediction from "./pages/DLForexPrediction";
+import AIPortfolioOptimization from "./pages/AIPortfolioOptimization";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +80,13 @@ const App = () => (
           <Route path="/tools/fund-return" element={<FundReturn />} />
           <Route path="/tools/crypto-return" element={<CryptoReturn />} />
           <Route path="/risk-diagnostic" element={<RiskToleranceDiagnosticPage />} />
+          {/* 新規記事ページのルート */}
+          <Route path="/articles/ml-stock-prediction" element={<MLStockPrediction />} />
+          <Route path="/articles/dl-forex-prediction" element={<DLForexPrediction />} />
+          <Route path="/articles/ai-portfolio-optimization" element={<AIPortfolioOptimization />} />
+          {/* 既存の記事ページのルート */}
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
