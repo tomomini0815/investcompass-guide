@@ -426,7 +426,8 @@ const Index = () => {
     // 既にスクロール済みの場合は処理をスキップ
     if (hasScrolledRef.current) return;
     
-    if (location.state && location.state.scrollToDiagnostic) {
+    // ハッシュが#診断の場合、またはlocation.state.scrollToDiagnosticがtrueの場合にスクロール
+    if (location.hash === '#診断' || (location.state && location.state.scrollToDiagnostic)) {
       // 少し遅延させてからスクロール（ページが完全にロードされるのを待つため）
       const timer = setTimeout(() => {
         const element = document.getElementById("診断");
@@ -449,7 +450,7 @@ const Index = () => {
       
       return () => clearTimeout(timer);
     }
-  }, [location.state]);
+  }, [location.state, location.hash]);
 
   return (
     <div className="min-h-screen bg-background">
