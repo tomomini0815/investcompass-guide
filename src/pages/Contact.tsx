@@ -5,6 +5,39 @@ import { useState } from "react";
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    // フォームのデフォルト送信動作を防止
+    e.preventDefault();
+    
+    // 実際の送信処理はFormspreeが処理するため、ここでは送信状態を更新するだけ
+    setIsSubmitted(true);
+    
+    // フォームを送信
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        // 送信成功時の処理
+        console.log('送信成功');
+      } else {
+        // 送信失敗時の処理
+        console.error('送信失敗');
+        setIsSubmitted(false);
+      }
+    }).catch(error => {
+      // エラー時の処理
+      console.error('エラー:', error);
+      setIsSubmitted(false);
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* ヘッダー */}
@@ -43,7 +76,7 @@ const Contact = () => {
                 <form 
                   action="https://formspree.io/f/xvgdpkpe" 
                   method="POST"
-                  onSubmit={() => setIsSubmitted(true)}
+                  onSubmit={handleSubmit}
                   className="space-y-6"
                 >
                   <div>
@@ -103,8 +136,9 @@ const Contact = () => {
                   <button
                     type="submit"
                     className="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-md hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-105"
+                    disabled={isSubmitted}
                   >
-                    送信する
+                    {isSubmitted ? '送信中...' : '送信する'}
                   </button>
                 </form>
               </div>
