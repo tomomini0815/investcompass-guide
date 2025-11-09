@@ -53,6 +53,13 @@ const Tools = () => {
       icon: Coins,
       category: "仮想通貨",
     },
+    {
+      id: "fx-calculator",
+      title: "FX計算シミュレータ",
+      description: "FX取引の必要証拠金、利益/損失などを計算するシミュレーションツール",
+      icon: TrendingUp,
+      category: "FX取引",
+    },
   ];
 
   return (
