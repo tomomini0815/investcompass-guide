@@ -46,7 +46,7 @@ const FXCalculator = () => {
   // 特定の通貨ペアのレートを取得する関数
   const fetchCurrentRateForPair = async (pair: string) => {
     try {
-      // 金融機関APIから為替レートを取得
+      // Foreign Exchange Rates API (exchangeratesapi.io) を使用
       let baseCurrency = 'USD';
       let targetCurrency = 'JPY';
       
@@ -144,16 +144,24 @@ const FXCalculator = () => {
         }
       }
       
-      // 金融機関API（例：OANDA API）のエンドポイント
-      const apiEndpoint = `https://api-fxpractice.oanda.com/v3/accounts/{accountID}/pricing`;
+      // Foreign Exchange Rates APIのエンドポイント
+      let apiUrl;
+      if (baseCurrency === 'USD' && targetCurrency === 'JPY') {
+        // USD/JPYの場合は最新の為替レートを取得
+        apiUrl = `https://api.exchangeratesapi.io/v1/latest?access_key=${apiKey}&base=USD&symbols=JPY`;
+      } else if (targetCurrency === 'USD') {
+        // XXX/USDの場合はbaseをXXXに設定
+        apiUrl = `https://api.exchangeratesapi.io/v1/latest?access_key=${apiKey}&base=${baseCurrency}&symbols=USD`;
+      } else if (baseCurrency === 'USD') {
+        // USD/XXXの場合はbaseをUSDに設定
+        apiUrl = `https://api.exchangeratesapi.io/v1/latest?access_key=${apiKey}&base=USD&symbols=${targetCurrency}`;
+      } else {
+        // その他の通貨ペアの場合はUSDを経由して計算
+        apiUrl = `https://api.exchangeratesapi.io/v1/latest?access_key=${apiKey}&base=USD`;
+      }
       
-      // 金融機関APIから為替レートを取得
-      const response = await fetch(`${apiEndpoint}?instruments=${baseCurrency}_${targetCurrency}`, {
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        }
-      });
+      // Foreign Exchange Rates APIから為替レートを取得
+      const response = await fetch(apiUrl);
       
       console.log(`APIレスポンスステータス: ${response.status}`);
       
@@ -165,12 +173,29 @@ const FXCalculator = () => {
       console.log(`APIレスポンスデータ:`, data);
       
       // データの存在確認
-      if (!data.prices || data.prices.length === 0) {
+      if (!data.rates) {
         throw new Error('為替レートデータが空です');
       }
       
-      const rate = parseFloat(data.prices[0].closeoutBid);
-      const timestamp = data.prices[0].timestamp; // 更新日時を取得
+      let rate;
+      let timestamp = new Date().toISOString();
+      
+      if (baseCurrency === 'USD' && targetCurrency === 'JPY') {
+        // USD/JPYの場合
+        rate = parseFloat(data.rates.JPY);
+      } else if (targetCurrency === 'USD') {
+        // XXX/USDの場合
+        rate = parseFloat(data.rates.USD);
+      } else if (baseCurrency === 'USD') {
+        // USD/XXXの場合
+        rate = parseFloat(data.rates[targetCurrency]);
+      } else {
+        // その他の通貨ペアの場合はUSDを経由して計算
+        // 例: EUR/JPY = (EUR/USD) * (USD/JPY)
+        const rate1 = parseFloat(data.rates[baseCurrency]); // USD/XXXの逆数
+        const rate2 = parseFloat(data.rates[targetCurrency]); // USD/JPY
+        rate = rate2 / rate1;
+      }
       
       // 有効なレートの確認
       if (isNaN(rate) || rate <= 0) {
