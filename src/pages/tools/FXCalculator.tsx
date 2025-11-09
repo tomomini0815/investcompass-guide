@@ -315,11 +315,15 @@ const FXCalculator = () => {
     if (position === 'buy') {
       // 買いポジションの場合、BIDレートが下落した場合にロスカット
       // ロスカットレート = エントリー価格 - (口座残高 - 必要証拠金) / (ロット数 × 通貨単位)
-      lossCutValue = entryPrice - (balance - requiredMargin) / (lot * pipUnit);
+      const calculatedLossCutValue = entryPrice - (balance - requiredMargin) / (lot * pipUnit);
+      // ロスカット値が負になる場合は、ロスカットが発動しないとみなす
+      lossCutValue = calculatedLossCutValue > 0 ? calculatedLossCutValue : 0;
     } else {
       // 売りポジションの場合、ASKレートが上昇した場合にロスカット
       // ロスカットレート = エントリー価格 + (口座残高 - 必要証拠金) / (ロット数 × 通貨単位)
-      lossCutValue = entryPrice + (balance - requiredMargin) / (lot * pipUnit);
+      const calculatedLossCutValue = entryPrice + (balance - requiredMargin) / (lot * pipUnit);
+      // ロスカット値が負になる場合は、ロスカットが発動しないとみなす
+      lossCutValue = calculatedLossCutValue > 0 ? calculatedLossCutValue : 0;
     }
     
     // 利益と損失の計算
