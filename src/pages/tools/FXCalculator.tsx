@@ -303,9 +303,11 @@ const FXCalculator = () => {
     
     // ロスカットまでの金額の計算
     // じぶん銀行FXでは証拠金維持率が100％を下回ったときにロスカット発動
-    const lossToMarginCall = balance - requiredMargin;
+    // ロスカットまでの金額 = 必要証拠金 - 口座残高 (これが正の値の場合はロスカットまでの損失額)
+    const lossToMarginCall = Math.max(0, requiredMargin - balance);
     
     // 証拠金維持率の計算
+    // 証拠金維持率 = (口座残高 / 必要証拠金) * 100
     const marginMaintenanceRate = (balance / requiredMargin) * 100;
     
     // ロスカット値の計算 (証拠金維持率が100%になるレート)
