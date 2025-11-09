@@ -16,7 +16,7 @@ const FXCalculator = () => {
   const [lot, setLot] = useState(1);
   const [currencyPair, setCurrencyPair] = useState('USD/JPY');
   const [entryPrice, setEntryPrice] = useState(140.5); // エントリー価格
-  const [exitPrice, setExitPrice] = useState(141.0); // 決済価格
+  const [exitPrice, setExitPrice] = useState(141.5); // 決済価格 - エントリー価格と1円差にする
   const [rate, setRate] = useState(0.1);
   const [leverage, setLeverage] = useState(25);
   const [position, setPosition] = useState<'buy' | 'sell'>('buy');
@@ -94,7 +94,54 @@ const FXCalculator = () => {
       const apiKey = import.meta.env.VITE_FINANCIAL_API_KEY;
       if (!apiKey) {
         console.warn('金融機関APIキーが設定されていません。デフォルト値を使用します。');
-        throw new Error('APIキーが設定されていません');
+        // APIキーが設定されていない場合は、各通貨ペアのデフォルト値を返す
+        switch (pair) {
+          case 'USD/JPY':
+            return {
+              rate: 153.423,
+              timestamp: new Date().toISOString()
+            };
+          case 'EUR/USD':
+            return {
+              rate: 1.0850,
+              timestamp: new Date().toISOString()
+            };
+          case 'GBP/USD':
+            return {
+              rate: 1.2950,
+              timestamp: new Date().toISOString()
+            };
+          case 'AUD/USD':
+            return {
+              rate: 0.6750,
+              timestamp: new Date().toISOString()
+            };
+          case 'USD/CAD':
+            return {
+              rate: 1.3550,
+              timestamp: new Date().toISOString()
+            };
+          case 'NZD/USD':
+            return {
+              rate: 0.5950,
+              timestamp: new Date().toISOString()
+            };
+          case 'EUR/JPY':
+            return {
+              rate: 165.000,
+              timestamp: new Date().toISOString()
+            };
+          case 'GBP/JPY':
+            return {
+              rate: 195.000,
+              timestamp: new Date().toISOString()
+            };
+          default:
+            return {
+              rate: 153.423,
+              timestamp: new Date().toISOString()
+            };
+        }
       }
       
       // 金融機関API（例：OANDA API）のエンドポイント
@@ -247,11 +294,11 @@ const FXCalculator = () => {
         const rate = await fetchCurrentRate();
         if (isMounted) {
           setEntryPrice(rate);
-          // ポジションに応じて決済価格を設定
+          // 決済レートをエントリー価格と1円差にする
           if (position === 'buy') {
-            setExitPrice(rate + 0.5); // 買いポジションの場合は0.5円上昇を想定
+            setExitPrice(rate + 1);
           } else {
-            setExitPrice(rate - 0.5); // 売りポジションの場合は0.5円下落を想定
+            setExitPrice(rate - 1);
           }
         }
       } catch (error) {
@@ -268,17 +315,26 @@ const FXCalculator = () => {
     };
   }, [currencyPair, position]);
   
+  // エントリー価格が変更されたときに決済レートも更新
+  useEffect(() => {
+    if (position === 'buy') {
+      setExitPrice(entryPrice + 1);
+    } else {
+      setExitPrice(entryPrice - 1);
+    }
+  }, [entryPrice, position]);
+  
   // コンポーネントがマウントされたときに最新のレートを取得
   useEffect(() => {
     const initializeRate = async () => {
       try {
         const rate = await fetchCurrentRate();
         setEntryPrice(rate);
-        // ポジションに応じて決済価格を設定
+        // 決済レートをエントリー価格と1円差にする
         if (position === 'buy') {
-          setExitPrice(rate + 0.5); // 買いポジションの場合は0.5円上昇を想定
+          setExitPrice(rate + 1);
         } else {
-          setExitPrice(rate - 0.5); // 売りポジションの場合は0.5円下落を想定
+          setExitPrice(rate - 1);
         }
       } catch (error) {
         console.error('初期レートの取得に失敗しました:', error);
@@ -286,44 +342,58 @@ const FXCalculator = () => {
     };
     
     initializeRate();
-  }, []);
+  }, [position]);
 
   const calculateResults = () => {
-    // 必要証拠金の計算 (取引数量×現在レート÷レバレッジ)
-    // じぶん銀行FXの必要証拠金は建玉の建値の4％
-    const requiredMargin = (lot * pipUnit * entryPrice) / leverage;
+    // GMOクリック証券FXネオのシミュレーターのロジックを完全にコピー
+    
+    // 必要証拠金の計算
+    // 必要証拠金 = 取引数量 × 通貨単位 × 売買レート × 0.04
+    const requiredMargin = lot * pipUnit * entryPrice * 0.04;
     
     // 1pipあたりの価値の計算
-    // 10000通貨の場合、USD/JPYの1pipは0.01円なので、10000 * 0.01 = 100円
+    // 1pipあたりの価値 = 取引数量 × 通貨単位 × 0.01
     const pipValue = lot * pipUnit * 0.01;
     
     // 最大取引可能ロット数の計算
-    // じぶん銀行FXでは新規注文は20倍以内
-    const maxLots = (balance * leverage) / (pipUnit * entryPrice);
+    // 最大取引可能ロット数 = 入金額 × 25 / (通貨単位 × 売買レート)
+    const maxLots = balance * 25 / (pipUnit * entryPrice);
+    
+    // 純資産の計算 (口座残高)
+    const netAssets = balance;
     
     // ロスカットまでの金額の計算
-    // じぶん銀行FXでは証拠金維持率が100％を下回ったときにロスカット発動
     // ロスカットまでの金額 = 必要証拠金 - 口座残高 (これが正の値の場合はロスカットまでの損失額)
     const lossToMarginCall = Math.max(0, requiredMargin - balance);
     
     // 証拠金維持率の計算
-    // 証拠金維持率 = (口座残高 / 必要証拠金) * 100
-    const marginMaintenanceRate = (balance / requiredMargin) * 100;
+    // 証拠金維持率 = (純資産 / 必要証拠金) * 100
+    const marginMaintenanceRate = (netAssets / requiredMargin) * 100;
     
-    // ロスカット値の計算 (証拠金維持率が100%になるレート)
+    // ロスカット値の計算 (証拠金維持率が50%になるレート)
+    // ロスカット発動レート = 売買レート ± (純資産 - 必要証拠金 × 0.5) / (取引数量 × 通貨単位)
     let lossCutValue;
     if (position === 'buy') {
-      // 買いポジションの場合、BIDレートが下落した場合にロスカット
-      // ロスカットレート = エントリー価格 - (口座残高 - 必要証拠金) / (ロット数 × 通貨単位)
-      const calculatedLossCutValue = entryPrice - (balance - requiredMargin) / (lot * pipUnit);
-      // ロスカット値が負になる場合は、ロスカットが発動しないとみなす
-      lossCutValue = calculatedLossCutValue > 0 ? calculatedLossCutValue : 0;
+      // 買いポジションの場合
+      lossCutValue = entryPrice - (netAssets - requiredMargin * 0.5) / (lot * pipUnit);
+      // ロスカット値が負の場合は、ロスカットが発動しないとみなす
+      if (lossCutValue <= 0) {
+        lossCutValue = 0; // ロスカットが発動しない場合
+      }
     } else {
-      // 売りポジションの場合、ASKレートが上昇した場合にロスカット
-      // ロスカットレート = エントリー価格 + (口座残高 - 必要証拠金) / (ロット数 × 通貨単位)
-      const calculatedLossCutValue = entryPrice + (balance - requiredMargin) / (lot * pipUnit);
-      // ロスカット値が負になる場合は、ロスカットが発動しないとみなす
-      lossCutValue = calculatedLossCutValue > 0 ? calculatedLossCutValue : 0;
+      // 売りポジションの場合
+      lossCutValue = entryPrice + (netAssets - requiredMargin * 0.5) / (lot * pipUnit);
+    }
+    
+    // 追加証拠金発生レートの計算
+    // 追加証拠金発生レート = 売買レート ± (必要証拠金 - 純資産) / (取引数量 × 通貨単位)
+    let additionalMarginRate;
+    if (position === 'buy') {
+      // 買いポジションの場合
+      additionalMarginRate = entryPrice - (requiredMargin - netAssets) / (lot * pipUnit);
+    } else {
+      // 売りポジションの場合
+      additionalMarginRate = entryPrice + (requiredMargin - netAssets) / (lot * pipUnit);
     }
     
     // 利益と損失の計算
@@ -335,6 +405,10 @@ const FXCalculator = () => {
       // 売りポジションの場合、決済価格がエントリー価格より低い場合は利益
       profitOrLoss = (entryPrice - exitPrice) * lot * pipUnit;
     }
+    
+    // レバレッジの計算
+    // レバレッジ = 25倍固定 (GMOクリック証券FXネオの仕様)
+    const calculatedLeverage = 25;
     
     // デバッグ用に計算の中間値をコンソールに出力
     console.log('=== FX Calculator Debug Info ===');
@@ -348,6 +422,8 @@ const FXCalculator = () => {
     console.log('requiredMargin:', requiredMargin);
     console.log('balance - requiredMargin:', balance - requiredMargin);
     console.log('lossCutValue (before rounding):', lossCutValue);
+    console.log('additionalMarginRate (before rounding):', additionalMarginRate);
+    console.log('calculatedLeverage:', calculatedLeverage);
     console.log('===============================');
     
     return {
@@ -357,7 +433,8 @@ const FXCalculator = () => {
       lossToMarginCall: Math.round(lossToMarginCall),
       marginMaintenanceRate: marginMaintenanceRate.toFixed(2),
       lossCutValue: lossCutValue.toFixed(3), // ロスカット値を追加
-      profitOrLoss: Math.round(profitOrLoss) // 利益/損失を追加
+      profitOrLoss: Math.round(profitOrLoss), // 利益/損失を追加
+      additionalMarginRate: additionalMarginRate.toFixed(3) // 追加証拠金発生レートを追加
     };
   };
 
@@ -454,30 +531,30 @@ const FXCalculator = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
-                {/* ポジション選択 */}
+                {/* 売買選択 */}
                 <div className="space-y-2 sm:space-y-3">
-                  <Label className="text-sm sm:text-base">ポジション</Label>
+                  <Label className="text-sm sm:text-base">売買選択</Label>
                   <div className="flex gap-4">
                     <Button 
                       variant={position === 'buy' ? 'default' : 'outline'}
                       onClick={() => setPosition('buy')}
                       className="flex-1"
                     >
-                      買い
+                      新規買
                     </Button>
                     <Button 
                       variant={position === 'sell' ? 'default' : 'outline'}
                       onClick={() => setPosition('sell')}
                       className="flex-1"
                     >
-                      売り
+                      新規売
                     </Button>
                   </div>
                 </div>
 
-                {/* 口座残高 */}
+                {/* 入金額 */}
                 <div className="space-y-2 sm:space-y-3">
-                  <Label htmlFor="balance" className="text-sm sm:text-base">口座残高</Label>
+                  <Label htmlFor="balance" className="text-sm sm:text-base">入金額（円）</Label>
                   <div className="flex items-center gap-3 sm:gap-4">
                     <Input
                       id="balance"
@@ -532,36 +609,35 @@ const FXCalculator = () => {
                   </Select>
                 </div>
 
-                {/* エントリー価格と決済価格 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2 sm:space-y-3">
-                    <Label htmlFor="entryPrice" className="text-sm sm:text-base">エントリー価格</Label>
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <Input
-                        id="entryPrice"
-                        type="number"
-                        step="0.001"
-                        value={entryPrice}
-                        onChange={(e) => setEntryPrice(Number(e.target.value))}
-                        className="flex-1 text-sm sm:text-base"
-                      />
-                      <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">円</span>
-                    </div>
+                {/* 売買レート */}
+                <div className="space-y-2 sm:space-y-3">
+                  <Label htmlFor="entryPrice" className="text-sm sm:text-base">売買レート</Label>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <Input
+                      id="entryPrice"
+                      type="number"
+                      step="0.001"
+                      value={entryPrice}
+                      onChange={(e) => setEntryPrice(Number(e.target.value))}
+                      className="flex-1 text-sm sm:text-base"
+                    />
+                    <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">円</span>
                   </div>
+                </div>
 
-                  <div className="space-y-2 sm:space-y-3">
-                    <Label htmlFor="exitPrice" className="text-sm sm:text-base">決済価格</Label>
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <Input
-                        id="exitPrice"
-                        type="number"
-                        step="0.001"
-                        value={exitPrice}
-                        onChange={(e) => setExitPrice(Number(e.target.value))}
-                        className="flex-1 text-sm sm:text-base"
-                      />
-                      <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">円</span>
-                    </div>
+                {/* 決済レート */}
+                <div className="space-y-2 sm:space-y-3">
+                  <Label htmlFor="exitPrice" className="text-sm sm:text-base">決済レート</Label>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <Input
+                      id="exitPrice"
+                      type="number"
+                      step="0.001"
+                      value={exitPrice}
+                      onChange={(e) => setExitPrice(Number(e.target.value))}
+                      className="flex-1 text-sm sm:text-base"
+                    />
+                    <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">円</span>
                   </div>
                 </div>
 
@@ -586,9 +662,9 @@ const FXCalculator = () => {
                   </div>
                 </div>
 
-                {/* Lot */}
+                {/* 取引数量 */}
                 <div className="space-y-2 sm:space-y-3">
-                  <Label htmlFor="lot" className="text-sm sm:text-base">取引ロット数</Label>
+                  <Label htmlFor="lot" className="text-sm sm:text-base">取引数量</Label>
                   <div className="flex items-center gap-3 sm:gap-4">
                     <Input
                       id="lot"
@@ -650,23 +726,27 @@ const FXCalculator = () => {
                 {/* Breakdown */}
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex justify-between items-center p-3 sm:p-4 bg-background rounded-lg">
+                    <span className="text-xs sm:text-sm text-muted-foreground">取引可能最大数量</span>
+                    <span className="text-sm sm:text-base font-semibold">{results.maxLots} LOT</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 sm:p-4 bg-background rounded-lg">
+                    <span className="text-xs sm:text-sm text-muted-foreground">レバレッジ</span>
+                    <span className="text-sm sm:text-base font-semibold">×{leverage}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 sm:p-4 bg-background rounded-lg">
                     <span className="text-xs sm:text-sm text-muted-foreground">1pipあたりの価値</span>
                     <span className="text-sm sm:text-base font-semibold">{Math.round(parseFloat(results.pipValue))}円</span>
                   </div>
                   <div className="flex justify-between items-center p-3 sm:p-4 bg-background rounded-lg">
-                    <span className="text-xs sm:text-sm text-muted-foreground">最大取引可能ロット数</span>
-                    <span className="text-sm sm:text-base font-semibold">{results.maxLots} LOT</span>
+                    <span className="text-xs sm:text-sm text-muted-foreground">決済レート</span>
+                    <span className="text-sm sm:text-base font-semibold">{exitPrice} 円</span>
                   </div>
                   <div className="flex justify-between items-center p-3 sm:p-4 bg-secondary/10 rounded-lg">
-                    <span className="text-xs sm:text-sm font-semibold text-secondary">ロスカットまでの金額</span>
-                    <span className="text-sm sm:text-base font-bold text-secondary">{formatCurrency(results.lossToMarginCall)}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-secondary">追加証拠金発生レート</span>
+                    <span className="text-sm sm:text-base font-bold text-secondary">{results.additionalMarginRate} 円</span>
                   </div>
                   <div className="flex justify-between items-center p-3 sm:p-4 bg-accent/10 rounded-lg">
-                    <span className="text-xs sm:text-sm font-semibold text-accent">証拠金維持率</span>
-                    <span className="text-sm sm:text-base font-bold text-accent">{results.marginMaintenanceRate}%</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 sm:p-4 bg-accent/10 rounded-lg">
-                    <span className="text-xs sm:text-sm font-semibold text-accent">ロスカット値</span>
+                    <span className="text-xs sm:text-sm font-semibold text-accent">ロスカット発動レート</span>
                     <span className="text-sm sm:text-base font-bold text-accent">{results.lossCutValue} 円</span>
                   </div>
                 </div>
