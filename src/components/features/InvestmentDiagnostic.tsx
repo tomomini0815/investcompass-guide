@@ -41,7 +41,9 @@ const InvestmentDiagnostic = () => {
     entryPrice: '',
     exitPrice: '',
     leverage: '1',
-    currency: 'JPY'
+    currency: 'JPY',
+    pipUnit: 1000, // 1pipの単位（1000通貨または10000通貨）
+    position: 'buy' // 売り('sell')または買い('buy')
   });
 
   // 積立投資シミュレーションの実行
@@ -121,6 +123,8 @@ const InvestmentDiagnostic = () => {
     const exitPrice = parseFloat(fxInputs.exitPrice) || 0;
     const leverage = parseInt(fxInputs.leverage) || 1;
     const currency = fxInputs.currency || 'USD';
+    const pipUnit = fxInputs.pipUnit; // 1pipの単位（1000通貨または10000通貨）
+    const position = fxInputs.position; // 売り('sell')または買い('buy')
     
     // 通貨ペアごとの1pipの価値（10,000通貨ロット基準）
     const pipValues: Record<string, number> = {
@@ -132,7 +136,13 @@ const InvestmentDiagnostic = () => {
     
     // JPYペアの場合は価格差に100をかける（小数点第2位まで）
     // それ以外のペアは価格差に10000をかける（小数点第4位まで）
-    const priceDifference = exitPrice - entryPrice;
+    let priceDifference = exitPrice - entryPrice;
+    
+    // 売りポジションの場合、価格差を反転
+    if (position === 'sell') {
+      priceDifference = -priceDifference;
+    }
+    
     const pipDifference = currencyPair.includes('JPY') ? priceDifference * 100 : priceDifference * 10000;
     
     // 1pipの価値を取得（10,000通貨ロット基準）
@@ -140,20 +150,18 @@ const InvestmentDiagnostic = () => {
     
     // 実際のロット数で利益/損失を計算
     // lotSizeは実際のロット数（例：0.1ロット、1.0ロットなど）
-    // 1ロット = 10,000通貨なので、pipDifference * pipValuePer10kLot * lotSizeで計算
-    const profit = pipDifference * pipValuePer10kLot * lotSize;
+    // pipUnitに応じてpipValueを調整
+    const pipValueAdjusted = (pipValuePer10kLot * pipUnit) / 10000;
+    const profit = pipDifference * pipValueAdjusted * lotSize;
     
     // 取引手数料（10,000通貨あたり500円を基準）
-    const fee = (lotSize * 500).toFixed(0);
+    const fee = (lotSize * 500 * (pipUnit / 10000)).toFixed(0);
     
     // 必要証拠金計算（10,000通貨あたり100,000円を基準）
     const margin = ((lotSize * 100000) / leverage).toFixed(0);
     
     // リスクリワード比の計算（利益/損失の絶対値 ÷ 取引手数料）
     const riskRewardRatio = (Math.abs(profit) / parseFloat(fee)).toFixed(2);
-    
-    // 1日あたりのスワップポイント（10,000通貨あたり100円を基準）
-    const swap = (lotSize * 100).toFixed(0);
     
     // 総利益/損失（利益/損失 - 手数料）
     const totalProfit = (profit - parseFloat(fee)).toFixed(0);
@@ -190,9 +198,10 @@ const InvestmentDiagnostic = () => {
       fee: fee,
       margin: margin,
       riskRewardRatio: riskRewardRatio,
-      swap: swap,
       totalProfit: totalProfit,
-      advice: advice
+      advice: advice,
+      position: position,
+      pipUnit: pipUnit
     });
     
     // モバイル時の自動スクロール
@@ -746,6 +755,9 @@ const InvestmentDiagnostic = () => {
                               : "利益が少ないようです。投資期間を延ばすか、リターンの高い商品を検討してみましょう。"}
                           </p>
                         </div>
+                        <div className="mt-3 p-3 bg-yellow-50 rounded">
+                          <p className="font-semibold text-yellow-800">※このシミュレーション結果は、実際の取引では市場状況や会社方針により異なる場合があります。</p>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -836,6 +848,9 @@ const InvestmentDiagnostic = () => {
                               : "配当収入はまだ得られていません。"}
                           </p>
                         </div>
+                        <div className="mt-3 p-3 bg-yellow-50 rounded">
+                          <p className="font-semibold text-yellow-800">※このシミュレーション結果は、実際の取引では市場状況や会社方針により異なる場合があります。</p>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -872,6 +887,34 @@ const InvestmentDiagnostic = () => {
                         </select>
                       </div>
                       <div>
+                        <Label>ポジション</Label>
+                        <p className="text-xs text-muted-foreground mb-1">買いまたは売りを選択してください</p>
+                        <div className="flex gap-4">
+                          <label className="flex items-center">
+                            <input
+                              type="radio"
+                              name="position"
+                              value="buy"
+                              checked={fxInputs.position === 'buy'}
+                              onChange={() => setFxInputs({ ...fxInputs, position: 'buy' })}
+                              className="mr-2"
+                            />
+                            買い
+                          </label>
+                          <label className="flex items-center">
+                            <input
+                              type="radio"
+                              name="position"
+                              value="sell"
+                              checked={fxInputs.position === 'sell'}
+                              onChange={() => setFxInputs({ ...fxInputs, position: 'sell' })}
+                              className="mr-2"
+                            />
+                            売り
+                          </label>
+                        </div>
+                      </div>
+                      <div>
                         <Label htmlFor="lotSize">ロット数</Label>
                         <p className="text-xs text-muted-foreground mb-1">取引の単位（例：0.1 = 1,000通貨、1.0 = 10,000通貨）</p>
                         <input
@@ -883,6 +926,34 @@ const InvestmentDiagnostic = () => {
                           value={fxInputs.lotSize}
                           onChange={(e) => setFxInputs({ ...fxInputs, lotSize: e.target.value })}
                         />
+                      </div>
+                      <div>
+                        <Label>1pipの単位</Label>
+                        <p className="text-xs text-muted-foreground mb-1">1000通貨または10000通貨を選択してください</p>
+                        <div className="flex gap-4">
+                          <label className="flex items-center">
+                            <input
+                              type="radio"
+                              name="pipUnit"
+                              value="1000"
+                              checked={fxInputs.pipUnit === 1000}
+                              onChange={() => setFxInputs({ ...fxInputs, pipUnit: 1000 })}
+                              className="mr-2"
+                            />
+                            1000通貨
+                          </label>
+                          <label className="flex items-center">
+                            <input
+                              type="radio"
+                              name="pipUnit"
+                              value="10000"
+                              checked={fxInputs.pipUnit === 10000}
+                              onChange={() => setFxInputs({ ...fxInputs, pipUnit: 10000 })}
+                              className="mr-2"
+                            />
+                            10000通貨
+                          </label>
+                        </div>
                       </div>
                       <div>
                         <Label htmlFor="entryPrice">エントリー価格</Label>
@@ -964,17 +1035,18 @@ const InvestmentDiagnostic = () => {
                             <p className="text-xs text-muted-foreground">利益/損失の絶対値 ÷ 取引手数料</p>
                           </div>
                           <div>
-                            <p className="font-semibold">1日スワップ: <span className="font-normal">{calculationResult.swap}円</span></p>
-                            <p className="text-xs text-muted-foreground">10,000通貨あたり100円を基準</p>
-                          </div>
-                          <div>
                             <p className="font-semibold">総利益/損失: <span className="font-normal">{calculationResult.totalProfit}円</span></p>
                             <p className="text-xs text-muted-foreground">計算式: 利益/損失 - 取引手数料</p>
                           </div>
+                          <div>
+                            <p className="font-semibold">ポジション: <span className="font-normal">{calculationResult.position === 'buy' ? '買い' : '売り'}</span></p>
+                          </div>
+                          <div>
+                            <p className="font-semibold">1pip単位: <span className="font-normal">{calculationResult.pipUnit}通貨</span></p>
+                          </div>
                         </div>
                         <div className="mt-3 p-3 bg-yellow-50 rounded">
-                          <p className="font-semibold text-yellow-800">リスク管理のポイント:</p>
-                          <p className="text-yellow-700">{calculationResult.advice}</p>
+                          <p className="font-semibold text-yellow-800">※このシミュレーション結果は、実際の取引では市場状況や会社方針により異なる場合があります。</p>
                         </div>
                       </div>
                     )}
