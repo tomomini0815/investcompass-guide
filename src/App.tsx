@@ -31,6 +31,7 @@ import StockReturn from "./pages/tools/StockReturn";
 import FundReturn from "./pages/tools/FundReturn";
 import CryptoReturn from "./pages/tools/CryptoReturn";
 import RiskToleranceDiagnosticPage from "./pages/RiskToleranceDiagnosticPage";
+import FXCalculator from "./pages/tools/FXCalculator";
 // 記事ページのインポート
 import Articles from "./pages/Articles";
 import ArticleDetail from "./pages/ArticleDetail";
@@ -79,6 +80,7 @@ const App = () => (
           <Route path="/tools/stock-return" element={<StockReturn />} />
           <Route path="/tools/fund-return" element={<FundReturn />} />
           <Route path="/tools/crypto-return" element={<CryptoReturn />} />
+          <Route path="/tools/fx-calculator" element={<FXCalculator />} />
           <Route path="/risk-diagnostic" element={<RiskToleranceDiagnosticPage />} />
           {/* 新規記事ページのルート */}
           <Route path="/articles/ml-stock-prediction" element={<MLStockPrediction />} />
