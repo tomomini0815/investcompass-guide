@@ -332,6 +332,20 @@ const FXCalculator = () => {
       profitOrLoss = (entryPrice - exitPrice) * lot * pipUnit;
     }
     
+    // デバッグ用に計算の中間値をコンソールに出力
+    console.log('=== FX Calculator Debug Info ===');
+    console.log('balance:', balance);
+    console.log('lot:', lot);
+    console.log('pipUnit:', pipUnit);
+    console.log('entryPrice:', entryPrice);
+    console.log('exitPrice:', exitPrice);
+    console.log('leverage:', leverage);
+    console.log('position:', position);
+    console.log('requiredMargin:', requiredMargin);
+    console.log('balance - requiredMargin:', balance - requiredMargin);
+    console.log('lossCutValue (before rounding):', lossCutValue);
+    console.log('===============================');
+    
     return {
       requiredMargin: Math.round(requiredMargin),
       pipValue: pipValue.toFixed(2),
