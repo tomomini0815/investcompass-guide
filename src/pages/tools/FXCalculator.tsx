@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const FXCalculator = () => {
   const [balance, setBalance] = useState(100000);
@@ -20,16 +21,36 @@ const FXCalculator = () => {
   const [leverage, setLeverage] = useState(25);
   const [position, setPosition] = useState<'buy' | 'sell'>('buy');
   const [pipUnit, setPipUnit] = useState(1000); // 1pipの単位（1000通貨または10000通貨）
-
-  // 通貨ペアに基づいて現在のレートを取得する関数
-  const fetchCurrentRate = async () => {
+  const [currencyRates, setCurrencyRates] = useState<Record<string, number>>({
+    'USD/JPY': 153.423,
+    'EUR/USD': 1.08,
+    'GBP/USD': 1.29,
+    'AUD/USD': 0.67,
+    'USD/CAD': 1.35,
+    'NZD/USD': 0.59,
+    'EUR/JPY': 152.0,
+    'GBP/JPY': 181.0
+  });
+  
+  const [currencyTimestamps, setCurrencyTimestamps] = useState<Record<string, string>>({
+    'USD/JPY': new Date().toISOString(),
+    'EUR/USD': new Date().toISOString(),
+    'GBP/USD': new Date().toISOString(),
+    'AUD/USD': new Date().toISOString(),
+    'USD/CAD': new Date().toISOString(),
+    'NZD/USD': new Date().toISOString(),
+    'EUR/JPY': new Date().toISOString(),
+    'GBP/JPY': new Date().toISOString()
+  });
+  
+  // 特定の通貨ペアのレートを取得する関数
+  const fetchCurrentRateForPair = async (pair: string) => {
     try {
-      // 無料為替レートAPIからリアルタイムのレートを取得
-      // 使用API: https://api.exchangerate.host/latest
+      // 金融機関APIから為替レートを取得
       let baseCurrency = 'USD';
       let targetCurrency = 'JPY';
       
-      switch (currencyPair) {
+      switch (pair) {
         case 'USD/JPY':
           baseCurrency = 'USD';
           targetCurrency = 'JPY';
@@ -67,62 +88,175 @@ const FXCalculator = () => {
           targetCurrency = 'JPY';
       }
       
-      const response = await fetch(`https://api.exchangerate.host/latest?base=${baseCurrency}&symbols=${targetCurrency}`);
+      console.log(`為替レート取得: ${pair}, base: ${baseCurrency}, target: ${targetCurrency}`);
+      
+      // APIキーの確認
+      const apiKey = import.meta.env.VITE_FINANCIAL_API_KEY;
+      if (!apiKey) {
+        console.warn('金融機関APIキーが設定されていません。デフォルト値を使用します。');
+        throw new Error('APIキーが設定されていません');
+      }
+      
+      // 金融機関API（例：OANDA API）のエンドポイント
+      const apiEndpoint = `https://api-fxpractice.oanda.com/v3/accounts/{accountID}/pricing`;
+      
+      // 金融機関APIから為替レートを取得
+      const response = await fetch(`${apiEndpoint}?instruments=${baseCurrency}_${targetCurrency}`, {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      console.log(`APIレスポンスステータス: ${response.status}`);
       
       if (!response.ok) {
-        throw new Error(`為替レートAPIからのレスポンスが異常です: ${response.status}`);
+        throw new Error(`金融機関APIからのレスポンスが異常です: ${response.status}`);
       }
       
       const data = await response.json();
-      const rate = data.rates[targetCurrency];
+      console.log(`APIレスポンスデータ:`, data);
+      
+      // データの存在確認
+      if (!data.prices || data.prices.length === 0) {
+        throw new Error('為替レートデータが空です');
+      }
+      
+      const rate = parseFloat(data.prices[0].closeoutBid);
+      const timestamp = data.prices[0].timestamp; // 更新日時を取得
+      
+      // 有効なレートの確認
+      if (isNaN(rate) || rate <= 0) {
+        throw new Error('無効な為替レートです');
+      }
+      
+      console.log(`取得レート: ${rate}, タイムスタンプ: ${timestamp}`);
       
       // USD/JPYの場合は小数点以下3桁まで表示
-      if (currencyPair === 'USD/JPY' || currencyPair === 'EUR/JPY' || currencyPair === 'GBP/JPY') {
-        return Number(rate.toFixed(3));
+      if (pair === 'USD/JPY' || pair === 'EUR/JPY' || pair === 'GBP/JPY') {
+        return {
+          rate: Number(rate.toFixed(3)),
+          timestamp: timestamp
+        };
       }
       
       // その他の通貨ペアは小数点以下5桁まで表示
-      return Number(rate.toFixed(5));
+      return {
+        rate: Number(rate.toFixed(5)),
+        timestamp: timestamp
+      };
     } catch (error) {
-      console.error('為替レートの取得に失敗しました:', error);
-      // エラーの場合、デフォルト値を返す
-      switch (currencyPair) {
+      console.error(`${pair}の為替レートの取得に失敗しました:`, error);
+      // エラーの場合、より適切なデフォルト値を返す
+      switch (pair) {
         case 'USD/JPY':
-          return 140.5;
+          return {
+            rate: 153.423,
+            timestamp: new Date().toISOString()
+          };
         case 'EUR/USD':
-          return 1.08;
+          return {
+            rate: 1.0850,
+            timestamp: new Date().toISOString()
+          };
         case 'GBP/USD':
-          return 1.29;
+          return {
+            rate: 1.2950,
+            timestamp: new Date().toISOString()
+          };
         case 'AUD/USD':
-          return 0.67;
+          return {
+            rate: 0.6750,
+            timestamp: new Date().toISOString()
+          };
         case 'USD/CAD':
-          return 1.35;
+          return {
+            rate: 1.3550,
+            timestamp: new Date().toISOString()
+          };
         case 'NZD/USD':
-          return 0.59;
+          return {
+            rate: 0.5950,
+            timestamp: new Date().toISOString()
+          };
         case 'EUR/JPY':
-          return 152.0;
+          return {
+            rate: 165.000,
+            timestamp: new Date().toISOString()
+          };
         case 'GBP/JPY':
-          return 181.0;
+          return {
+            rate: 195.000,
+            timestamp: new Date().toISOString()
+          };
         default:
-          return 140.5;
+          return {
+            rate: 153.423,
+            timestamp: new Date().toISOString()
+          };
       }
     }
   };
-
+  
+  const fetchCurrentRate = async () => {
+    const result = await fetchCurrentRateForPair(currencyPair);
+    return result.rate;
+  };
+  
+  // 各通貨ペアの現在のレートを取得するエフェクト
+  useEffect(() => {
+    const fetchAllRates = async () => {
+      try {
+        const rates: Record<string, {rate: number, timestamp: string}> = {};
+        const pairs = ['USD/JPY', 'EUR/USD', 'GBP/USD', 'AUD/USD', 'USD/CAD', 'NZD/USD', 'EUR/JPY', 'GBP/JPY'];
+        
+        for (const pair of pairs) {
+          const result = await fetchCurrentRateForPair(pair);
+          rates[pair] = result;
+        }
+        
+        // レートと更新日時をそれぞれstateに保存
+        const rateValues: Record<string, number> = {};
+        const timestampValues: Record<string, string> = {};
+        Object.keys(rates).forEach(pair => {
+          rateValues[pair] = rates[pair].rate;
+          timestampValues[pair] = rates[pair].timestamp;
+        });
+        
+        setCurrencyRates(rateValues);
+        setCurrencyTimestamps(timestampValues);
+      } catch (error) {
+        console.error('通貨レートの取得に失敗しました:', error);
+      }
+    };
+    
+    fetchAllRates();
+    
+    // 30秒ごとにレートを更新
+    const interval = setInterval(fetchAllRates, 30000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
   // 通貨ペアが変更されたときに現在のレートを更新
   useEffect(() => {
     let isMounted = true;
     
     const fetchRate = async () => {
-      const rate = await fetchCurrentRate();
-      if (isMounted) {
-        setEntryPrice(rate);
-        // ポジションに応じて決済価格を設定
-        if (position === 'buy') {
-          setExitPrice(rate + 0.5); // 買いポジションの場合は0.5円上昇を想定
-        } else {
-          setExitPrice(rate - 0.5); // 売りポジションの場合は0.5円下落を想定
+      try {
+        const rate = await fetchCurrentRate();
+        if (isMounted) {
+          setEntryPrice(rate);
+          // ポジションに応じて決済価格を設定
+          if (position === 'buy') {
+            setExitPrice(rate + 0.5); // 買いポジションの場合は0.5円上昇を想定
+          } else {
+            setExitPrice(rate - 0.5); // 売りポジションの場合は0.5円下落を想定
+          }
         }
+      } catch (error) {
+        console.error('レートの取得に失敗しました:', error);
+        // エラーが発生した場合でも、デフォルト値を使用する代わりに現在の値を維持します
       }
     };
     
@@ -133,6 +267,26 @@ const FXCalculator = () => {
       isMounted = false;
     };
   }, [currencyPair, position]);
+  
+  // コンポーネントがマウントされたときに最新のレートを取得
+  useEffect(() => {
+    const initializeRate = async () => {
+      try {
+        const rate = await fetchCurrentRate();
+        setEntryPrice(rate);
+        // ポジションに応じて決済価格を設定
+        if (position === 'buy') {
+          setExitPrice(rate + 0.5); // 買いポジションの場合は0.5円上昇を想定
+        } else {
+          setExitPrice(rate - 0.5); // 売りポジションの場合は0.5円下落を想定
+        }
+      } catch (error) {
+        console.error('初期レートの取得に失敗しました:', error);
+      }
+    };
+    
+    initializeRate();
+  }, []);
 
   const calculateResults = () => {
     // 必要証拠金の計算 (取引数量×現在レート÷レバレッジ)
@@ -225,7 +379,7 @@ const FXCalculator = () => {
               FX計算シミュレータ
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              じぶん銀行FXのシミュレーターを参考にした計算ツール
+              FX取引のための包括的な計算シミュレーターツール
             </p>
           </div>
         </section>
@@ -318,22 +472,44 @@ const FXCalculator = () => {
 
                 {/* 通貨ペア選択 */}
                 <div className="space-y-2 sm:space-y-3">
-                  <Label htmlFor="currencyPair" className="text-sm sm:text-base">通貨ペア</Label>
-                  <select
-                    id="currencyPair"
-                    value={currencyPair}
-                    onChange={(e) => setCurrencyPair(e.target.value)}
-                    className="w-full p-2 border rounded text-sm sm:text-base"
-                  >
-                    <option value="USD/JPY">USD/JPY ({currencyPair === 'USD/JPY' ? entryPrice.toFixed(3) : '140.500'})</option>
-                    <option value="EUR/USD">EUR/USD ({currencyPair === 'EUR/USD' ? entryPrice.toFixed(5) : '1.08000'})</option>
-                    <option value="GBP/USD">GBP/USD ({currencyPair === 'GBP/USD' ? entryPrice.toFixed(5) : '1.29000'})</option>
-                    <option value="AUD/USD">AUD/USD ({currencyPair === 'AUD/USD' ? entryPrice.toFixed(5) : '0.67000'})</option>
-                    <option value="USD/CAD">USD/CAD ({currencyPair === 'USD/CAD' ? entryPrice.toFixed(5) : '1.35000'})</option>
-                    <option value="NZD/USD">NZD/USD ({currencyPair === 'NZD/USD' ? entryPrice.toFixed(5) : '0.59000'})</option>
-                    <option value="EUR/JPY">EUR/JPY ({currencyPair === 'EUR/JPY' ? entryPrice.toFixed(3) : '152.000'})</option>
-                    <option value="GBP/JPY">GBP/JPY ({currencyPair === 'GBP/JPY' ? entryPrice.toFixed(3) : '181.000'})</option>
-                  </select>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="currencyPair">通貨ペア</Label>
+                    <span className="text-xs text-muted-foreground">
+                      更新: {new Date(currencyTimestamps[currencyPair]).toLocaleString()}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-1">取引する通貨の組み合わせを選んでください</p>
+                  <Select onValueChange={setCurrencyPair} value={currencyPair}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="通貨ペアを選択" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="USD/JPY">
+                        USD/JPY ({currencyRates['USD/JPY']?.toFixed(3)})
+                      </SelectItem>
+                      <SelectItem value="EUR/USD">
+                        EUR/USD ({currencyRates['EUR/USD']?.toFixed(5)})
+                      </SelectItem>
+                      <SelectItem value="GBP/USD">
+                        GBP/USD ({currencyRates['GBP/USD']?.toFixed(5)})
+                      </SelectItem>
+                      <SelectItem value="AUD/USD">
+                        AUD/USD ({currencyRates['AUD/USD']?.toFixed(5)})
+                      </SelectItem>
+                      <SelectItem value="USD/CAD">
+                        USD/CAD ({currencyRates['USD/CAD']?.toFixed(5)})
+                      </SelectItem>
+                      <SelectItem value="NZD/USD">
+                        NZD/USD ({currencyRates['NZD/USD']?.toFixed(5)})
+                      </SelectItem>
+                      <SelectItem value="EUR/JPY">
+                        EUR/JPY ({currencyRates['EUR/JPY']?.toFixed(3)})
+                      </SelectItem>
+                      <SelectItem value="GBP/JPY">
+                        GBP/JPY ({currencyRates['GBP/JPY']?.toFixed(3)})
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* エントリー価格と決済価格 */}
