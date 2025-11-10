@@ -458,7 +458,7 @@ const FXComparisonTable = () => {
                       <TableCell className="text-xs sm:text-sm py-3">{company.spread}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.minTradeUnit}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line">{company.swapPoints}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line max-w-[120px] break-words">{company.swapPoints}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.scalping}</TableCell>
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
