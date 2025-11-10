@@ -33,76 +33,124 @@ const CryptoComparisonTable = () => {
   const exchanges: CryptoExchange[] = [
     // 国内取引所（人気ランキング順）
     {
-      name: "bitFlyer",
-      tradingFee: "0.12%",
-      withdrawalFee: "0円（BTC）",
-      supportedCoins: 20,
-      security: "JASA認定・コールドウォレット対応",
-      japaneseSupport: true,
-      rating: 5,
-      affiliateUrl: "https://bitflyer.com/",
-      isDomestic: true,
-      features: "日本最大手の暗号資産取引所で信頼性が高い。日本円入出金に対応し、初心者にも使いやすい。JASA認定を取得。",
-    },
-    {
       name: "GMOコイン",
-      tradingFee: "0.10%",
-      withdrawalFee: "0円（BTC）",
-      supportedCoins: 35,
-      security: "JASA認定・コールドウォレット98%保管",
+      tradingFee: "Maker -0.01% / Taker 0.05% 程度",
+      withdrawalFee: "入金: 無料（即時入金対応）/ 出金: 無料",
+      supportedCoins: 30,
+      security: "コールド保管、二段階認証、分別管理、システム冗長化",
       japaneseSupport: true,
       rating: 5,
       affiliateUrl: "https://coin.z.com/jp/",
       isDomestic: true,
-      features: "GMOインターネットグループ傘下で安定性が高い。手数料が比較的安価で、取扱暗号資産も豊富。",
+      features: "入出金・送金の無料範囲が広い、板の流動性が高め、APIが安定",
     },
     {
-      name: "DMM Bitcoin",
-      tradingFee: "0.15%",
-      withdrawalFee: "0円（BTC）",
-      supportedCoins: 15,
-      security: "JASA認定・コールドウォレット95%保管",
+      name: "bitFlyer",
+      tradingFee: "0.01%～0.15% 程度（Lightning現物、出来高連動）",
+      withdrawalFee: "入金: 無料～330円、出金: 220円～770円",
+      supportedCoins: 45,
+      security: "コールド保管、2FA、出金ホワイトリスト、ISMS",
       japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://bitcoin.dmm.com/",
+      rating: 5,
+      affiliateUrl: "https://bitflyer.com/ja-jp",
       isDomestic: true,
-      features: "DMMグループ傘下の取引所。レバレッジ取引に対応しており、暗号資産の売買だけでなく多様な取引が可能。",
+      features: "老舗・口座数多い、板の厚み、Lightning（高機能板）",
     },
     {
       name: "Coincheck",
-      tradingFee: "0.10%",
-      withdrawalFee: "0円（BTC）",
-      supportedCoins: 25,
-      security: "JASA認定・コールドウォレット対応",
+      tradingFee: "取引所（BTC等）0% 例あり / 販売所は—（スプレッド）",
+      withdrawalFee: "入金: 無料～1,018円、出金: 407円",
+      supportedCoins: 30,
+      security: "コールド保管、2FA、分別管理",
       japaneseSupport: true,
       rating: 4,
       affiliateUrl: "https://coincheck.com/",
       isDomestic: true,
-      features: "国内で最も利用されている取引所の一つ。初心者に優しいインターフェースと、日本円入出金の便利さが特徴。",
+      features: "アプリ利用者数が多い、NFTマーケット連携、UIが分かりやすい",
     },
     {
-      name: "ZAIF",
-      tradingFee: "0.10%",
-      withdrawalFee: "0円（BTC）",
-      supportedCoins: 30,
-      security: "コールドウォレット対応",
-      japaneseSupport: true,
-      rating: 3,
-      affiliateUrl: "https://zaif.jp/",
-      isDomestic: true,
-      features: "国内で長く運営されている取引所。取扱暗号資産数が多く、独自のポイント制度を導入。",
-    },
-    {
-      name: "Bitbank",
-      tradingFee: "0.10%",
-      withdrawalFee: "0円（BTC）",
-      supportedCoins: 50,
-      security: "JASA認定・コールドウォレット対応",
+      name: "bitbank",
+      tradingFee: "Maker -0.02% / Taker 0.12% 程度",
+      withdrawalFee: "入金: 無料 / 出金: 550～770円程度",
+      supportedCoins: 60,
+      security: "コールド保管、2FA、監査、分別管理",
       japaneseSupport: true,
       rating: 4,
       affiliateUrl: "https://bitbank.cc/",
       isDomestic: true,
-      features: "国内主要な暗号資産取引所の一つ。低手数料と安定した取引環境が特徴。JASA認定を取得し、信頼性が高い。",
+      features: "板の流動性・銘柄数が多め、プロ向けAPI/チャートが充実",
+    },
+    {
+      name: "SBI VCトレード（VCTRADE Pro）",
+      tradingFee: "Maker -0.01% / Taker 0.05% 程度",
+      withdrawalFee: "入金: 無料 / 出金: 住信SBIネット銀行は無料、他行は数百円程度",
+      supportedCoins: 25,
+      security: "金融グループ水準の管理、コールド保管、2FA",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://www.sbivc.co.jp/",
+      isDomestic: true,
+      features: "銀行連携が強い、手数料水準が安定",
+    },
+    {
+      name: "DMM Bitcoin",
+      tradingFee: "現物は無料（— スプレッド）/ レバは建玉料等",
+      withdrawalFee: "入金: 無料（即時入金）/ 出金: 無料",
+      supportedCoins: 50,
+      security: "コールド保管、2FA、分別管理",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://bitcoin.dmm.com/",
+      isDomestic: true,
+      features: "レバレッジ通貨ペアが豊富、キャンペーン多め",
+    },
+    {
+      name: "Binance Japan",
+      tradingFee: "現物 0.10%/0.10% 程度（Maker/Taker）",
+      withdrawalFee: "入金: 無料（振込手数料は利用者負担）/ 出金: 数百円程度",
+      supportedCoins: 100,
+      security: "コールド保管、2FA、PoRページ、公的登録",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://www.binance.com/ja-JP",
+      isDomestic: true,
+      features: "銘柄数が多め、板取引・各種Earn（国内準拠版）",
+    },
+    {
+      name: "楽天ウォレット",
+      tradingFee: "取引所（Pro）低水準/ 販売所は—（スプレッド）",
+      withdrawalFee: "入金: 楽天銀行等は無料 / 出金: 数百円程度",
+      supportedCoins: 20,
+      security: "コールド保管、2FA、分別管理",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://www.rakuten-wallet.co.jp/",
+      isDomestic: true,
+      features: "楽天経済圏連携、ポイント周りの導線が強い",
+    },
+    {
+      name: "LINE BITMAX",
+      tradingFee: "—（販売所はスプレッド）",
+      withdrawalFee: "入金: 無料（LINE Pay/銀行）/ 出金: 数百円程度",
+      supportedCoins: 10,
+      security: "コールド保管、2FA、分別管理",
+      japaneseSupport: true,
+      rating: 3,
+      affiliateUrl: "https://bitmax.me/",
+      isDomestic: true,
+      features: "LINEアプリからシームレス、初心者向け",
+    },
+    {
+      name: "BITPOINT",
+      tradingFee: "取引所は無料の銘柄あり/標準低水準",
+      withdrawalFee: "入金: 無料（即時入金）/ 出金: 数百円程度",
+      supportedCoins: 50,
+      security: "コールド保管、2FA、分別管理",
+      japaneseSupport: true,
+      rating: 4,
+      affiliateUrl: "https://www.bitpoint.co.jp/",
+      isDomestic: true,
+      features: "送金手数料の無料対象が多い、キャンペーン活発",
     },
     // 海外取引所（人気ランキング順）
     {
@@ -295,28 +343,14 @@ const CryptoComparisonTable = () => {
             <p className="font-semibold">{exchange.tradingFee}</p>
           </div>
           <div>
-            <p className="text-muted-foreground text-xs">出金手数料</p>
+            <p className="text-muted-foreground text-xs">入出金手数料</p>
             <p className="font-semibold">{exchange.withdrawalFee}</p>
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">日本語対応</span>
-            {exchange.japaneseSupport ? (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                <Check className="h-3 w-3 text-green-600" />
-              </div>
-            ) : (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                <X className="h-3 w-3 text-red-600" />
-              </div>
-            )}
-          </div>
-          <div>
-            <p className="text-muted-foreground text-xs">セキュリティ</p>
-            <p className="text-xs">{exchange.security}</p>
-          </div>
+        <div>
+          <p className="text-muted-foreground text-xs">セキュリティ</p>
+          <p className="text-xs">{exchange.security}</p>
         </div>
         
         <div>
@@ -390,7 +424,7 @@ const CryptoComparisonTable = () => {
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引所</TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引手数料</TableHead>
-                    <TableHead className="min-w-[90px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">出金手数料</TableHead>
+                    <TableHead className="min-w-[90px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">入出金手数料</TableHead>
                     <TableHead 
                       className="cursor-pointer hover:bg-muted/50 min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
                       onClick={() => handleSort("supportedCoins")}
@@ -403,7 +437,6 @@ const CryptoComparisonTable = () => {
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">セキュリティ</TableHead>
-                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">日本語対応</TableHead>
                     <TableHead 
                       className="cursor-pointer hover:bg-muted/50 min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
                       onClick={() => handleSort("rating")}
@@ -434,17 +467,6 @@ const CryptoComparisonTable = () => {
                         </Badge>
                       </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 break-words max-w-xs">{exchange.security}</TableCell>
-                      <TableCell className="text-center py-3">
-                        {exchange.japaneseSupport ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
-                          </div>
-                        ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
-                          </div>
-                        )}
-                      </TableCell>
                       <TableCell className="py-3">
                         <RatingStars rating={exchange.rating} />
                       </TableCell>

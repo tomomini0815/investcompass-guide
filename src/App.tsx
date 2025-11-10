@@ -39,6 +39,7 @@ import ArticleDetail from "./pages/ArticleDetail";
 import MLStockPrediction from "./pages/MLStockPrediction";
 import DLForexPrediction from "./pages/DLForexPrediction";
 import AIPortfolioOptimization from "./pages/AIPortfolioOptimization";
+import Sitemap from "./pages/Sitemap";
 
 const queryClient = new QueryClient();
 
@@ -95,6 +96,7 @@ const App = () => (
           <Route path="/legal" element={<Legal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/sitemap" element={<Sitemap />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

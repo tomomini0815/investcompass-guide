@@ -29,6 +29,7 @@ const Footer = () => {
     "その他": [
       { name: "特定商取引法", href: "/legal" },
       { name: "免責事項", href: "/disclaimer" },
+      { name: "サイトマップ", href: "/sitemap" },
     ],
   };
 

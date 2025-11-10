@@ -635,7 +635,7 @@ const Articles = () => {
             </div>
           </div>
           
-          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">国外取引所の特徴</h2>
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">海外取引所の特徴</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div class="bg-green-50 p-6 rounded-xl">
               <h3 class="font-bold text-green-800 mb-3">メリット</h3>
@@ -701,7 +701,7 @@ const Articles = () => {
             </div>
           </div>
           
-          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">国外FX業者の特徴</h2>
+          <h2 class="text-2xl font-bold mt-10 mb-6 pb-2 border-b">海外FX業者の特徴</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div class="bg-green-50 p-6 rounded-xl">
               <h3 class="font-bold text-green-800 mb-3">メリット</h3>

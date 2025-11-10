@@ -128,7 +128,7 @@ const InvestmentDiagnostic = () => {
     
     // 通貨ペアごとの1pipの価値（10,000通貨ロット基準）
     const pipValues: Record<string, number> = {
-      'USD/JPY': 100,  // 10,000通貨で100円
+      'USD/JPY': 100,  // 10,000通貨で100円、1pip = 0.01円
       'EUR/JPY': 100,
       'GBP/JPY': 100,
       'AUD/JPY': 100
@@ -155,10 +155,10 @@ const InvestmentDiagnostic = () => {
     const profit = pipDifference * pipValueAdjusted * lotSize;
     
     // 取引手数料（10,000通貨あたり500円を基準）
-    const fee = (lotSize * 500 * (pipUnit / 10000)).toFixed(0);
+    const fee = (lotSize * 500).toFixed(0);
     
-    // 必要証拠金計算（10,000通貨あたり100,000円を基準）
-    const margin = ((lotSize * 100000) / leverage).toFixed(0);
+    // 必要証拠金計算（100円を基準に計算）
+    const margin = ((lotSize * 100) / leverage).toFixed(0);
     
     // リスクリワード比の計算（利益/損失の絶対値 ÷ 取引手数料）
     const riskRewardRatio = (Math.abs(profit) / parseFloat(fee)).toFixed(2);
@@ -1028,7 +1028,7 @@ const InvestmentDiagnostic = () => {
                           </div>
                           <div>
                             <p className="font-semibold">必要証拠金: <span className="font-normal">{calculationResult.margin}円</span></p>
-                            <p className="text-xs text-muted-foreground">計算式: (ロット数 × 100,000) ÷ レバレッジ</p>
+                            <p className="text-xs text-muted-foreground">計算式: (ロット数 × 100) ÷ レバレッジ</p>
                           </div>
                           <div>
                             <p className="font-semibold">リスクリワード比: <span className="font-normal">{calculationResult.riskRewardRatio}</span></p>
