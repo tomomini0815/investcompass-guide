@@ -321,16 +321,16 @@ const Index = () => {
     },
     {
       id: "crypto-exchange-comparison",
-      title: "暗号資産取引所比較：国内と国外の違いと選び方",
-      excerpt: "国内と国外の暗号資産取引所の特徴と違いを比較し、自分に合った取引所の選び方を解説します。",
+      title: "暗号資産取引所比較：国内と海外の違いと選び方",
+      excerpt: "国内と海外の暗号資産取引所の特徴と違いを比較し、自分に合った取引所の選び方を解説します。",
       category: "暗号資産",
       date: "2024年6月15日",
       isPopular: true,
     },
     {
       id: "fx-broker-comparison",
-      title: "FX業者比較：国内と国外の違いと選び方のポイント",
-      excerpt: "国内と国外のFX業者の特徴と違いを比較し、自分に合ったFX業者の選び方を解説します。",
+      title: "FX業者比較：国内と海外の違いと選び方のポイント",
+      excerpt: "国内と海外のFX業者の特徴と違いを比較し、自分に合ったFX業者の選び方を解説します。",
       category: "FX",
       date: "2024年6月20日",
       isPopular: true,
@@ -564,7 +564,7 @@ const Index = () => {
                   }`}
                   onClick={() => setActiveTab('international')}
                 >
-                  国外業者
+                  海外業者
                 </button>
               </div>
             </div>
@@ -606,11 +606,11 @@ const Index = () => {
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">暗号資産取引所ランキング</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                国内外の人気暗号資産取引所を比較ランキング形式でご紹介
+                海外の人気暗号資産取引所を比較ランキング形式でご紹介
               </p>
             </div>
             
-            {/* 国内外の切替ボタン */}
+            {/* 海外の切替ボタン */}
             <div className="flex justify-center mb-10">
               <div className="inline-flex rounded-md shadow-sm" role="group">
                 <button
@@ -633,7 +633,7 @@ const Index = () => {
                   }`}
                   onClick={() => setActiveCryptoTab('international')}
                 >
-                  国外取引所
+                  海外取引所
                 </button>
               </div>
             </div>
