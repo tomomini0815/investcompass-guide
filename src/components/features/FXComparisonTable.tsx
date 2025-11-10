@@ -141,18 +141,6 @@ const FXComparisonTable = () => {
       features: "楽天ポイントが貯まる、楽天証券口座と連携、MT4対応",
     },
     {
-      name: "auカブコム証券（auカブコムFX）",
-      spread: "米ドル/円 0.2銭原則固定",
-      minTradeUnit: "1,000通貨",
-      currencyPairs: 19,
-      swapPoints: "ドル円: 約225円\nポンド円: 約265円\nユーロ円: 約198円",
-      scalping: "非推奨",
-      rating: 3,
-      affiliateUrl: "https://kabu.com/fx/",
-      isDomestic: true,
-      features: "三菱UFJグループ、Pontaポイント付与、株式との連携",
-    },
-    {
       name: "三菱UFJ eスマート証券 FX",
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
