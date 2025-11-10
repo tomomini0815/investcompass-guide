@@ -12,13 +12,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface FXCompany {
+interface FXBroker {
   name: string;
   spread: string;
-  minInvestment: string;
-  currencyPairs: string;
-  swapPoint: boolean;
-  scalping: boolean;
+  minTradeUnit: string;
+  currencyPairs: number;
+  swapPoints: string;
+  scalping: string;
   rating: number;
   affiliateUrl: string;
   isDomestic: boolean;
@@ -26,153 +26,266 @@ interface FXCompany {
 }
 
 const FXComparisonTable = () => {
-  const [sortBy, setSortBy] = useState<keyof FXCompany | null>(null);
+  const [sortBy, setSortBy] = useState<keyof FXBroker | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [showDomestic, setShowDomestic] = useState<boolean>(true);
 
-  const companies: FXCompany[] = [
+  const domesticBrokers: FXBroker[] = [
     // 国内FX業者（人気ランキング順）
     {
-      name: "GMOクリック証券",
-      spread: "0.2銭",
-      minInvestment: "1,000通貨",
-      currencyPairs: "30種類（ラージ銘柄含む）",
-      swapPoint: true,
-      scalping: true,
+      name: "GMOクリック証券（FXネオ）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 20,
+      swapPoints: "ドル円: 約230円\nポンド円: 約280円\nユーロ円: 約210円",
+      scalping: "非推奨（明記なし）",
       rating: 5,
-      affiliateUrl: "https://click.gmo-jp.com/",
+      affiliateUrl: "https://www.click-sec.com/",
       isDomestic: true,
-      features: "GMOグループ傘下で信頼性が高く、スプレッドが非常に狭い。スキャルピングも可能で、初心者から上級者まで利用可能。",
+      features: "FX取引高世界第1位、高機能取引ツール、低スプレッド",
     },
     {
-      name: "DMMfx",
-      spread: "0.3銭",
-      minInvestment: "1,000通貨",
-      currencyPairs: "34種類",
-      swapPoint: true,
-      scalping: true,
-      rating: 4,
+      name: "DMM FX",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "10,000通貨",
+      currencyPairs: 21,
+      swapPoints: "ドル円: 約225円\nポンド円: 約270円\nユーロ円: 約205円",
+      scalping: "非推奨",
+      rating: 5,
       affiliateUrl: "https://fx.dmm.com/",
       isDomestic: true,
-      features: "DMMグループ傘下のFX業者。スプレッドが適度に狭く、スキャルピングも可能。独自の取引ツール「DMM FX Viewer」が特徴。",
+      features: "初心者向け、LINEサポート対応、最短当日取引開始",
     },
     {
-      name: "みんなのFX",
-      spread: "0.2銭",
-      minInvestment: "1,000通貨",
-      currencyPairs: "51種類",
-      swapPoint: true,
-      scalping: false,
-      rating: 4,
-      affiliateUrl: "https://fx.gmo-jp.com/",
+      name: "SBI FXトレード",
+      spread: "米ドル/円 0.18銭～",
+      minTradeUnit: "1通貨",
+      currencyPairs: 34,
+      swapPoints: "ドル円: 約240円\nポンド円: 約290円\nユーロ円: 約215円",
+      scalping: "可能",
+      rating: 5,
+      affiliateUrl: "https://www.sbifxt.co.jp/",
       isDomestic: true,
-      features: "GMOクリック証券の姉妹サービス。通貨ペア数が多く、スワップポイントも充実。スキャルピングは不可。",
+      features: "1通貨から取引可能、業界最狭水準スプレッド",
     },
     {
-      name: "外為どっとコム",
-      spread: "0.2銭",
-      minInvestment: "1,000通貨",
-      currencyPairs: "30種類",
-      swapPoint: false,
-      scalping: true,
+      name: "松井証券 MATSUI FX",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1通貨",
+      currencyPairs: 20,
+      swapPoints: "ドル円: 約235円\nポンド円: 約275円\nユーロ円: 約208円",
+      scalping: "可能",
       rating: 4,
+      affiliateUrl: "https://www.matsui.co.jp/fx/",
+      isDomestic: true,
+      features: "1通貨から取引可能、老舗証券会社の信頼性、サポート充実",
+    },
+    {
+      name: "外為どっとコム（外貨ネクストネオ）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 30,
+      swapPoints: "ドル円: 約238円\nポンド円: 約285円\nユーロ円: 約212円",
+      scalping: "可能",
+      rating: 5,
       affiliateUrl: "https://www.gaitame.com/",
       isDomestic: true,
-      features: "業界最大手の老舗FX業者。スキャルピングが可能で、取引ツールが充実。スワップポイントは提供していない。",
+      features: "情報コンテンツ充実、セミナー豊富、分析ツール高性能",
     },
     {
-      name: "ヒロセ通商",
-      spread: "0.2銭",
-      minInvestment: "1,000通貨",
-      currencyPairs: "54種類",
-      swapPoint: false,
-      scalping: true,
+      name: "みんなのFX（トレイダーズ証券）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 34,
+      swapPoints: "ドル円: 約242円\nポンド円: 約288円\nユーロ円: 約218円",
+      scalping: "可能",
       rating: 4,
-      affiliateUrl: "https://www.hirose-fx.co.jp/",
+      affiliateUrl: "https://min-fx.jp/",
       isDomestic: true,
-      features: "通貨ペア数が非常に多く、スキャルピングも可能。独自の取引ツール「ヒロセ君」が特徴。スワップポイントは提供していない。",
+      features: "高水準スワップポイント、シンプルな取引画面、初心者向け",
     },
     {
-      name: "LIGHT FX",
-      spread: "0.2銭",
-      minInvestment: "1,000通貨",
-      currencyPairs: "51種類",
-      swapPoint: true,
-      scalping: false,
+      name: "ヒロセ通商（LION FX）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 54,
+      swapPoints: "ドル円: 約232円\nポンド円: 約278円\nユーロ円: 約206円",
+      scalping: "公認",
       rating: 4,
-      affiliateUrl: "https://light-fx.jp/",
+      affiliateUrl: "https://hirose-fx.co.jp/",
       isDomestic: true,
-      features: "スワップポイントが非常に高く、長期保有向き。通貨ペア数も多く、初心者に人気。スキャルピングは不可。",
-    },
-    // 海外FX業者（人気ランキング順）
-    {
-      name: "Interactive Brokers",
-      spread: "$0.5/100株",
-      minInvestment: "$0",
-      currencyPairs: "80種類以上",
-      swapPoint: true,
-      scalping: true,
-      rating: 5,
-      affiliateUrl: "https://www.interactivebrokers.com/",
-      isDomestic: false,
-      features: "世界中の市場にアクセス可能で、手数料が非常に安い。プロ向けの高度な取引ツールを提供。スキャルピングも可能。",
+      features: "スキャルピング公認、通貨ペア数最多クラス、キャンペーン豊富",
     },
     {
-      name: "IG証券",
-      spread: "取引画面で確認",
-      minInvestment: "1万通貨",
-      currencyPairs: "約100種類",
-      swapPoint: true,
-      scalping: true,
+      name: "GMO外貨（外貨ex）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 24,
+      swapPoints: "ドル円: 約228円\nポンド円: 約272円\nユーロ円: 約203円",
+      scalping: "条件付き可能",
       rating: 4,
-      affiliateUrl: "https://www.ig.com/jp",
-      isDomestic: false,
-      features: "日本語対応が充実し、初心者にも使いやすい。通貨ペア数が多く、スキャルピングも可能。教育コンテンツも豊富。",
+      affiliateUrl: "https://www.gaikaex.com/",
+      isDomestic: true,
+      features: "スマホアプリ高性能、PayPayポイント付与、GMOグループ",
     },
     {
-      name: "XM",
-      spread: "0.0 pips",
-      minInvestment: "$5",
-      currencyPairs: "50種類以上",
-      swapPoint: true,
-      scalping: true,
+      name: "楽天証券（楽天FX）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 28,
+      swapPoints: "ドル円: 約227円\nポンド円: 約268円\nユーロ円: 約200円",
+      scalping: "非推奨",
       rating: 4,
-      affiliateUrl: "https://www.xm.com/",
-      isDomestic: false,
-      features: "ゼロスプレッドプランが人気。最低取引単位が小さく、初心者にも使いやすい。スキャルピングも可能。",
+      affiliateUrl: "https://www.rakuten-sec.co.jp/web/fx/",
+      isDomestic: true,
+      features: "楽天ポイントが貯まる、楽天証券口座と連携、MT4対応",
     },
     {
-      name: "Pepperstone",
-      spread: "0.0 pips",
-      minInvestment: "$200",
-      currencyPairs: "60種類以上",
-      swapPoint: true,
-      scalping: true,
-      rating: 4,
-      affiliateUrl: "https://pepperstone.com/",
-      isDomestic: false,
-      features: "オーストラリアのFX業者で、信頼性が高い。スキャルピングが可能で、取引ツールが充実。教育コンテンツも豊富。",
-    },
-    {
-      name: "OANDA",
-      spread: "0.0 pips",
-      minInvestment: "$0",
-      currencyPairs: "70種類以上",
-      swapPoint: true,
-      scalping: true,
-      rating: 4,
-      affiliateUrl: "https://www.oanda.com/",
-      isDomestic: false,
-      features: "信頼性が高く、初心者から上級者まで利用可能。通貨ペア数が多く、スキャルピングも可能。教育コンテンツも充実。",
+      name: "auカブコム証券（auカブコムFX）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 19,
+      swapPoints: "ドル円: 約225円\nポンド円: 約265円\nユーロ円: 約198円",
+      scalping: "非推奨",
+      rating: 3,
+      affiliateUrl: "https://kabu.com/fx/",
+      isDomestic: true,
+      features: "三菱UFJグループ、Pontaポイント付与、株式との連携",
     },
   ];
+
+  const foreignBrokers: FXBroker[] = [
+    // 海外FX業者（人気ランキング順）
+    {
+      name: "XMTrading（エックスエム）",
+      spread: "米ドル/円 1.6pips（スタンダード口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 57,
+      swapPoints: "ドル円: -8.5USD / +2.5USD\nポンド円: -12.3USD / +3.8USD\nユーロ円: -10.2USD / +3.1USD",
+      scalping: "可能",
+      rating: 5,
+      affiliateUrl: "https://www.xmtrading.com/",
+      isDomestic: false,
+      features: "最大1000倍レバレッジ、豪華ボーナス、日本語サポート完備、運営実績15年以上",
+    },
+    {
+      name: "FXGT（エフエックスジーティー）",
+      spread: "米ドル/円 1.5pips（スタンダード+口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 53,
+      swapPoints: "ドル円: -7.8USD / +2.2USD\nポンド円: -11.5USD / +3.5USD\nユーロ円: -9.8USD / +2.9USD",
+      scalping: "可能",
+      rating: 5,
+      affiliateUrl: "https://fxgt.com/",
+      isDomestic: false,
+      features: "最大1000倍レバレッジ、仮想通貨FXに強い、充実のボーナス、新興ながら急成長",
+    },
+    {
+      name: "Exness（エクスネス）",
+      spread: "米ドル/円 1.1pips（スタンダード口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 95,
+      swapPoints: "ドル円: -6.9USD / +1.8USD\nポンド円: -10.2USD / +2.9USD\nユーロ円: -8.5USD / +2.3USD",
+      scalping: "可能",
+      rating: 5,
+      affiliateUrl: "https://www.exness.com/",
+      isDomestic: false,
+      features: "無制限レバレッジ、低スプレッド、ボーナスなしでスペック重視、高速約定",
+    },
+    {
+      name: "TitanFX（タイタンエフエックス）",
+      spread: "米ドル/円 1.33pips（スタンダード口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 60,
+      swapPoints: "ドル円: -7.2USD / +2.0USD\nポンド円: -10.8USD / +3.2USD\nユーロ円: -9.1USD / +2.6USD",
+      scalping: "可能（推奨）",
+      rating: 4,
+      affiliateUrl: "https://titanfx.com/",
+      isDomestic: false,
+      features: "最大500倍レバレッジ、低スプレッド、スキャルピング特化、高い約定力",
+    },
+    {
+      name: "AXIORY（アキシオリー）",
+      spread: "米ドル/円 1.3pips（スタンダード口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 61,
+      swapPoints: "ドル円: -7.5USD / +2.3USD\nポンド円: -11.0USD / +3.3USD\nユーロ円: -9.3USD / +2.7USD",
+      scalping: "可能",
+      rating: 4,
+      affiliateUrl: "https://www.axiory.com/",
+      isDomestic: false,
+      features: "最大400倍レバレッジ、透明性の高い運営、cTrader対応、信託保全あり",
+    },
+    {
+      name: "ThreeTrader（スリートレーダー）",
+      spread: "米ドル/円 0.5pips～（Rawゼロ口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 40,
+      swapPoints: "ドル円: -6.5USD / +1.5USD\nポンド円: -9.8USD / +2.5USD\nユーロ円: -8.2USD / +2.0USD",
+      scalping: "可能",
+      rating: 4,
+      affiliateUrl: "https://www.threetrader.com/",
+      isDomestic: false,
+      features: "最大500倍レバレッジ、業界最狭スプレッド、低コスト特化、取引制限なし",
+    },
+    {
+      name: "HFM（旧HotForex）",
+      spread: "米ドル/円 1.6pips（プレミアム口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 53,
+      swapPoints: "ドル円: -8.0USD / +2.4USD\nポンド円: -11.8USD / +3.6USD\nユーロ円: -9.9USD / +3.0USD",
+      scalping: "可能",
+      rating: 4,
+      affiliateUrl: "https://www.hfm.com/",
+      isDomestic: false,
+      features: "最大1000倍レバレッジ、豊富なボーナス、多数の受賞歴、コピートレード充実",
+    },
+    {
+      name: "BigBoss（ビッグボス）",
+      spread: "米ドル/円 1.4pips（スタンダード口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 41,
+      swapPoints: "ドル円: -7.6USD / +2.1USD\nポンド円: -11.2USD / +3.1USD\nユーロ円: -9.4USD / +2.5USD",
+      scalping: "可能",
+      rating: 4,
+      affiliateUrl: "https://www.bigboss-financial.com/",
+      isDomestic: false,
+      features: "最大1111倍レバレッジ、日本語サポート充実、独自のBBPポイント制度、取引制限少ない",
+    },
+    {
+      name: "iFOREX（アイフォレックス）",
+      spread: "米ドル/円 0.7pips～",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 86,
+      swapPoints: "ドル円: -7.8USD / +2.2USD\nポンド円: -11.5USD / +3.4USD\nユーロ円: -9.7USD / +2.8USD",
+      scalping: "制限あり",
+      rating: 4,
+      affiliateUrl: "https://www.iforex.jpn.com/",
+      isDomestic: false,
+      features: "最大400倍レバレッジ、運営歴25年以上の老舗、独自プラットフォーム、初回入金ボーナス豪華",
+    },
+    {
+      name: "TradeView（トレードビュー）",
+      spread: "米ドル/円 0.2pips～（ILC口座）",
+      minTradeUnit: "0.01ロット（1,000通貨）",
+      currencyPairs: 60,
+      swapPoints: "ドル円: -6.3USD / +1.2USD\nポンド円: -9.5USD / +2.2USD\nユーロ円: -8.0USD / +1.8USD",
+      scalping: "可能",
+      rating: 4,
+      affiliateUrl: "https://www.tradeviewforex.com/",
+      isDomestic: false,
+      features: "最大400倍レバレッジ、超低スプレッド、ECN特化、cTrader/MT5対応、上級者向け",
+    },
+  ];
+
+  const companies = showDomestic ? domesticBrokers : foreignBrokers;
 
   // 表示するFX業者をフィルタリング
   const filteredCompanies = companies.filter(company => 
     showDomestic ? company.isDomestic : !company.isDomestic
   );
 
-  const handleSort = (key: keyof FXCompany) => {
+  const handleSort = (key: keyof FXBroker) => {
     if (sortBy === key) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
@@ -213,7 +326,7 @@ const FXComparisonTable = () => {
   );
 
   // モバイル向けカードコンポーネント
-  const MobileCompanyCard = ({ company }: { company: FXCompany }) => (
+  const MobileCompanyCard = ({ company }: { company: FXBroker }) => (
     <Card className="mb-4 shadow-md border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-bold flex justify-between items-center">
@@ -231,34 +344,18 @@ const FXComparisonTable = () => {
           </div>
           <div>
             <p className="text-muted-foreground text-xs">最低取引単位</p>
-            <p className="font-semibold">{company.minInvestment}</p>
+            <p className="font-semibold">{company.minTradeUnit}</p>
           </div>
         </div>
         
         <div className="grid grid-cols-2 gap-3">
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground text-xs">スワップポイント</span>
-            {company.swapPoint ? (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                <Check className="h-3 w-3 text-green-600" />
-              </div>
-            ) : (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                <X className="h-3 w-3 text-red-600" />
-              </div>
-            )}
+            <div className="text-xs whitespace-pre-line">{company.swapPoints}</div>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground text-xs">スキャルピング</span>
-            {company.scalping ? (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                <Check className="h-3 w-3 text-green-600" />
-              </div>
-            ) : (
-              <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-100">
-                <X className="h-3 w-3 text-red-600" />
-              </div>
-            )}
+            <div className="text-xs">{company.scalping}</div>
           </div>
         </div>
         
@@ -332,24 +429,23 @@ const FXComparisonTable = () => {
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">FX業者</TableHead>
-                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スプレッド</TableHead>
-                    <TableHead className="min-w-[90px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">最低取引単位</TableHead>
-                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">通貨ペア</TableHead>
-                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スワップポイント</TableHead>
-                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
+                    <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スプレッド</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">最低取引単位</TableHead>
                     <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
-                      onClick={() => handleSort("rating")}
+                      className="cursor-pointer hover:bg-muted/50 min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
+                      onClick={() => handleSort("currencyPairs")}
                     >
-                      <div className="flex items-center gap-1">
-                        評価
-                        {sortBy === "rating" && (
-                          sortOrder === "asc" ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <div className="flex items-center justify-between">
+                        <span>通貨ペア数</span>
+                        {sortBy === "currencyPairs" && (
+                          <span>{sortOrder === "asc" ? "↑" : "↓"}</span>
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
-                    <TableHead className="text-center min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">公式サイト</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スワップポイント</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
+                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
+                    <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -360,30 +456,10 @@ const FXComparisonTable = () => {
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.spread}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{company.minInvestment}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3">{company.minTradeUnit}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
-                      <TableCell className="text-center py-3">
-                        {company.swapPoint ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
-                          </div>
-                        ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
-                          </div>
-                        )}
-                      </TableCell>
-                      <TableCell className="text-center py-3">
-                        {company.scalping ? (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100">
-                            <Check className="h-4 w-4 text-green-600" />
-                          </div>
-                        ) : (
-                          <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100">
-                            <X className="h-4 w-4 text-red-600" />
-                          </div>
-                        )}
-                      </TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line">{company.swapPoints}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3">{company.scalping}</TableCell>
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
