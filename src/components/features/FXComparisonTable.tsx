@@ -153,7 +153,7 @@ const FXComparisonTable = () => {
       features: "三菱UFJグループ、Pontaポイント付与、株式との連携",
     },
     {
-      name: "三菱UFJ eスマート証券 FX（店頭FX）",
+      name: "三菱UFJ eスマート証券 FX",
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 19,
