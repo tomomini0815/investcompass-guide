@@ -60,7 +60,7 @@ const HeroSection = () => {
           {/* プロモーション表示の追加 */}
           <div className="mb-6">
             <p className="text-sm text-white/80 italic">
-              【※このサイトには広告・プロモーションが含まれています】
+              【※当サイトには広告・プロモーションが含まれています】
             </p>
           </div>
 
