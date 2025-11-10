@@ -152,6 +152,18 @@ const FXComparisonTable = () => {
       isDomestic: true,
       features: "三菱UFJグループ、Pontaポイント付与、株式との連携",
     },
+    {
+      name: "三菱UFJ eスマート証券 FX（店頭FX）",
+      spread: "米ドル/円 0.2銭原則固定",
+      minTradeUnit: "1,000通貨",
+      currencyPairs: 19,
+      swapPoints: "ドル円: 約225円\nポンド円: 約265円\nユーロ円: 約198円",
+      scalping: "非推奨",
+      rating: 3,
+      affiliateUrl: "https://kabu.com/fx/",
+      isDomestic: true,
+      features: "三菱UFJグループ、Pontaポイント付与、株式との連携",
+    },
   ];
 
   const foreignBrokers: FXBroker[] = [
@@ -491,6 +503,28 @@ const FXComparisonTable = () => {
           </p>
         </div>
       </CardContent>
+      <div className="px-4 sm:px-6 pb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-yellow-700">
+                <span className="font-bold">注意事項:</span>
+                <br />
+                <span className="block mt-1">・スプレッドはリアルタイム相場やキャンペーン、時間帯によっても変動します。</span>
+                <span className="block mt-1">・スワップポイントは日々変動するため、上記「＋○円」はあくまで参考イメージです。実際の数値は各社の最新情報をご確認ください。</span>
+                <span className="block mt-1">・スキャルピングの可否は明示的に禁止していない場合でも、約定拒否やレート配信などで事実上制限される場合があります。</span>
+                <span className="block mt-1">・評価はあくまで一般的なユーザーの声や取引条件の傾向を総合的に見た参考レベルです。</span>
+                <span className="block mt-1">・最新の情報や詳細な数値を確認する際は、必ず各社の公式サイトや最新の取引約款・告知文書をチェックしてください。</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </Card>
   );
 };
