@@ -404,6 +404,28 @@ const ComparisonTable = () => {
           </p>
         </div>
       </CardContent>
+      <div className="px-4 sm:px-6 pb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-yellow-700">
+                <span className="font-bold">注意事項:</span>
+                <br />
+                <span className="block mt-1">・本ページは情報提供を目的としており、特定の証券会社への取引を推奨・勧誘するものではありません。</span>
+                <span className="block mt-1">・証券会社の選択は、必ずご自身の投資目的、リスク許容度、取引スタイルに合ったものをお選びください。</span>
+                <span className="block mt-1">・掲載されている情報は作成時点のものであり、その正確性、完全性、最新性を保証するものではありません。</span>
+                <span className="block mt-1">・証券会社のサービス内容や手数料体系は変更される場合がありますので、投資を行う際は必ず公式サイトなどで最新情報をご確認ください。</span>
+                <span className="block mt-1">・投資は自己責任で行うものとし、本情報を用いた判断や行動の結果について当サイトは一切の責任を負いません。</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </Card>
   );
 };
