@@ -8,9 +8,26 @@ interface RankingCardProps {
   name: string;
   logo?: string;
   features: string[];
-  spread: string;
-  swapPoints: string;
-  nisaSupport: boolean;
+  // 証券会社用プロパティ
+  commission?: string;
+  minInvestment?: string;
+  nisaSupport?: boolean;
+  ipoCount?: number;
+  foreignStocks?: boolean;
+  points?: string;
+  // FX業者用プロパティ
+  spread?: string;
+  minTradeUnit?: string;
+  currencyPairs?: number;
+  swapPoints?: string;
+  scalping?: string;
+  // 暗号資産取引所用プロパティ
+  tradingFee?: string;
+  withdrawalFee?: string;
+  supportedCoins?: number;
+  security?: string;
+  // 共通プロパティ
+  rating?: number;
   highlight?: string;
   affiliateUrl: string;
 }
@@ -19,9 +36,22 @@ const RankingCard = ({
   rank,
   name,
   features,
-  spread,
-  swapPoints,
+  commission,
+  minInvestment,
   nisaSupport,
+  ipoCount,
+  foreignStocks,
+  points,
+  spread,
+  minTradeUnit,
+  currencyPairs,
+  swapPoints,
+  scalping,
+  tradingFee,
+  withdrawalFee,
+  supportedCoins,
+  security,
+  rating,
   highlight,
   affiliateUrl,
 }: RankingCardProps) => {
@@ -32,6 +62,34 @@ const RankingCard = ({
   };
 
   const rankClass = rankColors[rank as keyof typeof rankColors] || "bg-muted";
+
+  // 表示する項目を決定
+  let firstItemLabel = "";
+  let firstItemValue = "";
+  let secondItemLabel = "";
+  let secondItemValue = "";
+
+  // 証券会社の場合
+  if (commission !== undefined && minInvestment !== undefined) {
+    firstItemLabel = "手数料";
+    firstItemValue = commission;
+    secondItemLabel = "最低購入株数";
+    secondItemValue = minInvestment;
+  }
+  // FX業者の場合
+  else if (spread !== undefined && swapPoints !== undefined) {
+    firstItemLabel = "スプレッド";
+    firstItemValue = spread;
+    secondItemLabel = "スワップポイント";
+    secondItemValue = swapPoints;
+  }
+  // 暗号資産取引所の場合
+  else if (tradingFee !== undefined && withdrawalFee !== undefined) {
+    firstItemLabel = "取引手数料";
+    firstItemValue = tradingFee;
+    secondItemLabel = "入出金手数料";
+    secondItemValue = withdrawalFee;
+  }
 
   return (
     <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -55,12 +113,12 @@ const RankingCard = ({
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="text-muted-foreground mb-1">スプレッド</p>
-            <p className="font-semibold">{spread}</p>
+            <p className="text-muted-foreground mb-1">{firstItemLabel}</p>
+            <p className="font-semibold">{firstItemValue}</p>
           </div>
           <div>
-            <p className="text-muted-foreground mb-1">スワップポイント</p>
-            <p className="font-semibold">{swapPoints}</p>
+            <p className="text-muted-foreground mb-1">{secondItemLabel}</p>
+            <p className="font-semibold">{secondItemValue}</p>
           </div>
         </div>
 
@@ -73,7 +131,7 @@ const RankingCard = ({
           ))}
         </div>
 
-        {nisaSupport && (
+        {nisaSupport !== undefined && nisaSupport && (
           <Badge variant="outline" className="border-secondary text-secondary">
             NISA・つみたてNISA対応
           </Badge>
