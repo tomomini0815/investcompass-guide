@@ -263,7 +263,7 @@ const ComparisonTable = () => {
       <CardHeader className="px-4 sm:px-6 pb-4">
         <CardTitle className="text-xl sm:text-2xl font-bold text-center">証券会社詳細比較表</CardTitle>
         <p className="text-sm text-muted-foreground text-center mt-4">
-          各証券会社の手数料、最低投資額、NISA対応状況、IPO実績、評価などの情報を比較できます
+          各証券会社の手数料、最低購入株数、NISA対応状況、IPO実績、評価などの情報を比較できます
         </p>
         {/* 国内/国外切り替えボタンを削除（国内証券会社のみを表示） */}
       </CardHeader>
