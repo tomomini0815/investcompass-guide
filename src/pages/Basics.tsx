@@ -448,9 +448,6 @@ const Basics = () => {
                       className="article-content mb-4"
                       dangerouslySetInnerHTML={{ __html: article.content }}
                     />
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">📅 {article.date}</span>
-                    </div>
                   </CardContent>
                 </Card>
               ))}

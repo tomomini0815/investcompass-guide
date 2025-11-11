@@ -473,12 +473,6 @@ const GuideDetail = () => {
             <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               {article.title}
             </h1>
-            <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8 pb-8 border-b border-primary/20">
-              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border border-primary/20">
-                <Calendar className="h-4 w-4 text-primary" />
-                <span>{article.date}</span>
-              </div>
-            </div>
           </div>
         </section>
 
