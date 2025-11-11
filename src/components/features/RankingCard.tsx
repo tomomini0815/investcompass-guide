@@ -8,8 +8,8 @@ interface RankingCardProps {
   name: string;
   logo?: string;
   features: string[];
-  commission: string;
-  minInvestment: string;
+  spread: string;
+  swapPoints: string;
   nisaSupport: boolean;
   highlight?: string;
   affiliateUrl: string;
@@ -19,8 +19,8 @@ const RankingCard = ({
   rank,
   name,
   features,
-  commission,
-  minInvestment,
+  spread,
+  swapPoints,
   nisaSupport,
   highlight,
   affiliateUrl,
@@ -55,12 +55,12 @@ const RankingCard = ({
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="text-muted-foreground mb-1">手数料</p>
-            <p className="font-semibold">{commission}</p>
+            <p className="text-muted-foreground mb-1">スプレッド</p>
+            <p className="font-semibold">{spread}</p>
           </div>
           <div>
-            <p className="text-muted-foreground mb-1">最低投資額</p>
-            <p className="font-semibold">{minInvestment}</p>
+            <p className="text-muted-foreground mb-1">スワップポイント</p>
+            <p className="font-semibold">{swapPoints}</p>
           </div>
         </div>
 
