@@ -369,6 +369,13 @@ const FXComparisonTable = () => {
             {company.currencyPairs}
           </Badge>
         </CardTitle>
+        {company.name === "DMM FX" && (
+          <div className="mt-2">
+            <a href="https://h.accesstrade.net/sp/cc?rk=01004oa800ol0m" rel="nofollow" referrerPolicy="no-referrer-when-downgrade">
+              <img src="https://h.accesstrade.net/sp/rr?rk=01004oa800ol0m" alt="【DMM FX】入金" style={{ border: '0' }} />
+            </a>
+          </div>
+        )}
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
@@ -510,7 +517,16 @@ const FXComparisonTable = () => {
                       key={company.name} 
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
-                      <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
+                      <TableCell className="font-semibold text-xs sm:text-sm py-3">
+                        {company.name}
+                        {company.name === "DMM FX" && (
+                          <div className="mt-2">
+                            <a href="https://h.accesstrade.net/sp/cc?rk=01004oa800ol0m" rel="nofollow" referrerPolicy="no-referrer-when-downgrade">
+                              <img src="https://h.accesstrade.net/sp/rr?rk=01004oa800ol0m" alt="【DMM FX】入金" style={{ border: '0' }} />
+                            </a>
+                          </div>
+                        )}
+                      </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
                         __html: company.spread
                           .replace(/([\d.]+)(pips)/g, '<span class="font-semibold">$1</span>$2')
