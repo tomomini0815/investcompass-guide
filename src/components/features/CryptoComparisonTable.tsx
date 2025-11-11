@@ -553,7 +553,19 @@ const CryptoComparisonTable = () => {
                             
                             return (
                               <span key={index}>
-                                {index > 0 && '、'}
+                                {index > 0 && <span className={shouldHighlight || (index > 0 && features[index-1] && (() => {
+                                  // 前の要素がハイライトされているかチェック
+                                  const prevFeature = features[index-1];
+                                  const isPrevIndustryStandard = industryStandardKeywords.some(keyword => prevFeature.includes(keyword));
+                                  const hasPrevImportantKeyword = (
+                                    prevFeature.includes('最大') || prevFeature.includes('最多') || prevFeature.includes('最狭') || 
+                                    prevFeature.includes('高機能') || prevFeature.includes('高性能') || prevFeature.includes('業界') || 
+                                    prevFeature.includes('クラス')
+                                  );
+                                  const shouldHighlightPrevExisting = hasPrevImportantKeyword && !isPrevIndustryStandard;
+                                  const shouldHighlightPrevAdditional = additionalHighlightedKeywords.some(keyword => prevFeature.includes(keyword));
+                                  return shouldHighlightPrevExisting || shouldHighlightPrevAdditional;
+                                })()) ? "bg-yellow-200 dark:bg-yellow-600 px-1" : ""}>{'、'}</span>}
                                 {shouldHighlight ? 
                                   <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
                                   feature
