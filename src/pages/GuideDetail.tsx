@@ -145,7 +145,20 @@ const GuideDetail = () => {
         </div>
         
         <h2 id="投資とは" class="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-gray-200">1. 投資とは</h2>
-        <p class="mb-8 text-base leading-relaxed">投資とは、将来の資産増加を期待して、株式、債券、不動産などの金融商品に資金を投じることです。銀行預金よりも高い利回りが期待できる一方、元本割れのリスクも伴います。</p>
+        <p class="mb-4 text-base leading-relaxed">投資とは、将来の資産増加を期待して、株式、債券、不動産などの金融商品に資金を投じることです。銀行預金よりも高い利回りが期待できる一方、元本割れのリスクも伴います。</p>
+        <p class="mb-4 text-base leading-relaxed">投資は単に利益を追求するだけでなく、将来の目標達成や資産形成のための重要な手段です。投資の基本的な考え方は、現在の資金を何かしらの形で運用し、将来それ以上の価値を得ることです。このとき、時間の経過とともに資産が増えていくことを「複利効果」と呼び、長期的な投資において非常に重要な概念となります。</p>
+        
+        <h3 id="投資の目的" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          投資の目的
+        </h3>
+        <p class="mb-4 text-base leading-relaxed">投資にはさまざまな目的がありますが、主なものとして以下の3つが挙げられます。</p>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li class="pl-2">資産形成・増加：現在の収入だけでは将来の生活資金が不足する場合、投資によって追加の収益を得ることで資産を増やします。</li>
+          <li class="pl-2">将来の資金準備（老後資金、教育資金など）：子どもの教育費や老後の生活資金など、将来必要になる大きな資金を準備するために投資を利用します。</li>
+          <li class="pl-2">インフレ対策：物価が上昇することでお金の価値が下がるインフレに対抗するため、価値が上がることが期待できる資産に投資します。</li>
+        </ul>
+        <p class="mb-8 text-base leading-relaxed">これらの目的を達成するためには、自分のライフスタイルや将来の目標に合った投資戦略を立てる必要があります。例えば、若いうちはリスクを取って高いリターンを目指すことが可能ですが、年齢とともにリスク許容度が下がるため、資産の保護を重視した投資戦略への切り替えも検討する必要があります。</p>
         
         <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200 my-8">
           <h3 class="font-bold text-yellow-800 flex items-center gap-2 mb-4 text-lg">
@@ -153,14 +166,15 @@ const GuideDetail = () => {
             投資の基本原則
           </h3>
           <ul class="list-disc pl-5 space-y-2 text-yellow-700 text-base">
-            <li>分散投資でリスクを軽減する</li>
-            <li>長期的な視点で投資する</li>
-            <li>自分のリスク許容度を理解する</li>
+            <li>分散投資でリスクを軽減する：一つの資産に投資を集中させると、その資産が下落したときに大きな損失を被る可能性があります。複数の資産に分散投資することで、リスクを軽減できます。</li>
+            <li>長期的な視点で投資する：短期的な値動きに一喜一憂せず、長期的な視点で資産を運用することが重要です。複利効果により、時間が経つほど資産は増えていきます。</li>
+            <li>自分のリスク許容度を理解する：自分の年齢、収入、家族構成などを考慮し、どの程度のリスクを取れるかを理解しておく必要があります。リスク許容度を超える投資は、精神的なストレスを増加させます。</li>
+            <li>投資知識を継続的に学ぶ：金融市場は常に変化しています。新しい情報や知識を継続的に学ぶことで、より良い投資判断が可能になります。</li>
           </ul>
         </div>
         
         <h2 id="代表的な投資の種類と特徴" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">2. 代表的な投資の種類と特徴</h2>
-        <p class="mb-8 text-base leading-relaxed">主な投資の種類には以下のようなものがあります。</p>
+        <p class="mb-4 text-base leading-relaxed">主な投資の種類には以下のようなものがあります。それぞれに特徴があり、自分の目的やリスク許容度に合った商品を選ぶことが重要です。</p>
         
         <div class="overflow-x-auto my-8">
           <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden shadow-sm">
@@ -207,8 +221,10 @@ const GuideDetail = () => {
           </table>
         </div>
         
+        <p class="mb-8 text-base leading-relaxed">この表からわかるように、リスクが低い商品ほどリターンも低く、リスクが高い商品ほどリターンも高くなります。自分のリスク許容度に合った商品を選ぶことが重要です。</p>
+        
         <h2 id="投資の始め方-初心者向け" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">3. 投資の始め方（初心者向け）</h2>
-        <p class="mb-8 text-base leading-relaxed">投資を始める際は、以下のステップとポイントを押さえることが重要です。</p>
+        <p class="mb-4 text-base leading-relaxed">投資を始める際は、以下のステップとポイントを押さえることが重要です。</p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
           <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
@@ -245,33 +261,144 @@ const GuideDetail = () => {
           <ChevronRight className="h-5 w-5 text-primary" />
           勉強を続ける
         </h3>
-        <p class="mb-8 text-base leading-relaxed">投資に関する正しい情報を自分で見極める姿勢が長期的な成功につながる。</p>
+        <p class="mb-8 text-base leading-relaxed">投資に関する正しい情報を自分で見極める姿勢が長期的な成功につながる。金融市場は常に変化しているため、新しい情報や知識を継続的に学ぶことが重要です。</p>
         
         <h2 id="リスク管理と分散投資の基本" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">4. リスク管理と分散投資の基本</h2>
-        <p class="mb-6 text-base leading-relaxed">投資においてリスク管理は不可欠です。「分散投資」が基本戦略となります。</p>
+        <p class="mb-4 text-base leading-relaxed">投資においてリスク管理は不可欠です。「分散投資」が基本戦略となります。リスクを完全に排除することはできませんが、いくつかの方法でリスクを管理・軽減することが可能です。</p>
         
         <h3 id="資産の分散" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
           <ChevronRight className="h-5 w-5 text-primary" />
           資産の分散
         </h3>
-        <p class="mb-6 text-base leading-relaxed">株式、債券、不動産など、異なる値動きをする複数の資産に資金を分ける。</p>
+        <p class="mb-4 text-base leading-relaxed">株式、債券、不動産など、異なる値動きをする複数の資産に資金を分けることで、特定の資産クラスの不調による損失を他の資産クラスの利益で補うことができます。</p>
         
         <h3 id="地域の分散" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
           <ChevronRight className="h-5 w-5 text-primary" />
           地域の分散
         </h3>
-        <p class="mb-6 text-base leading-relaxed">国内だけでなく、海外の資産にも投資する。</p>
+        <p class="mb-4 text-base leading-relaxed">国内だけでなく、海外の資産にも投資することで、特定の国の経済状況による影響を軽減できます。例えば、日本経済が不調でも、海外経済が好調であれば損益が相殺されます。</p>
         
         <h3 id="時間の分散" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
           <ChevronRight className="h-5 w-5 text-primary" />
           時間の分散
         </h3>
-        <p class="mb-8 text-base leading-relaxed">一度に全額を投資するのではなく、積立投資などにより時期を分けて投資する（ドルコスト平均法）。</p>
+        <p class="mb-4 text-base leading-relaxed">定期的に少額ずつ投資（ドルコスト平均法）することで、市場のタイミングを気にする必要がなくなり、平均的な購入単価を抑えることができます。</p>
         
-        <p class="mb-8 text-base leading-relaxed">これらの方法により、特定の市場や経済環境の変化による影響を軽減し、リスクを抑えながら長期的な資産形成を目指すことができます。</p>
+        <h3 id="分散投資の注意点" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          分散投資の注意点
+        </h3>
+        <p class="mb-4 text-base leading-relaxed">分散投資にも注意すべき点があります。まず、分散しすぎるとリターンも低下する可能性があるため、適度な分散が重要です。また、単に銘柄数を増やすだけでは分散投資とは言えません。本当に効果的な分散投資を行うには、相関の低い資産に投資する必要があります。</p>
+        <p class="mb-8 text-base leading-relaxed">例えば、同じ業種の株式に投資しても、業種リスクを回避することはできません。本当に効果的な分散投資を行うには、異なる業種、異なる資産クラス、異なる地域に投資する必要があります。</p>
         
-        <h2 id="日本の税制と優遇制度" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">5. 日本の税制と優遇制度</h2>
-        <p class="mb-8 text-base leading-relaxed">日本では、NISA（少額投資非課税制度）やiDeCo（個人型確定拠出年金）といった税制優遇制度があります。これらを活用することで、運用益にかかる税金が非課税になったり、掛金が所得控除の対象になったりといったメリットを享受できます。</p>
+        <p class="mb-8 text-base leading-relaxed">これらの方法により、特定の市場や経済環境の変化による影響を軽減し、リスクを抑えながら長期的な資産形成を目指すことができます。分散投資はリスクを完全に排除するものではありませんが、リスクを適切に管理するための有効な手段です。</p>
+        
+        <h2 id="長期投資のメリットと戦略" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">5. 長期投資のメリットと戦略</h2>
+        <p class="mb-4 text-base leading-relaxed">長期投資には多くのメリットがあります。まず、複利効果による資産の雪だるま式増加が挙げられます。これは、投資で得た利益を再投資することで、利益がさらに利益を生むという効果です。時間の経過とともにこの効果は顕著になります。</p>
+        
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li class="pl-2">複利効果による資産の雪だるま式増加：投資で得た利益を再投資することで、利益がさらに利益を生むという効果があります。</li>
+          <li class="pl-2">短期的な値動きに左右されず、安定した資産形成が可能：短期的な市場の変動に一喜一憂する必要がなく、長期的な視点で資産を運用できます。</li>
+          <li class="pl-2">手数料などのコストを抑えられる：頻繁に売買する短期投資よりも、長期的に保有することで取引コストを抑えることができます。</li>
+          <li class="pl-2">時間の経過とともにリスクが軽減される：統計的に見ると、投資期間が長くなるほどマイナスのリターンになる確率が低くなります。</li>
+        </ul>
+        
+        <h3 id="長期投資の戦略" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          長期投資の戦略
+        </h3>
+        <p class="mb-4 text-base leading-relaxed">効果的な長期投資戦略には、以下の要素が含まれます。</p>
+        
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li class="pl-2">インデックス投資：市場全体の動きを追うインデックスファンドに投資することで、手数料を抑えながら市場の平均リターンを得ることができます。</li>
+          <li class="pl-2">資産配分の最適化：自分のリスク許容度と目標に応じて、株式・債券・不動産などの資産配分を最適化します。</li>
+          <li class="pl-2">定期的な見直し：ポートフォリオを定期的に見直し、自分の目標やリスク許容度に合った資産配分を維持します。</li>
+          <li class="pl-2">税制優遇の活用：NISAやiDeCoなどの税制優遇制度を活用することで、投資のリターンを最大化できます。</li>
+        </ul>
+        
+        <p class="mb-8 text-base leading-relaxed">長期投資の成功には、継続的な積立、分散投資、そして市場の変動に一喜一憂しない冷静な姿勢が重要です。感情に左右されず、計画的に投資を続けることが、資産形成の鍵となります。また、自分の目標や状況に応じて戦略を見直す柔軟性も必要です。</p>
+        
+        <h2 id="日本の税制と優遇制度" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">6. 日本の税制と優遇制度</h2>
+        <p class="mb-4 text-base leading-relaxed">日本では、NISA（少額投資非課税制度）やiDeCo（個人型確定拠出年金）といった税制優遇制度があります。これらを活用することで、運用益にかかる税金が非課税になったり、掛金が所得控除の対象になったりといったメリットを享受できます。</p>
+        
+        <h3 id="NISA" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          NISA（少額投資非課税制度）
+        </h3>
+        <p class="mb-4 text-base leading-relaxed">NISAは、投資で得た利益が非課税になる制度です。2024年から新しいNISA制度が始まり、より使いやすくなりました。</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">1</div>
+              <span>非課税期間の無期限化</span>
+            </h4>
+            <p class="text-base leading-relaxed">従来のNISAでは5年間だった非課税期間が、無期限になりました。長期投資がしやすくなっています。</p>
+          </div>
+          
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">2</div>
+              <span>年間投資枠の拡大</span>
+            </h4>
+            <p class="text-base leading-relaxed">つみたて投資枠：年間120万円、成長投資枠：年間240万円の合計360万円まで投資できるようになりました。</p>
+          </div>
+          
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">3</div>
+              <span>非課税保有限度額の設定</span>
+            </h4>
+            <p class="text-base leading-relaxed">生涯で1,800万円まで（成長投資枠は1,200万円まで）投資できます。売却した分の枠は翌年に復活します。</p>
+          </div>
+        </div>
+        
+        <h3 id="iDeCo" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          iDeCo（個人型確定拠出年金）
+        </h3>
+        <p class="mb-8 text-base leading-relaxed">iDeCoは、老後の資金準備として活用できる個人年金制度です。掛金が全額所得控除され、運用益も非課税、受給時に優遇税率が適用されるという三重の優遇措置があります。</p>
+        
+        <h2 id="投資計画の立て方と目標設定" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">7. 投資計画の立て方と目標設定</h2>
+        <p class="mb-4 text-base leading-relaxed">投資を始める前に、明確な投資計画を立てることは非常に重要です。投資計画には、投資の目的、目標、リスク許容度、投資期間、資産配分などが含まれます。適切な投資計画を立てることで、感情的な判断を避け、計画的に資産を運用することが可能になります。</p>
+        
+        <h3 id="目標設定の方法" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          目標設定の方法
+        </h3>
+        <p class="mb-4 text-base leading-relaxed">投資の目標を設定する際には、SMARTの原則（Specific: 具体的、Measurable: 測定可能、Achievable: 達成可能、Relevant: 関連性がある、Time-bound: 期限がある）に従うことが重要です。</p>
+        
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li class="pl-2">具体的な目標：「資産を増やしたい」ではなく、「20年後に3000万円の老後資金を準備する」など具体的な目標を設定します。</li>
+          <li class="pl-2">測定可能な目標：目標が達成できたかどうかを判断できるように、数値目標を設定します。</li>
+          <li class="pl-2">達成可能な目標：自分の収入やリスク許容度を考慮し、現実的な目標を設定します。</li>
+          <li class="pl-2">関連性のある目標：自分の人生計画と一致した目標を設定します。</li>
+          <li class="pl-2">期限のある目標：目標達成の期限を設定することで、計画的に投資を進めることができます。</li>
+        </ul>
+        
+        <h3 id="投資計画の作成ステップ" class="text-xl font-semibold mb-4 mt-8 flex items-center gap-2">
+          <ChevronRight className="h-5 w-5 text-primary" />
+          投資計画の作成ステップ
+        </h3>
+        <p class="mb-4 text-base leading-relaxed">効果的な投資計画を作成するためには、以下のステップを踏むことが重要です。</p>
+        
+        <ol class="list-decimal pl-6 mb-4 space-y-2">
+          <li class="pl-2">現在の財政状況の把握：収入、支出、資産、負債などを正確に把握します。</li>
+          <li class="pl-2">投資目的と目標の明確化：なぜ投資するのか、何のために投資するのかを明確にします。</li>
+          <li class="pl-2">リスク許容度の評価：自分のリスクへの耐性を評価し、適切なリスクレベルを決定します。</li>
+          <li class="pl-2">投資期間の設定：目標達成までの期間を設定し、それに応じた投資戦略を立てます。</li>
+          <li class="pl-2">資産配分の決定：リスク許容度と投資期間を考慮し、最適な資産配分を決定します。</li>
+          <li class="pl-2">投資商品の選択：資産配分に応じて、具体的な投資商品を選択します。</li>
+          <li class="pl-2">ポートフォリオの構築：選択した投資商品でポートフォリオを構築します。</li>
+          <li class="pl-2">定期的な見直し：ポートフォリオを定期的に見直し、必要に応じて調整します。</li>
+        </ol>
+        
+        <p class="mb-8 text-base leading-relaxed">投資計画の成功には、柔軟性と継続性が重要です。人生の状況や目標が変化するにつれて、投資計画も見直す必要があります。また、一度立てた計画を継続的に実行することが、長期的な資産形成の鍵となります。</p>
+        
+        <h2 id="まとめ" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">8. まとめ</h2>
+        <p class="mb-4 text-base leading-relaxed">投資は資産形成の重要な手段ですが、同時にリスクも伴います。成功するためには、基本的な知識と正しい理解が不可欠です。</p>
+        <p class="mb-4 text-base leading-relaxed">このガイドでは、投資の基本概念から始めて、リスク管理、分散投資、長期投資の重要性、税制優遇制度の活用、投資計画の立て方までを詳しく解説しました。</p>
+        <p class="mb-8 text-base leading-relaxed">投資を始める際は、自分の目的やリスク許容度を明確にし、計画的に資産を運用することが重要です。また、継続的な学習と情報収集を通じて、より良い投資判断ができるよう努めましょう。</p>
       `,
     },
   };
