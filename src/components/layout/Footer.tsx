@@ -31,7 +31,28 @@ const Footer = () => {
       { name: "免責事項", href: "/disclaimer" },
       { name: "サイトマップ", href: "/sitemap" },
     ],
+    // 金融庁・外部団体のリンクを追加
+    "金融庁・外部団体": [
+      { name: "金融庁", href: "https://www.fsa.go.jp/" },
+      { name: "日本証券業協会", href: "https://www.jsda.or.jp/" },
+      { name: "日本取引所グループ", href: "https://www.jpx.co.jp/" },
+    ],
   };
+
+  // フッターリンクの順序を定義
+  const footerLinkOrder = [
+    "運営会社情報",
+    "投資の基礎",
+    "投資商品",
+    "ツール",
+    "比較"
+  ];
+
+  // 下段に配置するリンク
+  const bottomLinkOrder = [
+    "金融庁・外部団体",
+    "その他"
+  ];
 
   return (
     <footer className="border-t bg-muted/30 mt-20">
@@ -51,11 +72,11 @@ const Footer = () => {
           </div>
 
           {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
+          {footerLinkOrder.map((category) => (
             <div key={category} className="flex-1 min-w-[200px]">
               <h3 className="font-semibold mb-4 text-foreground">{category}</h3>
               <ul className="space-y-2">
-                {links.map((link) => (
+                {footerLinks[category].map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.href}
@@ -63,6 +84,38 @@ const Footer = () => {
                     >
                       {link.name}
                     </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* 下段のリンク */}
+        <div className="flex flex-wrap justify-between gap-8 mb-8 pt-8 border-t">
+          {bottomLinkOrder.map((category) => (
+            <div key={category} className="flex-1 min-w-[200px]">
+              <h3 className="font-semibold mb-4 text-foreground">{category}</h3>
+              <ul className="space-y-2">
+                {footerLinks[category].map((link) => (
+                  <li key={link.name}>
+                    {category === "金融庁・外部団体" ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
