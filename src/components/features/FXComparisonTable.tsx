@@ -434,7 +434,7 @@ const FXComparisonTable = () => {
           >
             {company.name === "DMM FX" ? (
               <>
-                DMM FXは初心者向け
+                DMMfx 公式サイトへ
                 <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
               </>
             ) : (
@@ -710,7 +710,7 @@ const FXComparisonTable = () => {
                           >
                             {company.name === "DMM FX" ? (
                               <>
-                                DMM FXは初心者向け
+                                DMMfx 公式サイトへ
                                 <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
                               </>
                             ) : (
