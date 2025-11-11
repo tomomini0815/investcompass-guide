@@ -427,12 +427,22 @@ const FXComparisonTable = () => {
           asChild
         >
           <a 
-            href={company.affiliateUrl} 
+            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
             target="_blank" 
-            rel="noopener noreferrer"
+            rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
+            referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
           >
-            公式サイト
-            <ExternalLink className="ml-1 h-3 w-3" />
+            {company.name === "DMM FX" ? (
+              <>
+                DMM FXは初心者向け
+                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+              </>
+            ) : (
+              <>
+                公式サイト
+                <ExternalLink className="ml-1 h-3 w-3" />
+              </>
+            )}
           </a>
         </Button>
       </CardContent>
@@ -693,12 +703,22 @@ const FXComparisonTable = () => {
                           asChild
                         >
                           <a 
-                            href={company.affiliateUrl} 
+                            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
                             target="_blank" 
-                            rel="noopener noreferrer"
+                            rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
+                            referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
                           >
-                            公式サイト
-                            <ExternalLink className="ml-1 h-3 w-3" />
+                            {company.name === "DMM FX" ? (
+                              <>
+                                DMM FXは初心者向け
+                                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+                              </>
+                            ) : (
+                              <>
+                                公式サイト
+                                <ExternalLink className="ml-1 h-3 w-3" />
+                              </>
+                            )}
                           </a>
                         </Button>
                       </TableCell>
