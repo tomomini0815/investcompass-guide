@@ -427,22 +427,13 @@ const FXComparisonTable = () => {
           asChild
         >
           <a 
-            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
+            href="https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" 
             target="_blank" 
-            rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
-            referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
+            rel="nofollow noopener"
+            referrerPolicy="no-referrer-when-downgrade"
           >
-            {company.name === "DMM FX" ? (
-              <>
-                DMM FXは初心者向け
-                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
-              </>
-            ) : (
-              <>
-                公式サイト
-                <ExternalLink className="ml-1 h-3 w-3" />
-              </>
-            )}
+            DMM FXは初心者向け
+            <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
           </a>
         </Button>
       </CardContent>
@@ -703,22 +694,13 @@ const FXComparisonTable = () => {
                           asChild
                         >
                           <a 
-                            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
+                            href="https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" 
                             target="_blank" 
-                            rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
-                            referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
+                            rel="nofollow noopener"
+                            referrerPolicy="no-referrer-when-downgrade"
                           >
-                            {company.name === "DMM FX" ? (
-                              <>
-                                DMM FXは初心者向け
-                                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
-                              </>
-                            ) : (
-                              <>
-                                公式サイト
-                                <ExternalLink className="ml-1 h-3 w-3" />
-                              </>
-                            )}
+                            DMM FXは初心者向け
+                            <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
                           </a>
                         </Button>
                       </TableCell>
