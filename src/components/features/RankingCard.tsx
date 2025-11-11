@@ -77,11 +77,11 @@ const RankingCard = ({
     secondItemValue = minInvestment;
   }
   // FX業者の場合
-  else if (spread !== undefined && swapPoints !== undefined) {
+  else if (spread !== undefined && minTradeUnit !== undefined) {
     firstItemLabel = "スプレッド";
     firstItemValue = spread;
-    secondItemLabel = "スワップポイント";
-    secondItemValue = swapPoints;
+    secondItemLabel = "最低取引単位";
+    secondItemValue = minTradeUnit;
   }
   // 暗号資産取引所の場合
   else if (tradingFee !== undefined && withdrawalFee !== undefined) {
@@ -118,7 +118,7 @@ const RankingCard = ({
           </div>
           <div>
             <p className="text-muted-foreground mb-1">{secondItemLabel}</p>
-            <p className="font-semibold">{secondItemValue}</p>
+            <p className="font-semibold whitespace-pre-line">{secondItemValue}</p>
           </div>
         </div>
 
