@@ -23,6 +23,12 @@ const CategoryCard = ({ icon: Icon, title, description, href, color }: CategoryC
     accent: "bg-accent text-accent-foreground",
   };
 
+  const buttonColorClasses = {
+    primary: "bg-primary/10 text-primary hover:bg-primary/20",
+    secondary: "bg-secondary/10 text-secondary hover:bg-secondary/20",
+    accent: "bg-accent/10 text-accent hover:bg-accent/20",
+  };
+
   return (
     <Card className={`h-full bg-gradient-to-br ${colorClasses[color]} border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer overflow-hidden`}>
       <Link to={href} className="block h-full">
@@ -34,6 +40,9 @@ const CategoryCard = ({ icon: Icon, title, description, href, color }: CategoryC
             <h3 className="font-bold text-lg mb-2">{title}</h3>
             <p className="text-sm text-muted-foreground">{description}</p>
           </div>
+          <button className={`mt-4 px-4 py-2 rounded-md text-sm font-medium transition-colors ${buttonColorClasses[color]}`}>
+            詳細を見る
+          </button>
         </CardContent>
       </Link>
     </Card>
