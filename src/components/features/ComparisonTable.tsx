@@ -36,7 +36,7 @@ const ComparisonTable = () => {
     // 国内証券会社（人気ランキング順）
     {
       name: "SBI証券",
-      commission: "スタンダードプラン: 55円〜(現物取引 5万円以下) アクティブプラン: 約定代金合計100万円まで0円",
+      commission: "スタンダードプラン: 55円〜(現物取引 5万円以下)\nアクティブプラン: 約定代金合計100万円まで0円",
       minInvestment: "原則100株 単元未満株(「S株」)1株〜可",
       nisaSupport: true,
       tsumitateNisa: true,
@@ -46,11 +46,11 @@ const ComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.sbisec.co.jp/",
       isDomestic: true,
-      features: "口座数トップクラス 多彩な投資商品 IPO取扱件数が業界最多クラス",
+      features: "口座数トップクラス、多彩な投資商品、IPO取扱件数が業界最多クラス、高機能トレーディングツール",
     },
     {
       name: "楽天証券",
-      commission: "超割コース: 55円〜(現物取引 5万円以下) いちにち定額コース: 0円〜",
+      commission: "超割コース: 55円〜(現物取引 5万円以下)\nいちにち定額コース: 0円〜",
       minInvestment: "原則100株 単元未満株(「いちかぶ」)1株〜可",
       nisaSupport: true,
       tsumitateNisa: true,
@@ -60,11 +60,11 @@ const ComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.rakuten-sec.co.jp/",
       isDomestic: true,
-      features: "楽天ポイントと連携可 投資信託積立でもポイント獲得 利便性の高いトレーディングツール",
+      features: "楽天ポイントと連携可、投資信託積立でもポイント獲得、利便性の高いトレーディングツール、IPO取扱件数が多い",
     },
     {
       name: "マネックス証券",
-      commission: "取引毎手数料: 99円〜(現物取引 10万円以下) 一日定額手数料コース: 0円〜",
+      commission: "取引毎手数料: 99円〜(現物取引 10万円以下)\n一日定額手数料コース: 0円〜",
       minInvestment: "原則100株 単元未満株(「ワン株」)1株〜可",
       nisaSupport: true,
       tsumitateNisa: true,
@@ -74,7 +74,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.monex.co.jp/",
       isDomestic: true,
-      features: "米国株取扱数が充実 専用米国株アプリが使いやすい IPOもそこそこ多い",
+      features: "米国株取扱数が充実、専用米国株アプリが使いやすい、IPOもそこそこ多い、手数料水準が低い",
     },
     {
       name: "松井証券",
@@ -88,11 +88,11 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.matsui.co.jp/",
       isDomestic: true,
-      features: "老舗ネット証券 1日定額手数料が低コスト シンプルな手数料体系",
+      features: "老舗ネット証券、1日定額手数料が低コスト、シンプルな手数料体系、IPO取扱件数が多い",
     },
     {
       name: "DMM株（DMM.com証券）",
-      commission: "現物取引 80円〜(5万円以下) 1日定額: 1,200円(上限)",
+      commission: "現物取引 80円〜(5万円以下)\n1日定額: 1,200円(上限)",
       minInvestment: "原則100株 単元未満株なし",
       nisaSupport: true,
       tsumitateNisa: true,
@@ -102,11 +102,11 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://securities.dmm.com/",
       isDomestic: true,
-      features: "取引ツールがシンプル キャンペーンによるキャッシュバック IPO取扱は多くない",
+      features: "取引ツールがシンプル、キャンペーンによるキャッシュバック、IPO取扱は多くない、手数料水準が低い",
     },
     {
       name: "三菱UFJ eスマート証券（旧 auカブコム証券）",
-      commission: "ワンショット手数料: 99円〜(10万円以下) プレミアム積立(投信積立時の割引等)",
+      commission: "ワンショット手数料: 99円〜(10万円以下)\nプレミアム積立(投信積立時の割引等)",
       minInvestment: "原則100株 単元未満株(「プチ株」)1株〜可",
       nisaSupport: true,
       tsumitateNisa: true,
@@ -116,7 +116,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://kabu.com/",
       isDomestic: true,
-      features: "KDDI連携サービスが強化(au時代の特徴) IPO取扱は中程度 投信積立のポイント優待あり",
+      features: "KDDI連携サービスが強化(au時代の特徴)、IPO取扱は中程度、投信積立のポイント優待あり、手数料水準が低い",
     },
     {
       name: "GMOクリック証券",
@@ -130,7 +130,7 @@ const ComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://click.gmo-jp.com/",
       isDomestic: true,
-      features: "手数料水準が低め FX取引では最大手クラス",
+      features: "手数料水準が低め、FX取引では最大手クラス、IPO取扱件数は多い、高機能トレーディングツール",
     },
   ];
 
@@ -195,7 +195,7 @@ const ComparisonTable = () => {
         
         {/* NISA/つみたてNISAを統合 */}
         <div className="flex items-center gap-2">
-          <span className="text-muted-foreground text-xs">NISA/<br/>つみたてNISA</span>
+          <span className="text-muted-foreground text-xs">NISA/つみたてNISA</span>
           {company.nisaSupport && company.tsumitateNisa ? (
             <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
               <Check className="h-3 w-3 text-green-600" />
@@ -279,14 +279,14 @@ const ComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[650px]">
+              <Table className="min-w-[700px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">証券会社</TableHead>
-                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">手数料</TableHead>
+                    <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">手数料</TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">最低購入株数</TableHead>
                     {/* NISA/つみたてNISAを統合 */}
-                    <TableHead className="text-center min-w-[60px] text-xs sm:text-sm font-bold text-primary">NISA/<br/>つみたてNISA</TableHead>
+                    <TableHead className="text-center min-w-[100px] text-xs sm:text-sm font-bold text-primary">NISA/つみたてNISA</TableHead>
                     <TableHead 
                       className={`cursor-pointer min-w-[80px] text-xs sm:text-sm font-bold ${
                         sortBy === "ipoCount" 
@@ -330,7 +330,13 @@ const ComparisonTable = () => {
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{company.commission}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words" dangerouslySetInnerHTML={{ 
+                        __html: company.commission
+                          .replace(/([\d.]+)(円)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(万円)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(%)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(～)/g, '<span class="font-semibold">$1</span>$2')
+                      }} />
                       <TableCell className="text-xs sm:text-sm py-3">{company.minInvestment}</TableCell>
                       {/* NISA/つみたてNISAを統合 */}
                       <TableCell className="text-center py-3">
@@ -376,7 +382,86 @@ const ComparisonTable = () => {
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 break-words">{company.features}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words">
+                        {(() => {
+                          const features = company.features.split('、');
+                          // 指定された特徴のキーワードを定義
+                          const additionalHighlightedKeywords = [
+                            'FX取引高世界第1位', '高機能取引ツール',
+                            'LINEサポート対応', '最短当日取引開始',
+                            '老舗証券会社の信頼性', 'サポート充実',
+                            '楽天ポイントが貯まる',
+                            'Pontaポイント付与', '株式との連携'
+                          ];
+                          
+                          // 業界標準クラスのキーワードを定義
+                          const industryStandardKeywords = ['最大', '最多', '最狭', '高機能', '高性能', '業界', 'クラス'];
+                          
+                          // マーカーを適用する特徴のリスト
+                          const highlightedFeatures = [];
+                          
+                          // 既存の重要な特徴にマーカーをつける（業界標準クラスを除く）
+                          features.forEach((feature, index) => {
+                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                            const hasImportantKeyword = (
+                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                              feature.includes('クラス')
+                            );
+                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            
+                            // 指定された特徴にマーカーをつける
+                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            
+                            // どちらかの条件に該当する場合にマーカーをつける
+                            if (shouldHighlightExisting || shouldHighlightAdditional) {
+                              highlightedFeatures.push({ index, feature, highlighted: true });
+                            } else {
+                              highlightedFeatures.push({ index, feature, highlighted: false });
+                            }
+                          });
+                          
+                          // 最低1つ〜2つまで重要ポイントにマーカーをつける
+                          let highlightCount = 0;
+                          const maxHighlights = 2;
+                          
+                          return features.map((feature, index) => {
+                            let shouldHighlight = false;
+                            
+                            // 既存のロジックでマーカーをつけるべき特徴
+                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                            const hasImportantKeyword = (
+                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                              feature.includes('クラス')
+                            );
+                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            
+                            // 指定された特徴にマーカーをつける
+                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            
+                            // どちらかの条件に該当する場合にマーカーをつける
+                            if (shouldHighlightExisting || shouldHighlightAdditional) {
+                              shouldHighlight = true;
+                              highlightCount++;
+                            } else if (highlightCount < maxHighlights) {
+                              // マーカーがまだ2つ未満の場合、他の特徴にもマーカーをつける
+                              shouldHighlight = true;
+                              highlightCount++;
+                            }
+                            
+                            return (
+                              <span key={index}>
+                                {index > 0 && '、'}
+                                {shouldHighlight ? 
+                                  <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
+                                  feature
+                                }
+                              </span>
+                            );
+                          });
+                        })()}
+                      </TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 

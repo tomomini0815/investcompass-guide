@@ -42,7 +42,7 @@ const CryptoComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://coin.z.com/jp/",
       isDomestic: true,
-      features: "入出金・送金の無料範囲が広い、板の流動性が高め、APIが安定",
+      features: "入出金・送金の無料範囲が広い、板の流動性が高め、APIが安定、銘柄数が多い",
     },
     {
       name: "bitFlyer",
@@ -54,7 +54,7 @@ const CryptoComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://bitflyer.com/ja-jp",
       isDomestic: true,
-      features: "老舗・口座数多い、板の厚み、Lightning（高機能板）",
+      features: "老舗・口座数多い、板の厚み、Lightning（高機能板）、銘柄数が多い",
     },
     {
       name: "Coincheck",
@@ -66,7 +66,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://coincheck.com/",
       isDomestic: true,
-      features: "アプリ利用者数が多い、NFTマーケット連携、UIが分かりやすい",
+      features: "アプリ利用者数が多い、NFTマーケット連携、UIが分かりやすい、銘柄数が多い",
     },
     {
       name: "bitbank",
@@ -78,7 +78,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://bitbank.cc/",
       isDomestic: true,
-      features: "板の流動性・銘柄数が多め、プロ向けAPI/チャートが充実",
+      features: "板の流動性・銘柄数が多め、プロ向けAPI/チャートが充実、銘柄数が多い",
     },
     {
       name: "SBI VCトレード（VCTRADE Pro）",
@@ -90,7 +90,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.sbivc.co.jp/",
       isDomestic: true,
-      features: "銀行連携が強い、手数料水準が安定",
+      features: "銀行連携が強い、手数料水準が安定、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "DMM Bitcoin",
@@ -102,7 +102,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://bitcoin.dmm.com/",
       isDomestic: true,
-      features: "レバレッジ通貨ペアが豊富、キャンペーン多め",
+      features: "レバレッジ通貨ペアが豊富、キャンペーン多め、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "Binance Japan",
@@ -114,7 +114,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.binance.com/ja-JP",
       isDomestic: true,
-      features: "銘柄数が多め、板取引・各種Earn（国内準拠版）",
+      features: "銘柄数が多め、板取引・各種Earn（国内準拠版）、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "楽天ウォレット",
@@ -126,7 +126,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.rakuten-wallet.co.jp/",
       isDomestic: true,
-      features: "楽天経済圏連携、ポイント周りの導線が強い",
+      features: "楽天経済圏連携、ポイント周りの導線が強い、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "LINE BITMAX",
@@ -138,7 +138,7 @@ const CryptoComparisonTable = () => {
       rating: 3,
       affiliateUrl: "https://bitmax.me/",
       isDomestic: true,
-      features: "LINEアプリからシームレス、初心者向け",
+      features: "LINEアプリからシームレス、初心者向け、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "BITPOINT",
@@ -150,7 +150,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.bitpoint.co.jp/",
       isDomestic: true,
-      features: "送金手数料の無料対象が多い、キャンペーン活発",
+      features: "送金手数料の無料対象が多い、キャンペーン活発、銘柄数が多い、高機能トレーディングツール",
     },
     // 海外取引所（人気ランキング順）
     {
@@ -163,7 +163,7 @@ const CryptoComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.binance.com/",
       isDomestic: false,
-      features: "流動性最大級、先物/オプション、Earn/Launchpad、幅広いプロダクト",
+      features: "流動性最大級、先物/オプション、Earn/Launchpad、幅広いプロダクト、銘柄数が多い",
     },
     {
       name: "OKX",
@@ -175,7 +175,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.okx.com/",
       isDomestic: false,
-      features: "先物・オプション強い、OKX Wallet/DeFi連携、Earn/Jumpstart",
+      features: "先物・オプション強い、OKX Wallet/DeFi連携、Earn/Jumpstart、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "Bybit",
@@ -187,7 +187,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.bybit.com/",
       isDomestic: false,
-      features: "デリバティブの板厚、コピー取引、Earn、ローンチパッド",
+      features: "デリバティブの板厚、コピー取引、Earn、ローンチパッド、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "Coinbase (Advanced/International)",
@@ -199,7 +199,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.coinbase.com/",
       isDomestic: false,
-      features: "UX・規制準拠の安心感、機関投資家向けソリューション",
+      features: "UX・規制準拠の安心感、機関投資家向けソリューション、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "Kraken",
@@ -211,7 +211,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.kraken.com/",
       isDomestic: false,
-      features: "セキュリティ評価高い、先物/マージン、FIAT対応国多い",
+      features: "セキュリティ評価高い、先物/マージン、FIAT対応国多い、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "Bitget",
@@ -223,7 +223,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.bitget.com/",
       isDomestic: false,
-      features: "コピー取引で著名、Earn/Launchpad、積極的な上場",
+      features: "コピー取引で著名、Earn/Launchpad、積極的な上場、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "KuCoin",
@@ -235,7 +235,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.kucoin.com/",
       isDomestic: false,
-      features: "アルト豊富、Earn/借貸、先物も幅広い",
+      features: "アルト豊富、Earn/借貸、先物も幅広い、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "HTX (旧Huobi)",
@@ -247,7 +247,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.htx.com/",
       isDomestic: false,
-      features: "デリバティブ、Earn/Primeなどキャンペーン多数",
+      features: "デリバティブ、Earn/Primeなどキャンペーン多数、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "Gate.io",
@@ -259,7 +259,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.gate.io/",
       isDomestic: false,
-      features: "アルト最多クラス、IEO(Startup)、NFT等",
+      features: "アルト最多クラス、IEO(Startup)、NFT等、銘柄数が多い、高機能トレーディングツール",
     },
     {
       name: "MEXC",
@@ -271,7 +271,7 @@ const CryptoComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.mexc.com/",
       isDomestic: false,
-      features: "新興アルト・先物が豊富、キャンペーン多い",
+      features: "新興アルト・先物が豊富、キャンペーン多い、銘柄数が多い、高機能トレーディングツール",
     },
   ];
 
@@ -423,8 +423,8 @@ const CryptoComparisonTable = () => {
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引所</TableHead>
-                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引手数料</TableHead>
-                    <TableHead className="min-w-[90px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">入出金手数料</TableHead>
+                    <TableHead className="min-w-[180px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引手数料</TableHead>
+                    <TableHead className="min-w-[150px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">入出金手数料</TableHead>
                     <TableHead 
                       className="cursor-pointer hover:bg-muted/50 min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
                       onClick={() => handleSort("supportedCoins")}
@@ -459,8 +459,21 @@ const CryptoComparisonTable = () => {
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">{exchange.name}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{exchange.tradingFee}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{exchange.withdrawalFee}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
+                        __html: exchange.tradingFee
+                          .replace(/、\s*(先物:)/g, '\n$1')
+                          .replace(/([\d.]+)(%)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(USD)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(～)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/(約)([\d.]+)/g, '$1<span class="font-semibold">$2</span>')
+                          .replace(/\/([\d.]+)/g, '/<span class="font-semibold">$1</span>')
+                      }} />
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
+                        __html: exchange.withdrawalFee
+                          .replace(/([\d.]+)(円)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(万円)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(～)/g, '<span class="font-semibold">$1</span>$2')
+                      }} />
                       <TableCell className="text-center py-3">
                         <Badge variant="secondary" className="text-xs px-2 py-1">
                           {exchange.supportedCoins}種対応
@@ -470,7 +483,86 @@ const CryptoComparisonTable = () => {
                       <TableCell className="py-3">
                         <RatingStars rating={exchange.rating} />
                       </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 break-words">{exchange.features}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words">
+                        {(() => {
+                          const features = exchange.features.split('、');
+                          // 指定された特徴のキーワードを定義
+                          const additionalHighlightedKeywords = [
+                            'FX取引高世界第1位', '高機能取引ツール',
+                            'LINEサポート対応', '最短当日取引開始',
+                            '老舗証券会社の信頼性', 'サポート充実',
+                            '楽天ポイントが貯まる',
+                            'Pontaポイント付与', '株式との連携'
+                          ];
+                          
+                          // 業界標準クラスのキーワードを定義
+                          const industryStandardKeywords = ['最大', '最多', '最狭', '高機能', '高性能', '業界', 'クラス'];
+                          
+                          // マーカーを適用する特徴のリスト
+                          const highlightedFeatures = [];
+                          
+                          // 既存の重要な特徴にマーカーをつける（業界標準クラスを除く）
+                          features.forEach((feature, index) => {
+                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                            const hasImportantKeyword = (
+                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                              feature.includes('クラス')
+                            );
+                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            
+                            // 指定された特徴にマーカーをつける
+                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            
+                            // どちらかの条件に該当する場合にマーカーをつける
+                            if (shouldHighlightExisting || shouldHighlightAdditional) {
+                              highlightedFeatures.push({ index, feature, highlighted: true });
+                            } else {
+                              highlightedFeatures.push({ index, feature, highlighted: false });
+                            }
+                          });
+                          
+                          // 最低1つ〜2つまで重要ポイントにマーカーをつける
+                          let highlightCount = 0;
+                          const maxHighlights = 2;
+                          
+                          return features.map((feature, index) => {
+                            let shouldHighlight = false;
+                            
+                            // 既存のロジックでマーカーをつけるべき特徴
+                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                            const hasImportantKeyword = (
+                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                              feature.includes('クラス')
+                            );
+                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            
+                            // 指定された特徴にマーカーをつける
+                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            
+                            // どちらかの条件に該当する場合にマーカーをつける
+                            if (shouldHighlightExisting || shouldHighlightAdditional) {
+                              shouldHighlight = true;
+                              highlightCount++;
+                            } else if (highlightCount < maxHighlights) {
+                              // マーカーがまだ2つ未満の場合、他の特徴にもマーカーをつける
+                              shouldHighlight = true;
+                              highlightCount++;
+                            }
+                            
+                            return (
+                              <span key={index}>
+                                {index > 0 && '、'}
+                                {shouldHighlight ? 
+                                  <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
+                                  feature
+                                }
+                              </span>
+                            );
+                          });
+                        })()}
+                      </TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 

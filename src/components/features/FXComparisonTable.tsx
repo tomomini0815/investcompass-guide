@@ -42,7 +42,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.click-sec.com/",
       isDomestic: true,
-      features: "FX取引高世界第1位、高機能取引ツール、低スプレッド",
+      features: "FX取引高世界第1位、高機能取引ツール、低スプレッド、通貨ペア数が多い",
     },
     {
       name: "DMM FX",
@@ -54,7 +54,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://fx.dmm.com/",
       isDomestic: true,
-      features: "初心者向け、LINEサポート対応、最短当日取引開始",
+      features: "初心者向け、LINEサポート対応、最短当日取引開始、スワップポイントが高い",
     },
     {
       name: "SBI FXトレード",
@@ -66,7 +66,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.sbifxt.co.jp/",
       isDomestic: true,
-      features: "1通貨から取引可能、業界最狭水準スプレッド",
+      features: "1通貨から取引可能、業界最狭水準スプレッド、スワップポイントが高い",
     },
     {
       name: "松井証券 MATSUI FX",
@@ -78,7 +78,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.matsui.co.jp/fx/",
       isDomestic: true,
-      features: "1通貨から取引可能、老舗証券会社の信頼性、サポート充実",
+      features: "1通貨から取引可能、老舗証券会社の信頼性、サポート充実、通貨ペア数が多い",
     },
     {
       name: "外為どっとコム（外貨ネクストネオ）",
@@ -90,7 +90,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.gaitame.com/",
       isDomestic: true,
-      features: "情報コンテンツ充実、セミナー豊富、分析ツール高性能",
+      features: "情報コンテンツ充実、セミナー豊富、分析ツール高性能、通貨ペア数が多い",
     },
     {
       name: "みんなのFX（トレイダーズ証券）",
@@ -102,7 +102,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://min-fx.jp/",
       isDomestic: true,
-      features: "高水準スワップポイント、シンプルな取引画面、初心者向け",
+      features: "高水準スワップポイント、シンプルな取引画面、初心者向け、通貨ペア数が多い",
     },
     {
       name: "ヒロセ通商（LION FX）",
@@ -114,7 +114,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://hirose-fx.co.jp/",
       isDomestic: true,
-      features: "スキャルピング公認、通貨ペア数最多クラス、キャンペーン豊富",
+      features: "スキャルピング公認、通貨ペア数最多クラス、キャンペーン豊富、スワップポイントが高い",
     },
     {
       name: "GMO外貨（外貨ex）",
@@ -126,7 +126,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.gaikaex.com/",
       isDomestic: true,
-      features: "スマホアプリ高性能、PayPayポイント付与、GMOグループ",
+      features: "スマホアプリ高性能、PayPayポイント付与、GMOグループ、通貨ペア数が多い",
     },
     {
       name: "楽天証券（楽天FX）",
@@ -138,7 +138,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.rakuten-sec.co.jp/web/fx/",
       isDomestic: true,
-      features: "楽天ポイントが貯まる、楽天証券口座と連携、MT4対応",
+      features: "楽天ポイントが貯まる、楽天証券口座と連携、MT4対応、スワップポイントが高い",
     },
     {
       name: "三菱UFJ eスマート証券 FX",
@@ -150,7 +150,7 @@ const FXComparisonTable = () => {
       rating: 3,
       affiliateUrl: "https://kabu.com/fx/",
       isDomestic: true,
-      features: "三菱UFJグループ、Pontaポイント付与、株式との連携",
+      features: "三菱UFJグループ、Pontaポイント付与、株式との連携、通貨ペア数が多い",
     },
   ];
 
@@ -166,7 +166,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.xmtrading.com/",
       isDomestic: false,
-      features: "最大1000倍レバレッジ、豪華ボーナス、日本語サポート完備、運営実績15年以上",
+      features: "最大1000倍レバレッジ、豪華ボーナス、日本語サポート完備、運営実績15年以上、通貨ペア数が多い",
     },
     {
       name: "FXGT（エフエックスジーティー）",
@@ -178,7 +178,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://fxgt.com/",
       isDomestic: false,
-      features: "最大1000倍レバレッジ、仮想通貨FXに強い、充実のボーナス、新興ながら急成長",
+      features: "最大1000倍レバレッジ、仮想通貨FXに強い、充実のボーナス、新興ながら急成長、通貨ペア数が多い",
     },
     {
       name: "Exness（エクスネス）",
@@ -190,7 +190,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.exness.com/",
       isDomestic: false,
-      features: "無制限レバレッジ、低スプレッド、ボーナスなしでスペック重視、高速約定",
+      features: "無制限レバレッジ、低スプレッド、ボーナスなしでスペック重視、高速約定、通貨ペア数が多い",
     },
     {
       name: "TitanFX（タイタンエフエックス）",
@@ -202,7 +202,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://titanfx.com/",
       isDomestic: false,
-      features: "最大500倍レバレッジ、低スプレッド、スキャルピング特化、高い約定力",
+      features: "最大500倍レバレッジ、低スプレッド、スキャルピング特化、高い約定力、通貨ペア数が多い",
     },
     {
       name: "AXIORY（アキシオリー）",
@@ -214,7 +214,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.axiory.com/",
       isDomestic: false,
-      features: "最大400倍レバレッジ、透明性の高い運営、cTrader対応、信託保全あり",
+      features: "最大400倍レバレッジ、透明性の高い運営、cTrader対応、信託保全あり、通貨ペア数が多い",
     },
     {
       name: "ThreeTrader（スリートレーダー）",
@@ -226,7 +226,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.threetrader.com/",
       isDomestic: false,
-      features: "最大500倍レバレッジ、業界最狭スプレッド、低コスト特化、取引制限なし",
+      features: "最大500倍レバレッジ、業界最狭スプレッド、低コスト特化、取引制限なし、通貨ペア数が多い",
     },
     {
       name: "HFM（旧HotForex）",
@@ -238,7 +238,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.hfm.com/",
       isDomestic: false,
-      features: "最大1000倍レバレッジ、豊富なボーナス、多数の受賞歴、コピートレード充実",
+      features: "最大1000倍レバレッジ、豊富なボーナス、多数の受賞歴、コピートレード充実、通貨ペア数が多い",
     },
     {
       name: "BigBoss（ビッグボス）",
@@ -250,7 +250,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.bigboss-financial.com/",
       isDomestic: false,
-      features: "最大1111倍レバレッジ、日本語サポート充実、独自のBBPポイント制度、取引制限少ない",
+      features: "最大1111倍レバレッジ、日本語サポート充実、独自のBBPポイント制度、取引制限少ない、通貨ペア数が多い",
     },
     {
       name: "iFOREX（アイフォレックス）",
@@ -262,7 +262,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.iforex.jpn.com/",
       isDomestic: false,
-      features: "最大400倍レバレッジ、運営歴25年以上の老舗、独自プラットフォーム、初回入金ボーナス豪華",
+      features: "最大400倍レバレッジ、運営歴25年以上の老舗、独自プラットフォーム、初回入金ボーナス豪華、通貨ペア数が多い",
     },
     {
       name: "TradeView（トレードビュー）",
@@ -274,7 +274,7 @@ const FXComparisonTable = () => {
       rating: 4,
       affiliateUrl: "https://www.tradeviewforex.com/",
       isDomestic: false,
-      features: "最大400倍レバレッジ、超低スプレッド、ECN特化、cTrader/MT5対応、上級者向け",
+      features: "最大400倍レバレッジ、超低スプレッド、ECN特化、cTrader/MT5対応、上級者向け、通貨ペア数が多い",
     },
   ];
 
@@ -429,7 +429,7 @@ const FXComparisonTable = () => {
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">FX業者</TableHead>
-                    <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スプレッド</TableHead>
+                    <TableHead className="min-w-[180px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スプレッド</TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">最低取引単位</TableHead>
                     <TableHead 
                       className="cursor-pointer hover:bg-muted/50 min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
@@ -442,7 +442,7 @@ const FXComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="min-w-[150px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スワップポイント</TableHead>
+                    <TableHead className="min-w-[200px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">{showDomestic ? "スワップポイント(買)" : "スワップポイント"}</TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
                     <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
@@ -455,15 +455,111 @@ const FXComparisonTable = () => {
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3">{company.spread}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
+                        __html: company.spread
+                          .replace(/([\d.]+)(pips)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(銭)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/([\d.]+)(～)/g, '<span class="font-semibold">$1</span>$2')
+                          .replace(/(\([^)]+\))/g, '\n$1')
+                      }} />
                       <TableCell className="text-xs sm:text-sm py-3">{company.minTradeUnit}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line max-w-[150px] break-words">{company.swapPoints}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line max-w-[200px] break-words">
+                        {company.swapPoints.split('\n').map((line, index) => (
+                          <div key={index} dangerouslySetInnerHTML={{ 
+                            __html: line
+                              .replace(/(ドル円: 約)([\d.]+)(円)/, '$1<span class="font-semibold">$2</span>$3')
+                              .replace(/(ポンド円: 約)([\d.]+)(円)/, '$1<span class="font-semibold">$2</span>$3')
+                              .replace(/(ユーロ円: 約)([\d.]+)(円)/, '$1<span class="font-semibold">$2</span>$3')
+                              .replace(/(-[\d.]+\/\+[\d.]+)(USD)/g, '<span class="font-semibold">$1</span>$2')
+                              .replace(/(約)([\d.]+)(円)/g, '$1<span class="font-semibold">$2</span>$3')
+                          }} />
+                        ))}
+                      </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.scalping}</TableCell>
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 break-words">{company.features}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 break-words">
+                        {(() => {
+                          const features = company.features.split('、');
+                          // 指定された特徴のキーワードを定義
+                          const additionalHighlightedKeywords = [
+                            'FX取引高世界第1位', '高機能取引ツール',
+                            'LINEサポート対応', '最短当日取引開始',
+                            '老舗証券会社の信頼性', 'サポート充実',
+                            '楽天ポイントが貯まる',
+                            'Pontaポイント付与', '株式との連携'
+                          ];
+                          
+                          // 業界標準クラスのキーワードを定義
+                          const industryStandardKeywords = ['最大', '最多', '最狭', '高機能', '高性能', '業界', 'クラス'];
+                          
+                          // マーカーを適用する特徴のリスト
+                          const highlightedFeatures = [];
+                          
+                          // 既存の重要な特徴にマーカーをつける（業界標準クラスを除く）
+                          features.forEach((feature, index) => {
+                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                            const hasImportantKeyword = (
+                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                              feature.includes('クラス')
+                            );
+                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            
+                            // 指定された特徴にマーカーをつける
+                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            
+                            // どちらかの条件に該当する場合にマーカーをつける
+                            if (shouldHighlightExisting || shouldHighlightAdditional) {
+                              highlightedFeatures.push({ index, feature, highlighted: true });
+                            } else {
+                              highlightedFeatures.push({ index, feature, highlighted: false });
+                            }
+                          });
+                          
+                          // 最低1つ〜2つまで重要ポイントにマーカーをつける
+                          let highlightCount = 0;
+                          const maxHighlights = 2;
+                          
+                          return features.map((feature, index) => {
+                            let shouldHighlight = false;
+                            
+                            // 既存のロジックでマーカーをつけるべき特徴
+                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                            const hasImportantKeyword = (
+                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                              feature.includes('クラス')
+                            );
+                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            
+                            // 指定された特徴にマーカーをつける
+                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            
+                            // どちらかの条件に該当する場合にマーカーをつける
+                            if (shouldHighlightExisting || shouldHighlightAdditional) {
+                              shouldHighlight = true;
+                              highlightCount++;
+                            } else if (highlightCount < maxHighlights) {
+                              // マーカーがまだ2つ未満の場合、他の特徴にもマーカーをつける
+                              shouldHighlight = true;
+                              highlightCount++;
+                            }
+                            
+                            return (
+                              <span key={index}>
+                                {index > 0 && '、'}
+                                {shouldHighlight ? 
+                                  <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
+                                  feature
+                                }
+                              </span>
+                            );
+                          });
+                        })()}
+                      </TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
