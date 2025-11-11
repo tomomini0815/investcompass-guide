@@ -7,8 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, PieChart, Calculator, Lightbulb, Users, Award, TrendingUp } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Nisa = () => {
+  const location = useLocation();
+  
   // シミュレーション用の状態管理
   const [monthlyAmount, setMonthlyAmount] = useState("5000");
   const [years, setYears] = useState("20");
@@ -42,6 +45,21 @@ const Nisa = () => {
     // 利益の計算
     setProfit(Math.round(futureValue - total));
   }, [monthlyAmount, years, annualReturn, futureValue]);
+
+  // ページ遷移後に診断セクションまでスクロールする
+  useEffect(() => {
+    if (location.state?.fromNisaLink) {
+      // 少し遅延させてからスクロール
+      const timer = setTimeout(() => {
+        const element = document.getElementById("診断");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   // 目次項目
   const tableOfContents = [
@@ -109,15 +127,6 @@ const Nisa = () => {
       
       <main className="flex-grow">
         {/* Breadcrumb */}
-        <nav className="container mx-auto px-8 py-6">
-          <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <li>
-              <Link to="/" className="hover:text-primary transition-colors">ホーム</Link>
-            </li>
-            <li className="text-muted-foreground/50">/</li>
-            <li className="text-primary">NISA・つみたてNISA</li>
-          </ol>
-        </nav>
         <div className="bg-gradient-to-r from-muted/50 to-muted/30 py-4 border-b">
           <div className="container mx-auto px-8">
             <Link 
@@ -145,7 +154,12 @@ const Nisa = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <Button asChild size="lg" className="px-8 py-6 text-lg hover:scale-105 transition-transform">
-                <a href="/#診断">投資診断を始める</a>
+                <Link 
+                  to="/" 
+                  state={{ fromNisaLink: true }}
+                >
+                  投資診断を始める
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="px-8 py-6 text-lg hover:scale-105 transition-transform">
                 <Link to="/comparison">証券会社を比較</Link>

@@ -1,22 +1,20 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/features/HeroSection";
-import InvestmentDiagnostic from "@/components/features/InvestmentDiagnostic";
 import CategoryCard from "@/components/features/CategoryCard";
 import RankingCard from "@/components/features/RankingCard";
-import ArticleCard from "@/components/features/ArticleCard";
-import { TrendingUp, BookOpen, Calculator, PieChart, LineChart, Coins, Check, ExternalLink, ArrowRight, Clock, Calendar } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import InvestmentDiagnostic from "@/components/features/InvestmentDiagnostic";
 import { Helmet } from "react-helmet-async";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Calendar, ArrowRight, BookOpen, TrendingUp, PieChart, LineChart, Coins, Calculator } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import Footer from "@/components/layout/Footer";
 
 const Index = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const hasScrolledRef = useRef(false);
   const categories = [
     {
       icon: BookOpen,
@@ -451,24 +449,27 @@ const Index = () => {
 
   // ページ遷移後に投資診断セクションにスクロールする
   useEffect(() => {
-    // ハッシュが#診断の場合、またはlocation.state.scrollToDiagnosticがtrueの場合にスクロール
-    if (location.hash === '#診断' || (location.state && location.state.scrollToDiagnostic)) {
-      // ページが完全にロードされるのを待つため、より長い遅延を設定
+    // NISAページからの遷移の場合
+    if (location.state?.fromNisaLink) {
+      // ページが完全にロードされるのを待つため、遅延を設定
       const timer = setTimeout(() => {
         const element = document.getElementById("診断");
         if (element) {
-          // セクションタイトルがトップに来るようにスクロール位置を調整
-          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-          // タイトルが完全にトップに来るように、余白をヘッダーの高さのみにする
-          const offsetPosition = elementPosition - headerHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
+          element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 500); // 500msの遅延を設定
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+    // ハッシュが#診断の場合
+    else if (location.hash === '#診断') {
+      // ページが完全にロードされるのを待つため、遅延を設定
+      const timer = setTimeout(() => {
+        const element = document.getElementById("診断");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 500);
       
       return () => clearTimeout(timer);
     }
