@@ -490,12 +490,12 @@ const FXComparisonTable = () => {
                       {showDomestic ? (
                         <>
                           <div>スワップポイント平均(売/買)</div>
-                          <div className="font-normal">10000通貨売買時のイメージ</div>
+                          <div className="font-normal">1万通貨1ロット売買時のイメージ</div>
                         </>
                       ) : (
                         <>
                           <div>スワップポイント平均(売/買)</div>
-                          <div className="font-normal">10000通貨売買時のイメージ</div>
+                          <div className="font-normal">1万通貨1ロット売買時のイメージ</div>
                         </>
                       )}
                     </TableHead>
