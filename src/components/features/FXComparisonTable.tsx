@@ -17,7 +17,8 @@ interface FXBroker {
   spread: string;
   minTradeUnit: string;
   currencyPairs: number;
-  swapPoints: string;
+  buySwapPoints: string;
+  sellSwapPoints: string;
   scalping: string;
   rating: number;
   affiliateUrl: string;
@@ -37,7 +38,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 20,
-      swapPoints: "ドル円: 約230円\nポンド円: 約280円\nユーロ円: 約210円",
+      buySwapPoints: "ドル円: 約230円\nポンド円: 約280円\nユーロ円: 約210円",
+      sellSwapPoints: "ドル円: 約-230円\nポンド円: 約-280円\nユーロ円: 約-210円",
       scalping: "非推奨（明記なし）",
       rating: 5,
       affiliateUrl: "https://www.click-sec.com/",
@@ -49,7 +51,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "10,000通貨",
       currencyPairs: 21,
-      swapPoints: "ドル円: 約225円\nポンド円: 約270円\nユーロ円: 約205円",
+      buySwapPoints: "ドル円: 約225円\nポンド円: 約270円\nユーロ円: 約205円",
+      sellSwapPoints: "ドル円: 約-225円\nポンド円: 約-270円\nユーロ円: 約-205円",
       scalping: "非推奨",
       rating: 5,
       affiliateUrl: "https://fx.dmm.com/",
@@ -61,7 +64,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.18銭～",
       minTradeUnit: "1通貨",
       currencyPairs: 34,
-      swapPoints: "ドル円: 約240円\nポンド円: 約290円\nユーロ円: 約215円",
+      buySwapPoints: "ドル円: 約240円\nポンド円: 約290円\nユーロ円: 約215円",
+      sellSwapPoints: "ドル円: 約-240円\nポンド円: 約-290円\nユーロ円: 約-215円",
       scalping: "可能",
       rating: 5,
       affiliateUrl: "https://www.sbifxt.co.jp/",
@@ -69,11 +73,25 @@ const FXComparisonTable = () => {
       features: "1通貨から取引可能、業界最狭水準スプレッド、スワップポイントが高い",
     },
     {
+      name: "IG証券FX",
+      spread: "米ドル/円 0.2～0.4銭",
+      minTradeUnit: "10,000通貨",
+      currencyPairs: 100,
+      buySwapPoints: "ドル円: 約262円\nポンド円: 約288円\nユーロ円: 約216円",
+      sellSwapPoints: "ドル円: 約-262円\nポンド円: 約-288円\nユーロ円: 約-216円",
+      scalping: "過度でない限り可能(推奨はしていない)",
+      rating: 5,
+      affiliateUrl: "https://www.ig.com/jp/",
+      isDomestic: true,
+      features: "約100種類の通貨ペア取引可能、最大保有数量無制限、ノックアウトオプション取引可能、FX・CFD・バイナリーオプションを1口座で取引",
+    },
+    {
       name: "松井証券 MATSUI FX",
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1通貨",
       currencyPairs: 20,
-      swapPoints: "ドル円: 約235円\nポンド円: 約275円\nユーロ円: 約208円",
+      buySwapPoints: "ドル円: 約235円\nポンド円: 約275円\nユーロ円: 約208円",
+      sellSwapPoints: "ドル円: 約-235円\nポンド円: 約-275円\nユーロ円: 約-208円",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://www.matsui.co.jp/fx/",
@@ -85,7 +103,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 30,
-      swapPoints: "ドル円: 約238円\nポンド円: 約285円\nユーロ円: 約212円",
+      buySwapPoints: "ドル円: 約238円\nポンド円: 約285円\nユーロ円: 約212円",
+      sellSwapPoints: "ドル円: 約-238円\nポンド円: 約-285円\nユーロ円: 約-212円",
       scalping: "可能",
       rating: 5,
       affiliateUrl: "https://www.gaitame.com/",
@@ -97,7 +116,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 34,
-      swapPoints: "ドル円: 約242円\nポンド円: 約288円\nユーロ円: 約218円",
+      buySwapPoints: "ドル円: 約242円\nポンド円: 約288円\nユーロ円: 約218円",
+      sellSwapPoints: "ドル円: 約-242円\nポンド円: 約-288円\nユーロ円: 約-218円",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://min-fx.jp/",
@@ -109,7 +129,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 54,
-      swapPoints: "ドル円: 約232円\nポンド円: 約278円\nユーロ円: 約206円",
+      buySwapPoints: "ドル円: 約232円\nポンド円: 約278円\nユーロ円: 約206円",
+      sellSwapPoints: "ドル円: 約-232円\nポンド円: 約-278円\nユーロ円: 約-206円",
       scalping: "公認",
       rating: 4,
       affiliateUrl: "https://hirose-fx.co.jp/",
@@ -121,7 +142,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 24,
-      swapPoints: "ドル円: 約228円\nポンド円: 約272円\nユーロ円: 約203円",
+      buySwapPoints: "ドル円: 約228円\nポンド円: 約272円\nユーロ円: 約203円",
+      sellSwapPoints: "ドル円: 約-228円\nポンド円: 約-272円\nユーロ円: 約-203円",
       scalping: "条件付き可能",
       rating: 4,
       affiliateUrl: "https://www.gaikaex.com/",
@@ -133,7 +155,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 28,
-      swapPoints: "ドル円: 約227円\nポンド円: 約268円\nユーロ円: 約200円",
+      buySwapPoints: "ドル円: 約227円\nポンド円: 約268円\nユーロ円: 約200円",
+      sellSwapPoints: "ドル円: 約-227円\nポンド円: 約-268円\nユーロ円: 約-200円",
       scalping: "非推奨",
       rating: 4,
       affiliateUrl: "https://www.rakuten-sec.co.jp/web/fx/",
@@ -145,7 +168,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2銭原則固定",
       minTradeUnit: "1,000通貨",
       currencyPairs: 19,
-      swapPoints: "ドル円: 約225円\nポンド円: 約265円\nユーロ円: 約198円",
+      buySwapPoints: "ドル円: 約225円\nポンド円: 約265円\nユーロ円: 約198円",
+      sellSwapPoints: "ドル円: 約-225円\nポンド円: 約-265円\nユーロ円: 約-198円",
       scalping: "非推奨",
       rating: 3,
       affiliateUrl: "https://kabu.com/fx/",
@@ -161,7 +185,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.6pips（スタンダード口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 57,
-      swapPoints: "ドル円: -8.5/+2.5USD\nポンド円: -12.3/+3.8USD\nユーロ円: -10.2/+3.1USD",
+      buySwapPoints: "ドル円: -8.5/+2.5USD\nポンド円: -12.3/+3.8USD\nユーロ円: -10.2/+3.1USD",
+      sellSwapPoints: "ドル円: -8.5USD\nポンド円: -12.3USD\nユーロ円: -10.2USD",
       scalping: "可能",
       rating: 5,
       affiliateUrl: "https://www.xmtrading.com/",
@@ -173,7 +198,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.5pips（スタンダード+口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 53,
-      swapPoints: "ドル円: -7.8/+2.2USD\nポンド円: -11.5/+3.5USD\nユーロ円: -9.8/+2.9USD",
+      buySwapPoints: "ドル円: -7.8/+2.2USD\nポンド円: -11.5/+3.5USD\nユーロ円: -9.8/+2.9USD",
+      sellSwapPoints: "ドル円: -7.8USD\nポンド円: -11.5USD\nユーロ円: -9.8USD",
       scalping: "可能",
       rating: 5,
       affiliateUrl: "https://fxgt.com/",
@@ -185,7 +211,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.1pips（スタンダード口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 95,
-      swapPoints: "ドル円: -6.9/+1.8USD\nポンド円: -10.2/+2.9USD\nユーロ円: -8.5/+2.3USD",
+      buySwapPoints: "ドル円: -6.9/+1.8USD\nポンド円: -10.2/+2.9USD\nユーロ円: -8.5/+2.3USD",
+      sellSwapPoints: "ドル円: -6.9USD\nポンド円: -10.2USD\nユーロ円: -8.5USD",
       scalping: "可能",
       rating: 5,
       affiliateUrl: "https://www.exness.com/",
@@ -197,7 +224,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.33pips（スタンダード口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 60,
-      swapPoints: "ドル円: -7.2/+2.0USD\nポンド円: -10.8/+3.2USD\nユーロ円: -9.1/+2.6USD",
+      buySwapPoints: "ドル円: -7.2/+2.0USD\nポンド円: -10.8/+3.2USD\nユーロ円: -9.1/+2.6USD",
+      sellSwapPoints: "ドル円: -7.2USD\nポンド円: -10.8USD\nユーロ円: -9.1USD",
       scalping: "可能（推奨）",
       rating: 4,
       affiliateUrl: "https://titanfx.com/",
@@ -209,7 +237,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.3pips（スタンダード口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 61,
-      swapPoints: "ドル円: -7.5/+2.3USD\nポンド円: -11.0/+3.3USD\nユーロ円: -9.3/+2.7USD",
+      buySwapPoints: "ドル円: -7.5/+2.3USD\nポンド円: -11.0/+3.3USD\nユーロ円: -9.3/+2.7USD",
+      sellSwapPoints: "ドル円: -7.5USD\nポンド円: -11.0USD\nユーロ円: -9.3USD",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://www.axiory.com/",
@@ -221,7 +250,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.5pips～（Rawゼロ口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 40,
-      swapPoints: "ドル円: -6.5/+1.5USD\nポンド円: -9.8/+2.5USD\nユーロ円: -8.2/+2.0USD",
+      buySwapPoints: "ドル円: -6.5/+1.5USD\nポンド円: -9.8/+2.5USD\nユーロ円: -8.2/+2.0USD",
+      sellSwapPoints: "ドル円: -6.5USD\nポンド円: -9.8USD\nユーロ円: -8.2USD",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://www.threetrader.com/",
@@ -233,7 +263,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.6pips（プレミアム口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 53,
-      swapPoints: "ドル円: -8.0/+2.4USD\nポンド円: -11.8/+3.6USD\nユーロ円: -9.9/+3.0USD",
+      buySwapPoints: "ドル円: -8.0/+2.4USD\nポンド円: -11.8/+3.6USD\nユーロ円: -9.9/+3.0USD",
+      sellSwapPoints: "ドル円: -8.0USD\nポンド円: -11.8USD\nユーロ円: -9.9USD",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://www.hfm.com/",
@@ -245,7 +276,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 1.4pips（スタンダード口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 41,
-      swapPoints: "ドル円: -7.6/+2.1USD\nポンド円: -11.2/+3.1USD\nユーロ円: -9.4/+2.5USD",
+      buySwapPoints: "ドル円: -7.6/+2.1USD\nポンド円: -11.2/+3.1USD\nユーロ円: -9.4/+2.5USD",
+      sellSwapPoints: "ドル円: -7.6USD\nポンド円: -11.2USD\nユーロ円: -9.4USD",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://www.bigboss-financial.com/",
@@ -257,7 +289,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.7pips～",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 86,
-      swapPoints: "ドル円: -7.8/+2.2USD\nポンド円: -11.5/+3.4USD\nユーロ円: -9.7/+2.8USD",
+      buySwapPoints: "ドル円: -7.8/+2.2USD\nポンド円: -11.5/+3.4USD\nユーロ円: -9.7/+2.8USD",
+      sellSwapPoints: "ドル円: -7.8USD\nポンド円: -11.5USD\nユーロ円: -9.7USD",
       scalping: "制限あり",
       rating: 4,
       affiliateUrl: "https://www.iforex.jpn.com/",
@@ -269,7 +302,8 @@ const FXComparisonTable = () => {
       spread: "米ドル/円 0.2pips～（ILC口座）",
       minTradeUnit: "0.01ロット（1,000通貨）",
       currencyPairs: 60,
-      swapPoints: "ドル円: -6.3/+1.2USD\nポンド円: -9.5/+2.2USD\nユーロ円: -8.0/+1.8USD",
+      buySwapPoints: "ドル円: -6.3/+1.2USD\nポンド円: -9.5/+2.2USD\nユーロ円: -8.0/+1.8USD",
+      sellSwapPoints: "ドル円: -6.3USD\nポンド円: -9.5USD\nユーロ円: -8.0USD",
       scalping: "可能",
       rating: 4,
       affiliateUrl: "https://www.tradeviewforex.com/",
@@ -350,14 +384,24 @@ const FXComparisonTable = () => {
         
         <div className="grid grid-cols-2 gap-3">
           <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">スワップポイント</span>
-            <div className="text-xs whitespace-pre-line">{company.swapPoints}</div>
+            <span className="text-muted-foreground text-xs">スワップポイント(買)</span>
+            <div className="text-xs whitespace-pre-line">{company.buySwapPoints}</div>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground text-xs">スキャルピング</span>
             <div className="text-xs">{company.scalping}</div>
           </div>
         </div>
+        
+        {/* 国内業者の場合、古いスワップポイント表示を削除 */}
+        {/* {company.isDomestic && (
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex items-center gap-2">
+              <span className="text-muted-foreground text-xs">スワップポイント(売)</span>
+              <div className="text-xs whitespace-pre-line">{company.sellSwapPoints}</div>
+            </div>
+          </div>
+        )} */}
         
         <div>
           <p className="text-muted-foreground text-xs mb-1">評価</p>
@@ -442,7 +486,19 @@ const FXComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="min-w-[200px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">{showDomestic ? "スワップポイント(買)" : "スワップポイント"}</TableHead>
+                    <TableHead className="min-w-[200px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">
+                      {showDomestic ? (
+                        <>
+                          <div>スワップポイント平均(売/買)</div>
+                          <div className="font-normal">10000通貨売買時のイメージ</div>
+                        </>
+                      ) : (
+                        <>
+                          <div>スワップポイント平均(売/買)</div>
+                          <div className="font-normal">10000通貨売買時のイメージ</div>
+                        </>
+                      )}
+                    </TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
                     <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
@@ -465,16 +521,58 @@ const FXComparisonTable = () => {
                       <TableCell className="text-xs sm:text-sm py-3">{company.minTradeUnit}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line max-w-[200px] break-words">
-                        {company.swapPoints.split('\n').map((line, index) => (
-                          <div key={index} dangerouslySetInnerHTML={{ 
-                            __html: line
-                              .replace(/(ドル円: 約)([\d.]+)(円)/, '$1<span class="font-semibold">$2</span>$3')
-                              .replace(/(ポンド円: 約)([\d.]+)(円)/, '$1<span class="font-semibold">$2</span>$3')
-                              .replace(/(ユーロ円: 約)([\d.]+)(円)/, '$1<span class="font-semibold">$2</span>$3')
-                              .replace(/(-[\d.]+\/\+[\d.]+)(USD)/g, '<span class="font-semibold">$1</span>$2')
-                              .replace(/(約)([\d.]+)(円)/g, '$1<span class="font-semibold">$2</span>$3')
-                          }} />
-                        ))}
+                        {showDomestic ? (
+                          // 国内業者の場合、売買スワップポイントを組み合わせて表示
+                          company.buySwapPoints.split('\n').map((line, index) => {
+                            const buyLine = line;
+                            const sellLine = company.sellSwapPoints.split('\n')[index];
+                            
+                            // 通貨名を抽出
+                            const currencyPair = buyLine.split(':')[0];
+                            
+                            // 数値を抽出
+                            const buyValue = buyLine.match(/約([\d.]+)円/)?.[1] || '';
+                            const sellValue = sellLine.match(/約(-[\d.]+)円/)?.[1] || '';
+                            
+                            return (
+                              <div key={index}>
+                                {currencyPair}: 約{sellValue}円/約{buyValue}円
+                              </div>
+                            );
+                          })
+                        ) : (
+                          // 海外業者の場合、売買スワップポイントを組み合わせて表示
+                          company.buySwapPoints.split('\n').map((line, index) => {
+                            const buyLine = line;
+                            // 海外業者の場合はsellSwapPointsから売値を取得
+                            const sellLine = company.sellSwapPoints.split('\n')[index];
+                            
+                            // 通貨名を抽出
+                            const currencyPair = buyLine.split(':')[0];
+                            
+                            // 買値を抽出（例: -8.5/+2.5USD から +2.5 を取得）
+                            const buyValueMatch = buyLine.match(/\/\+([\d.]+)USD/);
+                            const buyValue = buyValueMatch ? buyValueMatch[1] : '';
+                            
+                            // 売値を抽出（例: -8.5USD から -8.5 を取得）
+                            const sellValueMatch = sellLine.match(/(-[\d.]+)USD/);
+                            const sellValue = sellValueMatch ? sellValueMatch[1] : '';
+                            
+                            // 海外業者の場合はUSD単位で表示
+                            if (buyValue && sellValue) {
+                              return (
+                                <div key={index}>
+                                  {currencyPair}: {sellValue}/{buyValue}USD
+                                </div>
+                              );
+                            }
+                            return (
+                              <div key={index}>
+                                {line}
+                              </div>
+                            );
+                          })
+                        )}
                       </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.scalping}</TableCell>
                       <TableCell className="py-3">
@@ -600,7 +698,7 @@ const FXComparisonTable = () => {
                 <span className="font-bold">注意事項:</span>
                 <br />
                 <span className="block mt-1">・スプレッドはリアルタイム相場やキャンペーン、時間帯によっても変動します。</span>
-                <span className="block mt-1">・スワップポイントは日々変動するため、上記「＋○円」はあくまで参考イメージです。実際の数値は各社の最新情報をご確認ください。</span>
+                <span className="block mt-1">・スワップポイントは日々変動するため、上記「ー〇円/＋○円」、「ー〇USD/＋○USD」はあくまで参考イメージです。実際の数値は各社の最新情報をご確認ください。</span>
                 <span className="block mt-1">・スキャルピングの可否は明示的に禁止していない場合でも、約定拒否やレート配信などで事実上制限される場合があります。</span>
                 <span className="block mt-1">・評価はあくまで一般的なユーザーの声や取引条件の傾向を総合的に見た参考レベルです。</span>
                 <span className="block mt-1">・最新の情報や詳細な数値を確認する際は、必ず各社の公式サイトや最新の取引約款・告知文書をチェックしてください。</span>
