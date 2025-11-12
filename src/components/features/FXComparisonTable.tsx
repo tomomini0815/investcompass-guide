@@ -44,7 +44,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.click-sec.com/",
       isDomestic: true,
-      features: "FX取引高世界第1位、高機能取引ツール、低スプレッド、通貨ペア数が多い",
+      features: "高機能取引ツール、低スプレッド、通貨ペア数が多い",
     },
     {
       name: "DMM FX",
