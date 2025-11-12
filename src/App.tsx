@@ -30,16 +30,22 @@ import RiskAssessment from "./pages/tools/RiskAssessment";
 import StockReturn from "./pages/tools/StockReturn";
 import FundReturn from "./pages/tools/FundReturn";
 import CryptoReturn from "./pages/tools/CryptoReturn";
-import RiskToleranceDiagnosticPage from "./pages/RiskToleranceDiagnosticPage";
 import FXCalculator from "./pages/tools/FXCalculator";
-// 記事ページのインポート
-import Articles from "./pages/Articles";
-import ArticleDetail from "./pages/ArticleDetail";
+import RiskToleranceDiagnosticPage from "./pages/RiskToleranceDiagnosticPage";
 // 新規記事ページのインポート
 import MLStockPrediction from "./pages/MLStockPrediction";
 import DLForexPrediction from "./pages/DLForexPrediction";
 import AIPortfolioOptimization from "./pages/AIPortfolioOptimization";
+// 既存の記事ページのインポート
+import Articles from "./pages/Articles";
+import ArticleDetail from "./pages/ArticleDetail";
+// Sitemapページのインポート
 import Sitemap from "./pages/Sitemap";
+// DMM FX詳細ページのインポート
+import DmmFxDetail from "./pages/DmmFxDetail";
+// DMM株詳細ページのインポート
+import DmmStockDetail from "./pages/DmmStockDetail";
+import MatsuiFxDetail from "./pages/MatsuiFxDetail";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +78,9 @@ const App = () => (
           <Route path="/comparison" element={<Comparison />} />
           <Route path="/crypto-comparison" element={<CryptoComparison />} />
           <Route path="/fx-comparison" element={<FXComparison />} />
+          <Route path="/fx/dmm-fx" element={<DmmFxDetail />} />
+          <Route path="/stocks/dmm-stock" element={<DmmStockDetail />} />
+          <Route path="/fx/matsui-fx" element={<MatsuiFxDetail />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
           {/* 新しいツールページのルート */}

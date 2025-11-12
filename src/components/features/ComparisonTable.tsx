@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, ExternalLink, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -194,6 +195,14 @@ const ComparisonTable = () => {
             {company.ipoCount}社 IPO
           </Badge>
         </CardTitle>
+        {/* DMM株の場合、詳細ページへのリンクを追加 */}
+        {company.name === "DMM株（DMM.com証券）" && (
+          <div className="mt-2">
+            <Link to="/stocks/dmm-stock" className="text-sm text-primary hover:underline">
+              詳細情報を見る
+            </Link>
+          </div>
+        )}
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
@@ -260,12 +269,23 @@ const ComparisonTable = () => {
           asChild
         >
           <a 
-            href={company.affiliateUrl} 
+            href={company.name === "DMM株（DMM.com証券）" ? "https://h.accesstrade.net/sp/cc?rk=0100mkk300ol0m" : company.affiliateUrl} 
             target="_blank" 
-            rel="noopener noreferrer"
+            rel={company.name === "DMM株（DMM.com証券）" ? "nofollow noopener" : "noopener noreferrer"}
+            referrerPolicy={company.name === "DMM株（DMM.com証券）" ? "no-referrer-when-downgrade" : undefined}
           >
-            詳細を見る
-            <ExternalLink className="ml-1 h-3 w-3" />
+            {company.name === "DMM株（DMM.com証券）" ? (
+              <>
+                DMM 株公式サイトへ
+                <img src="https://h.accesstrade.net/sp/rr?rk=0100mkk300ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+                <ExternalLink className="ml-1 h-3 w-3" />
+              </>
+            ) : (
+              <>
+                詳細を見る
+                <ExternalLink className="ml-1 h-3 w-3" />
+              </>
+            )}
           </a>
         </Button>
       </CardContent>
@@ -343,7 +363,17 @@ const ComparisonTable = () => {
                       key={company.name} 
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
-                      <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
+                      <TableCell className="font-semibold text-xs sm:text-sm py-3">
+                        {company.name}
+                        {/* DMM株の場合、詳細ページへのリンクを追加 */}
+                        {company.name === "DMM株（DMM.com証券）" && (
+                          <div className="mt-1">
+                            <Link to="/stocks/dmm-stock" className="text-xs text-primary hover:underline">
+                              詳細情報
+                            </Link>
+                          </div>
+                        )}
+                      </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 break-words" dangerouslySetInnerHTML={{ 
                         __html: company.commission
                           .replace(/([\d.]+)(円)/g, '<span class="font-semibold">$1</span>$2')
@@ -495,12 +525,22 @@ const ComparisonTable = () => {
                           asChild
                         >
                           <a 
-                            href={company.affiliateUrl} 
+                            href={company.name === "DMM株（DMM.com証券）" ? "https://h.accesstrade.net/sp/cc?rk=0100mkk300ol0m" : company.affiliateUrl} 
                             target="_blank" 
-                            rel="noopener noreferrer"
+                            rel={company.name === "DMM株（DMM.com証券）" ? "nofollow noopener" : "noopener noreferrer"}
+                            referrerPolicy={company.name === "DMM株（DMM.com証券）" ? "no-referrer-when-downgrade" : undefined}
                           >
-                            公式サイト
-                            <ExternalLink className="ml-1 h-3 w-3" />
+                            {company.name === "DMM株（DMM.com証券）" ? (
+                              <>
+                                DMM 株
+                                <img src="https://h.accesstrade.net/sp/rr?rk=0100mkk300ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+                              </>
+                            ) : (
+                              <>
+                                公式サイト
+                                <ExternalLink className="ml-1 h-3 w-3" />
+                              </>
+                            )}
                           </a>
                         </Button>
                       </TableCell>

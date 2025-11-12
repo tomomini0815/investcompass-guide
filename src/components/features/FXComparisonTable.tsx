@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Link } from "react-router-dom";
 
 interface FXBroker {
   name: string;
@@ -366,7 +367,7 @@ const FXComparisonTable = () => {
         <CardTitle className="text-lg font-bold flex justify-between items-center">
           <span>{company.name}</span>
           <Badge variant="secondary" className="text-xs">
-            {company.currencyPairs}
+            {company.currencyPairs}通貨ペア
           </Badge>
         </CardTitle>
         {company.name === "DMM FX" && (
@@ -374,6 +375,22 @@ const FXComparisonTable = () => {
             <a href="https://h.accesstrade.net/sp/cc?rk=01004oa800ol0m" rel="nofollow" referrerPolicy="no-referrer-when-downgrade">
               <img src="https://h.accesstrade.net/sp/rr?rk=01004oa800ol0m" alt="【DMM FX】入金" style={{ border: '0' }} />
             </a>
+          </div>
+        )}
+        {/* DMM FX詳細ページへのリンクを追加 */}
+        {company.name === "DMM FX" && (
+          <div className="mt-2">
+            <Link to="/fx/dmm-fx" className="text-sm text-primary hover:underline">
+              詳細情報を見る
+            </Link>
+          </div>
+        )}
+        {/* 松井証券FX詳細ページへのリンクを追加 */}
+        {company.name === "松井証券 MATSUI FX" && (
+          <div className="mt-2">
+            <Link to="/fx/matsui-fx" className="text-sm text-primary hover:underline">
+              詳細情報を見る
+            </Link>
           </div>
         )}
       </CardHeader>
@@ -486,7 +503,7 @@ const FXComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[700px]">
+              <Table className="min-w-[800px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">FX業者</TableHead>
@@ -517,8 +534,8 @@ const FXComparisonTable = () => {
                       )}
                     </TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
-                    <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
-                    <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
+                    <TableHead className="min-w-[150px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -534,6 +551,22 @@ const FXComparisonTable = () => {
                             <a href="https://h.accesstrade.net/sp/cc?rk=01004oa800ol0m" rel="nofollow" referrerPolicy="no-referrer-when-downgrade">
                               <img src="https://h.accesstrade.net/sp/rr?rk=01004oa800ol0m" alt="【DMM FX】入金" style={{ border: '0' }} />
                             </a>
+                          </div>
+                        )}
+                        {/* DMM FX詳細ページへのリンクを追加 */}
+                        {company.name === "DMM FX" && (
+                          <div className="mt-2">
+                            <Link to="/fx/dmm-fx" className="text-xs text-primary hover:underline">
+                              詳細情報
+                            </Link>
+                          </div>
+                        )}
+                        {/* 松井証券FX詳細ページへのリンクを追加 */}
+                        {company.name === "松井証券 MATSUI FX" && (
+                          <div className="mt-2">
+                            <Link to="/fx/matsui-fx" className="text-xs text-primary hover:underline">
+                              詳細情報
+                            </Link>
                           </div>
                         )}
                       </TableCell>
@@ -604,7 +637,7 @@ const FXComparisonTable = () => {
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 break-words">
+                      <TableCell className="text-xs sm:text-sm py-3 break-words max-w-[150px]">
                         {(() => {
                           const features = company.features.split('、');
                           // 指定された特徴のキーワードを定義
@@ -703,15 +736,21 @@ const FXComparisonTable = () => {
                           asChild
                         >
                           <a 
-                            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
+                            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=0100kz3n00ol0m" : company.affiliateUrl} 
                             target="_blank" 
                             rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
                             referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
                           >
                             {company.name === "DMM FX" ? (
                               <>
-                                DMMfx 公式サイトへ
-                                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+                                DMM FX公式サイトへ
+                                <img src="https://h.accesstrade.net/sp/rr?rk=0100kz3n00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+                                <ExternalLink className="ml-1 h-3 w-3" />
+                              </>
+                            ) : company.name === "松井証券 MATSUI FX" ? (
+                              <>
+                                詳細を見る
+                                <ExternalLink className="ml-1 h-3 w-3" />
                               </>
                             ) : (
                               <>
