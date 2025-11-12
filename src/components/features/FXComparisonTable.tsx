@@ -44,7 +44,7 @@ const FXComparisonTable = () => {
       rating: 5,
       affiliateUrl: "https://www.click-sec.com/",
       isDomestic: true,
-      features: "FX取引高世界第1位、高機能取引ツール、低スプレッド、通貨ペア数が多い",
+      features: "高機能取引ツール、低スプレッド、通貨ペア数が多い",
     },
     {
       name: "DMM FX",
@@ -369,6 +369,13 @@ const FXComparisonTable = () => {
             {company.currencyPairs}
           </Badge>
         </CardTitle>
+        {company.name === "DMM FX" && (
+          <div className="mt-2">
+            <a href="https://h.accesstrade.net/sp/cc?rk=01004oa800ol0m" rel="nofollow" referrerPolicy="no-referrer-when-downgrade">
+              <img src="https://h.accesstrade.net/sp/rr?rk=01004oa800ol0m" alt="【DMM FX】入金" style={{ border: '0' }} />
+            </a>
+          </div>
+        )}
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
@@ -420,12 +427,22 @@ const FXComparisonTable = () => {
           asChild
         >
           <a 
-            href={company.affiliateUrl} 
+            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
             target="_blank" 
-            rel="noopener noreferrer"
+            rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
+            referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
           >
-            公式サイト
-            <ExternalLink className="ml-1 h-3 w-3" />
+            {company.name === "DMM FX" ? (
+              <>
+                DMMfx 公式サイトへ
+                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+              </>
+            ) : (
+              <>
+                公式サイト
+                <ExternalLink className="ml-1 h-3 w-3" />
+              </>
+            )}
           </a>
         </Button>
       </CardContent>
@@ -490,12 +507,12 @@ const FXComparisonTable = () => {
                       {showDomestic ? (
                         <>
                           <div>スワップポイント平均(売/買)</div>
-                          <div className="font-normal">10000通貨売買時のイメージ</div>
+                          <div className="font-normal">1万通貨1ロット売買時のイメージ</div>
                         </>
                       ) : (
                         <>
                           <div>スワップポイント平均(売/買)</div>
-                          <div className="font-normal">10000通貨売買時のイメージ</div>
+                          <div className="font-normal">1万通貨1ロット売買時のイメージ</div>
                         </>
                       )}
                     </TableHead>
@@ -510,7 +527,16 @@ const FXComparisonTable = () => {
                       key={company.name} 
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
-                      <TableCell className="font-semibold text-xs sm:text-sm py-3">{company.name}</TableCell>
+                      <TableCell className="font-semibold text-xs sm:text-sm py-3">
+                        {company.name}
+                        {company.name === "DMM FX" && (
+                          <div className="mt-2">
+                            <a href="https://h.accesstrade.net/sp/cc?rk=01004oa800ol0m" rel="nofollow" referrerPolicy="no-referrer-when-downgrade">
+                              <img src="https://h.accesstrade.net/sp/rr?rk=01004oa800ol0m" alt="【DMM FX】入金" style={{ border: '0' }} />
+                            </a>
+                          </div>
+                        )}
+                      </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
                         __html: company.spread
                           .replace(/([\d.]+)(pips)/g, '<span class="font-semibold">$1</span>$2')
@@ -648,7 +674,19 @@ const FXComparisonTable = () => {
                             
                             return (
                               <span key={index}>
-                                {index > 0 && '、'}
+                                {index > 0 && <span className={shouldHighlight || (index > 0 && features[index-1] && (() => {
+                                  // 前の要素がハイライトされているかチェック
+                                  const prevFeature = features[index-1];
+                                  const isPrevIndustryStandard = industryStandardKeywords.some(keyword => prevFeature.includes(keyword));
+                                  const hasPrevImportantKeyword = (
+                                    prevFeature.includes('最大') || prevFeature.includes('最多') || prevFeature.includes('最狭') || 
+                                    prevFeature.includes('高機能') || prevFeature.includes('高性能') || prevFeature.includes('業界') || 
+                                    prevFeature.includes('クラス')
+                                  );
+                                  const shouldHighlightPrevExisting = hasPrevImportantKeyword && !isPrevIndustryStandard;
+                                  const shouldHighlightPrevAdditional = additionalHighlightedKeywords.some(keyword => prevFeature.includes(keyword));
+                                  return shouldHighlightPrevExisting || shouldHighlightPrevAdditional;
+                                })()) ? "bg-yellow-200 dark:bg-yellow-600 px-1" : ""}>{'、'}</span>}
                                 {shouldHighlight ? 
                                   <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
                                   feature
@@ -665,12 +703,22 @@ const FXComparisonTable = () => {
                           asChild
                         >
                           <a 
-                            href={company.affiliateUrl} 
+                            href={company.name === "DMM FX" ? "https://h.accesstrade.net/sp/cc?rk=01004ixl00ol0m" : company.affiliateUrl} 
                             target="_blank" 
-                            rel="noopener noreferrer"
+                            rel={company.name === "DMM FX" ? "nofollow noopener" : "noopener noreferrer"}
+                            referrerPolicy={company.name === "DMM FX" ? "no-referrer-when-downgrade" : undefined}
                           >
-                            公式サイト
-                            <ExternalLink className="ml-1 h-3 w-3" />
+                            {company.name === "DMM FX" ? (
+                              <>
+                                DMMfx 公式サイトへ
+                                <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
+                              </>
+                            ) : (
+                              <>
+                                公式サイト
+                                <ExternalLink className="ml-1 h-3 w-3" />
+                              </>
+                            )}
                           </a>
                         </Button>
                       </TableCell>

@@ -48,13 +48,12 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 lg:py-32">
         <div className="max-w-3xl animate-fade-in-up">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
-            あなたの投資を<br />
-            成功に導く完全ガイド
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
+            診断して、比較して、始める。<br />
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">納得の資産運用へ</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-8 leading-relaxed">
-            投資初心者から中級者まで。株式投資、NISA、iDeCo、暗号資産など、
-            あらゆる投資商品を徹底解説。信頼できる情報で、あなたの資産形成をサポートします。
+            投資診断で自分を知り、業者比較で最適を選ぶ。株式投資・NISA・iDeCo・FX・暗号資産などを徹底解説し、資産運用を一歩先へ導くナビゲーション。
           </p>
           
           {/* プロモーション表示の追加 */}
