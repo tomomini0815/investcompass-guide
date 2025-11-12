@@ -10,10 +10,10 @@ const Header = () => {
 
   const navigation = [
     { name: "ホーム", href: "/" },
+    { name: "投資ガイド", href: "/guide/investment-basics" },
     { name: "証券会社比較", href: "/comparison" },
     { name: "暗号資産取引所比較", href: "/crypto-comparison" },
     { name: "FX業者比較", href: "/fx-comparison" },
-    { name: "投資ガイド", href: "/guide/investment-basics" },
     { name: "投資計算ツール", href: "/tools" },
   ];
 
