@@ -741,7 +741,6 @@ const FXComparisonTable = () => {
                 <span className="font-bold">注意事項:</span>
                 <br />
                 <span className="block mt-1">・スプレッドはリアルタイム相場やキャンペーン、時間帯によっても変動します。</span>
-                <span className="block mt-1">・スワップポイントは日々変動するため、上記「ー〇円/＋○円」、「ー〇USD/＋○USD」はあくまで参考イメージです。実際の数値は各社の最新情報をご確認ください。</span>
                 <span className="block mt-1">・スキャルピングの可否は明示的に禁止していない場合でも、約定拒否やレート配信などで事実上制限される場合があります。</span>
                 <span className="block mt-1">・評価はあくまで一般的なユーザーの声や取引条件の傾向を総合的に見た参考レベルです。</span>
                 <span className="block mt-1">・最新の情報や詳細な数値を確認する際は、必ず各社の公式サイトや最新の取引約款・告知文書をチェックしてください。</span>

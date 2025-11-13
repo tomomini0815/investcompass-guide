@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -39,4 +41,12 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* モバイル画面での表示調整 */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+    overflow-x: hidden;
+  }
 }
