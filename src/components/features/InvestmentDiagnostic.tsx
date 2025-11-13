@@ -126,14 +126,6 @@ const InvestmentDiagnostic = () => {
     const pipUnit = fxInputs.pipUnit; // 1pipの単位（1000通貨または10000通貨）
     const position = fxInputs.position; // 売り('sell')または買い('buy')
     
-    // 通貨ペアごとの1pipの価値（10,000通貨ロット基準）
-    const pipValues: Record<string, number> = {
-      'USD/JPY': 100,  // 10,000通貨で100円、1pip = 0.01円
-      'EUR/JPY': 100,
-      'GBP/JPY': 100,
-      'AUD/JPY': 100
-    };
-    
     // JPYペアの場合は価格差に100をかける（小数点第2位まで）
     // それ以外のペアは価格差に10000をかける（小数点第4位まで）
     let priceDifference = exitPrice - entryPrice;
@@ -143,24 +135,20 @@ const InvestmentDiagnostic = () => {
       priceDifference = -priceDifference;
     }
     
-    const pipDifference = currencyPair.includes('JPY') ? priceDifference * 100 : priceDifference * 10000;
+    // GMOクリック証券FXネオのシミュレーターのロジックを参考に修正
     
-    // 1pipの価値を取得（10,000通貨ロット基準）
-    const pipValuePer10kLot = pipValues[currencyPair] || 100;
-    
-    // 実際のロット数で利益/損失を計算
-    // lotSizeは実際のロット数（例：0.1ロット、1.0ロットなど）
-    // pipUnitに応じてpipValueを調整
-    const pipValueAdjusted = (pipValuePer10kLot * pipUnit) / 10000;
-    const profit = pipDifference * pipValueAdjusted * lotSize;
-    
-    // 必要証拠金計算（一般的なFX業者の計算式に基づく）
-    // 必要証拠金 = (ロット数 × 通貨単位 × エントリー価格) ÷ レバレッジ
-    const requiredMargin = (lotSize * pipUnit * entryPrice) / leverage;
+    // 必要証拠金の計算
+    // 必要証拠金 = 取引数量 × 通貨単位 × 売買レート × 0.04
+    const requiredMargin = lotSize * pipUnit * entryPrice * 0.04;
     
     // 1pipあたりの価値の計算
     // 1pipあたりの価値 = 取引数量 × 通貨単位 × 0.01
     const pipValue = lotSize * pipUnit * 0.01;
+    
+    // 利益/損失の計算
+    // GMOクリック証券FXネオでは、価格差が1pip=0.01円(JPYペア)または0.0001(非JPYペア)単位で計算される
+    const pipDifference = currencyPair.includes('JPY') ? priceDifference * 100 : priceDifference * 10000;
+    const profit = pipDifference * pipValue;
     
     // 取引手数料（10,000通貨あたり500円を基準）
     const fee = (lotSize * 500).toFixed(0);
@@ -871,8 +859,8 @@ const InvestmentDiagnostic = () => {
                         <li>ロット数：取引の単位（0.1ロット = 1,000通貨）</li>
                         <li>エントリー価格：買う時の価格</li>
                         <li>イグジット価格：売る時の価格</li>
-                        <li>レバレッジ：少ないお金で大きな取引をする機能（必要証拠金に影響します）</li>
-                        <li>必要証拠金：取引に必要な保証金（(ロット数 × 通貨単位 × エントリー価格) ÷ レバレッジ）</li>
+                        <li>レバレッジ：少ないお金で大きな取引をする機能（GMOクリック証券FXネオでは25倍固定）</li>
+                        <li>必要証拠金：取引に必要な保証金（ロット数 × 通貨単位 × エントリー価格 × 0.04）</li>
                       </ul>
                     </div>
                     
@@ -1026,7 +1014,7 @@ const InvestmentDiagnostic = () => {
                         <div className="grid grid-cols-1 gap-2 text-sm">
                           <div>
                             <p className="font-semibold">利益/損失: <span className="font-normal">{calculationResult.profit}円</span></p>
-                            <p className="text-xs text-muted-foreground">計算式: (イグジット価格 - エントリー価格) × 1pipの価値 × ロット数</p>
+                            <p className="text-xs text-muted-foreground">計算式: 価格差(pip) × 1pipあたりの価値</p>
                           </div>
                           <div>
                             <p className="font-semibold">取引手数料: <span className="font-normal">{calculationResult.fee}円</span></p>
@@ -1034,7 +1022,7 @@ const InvestmentDiagnostic = () => {
                           </div>
                           <div>
                             <p className="font-semibold">必要証拠金: <span className="font-normal">{calculationResult.margin}円</span></p>
-                            <p className="text-xs text-muted-foreground">計算式: (ロット数 × 通貨単位 × エントリー価格) ÷ レバレッジ</p>
+                            <p className="text-xs text-muted-foreground">計算式: ロット数 × 通貨単位 × エントリー価格 × 0.04</p>
                           </div>
                           <div>
                             <p className="font-semibold">リスクリワード比: <span className="font-normal">{calculationResult.riskRewardRatio}</span></p>
