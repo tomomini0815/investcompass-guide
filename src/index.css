@@ -112,6 +112,7 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Noto Sans JP', 'Inter', sans-serif;
     overflow-x: hidden;
+    overflow-y: auto; /* 変更: 縦スクロールを可能にするため */
     width: 100%;
   }
 
@@ -191,7 +192,7 @@ All colors MUST be HSL.
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
-    overflow-y: auto; /* 変更: 縦スクロールを可能にするため */
+    overflow-y: auto; /* 維持: 縦スクロールを可能にするため */
     width: 100%;
     max-width: 100vw;
   }
@@ -199,6 +200,6 @@ All colors MUST be HSL.
   * {
     max-width: 100vw;
     overflow-x: hidden;
-    overflow-y: auto; /* 変更: 縦スクロールを可能にするため */
+    /* overflow-y: auto; 削除: モバイル画面での固まりを防ぐため */
   }
 }
