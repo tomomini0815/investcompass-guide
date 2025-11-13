@@ -656,7 +656,7 @@ const InvestmentDiagnostic = () => {
         {/* 計算ツールモーダル */}
         {showCalculator && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 z-50">
-            <div className="bg-white rounded-xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[95vh] overflow-y-auto">
+            <div className="bg-white rounded-xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[95vh]">
               <div className="sticky top-0 bg-white border-b p-3 sm:p-4 flex justify-between items-center rounded-t-xl">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
                   {calculatorType === 'sip' && '積立投資シミュレータ'}
