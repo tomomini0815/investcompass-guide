@@ -56,32 +56,32 @@ const Footer = () => {
 
   return (
     <footer className="border-t bg-muted/30 mt-20">
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-wrap justify-between gap-8 mb-8">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-wrap justify-between gap-6 mb-6">
           {/* Brand */}
-          <div className="space-y-4 flex-1 min-w-[200px]">
-            <Link to="/" className="flex items-center gap-2 font-bold text-xl">
+          <div className="space-y-4 flex-1 min-w-[150px]">
+            <Link to="/" className="flex items-center gap-2 font-bold text-lg">
               <div className="gradient-primary p-2 rounded-lg">
                 <TrendingUp className="h-5 w-5 text-white" />
               </div>
               <span className="text-primary">投資総合ナビ</span>
             </Link>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               あなたの投資を成功に導く完全ガイド。初心者から中級者まで、信頼性の高い情報をお届けします。
             </p>
           </div>
 
-          {/* Links - モバイル画面で2カラム表示 */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 flex-1">
+          {/* Links - モバイルフレンドリーに調整 */}
+          <div className="grid grid-cols-2 gap-6 flex-1">
             {footerLinkOrder.map((category) => (
-              <div key={category} className="min-w-[150px]">
-                <h3 className="font-semibold mb-4 text-foreground">{category}</h3>
-                <ul className="space-y-2">
+              <div key={category} className="min-w-[140px]">
+                <h3 className="font-semibold mb-3 text-sm">{category}</h3>
+                <ul className="space-y-1">
                   {footerLinks[category].map((link) => (
                     <li key={link.name}>
                       <Link
                         to={link.href}
-                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
                         {link.name}
                       </Link>
@@ -93,12 +93,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 下段のリンク - モバイル画面で2カラム表示 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 pt-8 border-t">
+        {/* 下段のリンク - モバイルフレンドリーに調整 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 pt-6 border-t">
           {bottomLinkOrder.map((category) => (
-            <div key={category} className="min-w-[150px]">
-              <h3 className="font-semibold mb-4 text-foreground">{category}</h3>
-              <ul className="space-y-2">
+            <div key={category} className="min-w-[140px]">
+              <h3 className="font-semibold mb-3 text-sm">{category}</h3>
+              <ul className="space-y-1">
                 {footerLinks[category].map((link) => (
                   <li key={link.name}>
                     {category === "金融庁・外部団体" ? (
@@ -106,14 +106,14 @@ const Footer = () => {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
                         {link.name}
                       </a>
                     ) : (
                       <Link
                         to={link.href}
-                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
                         {link.name}
                       </Link>
@@ -125,11 +125,11 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground order-2 md:order-1">
+        <div className="border-t pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-xs text-muted-foreground order-2 md:order-1">
             © 2024-2025 投資総合ナビ. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-6 text-sm text-muted-foreground order-1 md:order-2">
+          <div className="flex flex-wrap gap-4 text-xs text-muted-foreground order-1 md:order-2">
             <Link to="/privacy" className="hover:text-primary transition-colors">
               プライバシーポリシー
             </Link>
@@ -149,7 +149,7 @@ const Footer = () => {
         </div>
 
         {/* 更新日 */}
-        <div className="pt-4 border-t border-border mt-4">
+        <div className="pt-3 border-t border-border mt-3">
           <p className="text-xs text-muted-foreground text-right">
             最終更新日：2025年11月10日
           </p>
