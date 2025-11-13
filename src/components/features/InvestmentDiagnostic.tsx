@@ -656,7 +656,7 @@ const InvestmentDiagnostic = () => {
         {/* 計算ツールモーダル */}
         {showCalculator && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 z-50">
-            <div className="bg-white rounded-xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[95vh]">
+            <div className="bg-white rounded-xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[95vh] flex flex-col">
               <div className="sticky top-0 bg-white border-b p-3 sm:p-4 flex justify-between items-center rounded-t-xl">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
                   {calculatorType === 'sip' && '積立投資シミュレータ'}
@@ -672,7 +672,7 @@ const InvestmentDiagnostic = () => {
                   <X className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </div>
-              <div className="p-3 sm:p-4 md:p-6">
+              <div className="overflow-y-auto flex-1 p-3 sm:p-4 md:p-6">
                 {calculatorType === 'sip' && (
                   <div className="space-y-3">
                     <p className="text-muted-foreground text-sm">つみたてNISAや投資信託など、定期的な積立投資の効果を簡単にシミュレーションできます。複利の力で資産がどのように増えていくかを試算しましょう。</p>
@@ -858,11 +858,11 @@ const InvestmentDiagnostic = () => {
                 
                 {calculatorType === 'risk' && (
                   <div className="space-y-4">
-                    <p className="text-muted-foreground">FX（外国為替証拠金取引）の利益とリスクを簡単に計算できます。実際の取引前にシミュレーションして、自分の投資計画を立てましょう。</p>
+                    <p className="text-muted-foreground text-sm">FX（外国為替証拠金取引）の利益とリスクを簡単に計算できます。実際の取引前にシミュレーションして、自分の投資計画を立てましょう。</p>
                     
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <h5 className="font-bold text-blue-800 mb-2">FX初心者向けガイド</h5>
-                      <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      <h5 className="font-bold text-blue-800 mb-2 text-sm">FX初心者向けガイド</h5>
+                      <ul className="list-disc pl-4 space-y-1 text-xs">
                         <li>ロット数：取引の単位（0.1ロット = 1,000通貨）</li>
                         <li>エントリー価格：買う時の価格</li>
                         <li>イグジット価格：売る時の価格</li>
@@ -870,13 +870,13 @@ const InvestmentDiagnostic = () => {
                       </ul>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
-                        <Label htmlFor="currencyPair">通貨ペア</Label>
+                        <Label htmlFor="currencyPair" className="text-sm">通貨ペア</Label>
                         <p className="text-xs text-muted-foreground mb-1">取引する通貨の組み合わせを選んでください</p>
                         <select
                           id="currencyPair"
-                          className="w-full px-3 py-2 border border-input rounded-md"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
                           value={fxInputs.currencyPair}
                           onChange={(e) => setFxInputs({ ...fxInputs, currencyPair: e.target.value })}
                         >
@@ -887,10 +887,10 @@ const InvestmentDiagnostic = () => {
                         </select>
                       </div>
                       <div>
-                        <Label>ポジション</Label>
+                        <Label className="text-sm">ポジション</Label>
                         <p className="text-xs text-muted-foreground mb-1">買いまたは売りを選択してください</p>
                         <div className="flex gap-4">
-                          <label className="flex items-center">
+                          <label className="flex items-center text-sm">
                             <input
                               type="radio"
                               name="position"
@@ -901,7 +901,7 @@ const InvestmentDiagnostic = () => {
                             />
                             買い
                           </label>
-                          <label className="flex items-center">
+                          <label className="flex items-center text-sm">
                             <input
                               type="radio"
                               name="position"
@@ -915,23 +915,23 @@ const InvestmentDiagnostic = () => {
                         </div>
                       </div>
                       <div>
-                        <Label htmlFor="lotSize">ロット数</Label>
+                        <Label htmlFor="lotSize" className="text-sm">ロット数</Label>
                         <p className="text-xs text-muted-foreground mb-1">取引の単位（例：0.1 = 1,000通貨、1.0 = 10,000通貨）</p>
                         <input
                           id="lotSize"
                           type="number"
                           step="0.01"
-                          className="w-full px-3 py-2 border border-input rounded-md"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
                           placeholder="例: 0.1"
                           value={fxInputs.lotSize}
                           onChange={(e) => setFxInputs({ ...fxInputs, lotSize: e.target.value })}
                         />
                       </div>
                       <div>
-                        <Label>1pipの単位</Label>
+                        <Label className="text-sm">1pipの単位</Label>
                         <p className="text-xs text-muted-foreground mb-1">1000通貨または10000通貨を選択してください</p>
                         <div className="flex gap-4">
-                          <label className="flex items-center">
+                          <label className="flex items-center text-sm">
                             <input
                               type="radio"
                               name="pipUnit"
@@ -942,7 +942,7 @@ const InvestmentDiagnostic = () => {
                             />
                             1000通貨
                           </label>
-                          <label className="flex items-center">
+                          <label className="flex items-center text-sm">
                             <input
                               type="radio"
                               name="pipUnit"
@@ -956,37 +956,37 @@ const InvestmentDiagnostic = () => {
                         </div>
                       </div>
                       <div>
-                        <Label htmlFor="entryPrice">エントリー価格</Label>
+                        <Label htmlFor="entryPrice" className="text-sm">エントリー価格</Label>
                         <p className="text-xs text-muted-foreground mb-1">買う時の為替レート（例：110.000）</p>
                         <input
                           id="entryPrice"
                           type="number"
                           step="0.001"
-                          className="w-full px-3 py-2 border border-input rounded-md"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
                           placeholder="例: 110.000"
                           value={fxInputs.entryPrice}
                           onChange={(e) => setFxInputs({ ...fxInputs, entryPrice: e.target.value })}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="exitPrice">イグジット価格</Label>
+                        <Label htmlFor="exitPrice" className="text-sm">イグジット価格</Label>
                         <p className="text-xs text-muted-foreground mb-1">売る時の為替レート（例：111.000）</p>
                         <input
                           id="exitPrice"
                           type="number"
                           step="0.001"
-                          className="w-full px-3 py-2 border border-input rounded-md"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
                           placeholder="例: 111.000"
                           value={fxInputs.exitPrice}
                           onChange={(e) => setFxInputs({ ...fxInputs, exitPrice: e.target.value })}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="leverage">レバレッジ</Label>
+                        <Label htmlFor="leverage" className="text-sm">レバレッジ</Label>
                         <p className="text-xs text-muted-foreground mb-1">少ないお金で大きな取引をする倍率</p>
                         <select
                           id="leverage"
-                          className="w-full px-3 py-2 border border-input rounded-md"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
                           value={fxInputs.leverage}
                           onChange={(e) => setFxInputs({ ...fxInputs, leverage: e.target.value })}
                         >
@@ -999,11 +999,11 @@ const InvestmentDiagnostic = () => {
                         </select>
                       </div>
                       <div>
-                        <Label htmlFor="currency">基軸通貨</Label>
+                        <Label htmlFor="currency" className="text-sm">基軸通貨</Label>
                         <p className="text-xs text-muted-foreground mb-1">利益を計算する通貨</p>
                         <select
                           id="currency"
-                          className="w-full px-3 py-2 border border-input rounded-md"
+                          className="w-full px-2 py-1.5 border border-input rounded-md text-sm"
                           value={fxInputs.currency}
                           onChange={(e) => setFxInputs({ ...fxInputs, currency: e.target.value })}
                         >
@@ -1013,11 +1013,11 @@ const InvestmentDiagnostic = () => {
                         </select>
                       </div>
                     </div>
-                    <Button className="w-full" onClick={runRiskAssessment}>計算を実行</Button>
+                    <Button className="w-full py-2 text-sm" onClick={runRiskAssessment}>計算を実行</Button>
                     {calculationResult && calculationResult.type === 'risk' && (
-                      <div id="risk-result" className="bg-purple-50 p-4 rounded-lg mt-3 sm:mt-4">
-                        <h5 className="font-bold text-purple-800 mb-2">FX計算結果</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      <div id="risk-result" className="bg-purple-50 p-3 rounded-lg mt-3">
+                        <h5 className="font-bold text-purple-800 mb-2 text-sm">FX計算結果</h5>
+                        <div className="grid grid-cols-1 gap-2 text-sm">
                           <div>
                             <p className="font-semibold">利益/損失: <span className="font-normal">{calculationResult.profit}円</span></p>
                             <p className="text-xs text-muted-foreground">計算式: (イグジット価格 - エントリー価格) × 1pipの価値 × ロット数</p>
@@ -1046,7 +1046,7 @@ const InvestmentDiagnostic = () => {
                           </div>
                         </div>
                         <div className="mt-3 p-3 bg-yellow-50 rounded">
-                          <p className="font-semibold text-yellow-800">※このシミュレーション結果は、実際の取引では市場状況や会社方針により異なる場合があります。</p>
+                          <p className="font-semibold text-yellow-800 text-xs">※このシミュレーション結果は、実際の取引では市場状況や会社方針により異なる場合があります。</p>
                         </div>
                       </div>
                     )}
