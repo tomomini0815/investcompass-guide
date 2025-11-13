@@ -154,11 +154,16 @@ const InvestmentDiagnostic = () => {
     const pipValueAdjusted = (pipValuePer10kLot * pipUnit) / 10000;
     const profit = pipDifference * pipValueAdjusted * lotSize;
     
+    // 必要証拠金計算（一般的なFX業者の計算式に基づく）
+    // 必要証拠金 = (ロット数 × 通貨単位 × エントリー価格) ÷ レバレッジ
+    const requiredMargin = (lotSize * pipUnit * entryPrice) / leverage;
+    
+    // 1pipあたりの価値の計算
+    // 1pipあたりの価値 = 取引数量 × 通貨単位 × 0.01
+    const pipValue = lotSize * pipUnit * 0.01;
+    
     // 取引手数料（10,000通貨あたり500円を基準）
     const fee = (lotSize * 500).toFixed(0);
-    
-    // 必要証拠金計算（100円を基準に計算）
-    const margin = ((lotSize * 100) / leverage).toFixed(0);
     
     // リスクリワード比の計算（利益/損失の絶対値 ÷ 取引手数料）
     const riskRewardRatio = (Math.abs(profit) / parseFloat(fee)).toFixed(2);
@@ -188,7 +193,7 @@ const InvestmentDiagnostic = () => {
     }
     
     // 必要証拠金に関するアドバイス
-    if (parseFloat(margin) > 100000) {
+    if (requiredMargin > 100000) {
       advice += '必要証拠金が高額です。少額から始めるのが初心者にはおすすめです。';
     }
     
@@ -196,7 +201,7 @@ const InvestmentDiagnostic = () => {
       type: 'risk',
       profit: Math.round(profit).toLocaleString(),
       fee: fee,
-      margin: margin,
+      margin: Math.round(requiredMargin).toLocaleString(),
       riskRewardRatio: riskRewardRatio,
       totalProfit: totalProfit,
       advice: advice,
@@ -866,7 +871,8 @@ const InvestmentDiagnostic = () => {
                         <li>ロット数：取引の単位（0.1ロット = 1,000通貨）</li>
                         <li>エントリー価格：買う時の価格</li>
                         <li>イグジット価格：売る時の価格</li>
-                        <li>レバレッジ：少ないお金で大きな取引をする機能</li>
+                        <li>レバレッジ：少ないお金で大きな取引をする機能（必要証拠金に影響します）</li>
+                        <li>必要証拠金：取引に必要な保証金（(ロット数 × 通貨単位 × エントリー価格) ÷ レバレッジ）</li>
                       </ul>
                     </div>
                     
@@ -1028,7 +1034,7 @@ const InvestmentDiagnostic = () => {
                           </div>
                           <div>
                             <p className="font-semibold">必要証拠金: <span className="font-normal">{calculationResult.margin}円</span></p>
-                            <p className="text-xs text-muted-foreground">計算式: (ロット数 × 100) ÷ レバレッジ</p>
+                            <p className="text-xs text-muted-foreground">計算式: (ロット数 × 通貨単位 × エントリー価格) ÷ レバレッジ</p>
                           </div>
                           <div>
                             <p className="font-semibold">リスクリワード比: <span className="font-normal">{calculationResult.riskRewardRatio}</span></p>
