@@ -32,15 +32,15 @@ const CategoryCard = ({ icon: Icon, title, description, href, color }: CategoryC
   return (
     <Card className={`h-full bg-gradient-to-br ${colorClasses[color]} border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer overflow-hidden`}>
       <Link to={href} className="block h-full">
-        <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-          <div className={`p-4 rounded-xl ${iconColorClasses[color]} transition-transform duration-300 group-hover:scale-110`}>
+        <CardContent className="p-4 flex flex-col items-center text-center space-y-4">
+          <div className={`p-3 rounded-xl ${iconColorClasses[color]} transition-transform duration-300 group-hover:scale-110`}>
             <Icon className="h-8 w-8" />
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-2">{title}</h3>
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <h3 className="font-bold text-base mb-2">{title}</h3>
+            <p className="text-xs text-muted-foreground">{description}</p>
           </div>
-          <button className={`mt-4 px-4 py-2 rounded-md text-sm font-medium transition-colors ${buttonColorClasses[color]}`}>
+          <button className={`mt-2 px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${buttonColorClasses[color]}`}>
             詳細を見る
           </button>
         </CardContent>
