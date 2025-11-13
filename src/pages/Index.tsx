@@ -526,7 +526,7 @@ const Index = () => {
                 あなたの投資目標に合わせて、最適な投資方法を見つけましょう
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {categories.map((category, index) => (
                 <CategoryCard key={index} {...category} />
               ))}

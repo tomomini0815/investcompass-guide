@@ -176,7 +176,7 @@ const GuideDetail = () => {
         <h2 id="代表的な投資の種類と特徴" class="text-2xl font-bold mb-6 mt-12 pb-2 border-b border-gray-200">2. 代表的な投資の種類と特徴</h2>
         <p class="mb-4 text-base leading-relaxed">主な投資の種類には以下のようなものがあります。それぞれに特徴があり、自分の目的やリスク許容度に合った商品を選ぶことが重要です。</p>
         
-        <div class="overflow-x-auto my-8">
+        <div class="hidden md:block overflow-x-auto my-8">
           <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden shadow-sm">
             <thead>
               <tr class="bg-gradient-to-r from-gray-100 to-gray-200">
@@ -219,6 +219,98 @@ const GuideDetail = () => {
               </tr>
             </tbody>
           </table>
+        </div>
+        
+        <div class="md:hidden grid grid-cols-1 gap-6 my-8">
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold text-lg text-gray-800 mb-3">株式投資</h3>
+            <div class="space-y-2">
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">特徴</h4>
+                <p class="text-gray-600 text-sm">企業の株式を購入し、企業の成長と共に資産を増やすことを目指す</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">期待できる収益</h4>
+                <p class="text-gray-600 text-sm">売買益（キャピタルゲイン）、配当金、株主優待</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">主なリスク</h4>
+                <p class="text-gray-600 text-sm">価格変動リスク、倒産リスク</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold text-lg text-gray-800 mb-3">債券投資</h3>
+            <div class="space-y-2">
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">特徴</h4>
+                <p class="text-gray-600 text-sm">国（国債）や企業（社債）などに資金を貸し付け、利子を得る</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">期待できる収益</h4>
+                <p class="text-gray-600 text-sm">利子（インカムゲイン）、償還差益</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">主なリスク</h4>
+                <p class="text-gray-600 text-sm">金利変動リスク、信用リスク（デフォルト）</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold text-lg text-gray-800 mb-3">投資信託</h3>
+            <div class="space-y-2">
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">特徴</h4>
+                <p class="text-gray-600 text-sm">多くの投資家から集めた資金を専門家が運用し、その成果を分配する</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">期待できる収益</h4>
+                <p class="text-gray-600 text-sm">分配金、売却益</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">主なリスク</h4>
+                <p class="text-gray-600 text-sm">価格変動リスク、運用会社のリスク</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold text-lg text-gray-800 mb-3">不動産投資</h3>
+            <div class="space-y-2">
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">特徴</h4>
+                <p class="text-gray-600 text-sm">マンションやアパートなどを購入し、家賃収入や売却益を得る</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">期待できる収益</h4>
+                <p class="text-gray-600 text-sm">家賃収入（インカムゲイン）、売却益</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">主なリスク</h4>
+                <p class="text-gray-600 text-sm">空室リスク、価格変動リスク、流動性リスク</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold text-lg text-gray-800 mb-3">ETF（上場投資信託）</h3>
+            <div class="space-y-2">
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">特徴</h4>
+                <p class="text-gray-600 text-sm">投資信託の一種で、証券取引所に上場しており、株式のように売買できる</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">期待できる収益</h4>
+                <p class="text-gray-600 text-sm">分配金、売却益</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 text-sm mb-1">主なリスク</h4>
+                <p class="text-gray-600 text-sm">価格変動リスク</p>
+              </div>
+            </div>
+          </div>
         </div>
         
         <p class="mb-8 text-base leading-relaxed">この表からわかるように、リスクが低い商品ほどリターンも低く、リスクが高い商品ほどリターンも高くなります。自分のリスク許容度に合った商品を選ぶことが重要です。</p>

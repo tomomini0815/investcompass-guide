@@ -56,7 +56,7 @@ const FXComparison = () => {
               最適なFX業者を選ぶために、必ずチェックすべき重要なポイントをご紹介します
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {selectionPoints.map((point, index) => (
               <Card 
                 key={index} 

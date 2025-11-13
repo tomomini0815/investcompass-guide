@@ -451,7 +451,7 @@ const FXComparisonTable = () => {
           >
             {company.name === "DMM FX" ? (
               <>
-                DMMfx 公式サイトへ
+                公式サイトへ
                 <img src="https://h.accesstrade.net/sp/rr?rk=01004ixl00ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
               </>
             ) : (
@@ -503,7 +503,7 @@ const FXComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[800px]">
+              <Table className="min-w-[600px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">FX業者</TableHead>
@@ -520,22 +520,9 @@ const FXComparisonTable = () => {
                         )}
                       </div>
                     </TableHead>
-                    <TableHead className="min-w-[200px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">
-                      {showDomestic ? (
-                        <>
-                          <div>スワップポイント平均(売/買)</div>
-                          <div className="font-normal">1万通貨1ロット売買時のイメージ</div>
-                        </>
-                      ) : (
-                        <>
-                          <div>スワップポイント平均(売/買)</div>
-                          <div className="font-normal">1万通貨1ロット売買時のイメージ</div>
-                        </>
-                      )}
-                    </TableHead>
                     <TableHead className="min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">スキャルピング</TableHead>
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
-                    <TableHead className="min-w-[150px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
+                    <TableHead className="min-w-[200px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -579,160 +566,109 @@ const FXComparisonTable = () => {
                       }} />
                       <TableCell className="text-xs sm:text-sm py-3">{company.minTradeUnit}</TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line max-w-[200px] break-words">
-                        {showDomestic ? (
-                          // 国内業者の場合、売買スワップポイントを組み合わせて表示
-                          company.buySwapPoints.split('\n').map((line, index) => {
-                            const buyLine = line;
-                            const sellLine = company.sellSwapPoints.split('\n')[index];
-                            
-                            // 通貨名を抽出
-                            const currencyPair = buyLine.split(':')[0];
-                            
-                            // 数値を抽出
-                            const buyValue = buyLine.match(/約([\d.]+)円/)?.[1] || '';
-                            const sellValue = sellLine.match(/約(-[\d.]+)円/)?.[1] || '';
-                            
-                            return (
-                              <div key={index}>
-                                {currencyPair}: 約{sellValue}円/約{buyValue}円
-                              </div>
-                            );
-                          })
-                        ) : (
-                          // 海外業者の場合、売買スワップポイントを組み合わせて表示
-                          company.buySwapPoints.split('\n').map((line, index) => {
-                            const buyLine = line;
-                            // 海外業者の場合はsellSwapPointsから売値を取得
-                            const sellLine = company.sellSwapPoints.split('\n')[index];
-                            
-                            // 通貨名を抽出
-                            const currencyPair = buyLine.split(':')[0];
-                            
-                            // 買値を抽出（例: -8.5/+2.5USD から +2.5 を取得）
-                            const buyValueMatch = buyLine.match(/\/\+([\d.]+)USD/);
-                            const buyValue = buyValueMatch ? buyValueMatch[1] : '';
-                            
-                            // 売値を抽出（例: -8.5USD から -8.5 を取得）
-                            const sellValueMatch = sellLine.match(/(-[\d.]+)USD/);
-                            const sellValue = sellValueMatch ? sellValueMatch[1] : '';
-                            
-                            // 海外業者の場合はUSD単位で表示
-                            if (buyValue && sellValue) {
-                              return (
-                                <div key={index}>
-                                  {currencyPair}: {sellValue}/{buyValue}USD
-                                </div>
-                              );
-                            }
-                            return (
-                              <div key={index}>
-                                {line}
-                              </div>
-                            );
-                          })
-                        )}
-                      </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3">{company.scalping}</TableCell>
                       <TableCell className="py-3">
                         <RatingStars rating={company.rating} />
                       </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 break-words max-w-[150px]">
-                        {(() => {
-                          const features = company.features.split('、');
-                          // 指定された特徴のキーワードを定義
-                          const additionalHighlightedKeywords = [
-                            'FX取引高世界第1位', '高機能取引ツール',
-                            'LINEサポート対応', '最短当日取引開始',
-                            '老舗証券会社の信頼性', 'サポート充実',
-                            '楽天ポイントが貯まる',
-                            'Pontaポイント付与', '株式との連携'
-                          ];
-                          
-                          // 業界標準クラスのキーワードを定義
-                          const industryStandardKeywords = ['最大', '最多', '最狭', '高機能', '高性能', '業界', 'クラス'];
-                          
-                          // マーカーを適用する特徴のリスト
-                          const highlightedFeatures = [];
-                          
-                          // 既存の重要な特徴にマーカーをつける（業界標準クラスを除く）
-                          features.forEach((feature, index) => {
-                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
-                            const hasImportantKeyword = (
-                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
-                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
-                              feature.includes('クラス')
-                            );
-                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                      <TableCell className="text-xs sm:text-sm py-3 break-words max-w-[200px]">
+                        <div className="grid grid-cols-1 gap-1">
+                          {(() => {
+                            const features = company.features.split('、');
+                            // 指定された特徴のキーワードを定義
+                            const additionalHighlightedKeywords = [
+                              'FX取引高世界第1位', '高機能取引ツール',
+                              'LINEサポート対応', '最短当日取引開始',
+                              '老舗証券会社の信頼性', 'サポート充実',
+                              '楽天ポイントが貯まる',
+                              'Pontaポイント付与', '株式との連携'
+                            ];
                             
-                            // 指定された特徴にマーカーをつける
-                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            // 業界標準クラスのキーワードを定義
+                            const industryStandardKeywords = ['最大', '最多', '最狭', '高機能', '高性能', '業界', 'クラス'];
                             
-                            // どちらかの条件に該当する場合にマーカーをつける
-                            if (shouldHighlightExisting || shouldHighlightAdditional) {
-                              highlightedFeatures.push({ index, feature, highlighted: true });
-                            } else {
-                              highlightedFeatures.push({ index, feature, highlighted: false });
-                            }
-                          });
-                          
-                          // 最低1つ〜2つまで重要ポイントにマーカーをつける
-                          let highlightCount = 0;
-                          const maxHighlights = 2;
-                          
-                          return features.map((feature, index) => {
-                            let shouldHighlight = false;
+                            // マーカーを適用する特徴のリスト
+                            const highlightedFeatures = [];
                             
-                            // 既存のロジックでマーカーをつけるべき特徴
-                            const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
-                            const hasImportantKeyword = (
-                              feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
-                              feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
-                              feature.includes('クラス')
-                            );
-                            const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                            // 既存の重要な特徴にマーカーをつける（業界標準クラスを除く）
+                            features.forEach((feature, index) => {
+                              const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                              const hasImportantKeyword = (
+                                feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                                feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                                feature.includes('クラス')
+                              );
+                              const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                              
+                              // 指定された特徴にマーカーをつける
+                              const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                              
+                              // どちらかの条件に該当する場合にマーカーをつける
+                              if (shouldHighlightExisting || shouldHighlightAdditional) {
+                                highlightedFeatures.push({ index, feature, highlighted: true });
+                              } else {
+                                highlightedFeatures.push({ index, feature, highlighted: false });
+                              }
+                            });
                             
-                            // 指定された特徴にマーカーをつける
-                            const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                            // 最低1つ〜2つまで重要ポイントにマーカーをつける
+                            let highlightCount = 0;
+                            const maxHighlights = 2;
                             
-                            // どちらかの条件に該当する場合にマーカーをつける
-                            if (shouldHighlightExisting || shouldHighlightAdditional) {
-                              shouldHighlight = true;
-                              highlightCount++;
-                            } else if (highlightCount < maxHighlights) {
-                              // マーカーがまだ2つ未満の場合、他の特徴にもマーカーをつける
-                              shouldHighlight = true;
-                              highlightCount++;
-                            }
-                            
-                            return (
-                              <span key={index}>
-                                {index > 0 && <span className={shouldHighlight || (index > 0 && features[index-1] && (() => {
-                                  // 前の要素がハイライトされているかチェック
-                                  const prevFeature = features[index-1];
-                                  const isPrevIndustryStandard = industryStandardKeywords.some(keyword => prevFeature.includes(keyword));
-                                  const hasPrevImportantKeyword = (
-                                    prevFeature.includes('最大') || prevFeature.includes('最多') || prevFeature.includes('最狭') || 
-                                    prevFeature.includes('高機能') || prevFeature.includes('高性能') || prevFeature.includes('業界') || 
-                                    prevFeature.includes('クラス')
-                                  );
-                                  const shouldHighlightPrevExisting = hasPrevImportantKeyword && !isPrevIndustryStandard;
-                                  const shouldHighlightPrevAdditional = additionalHighlightedKeywords.some(keyword => prevFeature.includes(keyword));
-                                  return shouldHighlightPrevExisting || shouldHighlightPrevAdditional;
-                                })()) ? "bg-yellow-200 dark:bg-yellow-600 px-1" : ""}>{'、'}</span>}
-                                {shouldHighlight ? 
-                                  <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
-                                  feature
-                                }
-                              </span>
-                            );
-                          });
-                        })()}
+                            return features.map((feature, index) => {
+                              let shouldHighlight = false;
+                              
+                              // 既存のロジックでマーカーをつけるべき特徴
+                              const isIndustryStandard = industryStandardKeywords.some(keyword => feature.includes(keyword));
+                              const hasImportantKeyword = (
+                                feature.includes('最大') || feature.includes('最多') || feature.includes('最狭') || 
+                                feature.includes('高機能') || feature.includes('高性能') || feature.includes('業界') || 
+                                feature.includes('クラス')
+                              );
+                              const shouldHighlightExisting = hasImportantKeyword && !isIndustryStandard;
+                              
+                              // 指定された特徴にマーカーをつける
+                              const shouldHighlightAdditional = additionalHighlightedKeywords.some(keyword => feature.includes(keyword));
+                              
+                              // どちらかの条件に該当する場合にマーカーをつける
+                              if (shouldHighlightExisting || shouldHighlightAdditional) {
+                                shouldHighlight = true;
+                                highlightCount++;
+                              } else if (highlightCount < maxHighlights) {
+                                // マーカーがまだ2つ未満の場合、他の特徴にもマーカーをつける
+                                shouldHighlight = true;
+                                highlightCount++;
+                              }
+                              
+                              return (
+                                <div key={index} className="flex items-start">
+                                  <span className={shouldHighlight || (index > 0 && features[index-1] && (() => {
+                                    // 前の要素がハイライトされているかチェック
+                                    const prevFeature = features[index-1];
+                                    const isPrevIndustryStandard = industryStandardKeywords.some(keyword => prevFeature.includes(keyword));
+                                    const hasPrevImportantKeyword = (
+                                      prevFeature.includes('最大') || prevFeature.includes('最多') || prevFeature.includes('最狭') || 
+                                      prevFeature.includes('高機能') || prevFeature.includes('高性能') || prevFeature.includes('業界') || 
+                                      prevFeature.includes('クラス')
+                                    );
+                                    const shouldHighlightPrevExisting = hasPrevImportantKeyword && !isPrevIndustryStandard;
+                                    const shouldHighlightPrevAdditional = additionalHighlightedKeywords.some(keyword => prevFeature.includes(keyword));
+                                    return shouldHighlightPrevExisting || shouldHighlightPrevAdditional;
+                                  })()) ? "bg-yellow-200 dark:bg-yellow-600 px-1 mr-1" : "mr-1"}>
+                                    {shouldHighlight ? 
+                                      <span className="bg-yellow-200 dark:bg-yellow-600 px-1">{feature}</span> : 
+                                      feature
+                                    }
+                                  </span>
+                                </div>
+                              );
+                            });
+                          })()}
+                        </div>
                       </TableCell>
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
-                          className="whitespace-nowrap text-xs px-3 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 min-w-[100px]"
+                          className="whitespace-nowrap text-xs px-3 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 min-w-[130px]"
                           asChild
                         >
                           <a 
