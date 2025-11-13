@@ -230,7 +230,6 @@ All colors MUST be HSL.
   * {
     max-width: 100vw;
     overflow-x: hidden;
-    /* overflow-y: auto; 削除: モバイル画面での固まりを防ぐため */
     /* 追加: すべての要素にborderをリセット */
     border: 0 solid;
   }
