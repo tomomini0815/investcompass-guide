@@ -120,7 +120,8 @@ const industryAdvice = {
         "新規プロジェクトトークン（SUI、APT、STRKなど）",
         "レイヤー2ソリューション（IMX、DYDX、ZKSなど）",
         "AI関連トークン（RNDR、FET、AGIXなど）",
-        "Web3インフラ（LINK、API3、RADなど）"
+        "Web3インフラ（LINK、API3、RADなど）",
+        "高リスク・高リターン新興コイン（HYPER、MAXI、SPY、SUBBDなど）"
       ],
       strategy: "ポートフォリオの30%を主要通貨に分配し、40%を有望なアルトコインに分配し、残り30%を新規プロジェクトトークンに分配します。週次のテクニカル分析で売買タイミングを判断し、損切りラインを20%に設定します。ホワイトペーパーの詳細な分析を行い、プロジェクトの実現可能性を評価します。"
     }
@@ -386,6 +387,17 @@ const RiskDiagnostic = () => {
     setStep(0);
     setAnswers({});
     setResult(null);
+    // セクションの開始点にスクロール
+    setTimeout(() => {
+      const diagnosticSection = document.getElementById('diagnostic-tool');
+      if (diagnosticSection) {
+        const sectionTop = diagnosticSection.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: sectionTop - 100, // ヘッダーの高さ分を考慮して調整
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   if (selectedIndustries.length === 0) {
@@ -542,7 +554,7 @@ const RiskDiagnostic = () => {
                                 <Button asChild variant="outline" className="w-full hover:scale-105 transition-transform border-2 border-primary/30 hover:border-primary/50">
                                   <Link to={industry.path}>
                                     <Icon className="h-4 w-4 mr-2 text-primary" />
-                                    {industry.label}比較ページ →
+                                    {industryId === "crypto" ? "暗号資産取引所比較ページ" : `${industry.label}比較ページ`} →
                                   </Link>
                                 </Button>
                               </div>
