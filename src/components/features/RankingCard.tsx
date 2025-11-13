@@ -138,7 +138,7 @@ const RankingCard = ({
         )}
 
         <Button 
-          className="w-full" 
+          className="w-full whitespace-nowrap" 
           size="lg"
           asChild
         >

@@ -551,7 +551,7 @@ const Index = () => {
             <div className="text-center mt-10">
               <a
                 href="/comparison"
-                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                 style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
@@ -620,7 +620,7 @@ const Index = () => {
             <div className="text-center mt-10">
               <a
                 href="/fx-comparison"
-                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                 style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
@@ -689,7 +689,7 @@ const Index = () => {
             <div className="text-center mt-10">
               <a
                 href="/crypto-comparison"
-                className="inline-flex items-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-8 py-4 text-white rounded-xl hover:opacity-90 transition-all duration-300 text-lg font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                 style={{ backgroundColor: '#10B77F' }}
               >
                 詳細比較を見る
@@ -757,7 +757,7 @@ const Index = () => {
                         )}
                       </div>
                       <button 
-                        className="w-full mt-6 px-4 py-2 bg-blue-100 text-primary rounded-md hover:bg-blue-200 transition-colors"
+                        className="w-full mt-6 px-4 py-2 bg-blue-100 text-primary rounded-md hover:bg-blue-200 transition-colors whitespace-nowrap"
                         onClick={() => navigate(`/articles/${article.id}`)}
                       >
                         記事を読む
@@ -769,7 +769,7 @@ const Index = () => {
             <div className="text-center mt-10">
               <a
                 href="/articles"
-                className="inline-flex items-center px-6 py-3 text-white rounded-lg hover:opacity-90 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-6 py-3 text-white rounded-lg hover:opacity-90 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                 style={{ backgroundColor: '#10B77F' }}
               >
                 すべての記事を見る

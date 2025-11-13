@@ -328,7 +328,7 @@ const CryptoComparisonTable = () => {
 
   // モバイル向けカードコンポーネント
   const MobileExchangeCard = ({ exchange }: { exchange: CryptoExchange }) => (
-    <Card className="mb-4 shadow-md border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+    <Card className="mb-4 shadow-md border border-border bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-bold flex justify-between items-center">
           <span>{exchange.name}</span>

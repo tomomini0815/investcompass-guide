@@ -55,7 +55,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t bg-muted/30 mt-20">
+    <footer className="border-t border-border bg-muted/30 mt-20">
       <div className="container mx-auto px-4 py-6">
         {/* Brand - 横一列の1カラム */}
         <div className="w-full mb-4">
@@ -125,7 +125,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="border-t pt-4 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="border-t border-border pt-4 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-xs text-muted-foreground order-2 md:order-1">
             © 2024-2025 投資総合ナビ. All rights reserved.
           </p>

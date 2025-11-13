@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl">
           <div className="gradient-primary p-2 rounded-lg">
@@ -85,7 +85,7 @@ const Header = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden p-1 border-0"
+          className="md:hidden p-1 border border-border"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X style={{ height: '32px', width: '32px' }} /> : <Menu style={{ height: '32px', width: '32px' }} />}
