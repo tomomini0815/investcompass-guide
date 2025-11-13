@@ -58,20 +58,20 @@ const Comparison = () => {
               最適な証券会社を選ぶために、必ずチェックすべき重要なポイントをご紹介します
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {selectionPoints.map((point, index) => (
               <Card 
                 key={index} 
                 className="text-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 hover:border-primary/50"
               >
-                <CardHeader>
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <CheckCircle2 className="h-8 w-8 text-primary" />
+                <CardHeader className="p-4">
+                  <div className="mx-auto w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <CheckCircle2 className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-lg font-bold">{point.title}</CardTitle>
+                  <CardTitle className="text-base font-bold">{point.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
+                <CardContent className="p-4 pt-0">
+                  <p className="text-xs text-muted-foreground leading-relaxed">{point.description}</p>
                 </CardContent>
               </Card>
             ))}

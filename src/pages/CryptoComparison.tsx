@@ -56,20 +56,20 @@ const CryptoComparison = () => {
               最適な暗号資産取引所を選ぶために、必ずチェックすべき重要なポイントをご紹介します
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {selectionPoints.map((point, index) => (
               <Card 
                 key={index} 
                 className="text-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 hover:border-primary/50"
               >
-                <CardHeader>
-                  <div className="mx-auto w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <CheckCircle2 className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+                <CardHeader className="p-4">
+                  <div className="mx-auto w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <CheckCircle2 className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-base font-bold md:text-lg">{point.title}</CardTitle>
+                  <CardTitle className="text-sm font-bold md:text-base">{point.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-xs text-muted-foreground leading-relaxed md:text-sm">{point.description}</p>
+                <CardContent className="p-4 pt-0">
+                  <p className="text-xs text-muted-foreground leading-relaxed">{point.description}</p>
                 </CardContent>
               </Card>
             ))}
