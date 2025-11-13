@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, ExternalLink, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { Check, X, ExternalLink, ChevronDown, ChevronUp, Star, ArrowRight } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Link } from "react-router-dom";
 
 interface CryptoExchange {
   name: string;
@@ -336,6 +337,17 @@ const CryptoComparisonTable = () => {
           </Badge>
         </CardTitle>
       </CardHeader>
+      {/* 詳細情報ボタンを会社名下に配置 */}
+      <div className="px-6 pb-2">
+        <Button 
+          size="sm" 
+          className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
+          disabled
+        >
+          詳細情報
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      </div>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div>
@@ -366,7 +378,7 @@ const CryptoComparisonTable = () => {
         
         <Button 
           size="sm" 
-          className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
+          className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 justify-center"
           asChild
         >
           <a 
@@ -374,7 +386,7 @@ const CryptoComparisonTable = () => {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            公式サイト
+            公式サイトへ
             <ExternalLink className="ml-1 h-3 w-3" />
           </a>
         </Button>
@@ -458,7 +470,20 @@ const CryptoComparisonTable = () => {
                       key={exchange.name} 
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
-                      <TableCell className="font-semibold text-xs sm:text-sm py-3">{exchange.name}</TableCell>
+                      <TableCell className="font-semibold text-xs sm:text-sm py-3">
+                        {exchange.name}
+                        {/* 詳細情報ボタンを追加 */}
+                        <div className="mt-2">
+                          <Button 
+                            size="sm" 
+                            className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
+                            disabled
+                          >
+                            詳細情報
+                            <ArrowRight className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
                         __html: exchange.tradingFee
                           .replace(/、\s*(先物:)/g, '\n$1')

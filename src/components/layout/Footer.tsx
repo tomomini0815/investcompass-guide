@@ -72,11 +72,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Links - モバイル画面時は3カラム、PC画面時は5カラム */}
-        <div className="grid grid-cols-3 gap-4 mb-4">
+        {/* Links - PC画面時は全カラムを横1列に */}
+        <div className="grid grid-cols-5 gap-3 mb-3">
           {footerLinkOrder.map((category) => (
-            <div key={category} className="min-w-[130px]">
-              <h3 className="font-semibold mb-2 text-xs">{category}</h3>
+            <div key={category} className="min-w-[120px]">
+              <h3 className="font-semibold mb-1.5 text-xs">{category}</h3>
               <ul className="space-y-0.5">
                 {footerLinks[category].map((link) => (
                   <li key={link.name}>
@@ -93,11 +93,11 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* 下段のリンク - モバイル画面時は3カラム、PC画面時は2カラム */}
-        <div className="grid grid-cols-3 gap-4 mb-4 pt-4 border-t">
+        {/* 下段のリンク - PC画面時は全カラムを横1列に */}
+        <div className="grid grid-cols-2 gap-3 mb-3 pt-3 border-t">
           {bottomLinkOrder.map((category) => (
-            <div key={category} className="min-w-[130px]">
-              <h3 className="font-semibold mb-2 text-xs">{category}</h3>
+            <div key={category} className="min-w-[120px]">
+              <h3 className="font-semibold mb-1.5 text-xs">{category}</h3>
               <ul className="space-y-0.5">
                 {footerLinks[category].map((link) => (
                   <li key={link.name}>
@@ -125,11 +125,11 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="border-t pt-4 flex flex-col md:flex-row justify-between items-center gap-2">
+        <div className="border-t pt-3 flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-xs text-muted-foreground order-2 md:order-1">
             © 2024-2025 投資総合ナビ. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-3 text-xs text-muted-foreground order-1 md:order-2">
+          <div className="flex flex-wrap gap-2 text-xs text-muted-foreground order-1 md:order-2">
             <Link to="/privacy" className="hover:text-primary transition-colors">
               プライバシーポリシー
             </Link>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, ExternalLink, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { Check, X, ExternalLink, ChevronDown, ChevronUp, Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   Table,
@@ -204,6 +204,30 @@ const ComparisonTable = () => {
           </div>
         )}
       </CardHeader>
+      {/* 詳細情報ボタンを会社名下に配置 */}
+      <div className="px-6 pb-2">
+        {company.name === "DMM株（DMM.com証券）" ? (
+          <Button 
+            size="sm" 
+            className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
+            asChild
+          >
+            <Link to="/stocks/dmm-stock">
+              詳細情報
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        ) : (
+          <Button 
+            size="sm" 
+            className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
+            disabled
+          >
+            詳細情報
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        )}
+      </div>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div>
@@ -265,7 +289,7 @@ const ComparisonTable = () => {
         
         <Button 
           size="sm" 
-          className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
+          className="w-full text-xs py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 justify-center"
           asChild
         >
           <a 
@@ -276,13 +300,13 @@ const ComparisonTable = () => {
           >
             {company.name === "DMM株（DMM.com証券）" ? (
               <>
-                DMM 株公式サイトへ
+                公式サイトへ
                 <img src="https://h.accesstrade.net/sp/rr?rk=0100mkk300ol0m" width="1" height="1" style={{ border: '0' }} alt="" />
                 <ExternalLink className="ml-1 h-3 w-3" />
               </>
             ) : (
               <>
-                詳細を見る
+                公式サイトへ
                 <ExternalLink className="ml-1 h-3 w-3" />
               </>
             )}
@@ -365,14 +389,30 @@ const ComparisonTable = () => {
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">
                         {company.name}
-                        {/* DMM株の場合、詳細ページへのリンクを追加 */}
-                        {company.name === "DMM株（DMM.com証券）" && (
-                          <div className="mt-1">
-                            <Link to="/stocks/dmm-stock" className="text-xs text-primary hover:underline">
+                        {/* 詳細情報ボタンを追加 */}
+                        <div className="mt-2">
+                          {company.name === "DMM株（DMM.com証券）" ? (
+                            <Button 
+                              size="sm" 
+                              className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
+                              asChild
+                            >
+                              <Link to="/stocks/dmm-stock">
+                                詳細情報
+                                <ArrowRight className="h-4 w-4" />
+                              </Link>
+                            </Button>
+                          ) : (
+                            <Button 
+                              size="sm" 
+                              className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
+                              disabled
+                            >
                               詳細情報
-                            </Link>
-                          </div>
-                        )}
+                              <ArrowRight className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </div>
                       </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 break-words" dangerouslySetInnerHTML={{ 
                         __html: company.commission

@@ -91,12 +91,14 @@ const Company = () => {
               
               {/* 監修者紹介セクションを追加 */}
               <div className="bg-gradient-to-br from-card to-card/50 border-2 hover:shadow-2xl transition-all duration-300 p-6 rounded-lg">
-                <h2 className="text-2xl font-bold mb-6 text-center">監修者紹介</h2>
+                <div className="flex flex-col items-center justify-center mb-6">
+                  <div className="bg-accent/20 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <Award className="h-6 w-6 text-accent" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-center">監修者紹介</h2>
+                </div>
                 <div className="prose prose-lg max-w-none">
-                  <div className="flex items-start mb-6">
-                    <div className="bg-accent/20 p-3 rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
-                      <Award className="h-6 w-6 text-accent" />
-                    </div>
+                  <div className="flex flex-col items-center text-center">
                     <div>
                       <h3 className="font-bold mb-2">投資歴10年以上のベテラン投資家</h3>
                       <p className="text-muted-foreground text-sm">
