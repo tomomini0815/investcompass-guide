@@ -119,6 +119,12 @@ All colors MUST be HSL.
     font-family: 'Noto Sans JP', sans-serif;
     @apply border-0;
   }
+  
+  /* Android特有のフォントレンダリング問題対応 */
+  h1::before, h2::before, h3::before, h4::before, h5::before, h6::before,
+  h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
+    display: none !important;
+  }
 }
 
 @layer utilities {
