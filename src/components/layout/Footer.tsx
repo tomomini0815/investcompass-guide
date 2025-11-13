@@ -60,7 +60,7 @@ const Footer = () => {
         {/* Brand - 横一列の1カラム */}
         <div className="w-full mb-4">
           <div className="space-y-3 min-w-[140px]">
-            <Link to="/" className="flex items-center gap-2 font-bold text-base">
+            <Link to="/" className="flex items-center gap-2 font-bold text-base no-underline">
               <div className="gradient-primary p-1.5 rounded-lg">
                 <TrendingUp className="h-4 w-4 text-white" />
               </div>
@@ -76,13 +76,13 @@ const Footer = () => {
         <div className="flex flex-wrap gap-4 mb-4">
           {footerLinkOrder.map((category) => (
             <div key={category} className="min-w-[120px] flex-1">
-              <h3 className="font-semibold mb-1.5 text-xs">{category}</h3>
+              <h3 className="font-semibold mb-1.5 text-xs border-0">{category}</h3>
               <ul className="space-y-0.5">
                 {footerLinks[category].map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.href}
-                      className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors no-underline"
                     >
                       {link.name}
                     </Link>
@@ -94,10 +94,10 @@ const Footer = () => {
         </div>
 
         {/* 下段のリンク - モバイル時は基本横一列、入らない場合は改行 */}
-        <div className="flex flex-wrap gap-4 mb-4 pt-4 border-t">
+        <div className="flex flex-wrap gap-4 mb-4 pt-4">
           {bottomLinkOrder.map((category) => (
             <div key={category} className="min-w-[120px] flex-1">
-              <h3 className="font-semibold mb-1.5 text-xs">{category}</h3>
+              <h3 className="font-semibold mb-1.5 text-xs border-0">{category}</h3>
               <ul className="space-y-0.5">
                 {footerLinks[category].map((link) => (
                   <li key={link.name}>
@@ -106,14 +106,14 @@ const Footer = () => {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors no-underline"
                       >
                         {link.name}
                       </a>
                     ) : (
                       <Link
                         to={link.href}
-                        className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors no-underline"
                       >
                         {link.name}
                       </Link>
@@ -130,19 +130,19 @@ const Footer = () => {
             © 2024-2025 投資総合ナビ. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-3 text-xs text-muted-foreground order-1 md:order-2">
-            <Link to="/privacy" className="hover:text-primary transition-colors">
+            <Link to="/privacy" className="hover:text-primary transition-colors no-underline">
               プライバシーポリシー
             </Link>
-            <Link to="/terms" className="hover:text-primary transition-colors">
+            <Link to="/terms" className="hover:text-primary transition-colors no-underline">
               利用規約
             </Link>
-            <Link to="/disclaimer" className="hover:text-primary transition-colors">
+            <Link to="/disclaimer" className="hover:text-primary transition-colors no-underline">
               免責事項
             </Link>
-            <Link to="/legal" className="hover:text-primary transition-colors">
+            <Link to="/legal" className="hover:text-primary transition-colors no-underline">
               特定商取引法
             </Link>
-            <Link to="/contact" className="hover:text-primary transition-colors">
+            <Link to="/contact" className="hover:text-primary transition-colors no-underline">
               お問い合わせ
             </Link>
           </div>
