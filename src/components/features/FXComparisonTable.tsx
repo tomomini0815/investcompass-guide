@@ -406,15 +406,9 @@ const FXComparisonTable = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">スワップポイント(買)</span>
-            <div className="text-xs whitespace-pre-line">{company.buySwapPoints}</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-muted-foreground text-xs">スキャルピング</span>
-            <div className="text-xs">{company.scalping}</div>
-          </div>
+        <div className="flex items-center gap-2">
+          <span className="text-muted-foreground text-xs">スキャルピング</span>
+          <div className="text-xs">{company.scalping}</div>
         </div>
         
         {/* 国内業者の場合、古いスワップポイント表示を削除 */}
