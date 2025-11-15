@@ -149,6 +149,21 @@ const ComparisonTable = () => {
     },
   ];
 
+  // 証券会社名からスラッグを生成する関数
+  const getCompanySlug = (name: string) => {
+    const slugMap: { [key: string]: string } = {
+      "SBI証券": "sbi",
+      "楽天証券": "rakuten",
+      "マネックス証券": "monex",
+      "IG証券": "ig",
+      "松井証券": "matsui",
+      "DMM株（DMM.com証券）": "dmm",
+      "三菱UFJ eスマート証券（旧 auカブコム証券）": "au-kabucom",
+      "GMOクリック証券": "gmo-click"
+    };
+    return slugMap[name] || name.toLowerCase().replace(/\s+/g, '-');
+  };
+
   // 表示する証券会社をフィルタリング（国内証券会社のみを表示）
   const filteredCompanies = companies.filter(company => company.isDomestic);
 
@@ -195,38 +210,26 @@ const ComparisonTable = () => {
             {company.ipoCount}社 IPO
           </Badge>
         </CardTitle>
-        {/* DMM株の場合、詳細ページへのリンクを追加 */}
-        {company.name === "DMM株（DMM.com証券）" && (
-          <div className="mt-2">
-            <Link to="/stocks/dmm-stock" className="text-sm text-primary hover:underline">
-              詳細情報を見る
-            </Link>
-          </div>
-        )}
+        {/* 各証券会社の詳細ページへのリンクを追加 */}
+        <div className="mt-2">
+          <Link to={`/securities/${getCompanySlug(company.name)}`} className="text-sm text-primary hover:underline">
+            詳細情報を見る
+          </Link>
+        </div>
+
       </CardHeader>
       {/* 詳細情報ボタンを会社名下に配置 */}
       <div className="px-6 pb-2">
-        {company.name === "DMM株（DMM.com証券）" ? (
-          <Button 
-            size="sm" 
-            className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
-            asChild
-          >
-            <Link to="/stocks/dmm-stock">
-              詳細情報
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        ) : (
-          <Button 
-            size="sm" 
-            className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
-            disabled
-          >
+        <Button 
+          size="sm" 
+          className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
+          asChild
+        >
+          <Link to={`/securities/${getCompanySlug(company.name)}`}>
             詳細情報
             <ArrowRight className="h-4 w-4" />
-          </Button>
-        )}
+          </Link>
+        </Button>
       </div>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
@@ -391,27 +394,16 @@ const ComparisonTable = () => {
                         {company.name}
                         {/* 詳細情報ボタンを追加 */}
                         <div className="mt-2">
-                          {company.name === "DMM株（DMM.com証券）" ? (
-                            <Button 
-                              size="sm" 
-                              className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
-                              asChild
-                            >
-                              <Link to="/stocks/dmm-stock">
-                                詳細情報
-                                <ArrowRight className="h-4 w-4" />
-                              </Link>
-                            </Button>
-                          ) : (
-                            <Button 
-                              size="sm" 
-                              className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
-                              disabled
-                            >
+                          <Button 
+                            size="sm" 
+                            className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
+                            asChild
+                          >
+                            <Link to={`/securities/${getCompanySlug(company.name)}`}>
                               詳細情報
                               <ArrowRight className="h-4 w-4" />
-                            </Button>
-                          )}
+                            </Link>
+                          </Button>
                         </div>
                       </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 break-words" dangerouslySetInnerHTML={{ 

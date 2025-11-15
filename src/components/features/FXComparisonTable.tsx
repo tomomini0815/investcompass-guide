@@ -396,13 +396,25 @@ const FXComparisonTable = () => {
       </CardHeader>
       {/* 詳細情報ボタンを会社名下に配置 */}
       <div className="px-6 pb-2">
-        {company.name === "DMM FX" || company.name === "松井証券 MATSUI FX" ? (
+        {company.name === "DMM FX" || company.name === "松井証券 MATSUI FX" || company.name === "SBI FXトレード" || company.name === "外為どっとコム（外貨ネクストネオ）" || company.name === "IG証券FX" || company.name === "楽天証券（楽天FX）" || company.name === "GMOクリック証券（FXネオ）" || company.name === "みんなのFX（トレイダーズ証券）" || company.name === "ヒロセ通商（LION FX）" || company.name === "GMO外貨（外貨ex）" || company.name === "三菱UFJ eスマート証券 FX" ? (
           <Button 
             size="sm" 
             className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
             asChild
           >
-            <Link to={company.name === "DMM FX" ? "/fx/dmm-fx" : "/fx/matsui-fx"}>
+            <Link to={
+              company.name === "DMM FX" ? "/fx/dmm-fx" : 
+              company.name === "松井証券 MATSUI FX" ? "/fx/matsui-fx" : 
+              company.name === "SBI FXトレード" ? "/fx/sbi-fx" : 
+              company.name === "外為どっとコム（外貨ネクストネオ）" ? "/fx/gaitame" : 
+              company.name === "IG証券FX" ? "/fx/ig" : 
+              company.name === "楽天証券（楽天FX）" ? "/fx/rakuten" : 
+              company.name === "GMOクリック証券（FXネオ）" ? "/fx/gmo-click" : 
+              company.name === "みんなのFX（トレイダーズ証券）" ? "/fx/min-fx" : 
+              company.name === "ヒロセ通商（LION FX）" ? "/fx/hirose" : 
+              company.name === "GMO外貨（外貨ex）" ? "/fx/gmo-gaika" : 
+              "/fx/mufg-e-smart"
+            }>
               詳細情報
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -554,13 +566,25 @@ const FXComparisonTable = () => {
                         {company.name}
                         {/* 詳細情報ボタンを追加 */}
                         <div className="mt-2">
-                          {company.name === "DMM FX" || company.name === "松井証券 MATSUI FX" ? (
+                          {company.name === "DMM FX" || company.name === "松井証券 MATSUI FX" || company.name === "SBI FXトレード" || company.name === "外為どっとコム（外貨ネクストネオ）" || company.name === "IG証券FX" || company.name === "楽天証券（楽天FX）" || company.name === "GMOクリック証券（FXネオ）" || company.name === "みんなのFX（トレイダーズ証券）" || company.name === "ヒロセ通商（LION FX）" || company.name === "GMO外貨（外貨ex）" || company.name === "三菱UFJ eスマート証券 FX" ? (
                             <Button 
                               size="sm" 
                               className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
                               asChild
                             >
-                              <Link to={company.name === "DMM FX" ? "/fx/dmm-fx" : "/fx/matsui-fx"}>
+                              <Link to={
+                                company.name === "DMM FX" ? "/fx/dmm-fx" : 
+                                company.name === "松井証券 MATSUI FX" ? "/fx/matsui-fx" : 
+                                company.name === "SBI FXトレード" ? "/fx/sbi-fx" : 
+                                company.name === "外為どっとコム（外貨ネクストネオ）" ? "/fx/gaitame" : 
+                                company.name === "IG証券FX" ? "/fx/ig" : 
+                                company.name === "楽天証券（楽天FX）" ? "/fx/rakuten" : 
+                                company.name === "GMOクリック証券（FXネオ）" ? "/fx/gmo-click" : 
+                                company.name === "みんなのFX（トレイダーズ証券）" ? "/fx/min-fx" : 
+                                company.name === "ヒロセ通商（LION FX）" ? "/fx/hirose" : 
+                                company.name === "GMO外貨（外貨ex）" ? "/fx/gmo-gaika" : 
+                                "/fx/mufg-e-smart"
+                              }>
                                 詳細情報
                                 <ArrowRight className="h-4 w-4" />
                               </Link>

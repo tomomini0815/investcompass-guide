@@ -125,6 +125,22 @@ const FXComparison = () => {
                     スキャルピング（短期取引）に対応している業者を選ぶことで、短期的な利益を狙う取引が可能です。
                   </p>
                 </div>
+                <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-green-500/10">
+                  <p className="font-semibold text-green-600 mb-2 flex items-center gap-2">
+                    <span className="inline-block w-8 h-8 bg-green-500/10 rounded-full flex items-center justify-center text-sm">4</span>
+                    目的別の選び方
+                  </p>
+                  <div className="text-muted-foreground pl-10 space-y-2">
+                    <ul className="list-disc pl-5 space-y-1 text-sm">
+                      <li><span className="font-semibold">初心者:</span> 松井証券、SBI FXトレード、外為どっとコム（少額・情報充実）</li>
+                      <li><span className="font-semibold">中上級者:</span> GMOクリック証券、DMM FX（高機能・大量取引）</li>
+                      <li><span className="font-semibold">スキャルピング:</span> ヒロセ通商（公認）</li>
+                      <li><span className="font-semibold">スワップ狙い:</span> みんなのFX（高スワップ）</li>
+                      <li><span className="font-semibold">多様な通貨:</span> IG証券、ヒロセ通商</li>
+                      <li><span className="font-semibold">ポイント活用:</span> 楽天FX、GMO外貨</li>
+                    </ul>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

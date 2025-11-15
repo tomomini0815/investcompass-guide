@@ -42,10 +42,29 @@ import ArticleDetail from "./pages/ArticleDetail";
 // Sitemapページのインポート
 import Sitemap from "./pages/Sitemap";
 // DMM FX詳細ページのインポート
-import DmmFxDetail from "./pages/DmmFxDetail";
+import DmmFxDetail from "./pages/DmmFxDetailed";
 // DMM株詳細ページのインポート
 import DmmStockDetail from "./pages/DmmStockDetail";
-import MatsuiFxDetail from "./pages/MatsuiFxDetail";
+import MatsuiFxDetail from "./pages/MatsuiFxDetailed";
+// 新しいFX業者詳細ページのインポート
+import SbiFxDetailed from "./pages/SbiFxDetailed";
+import GaitameFxDetailed from "./pages/GaitameFxDetailed";
+import IgFxDetailed from "./pages/IgFxDetailed";
+import RakutenFxDetailed from "./pages/RakutenFxDetailed";
+import GmoClickFxDetailed from "./pages/GmoClickFxDetailed";
+import MinFxDetailed from "./pages/MinFxDetailed";
+import HiroseFxDetailed from "./pages/HiroseFxDetailed";
+import GmoGaikaDetailed from "./pages/GmoGaikaDetailed";
+import MufgESmartFxDetailed from "./pages/MufgESmartFxDetailed";
+// 新しい証券会社詳細ページのインポート
+import SbiSecuritiesDetail from "./pages/SbiSecuritiesDetail";
+import RakutenSecuritiesDetail from "./pages/RakutenSecuritiesDetail";
+import MonexSecuritiesDetail from "./pages/MonexSecuritiesDetail";
+import IgSecuritiesDetail from "./pages/IgSecuritiesDetail";
+import MatsuiSecuritiesDetail from "./pages/MatsuiSecuritiesDetail";
+import DmmSecuritiesDetail from "./pages/DmmSecuritiesDetail";
+import AuKabucomSecuritiesDetail from "./pages/AuKabucomSecuritiesDetail";
+import GmoClickSecuritiesDetail from "./pages/GmoClickSecuritiesDetail";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +100,25 @@ const App = () => (
           <Route path="/fx/dmm-fx" element={<DmmFxDetail />} />
           <Route path="/stocks/dmm-stock" element={<DmmStockDetail />} />
           <Route path="/fx/matsui-fx" element={<MatsuiFxDetail />} />
+          {/* FX業者詳細ページのルート */}
+          <Route path="/fx/sbi-fx" element={<SbiFxDetailed />} />
+          <Route path="/fx/gaitame" element={<GaitameFxDetailed />} />
+          <Route path="/fx/ig" element={<IgFxDetailed />} />
+          <Route path="/fx/rakuten" element={<RakutenFxDetailed />} />
+          <Route path="/fx/gmo-click" element={<GmoClickFxDetailed />} />
+          <Route path="/fx/min-fx" element={<MinFxDetailed />} />
+          <Route path="/fx/hirose" element={<HiroseFxDetailed />} />
+          <Route path="/fx/gmo-gaika" element={<GmoGaikaDetailed />} />
+          <Route path="/fx/mufg-e-smart" element={<MufgESmartFxDetailed />} />
+          {/* 証券会社詳細ページのルート */}
+          <Route path="/securities/sbi" element={<SbiSecuritiesDetail />} />
+          <Route path="/securities/rakuten" element={<RakutenSecuritiesDetail />} />
+          <Route path="/securities/monex" element={<MonexSecuritiesDetail />} />
+          <Route path="/securities/ig" element={<IgSecuritiesDetail />} />
+          <Route path="/securities/matsui" element={<MatsuiSecuritiesDetail />} />
+          <Route path="/securities/dmm" element={<DmmSecuritiesDetail />} />
+          <Route path="/securities/au-kabucom" element={<AuKabucomSecuritiesDetail />} />
+          <Route path="/securities/gmo-click" element={<GmoClickSecuritiesDetail />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
           {/* 新しいツールページのルート */}

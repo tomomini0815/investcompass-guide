@@ -42,6 +42,37 @@ const RiskAssessment = () => {
           </div>
         </section>
 
+        {/* Find Your Investment Strategy Card */}
+        <section className="py-8 bg-gradient-to-b from-muted/30 to-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-card to-card/50">
+                <div className="md:flex">
+                  <div className="md:w-1/3 bg-gradient-to-br from-accent/20 via-accent/10 to-primary/10 p-8 flex flex-col items-center justify-center relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <LineChart className="h-20 w-20 text-accent mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="text-xl font-bold text-center relative z-10">総合診断</h3>
+                  </div>
+                  <div className="md:w-2/3 p-8">
+                    <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">自分に合った投資戦略を見つける</h2>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      投資総合診断では、あなたのリスク許容度、資産状況、投資目標、知識レベルなど、
+                      多角的な視点から最適な投資戦略を診断します。
+                      診断結果には、具体的な投資アドバイスと業界別の推奨商品も含まれます。
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">リスク許容度</Badge>
+                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">資産配分</Badge>
+                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">投資戦略</Badge>
+                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">業界別アドバイス</Badge>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Introduction */}
         <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-4">
@@ -83,30 +114,6 @@ const RiskAssessment = () => {
                   </div>
                 </Card>
               </div>
-              
-              <Card className="overflow-hidden border-2 hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-card to-card/50">
-                <div className="md:flex">
-                  <div className="md:w-1/3 bg-gradient-to-br from-accent/20 via-accent/10 to-primary/10 p-8 flex flex-col items-center justify-center relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <LineChart className="h-20 w-20 text-accent mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="text-xl font-bold text-center relative z-10">総合診断</h3>
-                  </div>
-                  <div className="md:w-2/3 p-8">
-                    <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">自分に合った投資戦略を見つける</h2>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      投資総合診断では、あなたのリスク許容度、資産状況、投資目標、知識レベルなど、
-                      多角的な視点から最適な投資戦略を診断します。
-                      診断結果には、具体的な投資アドバイスと業界別の推奨商品も含まれます。
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">リスク許容度</Badge>
-                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">資産配分</Badge>
-                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">投資戦略</Badge>
-                      <Badge variant="outline" className="hover:bg-accent hover:text-accent-foreground transition-colors">業界別アドバイス</Badge>
-                    </div>
-                  </div>
-                </div>
-              </Card>
             </div>
           </div>
         </section>
