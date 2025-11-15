@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -286,33 +286,42 @@ const questions = [
 
 const RiskDiagnostic = () => {
   const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([]);
+  const [isStarted, setIsStarted] = useState(false);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [answers, setAnswers] = useState<Record<number, { value: string; score: number }>>({});
   const [result, setResult] = useState<any>(null);
 
   const handleIndustryToggle = (industryId: Industry) => {
-    setSelectedIndustries((prev) =>
-      prev.includes(industryId)
-        ? prev.filter((id) => id !== industryId)
-        : [...prev, industryId]
-    );
+    console.log("handleIndustryToggleが呼び出されました");
+    // 単一選択のみ許可
+    setSelectedIndustries([industryId]);
+    console.log("選択された業界:", industryId);
+    // setStep(0)の呼び出しを防止するために、ここでは何もしない
   };
+
+  // selectedIndustriesの変更を監視
+  useEffect(() => {
+    console.log("更新された選択状態:", selectedIndustries);
+    // 自動遷移を防止するために、ここでは何もしない
+  }, [selectedIndustries]);
 
   // 複数選択対応のため、クリックイベントを分離
   const handleIndustryClick = (industryId: Industry) => {
+    console.log("handleIndustryClickが呼び出されました");
     handleIndustryToggle(industryId);
+    // 自動遷移を防止するために、ここでは何もしない
   };
 
   // 単一選択
-  const handleAnswer = (questionId: number, score: number) => {
+  const handleAnswer = (questionId: number, optionValue: string, score: number) => {
     setAnswers((prev) => ({
       ...prev,
-      [questionId]: score,
+      [questionId]: { value: optionValue, score: score },
     }));
   };
 
   const calculateRisk = () => {
-    const allScores = Object.values(answers);
+    const allScores = Object.values(answers).map(a => a.score);
     const totalScore = allScores.reduce((sum, score) => sum + score, 0);
     const avgScore = totalScore / allScores.length;
 
@@ -384,6 +393,7 @@ const RiskDiagnostic = () => {
 
   const handleReset = () => {
     setSelectedIndustries([]);
+    setIsStarted(false);
     setStep(0);
     setAnswers({});
     setResult(null);
@@ -400,7 +410,7 @@ const RiskDiagnostic = () => {
     }, 100);
   };
 
-  if (selectedIndustries.length === 0) {
+  if (selectedIndustries.length === 0 || !isStarted) {
     return (
       <div className="max-w-4xl mx-auto">
         <Card className="border-2 hover:shadow-2xl transition-all duration-300">
@@ -415,24 +425,26 @@ const RiskDiagnostic = () => {
                 return (
                   <div
                     key={industry.id}
-                    className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-all cursor-pointer ${
+                    className={`group flex items-center space-x-3 sm:space-x-4 p-4 sm:p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer ${
                       isSelected
-                        ? "border-primary bg-primary/10 shadow-md"
-                        : "border-border hover:border-primary/50 hover:bg-muted/50"
+                        ? "border-primary bg-primary/10 shadow-md scale-[1.02]"
+                        : "border-border hover:border-primary/50 hover:bg-accent/5 hover:shadow-sm"
                     }`}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleIndustryClick(industry.id);
                     }}
                   >
-                    <Checkbox
-                      checked={isSelected}
-                      onCheckedChange={() => handleIndustryToggle(industry.id)}
-                      className="h-5 w-5"
-                    />
+                    <div className="flex h-5 w-5 items-center justify-center">
+                      {isSelected ? (
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                      ) : (
+                        <div className="h-5 w-5 rounded-full border-2 border-muted-foreground" />
+                      )}
+                    </div>
                     <Icon className={`h-6 w-6 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                     <Label 
-                      className="cursor-pointer flex-1 text-base font-medium"
+                      className="cursor-pointer flex-1 text-sm sm:text-base font-medium leading-relaxed"
                     >
                       {industry.label}
                     </Label>
@@ -444,6 +456,9 @@ const RiskDiagnostic = () => {
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
+                  console.log("診断を開始するボタンがクリックされました");
+                  console.log("選択された業界:", selectedIndustries);
+                  setIsStarted(true);
                   setStep(0);
                 }}
                 disabled={selectedIndustries.length === 0}
@@ -647,8 +662,8 @@ const RiskDiagnostic = () => {
         </CardHeader>
         <CardContent className="space-y-6 relative">
           <div className="space-y-3">
-            {currentQuestion.options.map((option) => {
-              const isChecked = currentAnswer === option.score;
+            {currentQuestion.options.map((option, index) => {
+              const isChecked = currentAnswer && currentAnswer.value === option.value;
               return (
                 <div
                   key={option.value}
@@ -657,7 +672,7 @@ const RiskDiagnostic = () => {
                       ? "border-primary bg-primary/10 shadow-md scale-[1.02]"
                       : "border-border hover:border-primary/50 hover:bg-accent/5 hover:shadow-sm"
                   }`}
-                  onClick={() => handleAnswer(currentQuestion.id, option.score)}
+                  onClick={() => handleAnswer(currentQuestion.id, option.value, option.score)}
                 >
                   <div className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-primary">
                     {isChecked && (
