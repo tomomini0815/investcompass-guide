@@ -127,7 +127,7 @@ const SbiFxDetailed = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  SBI FXトレード公式サイトへ
+                  公式サイトへ
                   <ExternalLink className="ml-2 h-5 w-5" />
                 </a>
               </Button>
@@ -248,7 +248,7 @@ const SbiFxDetailed = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
-                    SBI FXトレード 口座開設はこちら
+                    口座開設はこちら
                     <ExternalLink className="ml-2 h-5 w-5" />
                   </a>
                 </Button>

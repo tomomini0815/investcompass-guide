@@ -122,7 +122,7 @@ const DmmFxDetailed = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  DMM FX公式サイトへ
+                  公式サイトへ
                   <ExternalLink className="ml-2 h-5 w-5" />
                 </a>
               </Button>
@@ -243,7 +243,7 @@ const DmmFxDetailed = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
-                    DMM FX 口座開設はこちら
+                    口座開設はこちら
                     <ExternalLink className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
