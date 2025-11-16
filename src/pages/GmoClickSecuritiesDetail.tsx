@@ -233,7 +233,7 @@ const GmoClickSecuritiesDetail = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card> -->
+              </Card> */}
             </div>
           </div>
         </section>
@@ -417,10 +417,9 @@ const GmoClickSecuritiesDetail = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
-};
+}
 
 export default GmoClickSecuritiesDetail;

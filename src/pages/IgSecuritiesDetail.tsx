@@ -227,7 +227,7 @@ const IgSecuritiesDetail = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card> -->
+              </Card> */}
             </div>
           </div>
         </section>
@@ -411,10 +411,9 @@ const IgSecuritiesDetail = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
-};
+}
 
 export default IgSecuritiesDetail;

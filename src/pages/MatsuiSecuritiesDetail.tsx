@@ -227,7 +227,7 @@ const MatsuiSecuritiesDetail = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card> -->
+              </Card> */}
             </div>
           </div>
         </section>
@@ -411,10 +411,9 @@ const MatsuiSecuritiesDetail = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
-};
+}
 
 export default MatsuiSecuritiesDetail;
