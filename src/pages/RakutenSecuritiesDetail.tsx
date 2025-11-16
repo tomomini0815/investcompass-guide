@@ -206,8 +206,12 @@ const RakutenSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">MARKETSPEED II 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/rakuten-marketspeed2.png" 
+                          alt="MARKETSPEED II" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">MARKETSPEED II</h3>
                       <p className="text-muted-foreground text-center">
@@ -215,8 +219,12 @@ const RakutenSecuritiesDetail = () => {
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">楽天証券アプリ 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/rakuten-ispeed.png" 
+                          alt="楽天証券アプリ" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">楽天証券アプリ</h3>
                       <p className="text-muted-foreground text-center">

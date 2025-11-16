@@ -200,8 +200,12 @@ const AuKabucomSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">kabuステーション® 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/mufj-kabustation.png" 
+                          alt="kabuステーション®" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">kabuステーション®</h3>
                       <p className="text-muted-foreground text-center">
@@ -209,8 +213,12 @@ const AuKabucomSecuritiesDetail = () => {
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">三菱UFJ eスマート証券アプリ 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/mufj-app.png" 
+                          alt="三菱UFJ eスマート証券アプリ" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">三菱UFJ eスマート証券アプリ</h3>
                       <p className="text-muted-foreground text-center">

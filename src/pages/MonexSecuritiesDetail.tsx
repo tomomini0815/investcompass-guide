@@ -206,17 +206,25 @@ const MonexSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">TradeStation 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/monex-kabustation.png" 
+                          alt="kabuステーション" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">TradeStation</h3>
+                      <h3 className="text-xl font-bold mb-2">kabuステーション</h3>
                       <p className="text-muted-foreground text-center">
                         マネックス証券の主力トレーディングツール。高度なチャート機能と分析ツールを備えています。
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">マネックス証券アプリ 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/monex-app.png" 
+                          alt="マネックス証券アプリ" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">マネックス証券アプリ</h3>
                       <p className="text-muted-foreground text-center">

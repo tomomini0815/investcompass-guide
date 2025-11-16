@@ -206,8 +206,12 @@ const SbiSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">HYPER SBI 2 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/sbi-hyper-sbi2.png" 
+                          alt="HYPER SBI 2" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">HYPER SBI 2</h3>
                       <p className="text-muted-foreground text-center">
@@ -215,8 +219,12 @@ const SbiSecuritiesDetail = () => {
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">SBI Neo 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/sbi-neo.png" 
+                          alt="SBI Neo" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">SBI Neo</h3>
                       <p className="text-muted-foreground text-center">

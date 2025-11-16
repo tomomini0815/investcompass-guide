@@ -206,17 +206,25 @@ const GmoClickSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">GMOクリック証券取引ツール 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/gmo-platinum-chart.png" 
+                          alt="Platinum Chart" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">GMOクリック証券取引ツール</h3>
+                      <h3 className="text-xl font-bold mb-2">Platinum Chart</h3>
                       <p className="text-muted-foreground text-center">
-                        GMOクリック証券の主力取引ツール。手数料無料の国内株式取引に対応しています。
+                        GMOクリック証券の主力トレーディングツール。手数料無料の国内株式取引に対応しています。
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">GMOクリック FXneo 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/gmo-fxneo.png" 
+                          alt="GMOクリック FXneo" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">GMOクリック FXneo</h3>
                       <p className="text-muted-foreground text-center">

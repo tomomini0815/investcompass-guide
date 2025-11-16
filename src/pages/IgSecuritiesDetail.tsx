@@ -200,17 +200,25 @@ const IgSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">IG取引プラットフォーム 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/ig-prorealtime.png" 
+                          alt="ProRealTime" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">IG取引プラットフォーム</h3>
+                      <h3 className="text-xl font-bold mb-2">ProRealTime</h3>
                       <p className="text-muted-foreground text-center">
                         IG証券の主力取引プラットフォーム。高度なチャート機能と多様な注文タイプを備えています。
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">IGアプリ 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/ig-app.png" 
+                          alt="IGアプリ" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">IGアプリ</h3>
                       <p className="text-muted-foreground text-center">

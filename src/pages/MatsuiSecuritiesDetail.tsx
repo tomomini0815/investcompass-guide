@@ -200,17 +200,25 @@ const MatsuiSecuritiesDetail = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">松井証券 日本株アプリ 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/matsui-netstock-trader.png" 
+                          alt="ネットストックトレーダー" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">松井証券 日本株アプリ</h3>
+                      <h3 className="text-xl font-bold mb-2">ネットストックトレーダー</h3>
                       <p className="text-muted-foreground text-center">
                         松井証券の主力取引ツール。自由にカスタマイズ可能なオリジナル取引環境を実現します。
                       </p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4">
-                        <span className="text-gray-500">マーケットラボ米国株 画像</span>
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/securities/matsui-marketlab-usa.png" 
+                          alt="マーケットラボ米国株" 
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                       <h3 className="text-xl font-bold mb-2">マーケットラボ米国株</h3>
                       <p className="text-muted-foreground text-center">
