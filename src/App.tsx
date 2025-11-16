@@ -65,6 +65,30 @@ import MatsuiSecuritiesDetail from "./pages/MatsuiSecuritiesDetail";
 import DmmSecuritiesDetail from "./pages/DmmSecuritiesDetail";
 import AuKabucomSecuritiesDetail from "./pages/AuKabucomSecuritiesDetail";
 import GmoClickSecuritiesDetail from "./pages/GmoClickSecuritiesDetail";
+// 暗号資産取引所詳細ページのインポート
+import GmoCoinDetailed from "./pages/GmoCoinDetailed";
+import DmmBitcoinDetailed from "./pages/DmmBitcoinDetailed";
+import BitflyerDetailed from "./pages/BitflyerDetailed";
+import CoincheckDetailed from "./pages/CoincheckDetailed";
+import LiquidByQuoineDetailed from "./pages/LiquidByQuoineDetailed";
+import BinanceDetailed from "./pages/BinanceDetailed";
+import BybitDetailed from "./pages/BybitDetailed";
+import CoinbaseDetailed from "./pages/CoinbaseDetailed";
+import KrakenDetailed from "./pages/KrakenDetailed";
+import KuCoinDetailed from "./pages/KuCoinDetailed";
+import GeminiDetailed from "./pages/GeminiDetailed";
+import BitstampDetailed from "./pages/BitstampDetailed";
+import BitfinexDetailed from "./pages/BitfinexDetailed";
+import HuobiDetailed from "./pages/HuobiDetailed";
+import OkxDetailed from "./pages/OkxDetailed";
+import FtxDetailed from "./pages/FtxDetailed";
+import BitbankDetailed from "./pages/BitbankDetailed";
+import SbiVcTradeDetailed from "./pages/SbiVcTradeDetailed";
+import BitpointDetailed from "./pages/BitpointDetailed";
+import BinanceJapanDetailed from "./pages/BinanceJapanDetailed";
+import BitTradeDetailed from "./pages/BitTradeDetailed";
+import RakutenWalletDetailed from "./pages/RakutenWalletDetailed";
+import LineBitmaxDetailed from "./pages/LineBitmaxDetailed";
 
 const queryClient = new QueryClient();
 
@@ -119,6 +143,30 @@ const App = () => (
           <Route path="/securities/dmm" element={<DmmSecuritiesDetail />} />
           <Route path="/securities/au-kabucom" element={<AuKabucomSecuritiesDetail />} />
           <Route path="/securities/gmo-click" element={<GmoClickSecuritiesDetail />} />
+          {/* 暗号資産取引所詳細ページのルート */}
+          <Route path="/crypto/gmo-coin" element={<GmoCoinDetailed />} />
+          <Route path="/crypto/dmm-bitcoin" element={<DmmBitcoinDetailed />} />
+          <Route path="/crypto/bitflyer" element={<BitflyerDetailed />} />
+          <Route path="/crypto/coincheck" element={<CoincheckDetailed />} />
+          <Route path="/crypto/liquid-by-quoine" element={<LiquidByQuoineDetailed />} />
+          <Route path="/crypto/binance" element={<BinanceDetailed />} />
+          <Route path="/crypto/bybit" element={<BybitDetailed />} />
+          <Route path="/crypto/coinbase" element={<CoinbaseDetailed />} />
+          <Route path="/crypto/kraken" element={<KrakenDetailed />} />
+          <Route path="/crypto/kucoin" element={<KuCoinDetailed />} />
+          <Route path="/crypto/gemini" element={<GeminiDetailed />} />
+          <Route path="/crypto/bitstamp" element={<BitstampDetailed />} />
+          <Route path="/crypto/bitfinex" element={<BitfinexDetailed />} />
+          <Route path="/crypto/huobi" element={<HuobiDetailed />} />
+          <Route path="/crypto/okx" element={<OkxDetailed />} />
+          <Route path="/crypto/ftx" element={<FtxDetailed />} />
+          <Route path="/crypto/bitbank" element={<BitbankDetailed />} />
+          <Route path="/crypto/sbi-vc-trade" element={<SbiVcTradeDetailed />} />
+          <Route path="/crypto/bitpoint" element={<BitpointDetailed />} />
+          <Route path="/crypto/binance-japan" element={<BinanceJapanDetailed />} />
+          <Route path="/crypto/bittrade" element={<BitTradeDetailed />} />
+          <Route path="/crypto/rakuten-wallet" element={<RakutenWalletDetailed />} />
+          <Route path="/crypto/line-bitmax" element={<LineBitmaxDetailed />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
           {/* 新しいツールページのルート */}

@@ -15,270 +15,233 @@ import { Link } from "react-router-dom";
 
 interface CryptoExchange {
   name: string;
-  tradingFee: string;
-  withdrawalFee: string;
-  supportedCoins: number;
+  fee: string;
+  currencyPairs: number;
   security: string;
-  japaneseSupport: boolean;
   rating: number;
   affiliateUrl: string;
-  isDomestic: boolean; // 国内取引所かどうかを示すフラグを追加
-  features: string; // 各取引所の特徴を追加
+  isDomestic: boolean;
+  features: string;
 }
 
 const CryptoComparisonTable = () => {
   const [sortBy, setSortBy] = useState<keyof CryptoExchange | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [showDomestic, setShowDomestic] = useState<boolean>(true); // 国内/国外切り替えの状態
+  const [showDomestic, setShowDomestic] = useState<boolean>(true);
 
-  const exchanges: CryptoExchange[] = [
-    // 国内取引所（人気ランキング順）
+  const domesticExchanges: CryptoExchange[] = [
+    // 国内暗号資産取引所
+    {
+      name: "Coincheck",
+      fee: "販売所:無料(スプレッドあり)、取引所:Maker 0.00%、Taker 0.00%",
+      currencyPairs: 35,
+      security: "マネックスグループ傘下、信頼性の高いセキュリティ体制",
+      rating: 5,
+      affiliateUrl: "https://coincheck.com/ja/",
+      isDomestic: true,
+      features: "スマホアプリダウンロード数国内No.1(2019年1月〜2023年12月)、34種類の暗号資産を取り扱い(2025年10月時点)、初心者に最適なUI、NFT・IEO・INO対応",
+    },
     {
       name: "GMOコイン",
-      tradingFee: "Maker -0.01% / Taker 0.05% 程度",
-      withdrawalFee: "入金: 無料（即時入金対応）/ 出金: 無料",
-      supportedCoins: 30,
-      security: "コールド保管、二段階認証、分別管理、システム冗長化",
-      japaneseSupport: true,
+      fee: "取引所:BTC/ETH/XRP/DAI Maker -0.01%、Taker 0.05%、その他銘柄 Maker -0.03%、Taker 0.09%",
+      currencyPairs: 21,
+      security: "GMOグループの信頼性、業界トップクラスのセキュリティ",
       rating: 5,
       affiliateUrl: "https://coin.z.com/jp/",
       isDomestic: true,
-      features: "入出金・送金の無料範囲が広い、板の流動性が高め、APIが安定、銘柄数が多い",
+      features: "すべてのサービスで手数料が無料、ステーキングも手数料ゼロ、日本円の入出金・仮想通貨の送金手数料が無料、Maker手数料がマイナス(手数料を受け取れる)",
     },
     {
       name: "bitFlyer",
-      tradingFee: "0.01%～0.15% 程度（Lightning現物、出来高連動）",
-      withdrawalFee: "入金: 無料～330円、出金: 220円～770円",
-      supportedCoins: 45,
-      security: "コールド保管、2FA、出金ホワイトリスト、ISMS",
-      japaneseSupport: true,
+      fee: "取引所:約定数量 × 0.01~0.15%(ビットコイン)、販売所:無料(スプレッドあり)",
+      currencyPairs: 38,
+      security: "業界トップクラスのセキュリティ、創業以来ハッキング被害ゼロ",
       rating: 5,
-      affiliateUrl: "https://bitflyer.com/ja-jp",
+      affiliateUrl: "https://bitflyer.com/ja-jp/",
       isDomestic: true,
-      features: "老舗・口座数多い、板の厚み、Lightning（高機能板）、銘柄数が多い",
-    },
-    {
-      name: "Coincheck",
-      tradingFee: "取引所（BTC等）0% 例あり / 販売所は—（スプレッド）",
-      withdrawalFee: "入金: 無料～1,018円、出金: 407円",
-      supportedCoins: 30,
-      security: "コールド保管、2FA、分別管理",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://coincheck.com/",
-      isDomestic: true,
-      features: "アプリ利用者数が多い、NFTマーケット連携、UIが分かりやすい、銘柄数が多い",
+      features: "ビットコイン取引量9年連続No.1(2016-2024年)、初心者にも使いやすい、信頼性と実績",
     },
     {
       name: "bitbank",
-      tradingFee: "Maker -0.02% / Taker 0.12% 程度",
-      withdrawalFee: "入金: 無料 / 出金: 550～770円程度",
-      supportedCoins: 60,
-      security: "コールド保管、2FA、監査、分別管理",
-      japaneseSupport: true,
+      fee: "取引所:Maker -0.02%、Taker 0.12%(BTC)、Maker -0.01%、Taker 0.05%(一部銘柄)",
+      currencyPairs: 40,
+      security: "セキュリティ国内No.1",
       rating: 4,
       affiliateUrl: "https://bitbank.cc/",
       isDomestic: true,
-      features: "板の流動性・銘柄数が多め、プロ向けAPI/チャートが充実、銘柄数が多い",
+      features: "国内アルトコイン取引量No.1(2023年1月〜2024年10月)、高性能チャートTradingView採用、2024年11月から信用取引開始",
     },
     {
-      name: "SBI VCトレード（VCTRADE Pro）",
-      tradingFee: "Maker -0.01% / Taker 0.05% 程度",
-      withdrawalFee: "入金: 無料 / 出金: 住信SBIネット銀行は無料、他行は数百円程度",
-      supportedCoins: 25,
-      security: "金融グループ水準の管理、コールド保管、2FA",
-      japaneseSupport: true,
+      name: "SBI VCトレード",
+      fee: "取引所:無料、販売所:無料(スプレッドあり)",
+      currencyPairs: 38,
+      security: "SBIグループの信頼性、業界標準のセキュリティ",
       rating: 4,
       affiliateUrl: "https://www.sbivc.co.jp/",
       isDomestic: true,
-      features: "銀行連携が強い、手数料水準が安定、銘柄数が多い、高機能トレーディングツール",
-    },
-    {
-      name: "DMM Bitcoin",
-      tradingFee: "現物は無料（— スプレッド）/ レバは建玉料等",
-      withdrawalFee: "入金: 無料（即時入金）/ 出金: 無料",
-      supportedCoins: 50,
-      security: "コールド保管、2FA、分別管理",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://bitcoin.dmm.com/",
-      isDomestic: true,
-      features: "レバレッジ通貨ペアが豊富、キャンペーン多め、銘柄数が多い、高機能トレーディングツール",
-    },
-    {
-      name: "Binance Japan",
-      tradingFee: "現物 0.10%/0.10% 程度（Maker/Taker）",
-      withdrawalFee: "入金: 無料（振込手数料は利用者負担）/ 出金: 数百円程度",
-      supportedCoins: 100,
-      security: "コールド保管、2FA、PoRページ、公的登録",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://www.binance.com/ja-JP",
-      isDomestic: true,
-      features: "銘柄数が多め、板取引・各種Earn（国内準拠版）、銘柄数が多い、高機能トレーディングツール",
-    },
-    {
-      name: "楽天ウォレット",
-      tradingFee: "取引所（Pro）低水準/ 販売所は—（スプレッド）",
-      withdrawalFee: "入金: 楽天銀行等は無料 / 出金: 数百円程度",
-      supportedCoins: 20,
-      security: "コールド保管、2FA、分別管理",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://www.rakuten-wallet.co.jp/",
-      isDomestic: true,
-      features: "楽天経済圏連携、ポイント周りの導線が強い、銘柄数が多い、高機能トレーディングツール",
-    },
-    {
-      name: "LINE BITMAX",
-      tradingFee: "—（販売所はスプレッド）",
-      withdrawalFee: "入金: 無料（LINE Pay/銀行）/ 出金: 数百円程度",
-      supportedCoins: 10,
-      security: "コールド保管、2FA、分別管理",
-      japaneseSupport: true,
-      rating: 3,
-      affiliateUrl: "https://bitmax.me/",
-      isDomestic: true,
-      features: "LINEアプリからシームレス、初心者向け、銘柄数が多い、高機能トレーディングツール",
+      features: "入出金・出庫手数料は無料、条件や制限なしで日本円を無料で出金可能、取引方法の選択肢が豊富",
     },
     {
       name: "BITPOINT",
-      tradingFee: "取引所は無料の銘柄あり/標準低水準",
-      withdrawalFee: "入金: 無料（即時入金）/ 出金: 数百円程度",
-      supportedCoins: 50,
-      security: "コールド保管、2FA、分別管理",
-      japaneseSupport: true,
+      fee: "現物取引:取引手数料無料",
+      currencyPairs: 30,
+      security: "SBIグループ傘下、信頼性の高いセキュリティ体制",
       rating: 4,
-      affiliateUrl: "https://www.bitpoint.co.jp/",
+      affiliateUrl: "https://bitpoint.co.jp/",
       isDomestic: true,
-      features: "送金手数料の無料対象が多い、キャンペーン活発、銘柄数が多い、高機能トレーディングツール",
+      features: "ステーキング報酬年率国内No.1(2025年3月11日BITPOINT社調べ)、ゼロつみたて(スプレッド・手数料完全無料)、入出金・取引手数料無料、ユニークなアルトコイン",
     },
-    // 海外取引所（人気ランキング順）
+    {
+      name: "Binance Japan",
+      fee: "取引手数料一律0.1%、BNB支払いで25%割引",
+      currencyPairs: 63,
+      security: "業界標準のセキュリティ、世界最大手グループ国内取引所",
+      rating: 4,
+      affiliateUrl: "https://www.binance.co.jp/",
+      isDomestic: true,
+      features: "国内取引所の中でも最多クラスの銘柄数、早期に100銘柄の取扱いを目指すことを表明、出金手数料:1回150円、コンバート手数料無料",
+    },
+    {
+      name: "BitTrade",
+      fee: "販売所:無料(スプレッドあり)、取引所:無料",
+      currencyPairs: 43,
+      security: "業界標準のセキュリティ、100%コールドウォレット管理",
+      rating: 4,
+      affiliateUrl: "https://bittrade.co.jp/",
+      isDomestic: true,
+      features: "取扱仮想通貨数が国内トップクラス、積立プログラム(最大1%プレゼント)、レンディングサービス充実",
+    },
+    {
+      name: "楽天ウォレット",
+      fee: "販売所:無料(スプレッドあり)",
+      currencyPairs: 10,
+      security: "楽天グループの信頼性、信頼性の高いセキュリティ体制",
+      rating: 4,
+      affiliateUrl: "https://wallet.rakuten.co.jp/",
+      isDomestic: true,
+      features: "楽天ポイントと暗号資産を交換可能、楽天キャッシュチャージで出金手数料無料、楽天経済圏との連携、レバレッジ取引対応",
+    },
+    {
+      name: "LINE BITMAX",
+      fee: "販売所:取引手数料無料(スプレッドあり)",
+      currencyPairs: 7,
+      security: "LINEグループの信頼性、コールドウォレット管理",
+      rating: 4,
+      affiliateUrl: "https://bitmax.line.me/",
+      isDomestic: true,
+      features: "1円から投資可能、LINEアプリから簡単取引、最大年利8%の貸出サービス、LINE Pay連携、独自通貨KAIA取扱",
+    }
+  ];
+
+  const foreignExchanges: CryptoExchange[] = [
+    // 海外暗号資産取引所
     {
       name: "Binance",
-      tradingFee: "現物: 約0.10%/0.10%、先物: 約0.02%/0.04%",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定通貨は決済手段により変動",
-      supportedCoins: 350,
-      security: "PoR公表、コールド保管、2FA、出金ホワイトリスト、バグバウンティ",
-      japaneseSupport: true,
+      fee: "取引手数料: Maker 0.1%、Taker 0.1%(スポット取引)",
+      currencyPairs: 500,
+      security: "業界トップクラスのセキュリティ",
       rating: 5,
-      affiliateUrl: "https://www.binance.com/",
+      affiliateUrl: "https://www.binance.com/ja",
       isDomestic: false,
-      features: "流動性最大級、先物/オプション、Earn/Launchpad、幅広いプロダクト、銘柄数が多い",
-    },
-    {
-      name: "OKX",
-      tradingFee: "現物: 約0.08%/0.10%、先物: 約0.02%/0.05%",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定通貨は決済手段により変動",
-      supportedCoins: 350,
-      security: "PoR公表、MPCウォレット、コールド保管、2FA",
-      japaneseSupport: false,
-      rating: 4,
-      affiliateUrl: "https://www.okx.com/",
-      isDomestic: false,
-      features: "先物・オプション強い、OKX Wallet/DeFi連携、Earn/Jumpstart、銘柄数が多い、高機能トレーディングツール",
+      features: "世界最大手の暗号資産取引所、BNB保有で25%割引、多様な取引オプション",
     },
     {
       name: "Bybit",
-      tradingFee: "現物: 約0.10%/0.10%、先物: 約0.02%/0.055（目安）",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定通貨は決済手段により変動",
-      supportedCoins: 400,
-      security: "PoR公表、コールド保管、2FA、出金ホワイトリスト",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://www.bybit.com/",
+      fee: "取引手数料: Maker 0.1%、Taker 0.1%(スポット取引)",
+      currencyPairs: 200,
+      security: "業界トップクラスのセキュリティ",
+      rating: 5,
+      affiliateUrl: "https://www.bybit.com/ja-JP/",
       isDomestic: false,
-      features: "デリバティブの板厚、コピー取引、Earn、ローンチパッド、銘柄数が多い、高機能トレーディングツール",
+      features: "先物取引手数料が競争力あり(Maker 0.02%、Taker 0.055%)、VIPプログラムで手数料割引",
     },
     {
-      name: "Coinbase (Advanced/International)",
-      tradingFee: "現物: 約0.40%/0.60%、デリバ: 約0.02%/0.05（国際版・目安）",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 250,
-      security: "上場企業、SOC2監査、コールド保管、強固なコンプライアンス",
-      japaneseSupport: false,
+      name: "Coinbase",
+      fee: "取引手数料: Maker 0.60%、Taker 1.20%(通常)、Advanced: Maker 0.00%-0.40%、Taker 0.05%-0.60%",
+      currencyPairs: 240,
+      security: "米国で厳格な規制を満たすセキュリティ",
       rating: 4,
-      affiliateUrl: "https://www.coinbase.com/",
+      affiliateUrl: "https://www.coinbase.com/ja",
       isDomestic: false,
-      features: "UX・規制準拠の安心感、機関投資家向けソリューション、銘柄数が多い、高機能トレーディングツール",
+      features: "初心者に最適なインターフェース、米国最大の取引所、Coinbase Oneで手数料削減可能",
     },
     {
       name: "Kraken",
-      tradingFee: "現物: 約0.16%/0.26%、先物: 約0.02%/0.05",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 200,
-      security: "SOC2、コールド保管、2FA、バグバウンティ",
-      japaneseSupport: false,
+      fee: "取引手数料: Maker 0.16%、Taker 0.26%",
+      currencyPairs: 70,
+      security: "ISO/IEC 27001:2013認証",
       rating: 4,
-      affiliateUrl: "https://www.kraken.com/",
+      affiliateUrl: "https://www.kraken.com/ja-jp",
       isDomestic: false,
-      features: "セキュリティ評価高い、先物/マージン、FIAT対応国多い、銘柄数が多い、高機能トレーディングツール",
-    },
-    {
-      name: "Bitget",
-      tradingFee: "現物: 約0.10%/0.10%、先物: 約0.02%/0.06",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 700,
-      security: "PoR公表、保護基金、コールド保管、2FA",
-      japaneseSupport: true,
-      rating: 4,
-      affiliateUrl: "https://www.bitget.com/",
-      isDomestic: false,
-      features: "コピー取引で著名、Earn/Launchpad、積極的な上場、銘柄数が多い、高機能トレーディングツール",
+      features: "2011年創業の老舗取引所、優れた顧客サポート、取引量に応じた手数料割引",
     },
     {
       name: "KuCoin",
-      tradingFee: "現物: 約0.10%/0.10%、先物: 約0.02%/0.06",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 700,
-      security: "PoR公表、リスク基金、2FA",
-      japaneseSupport: false,
+      fee: "取引手数料: Maker 0.1%、Taker 0.1%",
+      currencyPairs: 300,
+      security: "業界標準のセキュリティ",
       rating: 4,
-      affiliateUrl: "https://www.kucoin.com/",
+      affiliateUrl: "https://www.kucoin.com/ja",
       isDomestic: false,
-      features: "アルト豊富、Earn/借貸、先物も幅広い、銘柄数が多い、高機能トレーディングツール",
+      features: "KCS保有で最大60%割引、3,900万人以上のユーザー、豊富なアルトコイン",
     },
     {
-      name: "HTX (旧Huobi)",
-      tradingFee: "現物: 約0.20%/0.20%、先物: 約0.02%/0.05",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 700,
-      security: "PoR公表、コールド保管、2FA",
-      japaneseSupport: false,
+      name: "Gemini",
+      fee: "取引手数料: Maker 0.2%、Taker 0.4%(取引量に応じて変動)",
+      currencyPairs: 70,
+      security: "SOC1 Type 2およびSOC2 Type 2認証取得、ISO 27001およびSOC 2 Type 2認証",
       rating: 4,
-      affiliateUrl: "https://www.htx.com/",
+      affiliateUrl: "https://www.gemini.com/ja",
       isDomestic: false,
-      features: "デリバティブ、Earn/Primeなどキャンペーン多数、銘柄数が多い、高機能トレーディングツール",
+      features: "Winklevoss兄弟創業、規制重視",
     },
     {
-      name: "Gate.io",
-      tradingFee: "現物: 約0.20%/0.20%、先物: 約0.02%/0.05（目安）",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 1400,
-      security: "PoR公表、コールド保管、2FA",
-      japaneseSupport: false,
+      name: "Bitstamp",
+      fee: "取引手数料: Maker 0.1%、Taker 0.25%",
+      currencyPairs: 70,
+      security: "業界トップクラスのセキュリティ",
       rating: 4,
-      affiliateUrl: "https://www.gate.io/",
+      affiliateUrl: "https://www.bitstamp.net/ja",
       isDomestic: false,
-      features: "アルト最多クラス、IEO(Startup)、NFT等、銘柄数が多い、高機能トレーディングツール",
+      features: "2011年創業のヨーロッパ最古参取引所、高い信頼性、規制遵守",
     },
     {
-      name: "MEXC",
-      tradingFee: "現物: 約0.10%/0.10%（プロモで0%のこと有）、先物: 約0.02%/0.06",
-      withdrawalFee: "暗号資産入金: 無料 / 出金: ネットワーク手数料。法定は通貨・地域で変動",
-      supportedCoins: 2000,
-      security: "コールド保管、2FA、（PoRページ公開のこと有）",
-      japaneseSupport: false,
+      name: "Bitfinex",
+      fee: "取引手数料: Maker 0.1%、Taker 0.2%",
+      currencyPairs: 120,
+      security: "業界標準のセキュリティ",
       rating: 4,
-      affiliateUrl: "https://www.mexc.com/",
+      affiliateUrl: "https://www.bitfinex.com/ja",
       isDomestic: false,
-      features: "新興アルト・先物が豊富、キャンペーン多い、銘柄数が多い、高機能トレーディングツール",
+      features: "LEOトークン保有で最大25%割引、プロフェッショナル向け、高機能な取引ツール",
     },
+    {
+      name: "Huobi(HTX)",
+      fee: "取引手数料: Maker 0.2%、Taker 0.2%",
+      currencyPairs: 250,
+      security: "業界標準のセキュリティ",
+      rating: 4,
+      affiliateUrl: "https://www.huobi.com/ja-jp",
+      isDomestic: false,
+      features: "多様な暗号資産の取扱、高機能な取引ツール、アジア市場で強み",
+    },
+    {
+      name: "OKX",
+      fee: "取引手数料: Maker 0.08%、Taker 0.1%",
+      currencyPairs: 400,
+      security: "重大なハッキング被害なし",
+      rating: 4,
+      affiliateUrl: "https://www.okx.com/ja",
+      isDomestic: false,
+      features: "OKBトークン保有で10-40%割引、180以上の国と地域で利用可能、多様なデリバティブ取引",
+    }
   ];
 
-  // 表示する取引所をフィルタリング
-  const filteredExchanges = exchanges.filter(exchange => 
-    showDomestic ? exchange.isDomestic : !exchange.isDomestic
+  const companies = showDomestic ? domesticExchanges : foreignExchanges;
+
+  // 表示する暗号資産取引所をフィルタリング
+  const filteredCompanies = companies.filter(company => 
+    showDomestic ? company.isDomestic : !company.isDomestic
   );
 
   const handleSort = (key: keyof CryptoExchange) => {
@@ -290,17 +253,12 @@ const CryptoComparisonTable = () => {
     }
   };
 
-  const sortedExchanges = [...filteredExchanges].sort((a, b) => {
+  const sortedCompanies = [...filteredCompanies].sort((a, b) => {
     if (!sortBy) {
-      // デフォルトでは海外取引所の場合評価順にソート
-      if (!showDomestic) {
-        if (b.rating !== a.rating) {
-          return b.rating - a.rating;
-        }
-        // 評価が同じ場合は取扱暗号資産数でソート
-        return b.supportedCoins - a.supportedCoins;
+      // デフォルトでは評価順にソート
+      if (b.rating !== a.rating) {
+        return b.rating - a.rating;
       }
-      // 国内取引所の場合は人気ランキング順（配列の順序を維持）
       return 0;
     }
     
@@ -327,53 +285,85 @@ const CryptoComparisonTable = () => {
   );
 
   // モバイル向けカードコンポーネント
-  const MobileExchangeCard = ({ exchange }: { exchange: CryptoExchange }) => (
+  const MobileCompanyCard = ({ company }: { company: CryptoExchange }) => (
     <Card className="mb-4 shadow-md border border-border bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-bold flex justify-between items-center">
-          <span>{exchange.name}</span>
+          <span>{company.name}</span>
           <Badge variant="secondary" className="text-xs">
-            {exchange.supportedCoins}種対応
+            {company.currencyPairs}通貨ペア
           </Badge>
         </CardTitle>
       </CardHeader>
       {/* 詳細情報ボタンを会社名下に配置 */}
       <div className="px-6 pb-2">
-        <Button 
-          size="sm" 
-          className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
-          disabled
-        >
-          詳細情報
-          <ArrowRight className="h-4 w-4" />
-        </Button>
+        {company.name === "GMOコイン" || company.name === "DMM Bitcoin" || company.name === "bitFlyer" || company.name === "Coincheck" || company.name === "liquid by QUOINE" || company.name === "Binance" || company.name === "Bybit" || company.name === "Coinbase" || company.name === "Kraken" || company.name === "KuCoin" || company.name === "Gemini" || company.name === "Bitstamp" || company.name === "Bitfinex" || company.name === "Huobi" || company.name === "OKX" || company.name === "FTX" || company.name === "bitbank" || company.name === "SBI VCトレード" || company.name === "BITPOINT" || company.name === "Binance Japan" || company.name === "BitTrade" || company.name === "楽天ウォレット" || company.name === "LINE BITMAX" ? (
+          <Button 
+            size="sm" 
+            className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
+            asChild
+          >
+            <Link to={
+              company.name === "GMOコイン" ? "/crypto/gmo-coin" : 
+              company.name === "DMM Bitcoin" ? "/crypto/dmm-bitcoin" : 
+              company.name === "bitFlyer" ? "/crypto/bitflyer" : 
+              company.name === "Coincheck" ? "/crypto/coincheck" : 
+              company.name === "liquid by QUOINE" ? "/crypto/liquid-by-quoine" : 
+              company.name === "Binance" ? "/crypto/binance" : 
+              company.name === "Bybit" ? "/crypto/bybit" :
+              company.name === "Coinbase" ? "/crypto/coinbase" :
+              company.name === "Kraken" ? "/crypto/kraken" :
+              company.name === "KuCoin" ? "/crypto/kucoin" :
+              company.name === "Gemini" ? "/crypto/gemini" :
+              company.name === "Bitstamp" ? "/crypto/bitstamp" :
+              company.name === "Bitfinex" ? "/crypto/bitfinex" :
+              company.name === "Huobi" ? "/crypto/huobi" :
+              company.name === "OKX" ? "/crypto/okx" :
+              company.name === "FTX" ? "/crypto/ftx" :
+              company.name === "bitbank" ? "/crypto/bitbank" :
+              company.name === "SBI VCトレード" ? "/crypto/sbi-vc-trade" :
+              company.name === "BITPOINT" ? "/crypto/bitpoint" :
+              company.name === "Binance Japan" ? "/crypto/binance-japan" :
+              company.name === "BitTrade" ? "/crypto/bittrade" :
+              company.name === "楽天ウォレット" ? "/crypto/rakuten-wallet" :
+              "/crypto/line-bitmax"
+            }>
+              詳細情報
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        ) : (
+          <Button 
+            size="sm" 
+            className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
+            disabled
+          >
+            詳細情報
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        )}
       </div>
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div>
-            <p className="text-muted-foreground text-xs">取引手数料</p>
-            <p className="font-semibold">{exchange.tradingFee}</p>
+            <p className="text-muted-foreground text-xs">手数料</p>
+            <p className="font-semibold">{company.fee}</p>
           </div>
           <div>
-            <p className="text-muted-foreground text-xs">入出金手数料</p>
-            <p className="font-semibold">{exchange.withdrawalFee}</p>
+            <p className="text-muted-foreground text-xs">セキュリティ</p>
+            <p className="font-semibold">{company.security}</p>
           </div>
-        </div>
-        
-        <div>
-          <p className="text-muted-foreground text-xs">セキュリティ</p>
-          <p className="text-xs">{exchange.security}</p>
         </div>
         
         <div>
           <p className="text-muted-foreground text-xs mb-1">評価</p>
-          <RatingStars rating={exchange.rating} />
+          <RatingStars rating={company.rating} />
         </div>
         
         {/* 特徴を追加 */}
         <div>
           <p className="text-muted-foreground text-xs mb-1">特徴</p>
-          <p className="text-sm">{exchange.features}</p>
+          <p className="text-sm">{company.features}</p>
         </div>
         
         <Button 
@@ -382,12 +372,14 @@ const CryptoComparisonTable = () => {
           asChild
         >
           <a 
-            href={exchange.affiliateUrl} 
+            href={company.affiliateUrl} 
             target="_blank" 
             rel="noopener noreferrer"
           >
-            公式サイトへ
-            <ExternalLink className="ml-1 h-3 w-3" />
+            <>
+              公式サイトへ
+              <ExternalLink className="ml-1 h-3 w-3" />
+            </>
           </a>
         </Button>
       </CardContent>
@@ -399,7 +391,7 @@ const CryptoComparisonTable = () => {
       <CardHeader className="px-4 sm:px-6 pb-4">
         <CardTitle className="text-xl sm:text-2xl font-bold text-center">暗号資産取引所詳細比較表</CardTitle>
         <p className="text-sm text-muted-foreground text-center mt-4">
-          各暗号資産取引所の取引手数料、出金手数料、取扱暗号資産数、セキュリティ対策、評価などの情報を比較できます
+          各暗号資産取引所の手数料、通貨ペア数、セキュリティ、評価などの情報を比較できます
         </p>
         {/* 国内/国外切り替えボタン */}
         <div className="flex justify-center mt-8 space-x-4">
@@ -422,8 +414,8 @@ const CryptoComparisonTable = () => {
       <CardContent className="p-0">
         {/* モバイル向け表示 - 768px未満で表示 */}
         <div className="md:hidden px-4 py-2">
-          {sortedExchanges.map((exchange) => (
-            <MobileExchangeCard key={exchange.name} exchange={exchange} />
+          {sortedCompanies.map((company) => (
+            <MobileCompanyCard key={company.name} company={company} />
           ))}
         </div>
         
@@ -431,94 +423,98 @@ const CryptoComparisonTable = () => {
         <div className="hidden md:block">
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle px-4 sm:px-6">
-              <Table className="min-w-[700px]">
+              <Table className="min-w-[600px]">
                 <TableHeader>
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引所</TableHead>
-                    <TableHead className="min-w-[180px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引手数料</TableHead>
-                    <TableHead className="min-w-[150px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">入出金手数料</TableHead>
+                    <TableHead className="min-w-[180px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">手数料</TableHead>
                     <TableHead 
                       className="cursor-pointer hover:bg-muted/50 min-w-[80px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
-                      onClick={() => handleSort("supportedCoins")}
+                      onClick={() => handleSort("currencyPairs")}
                     >
-                      <div className="flex items-center gap-1">
-                        取扱暗号資産
-                        {sortBy === "supportedCoins" && (
-                          sortOrder === "asc" ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <div className="flex items-center justify-between">
+                        <span>通貨ペア数</span>
+                        {sortBy === "currencyPairs" && (
+                          <span>{sortOrder === "asc" ? "↑" : "↓"}</span>
                         )}
                       </div>
                     </TableHead>
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">セキュリティ</TableHead>
-                    <TableHead 
-                      className="cursor-pointer hover:bg-muted/50 min-w-[60px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap"
-                      onClick={() => handleSort("rating")}
-                    >
-                      <div className="flex items-center gap-1">
-                        評価
-                        {sortBy === "rating" && (
-                          sortOrder === "asc" ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
-                        )}
-                      </div>
-                    </TableHead>
+                    <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">評価</TableHead>
                     <TableHead className="min-w-[200px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">特徴</TableHead>
-                    <TableHead className="text-center min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">公式サイト</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {sortedExchanges.map((exchange) => (
+                  {sortedCompanies.map((company) => (
                     <TableRow 
-                      key={exchange.name} 
+                      key={company.name} 
                       className="hover:bg-primary/5 transition-colors duration-200 border-b border-muted"
                     >
                       <TableCell className="font-semibold text-xs sm:text-sm py-3">
-                        {exchange.name}
+                        {company.name}
                         {/* 詳細情報ボタンを追加 */}
                         <div className="mt-2">
-                          <Button 
-                            size="sm" 
-                            className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
-                            disabled
-                          >
-                            詳細情報
-                            <ArrowRight className="h-4 w-4" />
-                          </Button>
+                          {company.name === "GMOコイン" || company.name === "DMM Bitcoin" || company.name === "bitFlyer" || company.name === "Coincheck" || company.name === "liquid by QUOINE" || company.name === "Binance" || company.name === "Bybit" || company.name === "Coinbase" || company.name === "Kraken" || company.name === "KuCoin" || company.name === "Gemini" || company.name === "Bitstamp" || company.name === "Bitfinex" || company.name === "Huobi" || company.name === "OKX" || company.name === "FTX" || company.name === "bitbank" || company.name === "SBI VCトレード" || company.name === "BITPOINT" || company.name === "Binance Japan" || company.name === "BitTrade" || company.name === "楽天ウォレット" || company.name === "LINE BITMAX" ? (
+                            <Button 
+                              size="sm" 
+                              className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
+                              asChild
+                            >
+                              <Link to={
+                                company.name === "GMOコイン" ? "/crypto/gmo-coin" : 
+                                company.name === "DMM Bitcoin" ? "/crypto/dmm-bitcoin" : 
+                                company.name === "bitFlyer" ? "/crypto/bitflyer" : 
+                                company.name === "Coincheck" ? "/crypto/coincheck" : 
+                                company.name === "liquid by QUOINE" ? "/crypto/liquid-by-quoine" : 
+                                company.name === "Binance" ? "/crypto/binance" : 
+                                company.name === "Bybit" ? "/crypto/bybit" :
+                                company.name === "Coinbase" ? "/crypto/coinbase" :
+                                company.name === "Kraken" ? "/crypto/kraken" :
+                                company.name === "KuCoin" ? "/crypto/kucoin" :
+                                company.name === "Gemini" ? "/crypto/gemini" :
+                                company.name === "Bitstamp" ? "/crypto/bitstamp" :
+                                company.name === "Bitfinex" ? "/crypto/bitfinex" :
+                                company.name === "Huobi" ? "/crypto/huobi" :
+                                company.name === "OKX" ? "/crypto/okx" :
+                                company.name === "FTX" ? "/crypto/ftx" :
+                                company.name === "bitbank" ? "/crypto/bitbank" :
+                                company.name === "SBI VCトレード" ? "/crypto/sbi-vc-trade" :
+                                company.name === "BITPOINT" ? "/crypto/bitpoint" :
+                                company.name === "Binance Japan" ? "/crypto/binance-japan" :
+                                company.name === "BitTrade" ? "/crypto/bittrade" :
+                                company.name === "楽天ウォレット" ? "/crypto/rakuten-wallet" :
+                                "/crypto/line-bitmax"
+                              }>
+                                詳細情報
+                                <ArrowRight className="h-4 w-4" />
+                              </Link>
+                            </Button>
+                          ) : (
+                            <Button 
+                              size="sm" 
+                              className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between opacity-50 cursor-not-allowed"
+                              disabled
+                            >
+                              詳細情報
+                              <ArrowRight className="h-4 w-4" />
+                            </Button>
+                          )}
                         </div>
                       </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
-                        __html: exchange.tradingFee
-                          .replace(/、\s*(先物:)/g, '\n$1')
-                          .replace(/([\d.]+)(%)/g, '<span class="font-semibold">$1</span>$2')
-                          .replace(/([\d.]+)(USD)/g, '<span class="font-semibold">$1</span>$2')
-                          .replace(/([\d.]+)(～)/g, '<span class="font-semibold">$1</span>$2')
-                          .replace(/(約)([\d.]+)/g, '$1<span class="font-semibold">$2</span>')
-                          .replace(/\/([\d.]+)/g, '/<span class="font-semibold">$1</span>')
-                      }} />
-                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line" dangerouslySetInnerHTML={{ 
-                        __html: exchange.withdrawalFee
-                          .replace(/([\d.]+)(円)/g, '<span class="font-semibold">$1</span>$2')
-                          .replace(/([\d.]+)(万円)/g, '<span class="font-semibold">$1</span>$2')
-                          .replace(/([\d.]+)(～)/g, '<span class="font-semibold">$1</span>$2')
-                      }} />
-                      <TableCell className="text-center py-3">
-                        <Badge variant="secondary" className="text-xs px-2 py-1">
-                          {exchange.supportedCoins}種対応
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-xs sm:text-sm py-3 break-words max-w-xs">{exchange.security}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3 whitespace-pre-line">{company.fee}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3">{company.currencyPairs}</TableCell>
+                      <TableCell className="text-xs sm:text-sm py-3">{company.security}</TableCell>
                       <TableCell className="py-3">
-                        <RatingStars rating={exchange.rating} />
+                        <RatingStars rating={company.rating} />
                       </TableCell>
                       <TableCell className="text-xs sm:text-sm py-3 break-words max-w-[200px]">
                         <div className="grid grid-cols-1 gap-1">
                           {(() => {
-                            const features = exchange.features.split('、');
+                            const features = company.features.split('、');
                             // 指定された特徴のキーワードを定義
                             const additionalHighlightedKeywords = [
-                              'FX取引高世界第1位', '高機能取引ツール',
-                              'LINEサポート対応', '最短当日取引開始',
-                              '老舗証券会社の信頼性', 'サポート充実',
-                              '楽天ポイントが貯まる',
-                              'Pontaポイント付与', '株式との連携'
+                              '世界最大手', '業界最安', '信頼性の高い',
+                              '9年連続No. 1', '初心者にも使いやすい'
                             ];
                             
                             // 業界標準クラスのキーワードを定義
@@ -606,16 +602,18 @@ const CryptoComparisonTable = () => {
                       <TableCell className="text-center py-3">
                         <Button 
                           size="sm" 
-                          className="whitespace-nowrap text-xs px-3 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 min-w-[120px]"
+                          className="whitespace-nowrap text-xs px-3 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 min-w-[130px]"
                           asChild
                         >
                           <a 
-                            href={exchange.affiliateUrl} 
+                            href={company.affiliateUrl} 
                             target="_blank" 
                             rel="noopener noreferrer"
                           >
-                            公式サイト
-                            <ExternalLink className="ml-1 h-3 w-3" />
+                            <>
+                              公式サイト
+                              <ExternalLink className="ml-1 h-3 w-3" />
+                            </>
                           </a>
                         </Button>
                       </TableCell>
@@ -642,11 +640,9 @@ const CryptoComparisonTable = () => {
               <p className="text-sm text-yellow-700">
                 <span className="font-bold">注意事項:</span>
                 <br />
-                <span className="block mt-1">・本ページは情報提供を目的としており、特定の暗号資産への投資を推奨・勧誘するものではありません。</span>
-                <span className="block mt-1">・暗号資産への投資は、必ずご自身の判断と責任において行ってください。</span>
-                <span className="block mt-1">・暗号資産は価格変動が非常に激しく、投資元本を割り込む損失（元本割れ）が生じる可能性があります。</span>
-                <span className="block mt-1">・掲載されている情報は作成時点のものであり、その正確性、完全性、最新性を保証するものではありません。</span>
-                <span className="block mt-1">・投資を行う際は、必ずご自身で取引所の公式サイトなど、一次情報をご確認ください。</span>
+                <span className="block mt-1">・手数料は取引ペアや取引量によっても変動します。</span>
+                <span className="block mt-1">・評価はあくまで一般的なユーザーの声や取引条件の傾向を総合的に見た参考レベルです。</span>
+                <span className="block mt-1">・最新の情報や詳細な数値を確認する際は、必ず各社の公式サイトや最新の取引約款・告知文書をチェックしてください。</span>
               </p>
             </div>
           </div>
