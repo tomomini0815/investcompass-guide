@@ -196,7 +196,7 @@ const SbiSecuritiesDetail = () => {
               </Card>
 
               {/* Trading Tools Image Section */}
-              <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 mt-8">
+              {/* <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 mt-8">
                 <CardHeader>
                   <CardTitle className="text-2xl font-bold flex items-center gap-2">
                     <CheckCircle className="h-6 w-6 text-primary" />
@@ -233,7 +233,7 @@ const SbiSecuritiesDetail = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </section>

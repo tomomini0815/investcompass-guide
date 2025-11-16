@@ -196,7 +196,7 @@ const DmmStockDetail = () => {
         </section>
 
         {/* 取引ツール */}
-        <section className="py-16 bg-gradient-to-b from-background to-muted/30">
+        {/* <section className="py-16 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-12 text-center">取引ツール</h2>
@@ -235,7 +235,7 @@ const DmmStockDetail = () => {
               </Card>
             </div>
           </div>
-        </section>
+        </section> -->
 
         {/* 口座開設はたったの3ステップ！最短即日取引可能 */}
         <section className="py-16 bg-gradient-to-b from-background to-muted/30">
