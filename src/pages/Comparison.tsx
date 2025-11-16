@@ -173,6 +173,22 @@ const Comparison = () => {
                     普段使っているポイントで投資できる証券会社を選ぶとお得です。
                   </p>
                 </div>
+                <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-green-500/10">
+                  <p className="font-semibold text-green-600 mb-2 flex items-center gap-2">
+                    <span className="inline-block w-8 h-8 bg-green-500/10 rounded-full flex items-center justify-center text-sm">4</span>
+                    目的別の選び方
+                  </p>
+                  <div className="text-muted-foreground pl-10 space-y-2">
+                    <ul className="list-disc pl-5 space-y-1 text-sm">
+                      <li><span className="font-semibold">初心者:</span> SBI証券、楽天証券、マネックス証券（使いやすい・サポート充実）</li>
+                      <li><span className="font-semibold">米国株投資:</span> マネックス証券、SBI証券（米国株取扱数が豊富）</li>
+                      <li><span className="font-semibold">NISA・つみたてNISA:</span> SBI証券、楽天証券（NISA口座開設実績が豊富）</li>
+                      <li><span className="font-semibold">ポイント活用:</span> 楽天証券（楽天ポイント）、SBI証券（Tポイント・Vポイント）</li>
+                      <li><span className="font-semibold">手数料重視:</span> GMOクリック証券、楽天証券、松井証券（業界最安レベルの手数料）</li>
+                      <li><span className="font-semibold">IPO投資:</span> SBI証券、楽天証券、松井証券（IPO実績が豊富）</li>
+                    </ul>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

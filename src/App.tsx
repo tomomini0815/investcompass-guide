@@ -89,6 +89,8 @@ import BinanceJapanDetailed from "./pages/BinanceJapanDetailed";
 import BitTradeDetailed from "./pages/BitTradeDetailed";
 import RakutenWalletDetailed from "./pages/RakutenWalletDetailed";
 import LineBitmaxDetailed from "./pages/LineBitmaxDetailed";
+// Bitget詳細ページのインポート
+import BitgetDetailed from "./pages/BitgetDetailed";
 
 const queryClient = new QueryClient();
 
@@ -167,6 +169,8 @@ const App = () => (
           <Route path="/crypto/bittrade" element={<BitTradeDetailed />} />
           <Route path="/crypto/rakuten-wallet" element={<RakutenWalletDetailed />} />
           <Route path="/crypto/line-bitmax" element={<LineBitmaxDetailed />} />
+          {/* Bitget詳細ページのルート */}
+          <Route path="/crypto/bitget" element={<BitgetDetailed />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
           {/* 新しいツールページのルート */}

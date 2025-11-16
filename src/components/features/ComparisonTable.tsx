@@ -210,13 +210,6 @@ const ComparisonTable = () => {
             {company.ipoCount}社 IPO
           </Badge>
         </CardTitle>
-        {/* 各証券会社の詳細ページへのリンクを追加 */}
-        <div className="mt-2">
-          <Link to={`/securities/${getCompanySlug(company.name)}`} className="text-sm text-primary hover:underline">
-            詳細情報を見る
-          </Link>
-        </div>
-
       </CardHeader>
       {/* 詳細情報ボタンを会社名下に配置 */}
       <div className="px-6 pb-2">
@@ -337,11 +330,11 @@ const ComparisonTable = () => {
         </div>
         
         {/* デスクトップ向け表示 - 768px以上で表示 */}
-        <div className="hidden md:block">
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
-            <div className="inline-block min-w-full align-middle px-4 sm:px-6">
+        <div className="hidden md:block overflow-x-auto -mx-4 sm:mx-0">
+          <div className="inline-block min-w-full align-middle">
+            <div className="px-4 sm:px-6">
               <Table className="min-w-[700px]">
-                <TableHeader>
+                <TableHeader className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-md">
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">証券会社</TableHead>
                     <TableHead className="min-w-[100px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">手数料</TableHead>

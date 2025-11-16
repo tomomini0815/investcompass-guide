@@ -166,6 +166,16 @@ const CryptoComparisonTable = () => {
       features: "初心者に最適なインターフェース、米国最大の取引所、Coinbase Oneで手数料削減可能",
     },
     {
+      name: "Bitget",
+      fee: "取引手数料: Maker 0.1%、Taker 0.1%",
+      currencyPairs: 150,
+      security: "業界標準のセキュリティ",
+      rating: 4,
+      affiliateUrl: "https://www.bitget.com/",
+      isDomestic: false,
+      features: "Copy Trading機能、多様なアルトコイン、日本語対応",
+    },
+    {
       name: "Kraken",
       fee: "取引手数料: Maker 0.16%、Taker 0.26%",
       currencyPairs: 70,
@@ -199,42 +209,12 @@ const CryptoComparisonTable = () => {
       name: "Bitstamp",
       fee: "取引手数料: Maker 0.1%、Taker 0.25%",
       currencyPairs: 70,
-      security: "業界トップクラスのセキュリティ",
+      security: "SOC1 Type 2およびSOC2 Type 2認証取得",
       rating: 4,
-      affiliateUrl: "https://www.bitstamp.net/ja",
+      affiliateUrl: "https://www.bitstamp.net/",
       isDomestic: false,
-      features: "2011年創業のヨーロッパ最古参取引所、高い信頼性、規制遵守",
+      features: "2011年創業の老舗取引所、ヨーロッパ拠点、信頼性の高いセキュリティ",
     },
-    {
-      name: "Bitfinex",
-      fee: "取引手数料: Maker 0.1%、Taker 0.2%",
-      currencyPairs: 120,
-      security: "業界標準のセキュリティ",
-      rating: 4,
-      affiliateUrl: "https://www.bitfinex.com/ja",
-      isDomestic: false,
-      features: "LEOトークン保有で最大25%割引、プロフェッショナル向け、高機能な取引ツール",
-    },
-    {
-      name: "Huobi(HTX)",
-      fee: "取引手数料: Maker 0.2%、Taker 0.2%",
-      currencyPairs: 250,
-      security: "業界標準のセキュリティ",
-      rating: 4,
-      affiliateUrl: "https://www.huobi.com/ja-jp",
-      isDomestic: false,
-      features: "多様な暗号資産の取扱、高機能な取引ツール、アジア市場で強み",
-    },
-    {
-      name: "OKX",
-      fee: "取引手数料: Maker 0.08%、Taker 0.1%",
-      currencyPairs: 400,
-      security: "重大なハッキング被害なし",
-      rating: 4,
-      affiliateUrl: "https://www.okx.com/ja",
-      isDomestic: false,
-      features: "OKBトークン保有で10-40%割引、180以上の国と地域で利用可能、多様なデリバティブ取引",
-    }
   ];
 
   const companies = showDomestic ? domesticExchanges : foreignExchanges;
@@ -297,36 +277,31 @@ const CryptoComparisonTable = () => {
       </CardHeader>
       {/* 詳細情報ボタンを会社名下に配置 */}
       <div className="px-6 pb-2">
-        {company.name === "GMOコイン" || company.name === "DMM Bitcoin" || company.name === "bitFlyer" || company.name === "Coincheck" || company.name === "liquid by QUOINE" || company.name === "Binance" || company.name === "Bybit" || company.name === "Coinbase" || company.name === "Kraken" || company.name === "KuCoin" || company.name === "Gemini" || company.name === "Bitstamp" || company.name === "Bitfinex" || company.name === "Huobi" || company.name === "OKX" || company.name === "FTX" || company.name === "bitbank" || company.name === "SBI VCトレード" || company.name === "BITPOINT" || company.name === "Binance Japan" || company.name === "BitTrade" || company.name === "楽天ウォレット" || company.name === "LINE BITMAX" ? (
+        {company.name === "Coincheck" || company.name === "GMOコイン" || company.name === "bitFlyer" || company.name === "bitbank" || company.name === "SBI VCトレード" || company.name === "BITPOINT" || company.name === "Binance Japan" || company.name === "BitTrade" || company.name === "楽天ウォレット" || company.name === "LINE BITMAX" || company.name === "Binance" || company.name === "Bybit" || company.name === "Coinbase" || company.name === "Kraken" || company.name === "KuCoin" || company.name === "Gemini" || company.name === "Bitstamp" || company.name === "Bitget" ? (
           <Button 
             size="sm" 
             className="text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
             asChild
           >
             <Link to={
-              company.name === "GMOコイン" ? "/crypto/gmo-coin" : 
-              company.name === "DMM Bitcoin" ? "/crypto/dmm-bitcoin" : 
-              company.name === "bitFlyer" ? "/crypto/bitflyer" : 
               company.name === "Coincheck" ? "/crypto/coincheck" : 
-              company.name === "liquid by QUOINE" ? "/crypto/liquid-by-quoine" : 
+              company.name === "GMOコイン" ? "/crypto/gmo-coin" : 
+              company.name === "bitFlyer" ? "/crypto/bitflyer" : 
+              company.name === "bitbank" ? "/crypto/bitbank" : 
+              company.name === "SBI VCトレード" ? "/crypto/sbi-vc-trade" : 
+              company.name === "BITPOINT" ? "/crypto/bitpoint" : 
+              company.name === "Binance Japan" ? "/crypto/binance-japan" : 
+              company.name === "BitTrade" ? "/crypto/bittrade" : 
+              company.name === "楽天ウォレット" ? "/crypto/rakuten-wallet" : 
+              company.name === "LINE BITMAX" ? "/crypto/line-bitmax" : 
               company.name === "Binance" ? "/crypto/binance" : 
-              company.name === "Bybit" ? "/crypto/bybit" :
-              company.name === "Coinbase" ? "/crypto/coinbase" :
-              company.name === "Kraken" ? "/crypto/kraken" :
-              company.name === "KuCoin" ? "/crypto/kucoin" :
-              company.name === "Gemini" ? "/crypto/gemini" :
-              company.name === "Bitstamp" ? "/crypto/bitstamp" :
-              company.name === "Bitfinex" ? "/crypto/bitfinex" :
-              company.name === "Huobi" ? "/crypto/huobi" :
-              company.name === "OKX" ? "/crypto/okx" :
-              company.name === "FTX" ? "/crypto/ftx" :
-              company.name === "bitbank" ? "/crypto/bitbank" :
-              company.name === "SBI VCトレード" ? "/crypto/sbi-vc-trade" :
-              company.name === "BITPOINT" ? "/crypto/bitpoint" :
-              company.name === "Binance Japan" ? "/crypto/binance-japan" :
-              company.name === "BitTrade" ? "/crypto/bittrade" :
-              company.name === "楽天ウォレット" ? "/crypto/rakuten-wallet" :
-              "/crypto/line-bitmax"
+              company.name === "Bybit" ? "/crypto/bybit" : 
+              company.name === "Coinbase" ? "/crypto/coinbase" : 
+              company.name === "Kraken" ? "/crypto/kraken" : 
+              company.name === "KuCoin" ? "/crypto/kucoin" : 
+              company.name === "Gemini" ? "/crypto/gemini" : 
+              company.name === "Bitstamp" ? "/crypto/bitstamp" : 
+              "/crypto/bitget"
             }>
               詳細情報
               <ArrowRight className="h-4 w-4" />
@@ -420,11 +395,11 @@ const CryptoComparisonTable = () => {
         </div>
         
         {/* デスクトップ向け表示 - 768px以上で表示 */}
-        <div className="hidden md:block">
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
-            <div className="inline-block min-w-full align-middle px-4 sm:px-6">
+        <div className="hidden md:block overflow-x-auto -mx-4 sm:mx-0">
+          <div className="inline-block min-w-full align-middle">
+            <div className="px-4 sm:px-6">
               <Table className="min-w-[600px]">
-                <TableHeader>
+                <TableHeader className="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-md">
                   <TableRow className="hover:bg-muted/50 border-b-2 border-primary/20">
                     <TableHead className="min-w-[120px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">取引所</TableHead>
                     <TableHead className="min-w-[180px] text-xs sm:text-sm font-bold text-primary whitespace-nowrap">手数料</TableHead>
@@ -454,36 +429,31 @@ const CryptoComparisonTable = () => {
                         {company.name}
                         {/* 詳細情報ボタンを追加 */}
                         <div className="mt-2">
-                          {company.name === "GMOコイン" || company.name === "DMM Bitcoin" || company.name === "bitFlyer" || company.name === "Coincheck" || company.name === "liquid by QUOINE" || company.name === "Binance" || company.name === "Bybit" || company.name === "Coinbase" || company.name === "Kraken" || company.name === "KuCoin" || company.name === "Gemini" || company.name === "Bitstamp" || company.name === "Bitfinex" || company.name === "Huobi" || company.name === "OKX" || company.name === "FTX" || company.name === "bitbank" || company.name === "SBI VCトレード" || company.name === "BITPOINT" || company.name === "Binance Japan" || company.name === "BitTrade" || company.name === "楽天ウォレット" || company.name === "LINE BITMAX" ? (
+                          {company.name === "Coincheck" || company.name === "GMOコイン" || company.name === "bitFlyer" || company.name === "bitbank" || company.name === "SBI VCトレード" || company.name === "BITPOINT" || company.name === "Binance Japan" || company.name === "BitTrade" || company.name === "楽天ウォレット" || company.name === "LINE BITMAX" || company.name === "Binance" || company.name === "Bybit" || company.name === "Coinbase" || company.name === "Kraken" || company.name === "KuCoin" || company.name === "Gemini" || company.name === "Bitstamp" || company.name === "Bitget" ? (
                             <Button 
                               size="sm" 
                               className="w-full text-xs py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-between"
                               asChild
                             >
                               <Link to={
-                                company.name === "GMOコイン" ? "/crypto/gmo-coin" : 
-                                company.name === "DMM Bitcoin" ? "/crypto/dmm-bitcoin" : 
-                                company.name === "bitFlyer" ? "/crypto/bitflyer" : 
                                 company.name === "Coincheck" ? "/crypto/coincheck" : 
-                                company.name === "liquid by QUOINE" ? "/crypto/liquid-by-quoine" : 
+                                company.name === "GMOコイン" ? "/crypto/gmo-coin" : 
+                                company.name === "bitFlyer" ? "/crypto/bitflyer" : 
+                                company.name === "bitbank" ? "/crypto/bitbank" : 
+                                company.name === "SBI VCトレード" ? "/crypto/sbi-vc-trade" : 
+                                company.name === "BITPOINT" ? "/crypto/bitpoint" : 
+                                company.name === "Binance Japan" ? "/crypto/binance-japan" : 
+                                company.name === "BitTrade" ? "/crypto/bittrade" : 
+                                company.name === "楽天ウォレット" ? "/crypto/rakuten-wallet" : 
+                                company.name === "LINE BITMAX" ? "/crypto/line-bitmax" : 
                                 company.name === "Binance" ? "/crypto/binance" : 
-                                company.name === "Bybit" ? "/crypto/bybit" :
-                                company.name === "Coinbase" ? "/crypto/coinbase" :
-                                company.name === "Kraken" ? "/crypto/kraken" :
-                                company.name === "KuCoin" ? "/crypto/kucoin" :
-                                company.name === "Gemini" ? "/crypto/gemini" :
-                                company.name === "Bitstamp" ? "/crypto/bitstamp" :
-                                company.name === "Bitfinex" ? "/crypto/bitfinex" :
-                                company.name === "Huobi" ? "/crypto/huobi" :
-                                company.name === "OKX" ? "/crypto/okx" :
-                                company.name === "FTX" ? "/crypto/ftx" :
-                                company.name === "bitbank" ? "/crypto/bitbank" :
-                                company.name === "SBI VCトレード" ? "/crypto/sbi-vc-trade" :
-                                company.name === "BITPOINT" ? "/crypto/bitpoint" :
-                                company.name === "Binance Japan" ? "/crypto/binance-japan" :
-                                company.name === "BitTrade" ? "/crypto/bittrade" :
-                                company.name === "楽天ウォレット" ? "/crypto/rakuten-wallet" :
-                                "/crypto/line-bitmax"
+                                company.name === "Bybit" ? "/crypto/bybit" : 
+                                company.name === "Coinbase" ? "/crypto/coinbase" : 
+                                company.name === "Kraken" ? "/crypto/kraken" : 
+                                company.name === "KuCoin" ? "/crypto/kucoin" : 
+                                company.name === "Gemini" ? "/crypto/gemini" : 
+                                company.name === "Bitstamp" ? "/crypto/bitstamp" : 
+                                "/crypto/bitget"
                               }>
                                 詳細情報
                                 <ArrowRight className="h-4 w-4" />

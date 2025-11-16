@@ -103,7 +103,7 @@ const CryptoComparison = () => {
                     初心者の方へ
                   </p>
                   <p className="text-muted-foreground pl-10">
-                    まずはGMOコインやDMM Bitcoinなど、国内で運営されている信頼性の高い取引所から始めることをおすすめします。
+                    まずはGMOコインやCoincheckなど、国内で運営されている信頼性の高い取引所から始めることをおすすめします。
                     使いやすさと充実したサポート体制が魅力です。
                   </p>
                 </div>
@@ -128,15 +128,31 @@ const CryptoComparison = () => {
                 <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-green-500/10">
                   <p className="font-semibold text-green-600 mb-2 flex items-center gap-2">
                     <span className="inline-block w-8 h-8 bg-green-500/10 rounded-full flex items-center justify-center text-sm">4</span>
-                    目的別の選び方
+                    国内取引所目的別の選び方
                   </p>
                   <div className="text-muted-foreground pl-10 space-y-2">
                     <ul className="list-disc pl-5 space-y-1 text-sm">
-                      <li><span className="font-semibold">初心者:</span> GMOコイン、DMM Bitcoin、bitFlyer（使いやすい・サポート充実）</li>
-                      <li><span className="font-semibold">手数料重視:</span> GMOコイン、Coincheck（業界最安レベルの手数料）</li>
-                      <li><span className="font-semibold">先物取引:</span> Bybit（先物・デリバティブ取引の手数料が安い）</li>
-                      <li><span className="font-semibold">マイナーな暗号資産:</span> liquid by QUOINE（マイナーな暗号資産も取扱）</li>
-                      <li><span className="font-semibold">海外取引所:</span> Binance、Bybit（取扱銘柄が豊富）</li>
+                      <li><span className="font-semibold">初心者:</span> GMOコイン、Coincheck、bitFlyer（使いやすい・サポート充実）</li>
+                      <li><span className="font-semibold">手数料重視:</span> GMOコイン、Coincheck、bitbank（業界最安レベルの手数料）</li>
+                      <li><span className="font-semibold">マイナーな暗号資産:</span> SBI VCトレード（マイナーな暗号資産も取扱）</li>
+                      <li><span className="font-semibold">ポイント活用:</span> GMOコイン（GMOポイントが使える）</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-purple-500/10">
+                  <p className="font-semibold text-purple-600 mb-2 flex items-center gap-2">
+                    <span className="inline-block w-8 h-8 bg-purple-500/10 rounded-full flex items-center justify-center text-sm">5</span>
+                    海外取引所目的別の選び方
+                  </p>
+                  <div className="text-muted-foreground pl-10 space-y-2">
+                    <ul className="list-disc pl-5 space-y-1 text-sm">
+                      <li><span className="font-semibold">初心者:</span> Binance、Coinbase、Kraken（使いやすい・サポート充実）</li>
+                      <li><span className="font-semibold">手数料重視:</span> Binance、KuCoin、Kraken（業界最安レベルの手数料）</li>
+                      <li><span className="font-semibold">多様な暗号資産:</span> Binance、KuCoin、Gemini（500種類以上の暗号資産取扱）</li>
+                      <li><span className="font-semibold">先物取引:</span> Bybit、Binance、BitMEX（先物・デリバティブ取引の手数料が安い）</li>
+                      <li><span className="font-semibold">レバレッジ取引:</span> Bybit、BitMEX、Bitstamp（高レバレッジ取引に対応）</li>
+                      <li><span className="font-semibold">セキュリティ重視:</span> Coinbase、Gemini、Kraken（米国規制を満たすセキュリティ）</li>
+                      <li><span className="font-semibold">Copy Trading:</span> Bitget（Copy Trading機能が充実）</li>
                     </ul>
                   </div>
                 </div>

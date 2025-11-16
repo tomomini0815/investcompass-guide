@@ -128,16 +128,32 @@ const FXComparison = () => {
                 <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-green-500/10">
                   <p className="font-semibold text-green-600 mb-2 flex items-center gap-2">
                     <span className="inline-block w-8 h-8 bg-green-500/10 rounded-full flex items-center justify-center text-sm">4</span>
-                    目的別の選び方
+                    国内業者目的別の選び方
                   </p>
                   <div className="text-muted-foreground pl-10 space-y-2">
                     <ul className="list-disc pl-5 space-y-1 text-sm">
-                      <li><span className="font-semibold">初心者:</span> 松井証券、SBI FXトレード、外為どっとコム（少額・情報充実）</li>
-                      <li><span className="font-semibold">中上級者:</span> GMOクリック証券、DMM FX（高機能・大量取引）</li>
-                      <li><span className="font-semibold">スキャルピング:</span> ヒロセ通商（公認）</li>
-                      <li><span className="font-semibold">スワップ狙い:</span> みんなのFX（高スワップ）</li>
-                      <li><span className="font-semibold">多様な通貨:</span> IG証券、ヒロセ通商</li>
-                      <li><span className="font-semibold">ポイント活用:</span> 楽天FX、GMO外貨</li>
+                      <li><span className="font-semibold">初心者:</span> GMOクリック証券、外為どっとコム、DMM FX（使いやすい・サポート充実）</li>
+                      <li><span className="font-semibold">スプレッド重視:</span> GMOクリック証券、DMM FX、SBI FXトレード（業界最狭水準のスプレッド）</li>
+                      <li><span className="font-semibold">スワップポイント重視:</span> みんなのFX、DMM FX（高スワップ）</li>
+                      <li><span className="font-semibold">多様な通貨ペア:</span> IG証券、ヒロセ通商（約50種類以上の通貨ペア）</li>
+                      <li><span className="font-semibold">スキャルピング:</span> ヒロセ通商（スキャルピング公認）</li>
+                      <li><span className="font-semibold">ポイント活用:</span> 楽天FX（楽天ポイントが貯まる）</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="p-6 bg-background/80 backdrop-blur-sm rounded-xl border border-purple-500/10">
+                  <p className="font-semibold text-purple-600 mb-2 flex items-center gap-2">
+                    <span className="inline-block w-8 h-8 bg-purple-500/10 rounded-full flex items-center justify-center text-sm">5</span>
+                    海外業者目的別の選び方
+                  </p>
+                  <div className="text-muted-foreground pl-10 space-y-2">
+                    <ul className="list-disc pl-5 space-y-1 text-sm">
+                      <li><span className="font-semibold">初心者:</span> XM、Exness（使いやすい・サポート充実）</li>
+                      <li><span className="font-semibold">レバレッジ重視:</span> XM、FXGT（最大1000倍レバレッジ）</li>
+                      <li><span className="font-semibold">スプレッド重視:</span> Exness（業界最狭水準のスプレッド）</li>
+                      <li><span className="font-semibold">多様な通貨ペア:</span> Exness、iFOREX（80種類以上の通貨ペア）</li>
+                      <li><span className="font-semibold">スキャルピング:</span> TitanFX、Exness（スキャルピング推奨）</li>
+                      <li><span className="font-semibold">ボーナス重視:</span> FXGT、HFM（豪華ボーナス）</li>
                     </ul>
                   </div>
                 </div>
