@@ -78,6 +78,7 @@ const Index = () => {
       rating: 5,
       highlight: "総合1位",
       affiliateUrl: "https://www.sbisec.co.jp/",
+      detailUrl: "/securities/sbi-pro",
     },
     {
       rank: 2,
@@ -96,6 +97,7 @@ const Index = () => {
       rating: 5,
       highlight: "ポイント還元No.1",
       affiliateUrl: "https://www.rakuten-sec.co.jp/",
+      detailUrl: "/securities/rakuten-pro",
     },
     {
       rank: 3,
@@ -114,6 +116,7 @@ const Index = () => {
       rating: 4,
       highlight: "米国株取引におすすめ",
       affiliateUrl: "https://www.monex.co.jp/",
+      detailUrl: "/securities/monex-pro",
     },
   ];
 

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Check } from "lucide-react";
+import { ExternalLink, Check, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface RankingCardProps {
   rank: number;
@@ -30,6 +31,8 @@ interface RankingCardProps {
   rating?: number;
   highlight?: string;
   affiliateUrl: string;
+  // 詳細ページ用プロパティ
+  detailUrl?: string;
 }
 
 const RankingCard = ({
@@ -54,7 +57,9 @@ const RankingCard = ({
   rating,
   highlight,
   affiliateUrl,
+  detailUrl,
 }: RankingCardProps) => {
+  const navigate = useNavigate();
   const rankColors = {
     1: "gradient-primary text-white",
     2: "bg-secondary text-secondary-foreground",
@@ -135,6 +140,16 @@ const RankingCard = ({
           <Badge variant="outline" className="border-secondary text-secondary">
             NISA・つみたてNISA対応
           </Badge>
+        )}
+
+        {detailUrl && (
+          <Button 
+            className="w-full whitespace-nowrap py-2 bg-blue-100 text-primary hover:bg-blue-200 shadow-md hover:shadow-lg transition-all duration-300 justify-center font-medium"
+            onClick={() => navigate(detailUrl)}
+          >
+            詳細情報を見る
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         )}
 
         <Button 
