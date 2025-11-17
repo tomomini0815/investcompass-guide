@@ -70,31 +70,31 @@ import { default as SbiSecuritiesDetailPro } from "./pages/SbiSecuritiesDetailPr
 import { default as RakutenSecuritiesDetailPro } from "./pages/RakutenSecuritiesDetailPro";
 import { default as MonexSecuritiesDetailPro } from "./pages/MonexSecuritiesDetailPro";
 // 暗号資産取引所詳細ページのインポート
-// import GmoCoinDetailed from "./pages/GmoCoinDetailed";
-// import DmmBitcoinDetailed from "./pages/DmmBitcoinDetailed";
-// import BitflyerDetailed from "./pages/BitflyerDetailed";
-// import CoincheckDetailed from "./pages/CoincheckDetailed";
-// import LiquidByQuoineDetailed from "./pages/LiquidByQuoineDetailed";
-// import BinanceDetailed from "./pages/BinanceDetailed";
-// import BybitDetailed from "./pages/BybitDetailed";
-// import CoinbaseDetailed from "./pages/CoinbaseDetailed";
-// import KrakenDetailed from "./pages/KrakenDetailed";
-// import KuCoinDetailed from "./pages/KuCoinDetailed";
-// import GeminiDetailed from "./pages/GeminiDetailed";
-// import BitstampDetailed from "./pages/BitstampDetailed";
-// import BitfinexDetailed from "./pages/BitfinexDetailed";
-// import HuobiDetailed from "./pages/HuobiDetailed";
-// import OkxDetailed from "./pages/OkxDetailed";
-// import FtxDetailed from "./pages/FtxDetailed";
-// import BitbankDetailed from "./pages/BitbankDetailed";
-// import SbiVcTradeDetailed from "./pages/SbiVcTradeDetailed";
-// import BitpointDetailed from "./pages/BitpointDetailed";
-// import BinanceJapanDetailed from "./pages/BinanceJapanDetailed";
-// import BitTradeDetailed from "./pages/BitTradeDetailed";
-// import RakutenWalletDetailed from "./pages/RakutenWalletDetailed";
-// import LineBitmaxDetailed from "./pages/LineBitmaxDetailed";
+import GmoCoinDetailed from "./pages/GmoCoinDetailed";
+import DmmBitcoinDetailed from "./pages/DmmBitcoinDetailed";
+import BitflyerDetailed from "./pages/BitflyerDetailed";
+import CoincheckDetailed from "./pages/CoincheckDetailed";
+import LiquidByQuoineDetailed from "./pages/LiquidByQuoineDetailed";
+import BinanceDetailed from "./pages/BinanceDetailed";
+import BybitDetailed from "./pages/BybitDetailed";
+import CoinbaseDetailed from "./pages/CoinbaseDetailed";
+import KrakenDetailed from "./pages/KrakenDetailed";
+import KuCoinDetailed from "./pages/KuCoinDetailed";
+import GeminiDetailed from "./pages/GeminiDetailed";
+import BitstampDetailed from "./pages/BitstampDetailed";
+import BitfinexDetailed from "./pages/BitfinexDetailed";
+import HuobiDetailed from "./pages/HuobiDetailed";
+import OkxDetailed from "./pages/OkxDetailed";
+import FtxDetailed from "./pages/FtxDetailed";
+import BitbankDetailed from "./pages/BitbankDetailed";
+import SbiVcTradeDetailed from "./pages/SbiVcTradeDetailed";
+import BitpointDetailed from "./pages/BitpointDetailed";
+import BinanceJapanDetailed from "./pages/BinanceJapanDetailed";
+import BitTradeDetailed from "./pages/BitTradeDetailed";
+import RakutenWalletDetailed from "./pages/RakutenWalletDetailed";
+import LineBitmaxDetailed from "./pages/LineBitmaxDetailed";
 // Bitget詳細ページのインポート
-// import BitgetDetailed from "./pages/BitgetDetailed";
+import BitgetDetailed from "./pages/BitgetDetailed";
 
 const queryClient = new QueryClient();
 
@@ -154,7 +154,7 @@ const App = () => (
           <Route path="/securities/rakuten-pro" element={<RakutenSecuritiesDetailPro />} />
           <Route path="/securities/monex-pro" element={<MonexSecuritiesDetailPro />} />
           {/* 暗号資産取引所詳細ページのルート */}
-          {/* <Route path="/crypto/gmo-coin" element={<GmoCoinDetailed />} />
+          <Route path="/crypto/gmo-coin" element={<GmoCoinDetailed />} />
           <Route path="/crypto/dmm-bitcoin" element={<DmmBitcoinDetailed />} />
           <Route path="/crypto/bitflyer" element={<BitflyerDetailed />} />
           <Route path="/crypto/coincheck" element={<CoincheckDetailed />} />
@@ -176,9 +176,9 @@ const App = () => (
           <Route path="/crypto/binance-japan" element={<BinanceJapanDetailed />} />
           <Route path="/crypto/bittrade" element={<BitTradeDetailed />} />
           <Route path="/crypto/rakuten-wallet" element={<RakutenWalletDetailed />} />
-          <Route path="/crypto/line-bitmax" element={<LineBitmaxDetailed />} */}
+          <Route path="/crypto/line-bitmax" element={<LineBitmaxDetailed />} />
           {/* Bitget詳細ページのルート */}
-          {/* <Route path="/crypto/bitget" element={<BitgetDetailed />} /> */}
+          <Route path="/crypto/bitget" element={<BitgetDetailed />} />
           <Route path="/guide/:id" element={<GuideDetail />} />
           <Route path="/tools" element={<Tools />} />
           {/* 新しいツールページのルート */}
