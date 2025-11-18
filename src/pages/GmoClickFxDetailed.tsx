@@ -7,62 +7,6 @@ import { ExternalLink, ArrowLeft, CheckCircle, TrendingUp, Shield, Smartphone, Z
 import { Helmet } from "react-helmet-async";
 
 const GmoClickFxDetailed = () => {
-  const features = [
-    {
-      title: "FX取引高世界第1位の実績（※）",
-      description: "FX取引高世界第1位の実績があります。信頼性と実績があり、多くのユーザーに支持されています。",
-      icon: <TrendingUp className="h-6 w-6" />
-    },
-    {
-      title: "業界最狭水準のスプレッドを常に維持",
-      description: "業界最狭水準のスプレッドを常に維持しています。コストを抑えて取引が可能です。",
-      icon: <TrendingUp className="h-6 w-6" />
-    },
-    {
-      title: "10,000通貨単位から取引可能（南アフリカランド/円など一部は100,000通貨）",
-      description: "10,000通貨単位からの取引が可能です。南アフリカランド/円など一部の通貨ペアは100,000通貨単位から取引可能です。",
-      icon: <Zap className="h-6 w-6" />
-    },
-    {
-      title: "PC版「はっちゅう君FX+」、スマホアプリが高機能",
-      description: "PC版「はっちゅう君FX+」、スマホアプリが高機能で、多彩なチャート分析機能や、直感的な操作性を備えています。",
-      icon: <Smartphone className="h-6 w-6" />
-    },
-    {
-      title: "取引手数料完全無料",
-      description: "取引手数料が完全無料です。スプレッド以外のコストが発生しないため、低コストでの取引が可能です。",
-      icon: <Wallet className="h-6 w-6" />
-    },
-    {
-      title: "高い約定力とシステムの安定性",
-      description: "高い約定力とシステムの安定性を誇ります。取引量が多い中上級者や、システムの安定性を重視するユーザーに最適です。",
-      icon: <Shield className="h-6 w-6" />
-    },
-    {
-      title: "安心の信託保全",
-      description: "お客様の大切な資産を信託銀行を通じて全額信託保全しています。万が一の際も、資産は保護されるため、安心して取引が可能です。",
-      icon: <Shield className="h-6 w-6" />
-    }
-  ];
-
-  const steps = [
-    {
-      step: "STEP1",
-      title: "口座開設申込（所要時間：5-10分）",
-      description: "GMOクリック証券FXネオ公式サイトから必要事項を入力してください。氏名、住所、電話番号、メールアドレスなどの基本情報と、職業、年収などの属性情報を入力します。本人確認書類（運転免許証、パスポート、マイナンバーカードのいずれか）の準備も同時に進めてください。"
-    },
-    {
-      step: "STEP2",
-      title: "本人確認（所要時間：1-2営業日）",
-      description: "準備した本人確認書類（運転免許証、パスポート、マイナンバーカードのいずれか）と顔写真をスマートフォンで撮影し、アップロードします。住所確認のため、公共料金の請求書などのスキャンも必要になる場合があります。審査は通常1-2営業日かかり、SMSまたはメールで結果が通知されます。"
-    },
-    {
-      step: "STEP3",
-      title: "取引開始（本人確認審査完了後）",
-      description: "本人確認審査が完了すると、GMOクリック証券FXネオの取引口座が開設されます。初回入金（クレジットカードまたは銀行振込）が完了すれば、10,000通貨単位から取引を開始できます。取引時間は平日・祝日 7:00～21:00、土日は取引不可（口座開設・入出金のみ可能）です。"
-    }
-  ];
-
   const importantNotes = [
     "FX取引は元本や利益を保証するものではありません",
     "相場の変動により損失が発生する可能性があります",
@@ -260,19 +204,7 @@ const GmoClickFxDetailed = () => {
         <section className="py-16 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-8 max-w-4xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-primary">【2024年〜最新版】GMOクリック証券（FXネオ）徹底解説！メリット・デメリットとトレーダーからの評判</h2>
-              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-left">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <AlertCircle className="h-5 w-5 text-yellow-400" />
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm text-yellow-700">
-                      <span className="font-bold">※Finance Magnates「2020年年間FX取引高調査報告書」において、2012年から2020年の9年連続でFX取引高世界第1位を記録。</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <h2 className="text-3xl font-bold mb-6 text-primary">GMOクリック証券（FXネオ）徹底解説</h2>
             </div>
             
             <Card className="border-2 shadow-lg">
@@ -457,58 +389,6 @@ const GmoClickFxDetailed = () => {
                 </Button>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* GMOクリック証券FXネオの特徴 */}
-        <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
-          <div className="container mx-auto px-8">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">GMOクリック証券FXネオの特徴</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {features.map((feature, index) => (
-                  <Card key={index} className="border-2 hover:shadow-xl transition-all duration-300 overflow-hidden group h-full">
-                    <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5">
-                      <CardTitle className="flex items-start gap-4">
-                        <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform">
-                          {feature.icon}
-                        </div>
-                        <span className="text-xl pt-1">{feature.title}</span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-6">
-                      <p className="text-muted-foreground whitespace-pre-line leading-relaxed">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* GMOクリック証券FXネオの始め方｜簡単3ステップ */}
-        <section className="py-16 bg-gradient-to-b from-background to-muted/30">
-          <div className="container mx-auto px-8">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">GMOクリック証券FXネオの始め方｜簡単3ステップ</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {steps.map((step, index) => (
-                  <Card key={index} className="border-2 hover:shadow-lg transition-all duration-300 text-center h-full bg-gradient-to-b from-background to-muted/20">
-                    <CardHeader>
-                      <div className="bg-primary/10 text-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <span className="text-2xl font-bold">{step.step}</span>
-                      </div>
-                      <CardTitle className="text-xl">{step.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{step.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
