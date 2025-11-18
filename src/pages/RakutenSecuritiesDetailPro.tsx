@@ -473,7 +473,7 @@ const RakutenSecuritiesDetailPro = () => {
                   <ul className="space-y-4">
                     {weaknesses.map((weakness, index) => (
                       <li key={index} className="flex items-start">
-                        <CircleX className="h-5 w-5 text-red-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <CircleX className="h-5 w-5 text-muted-foreground mt-0.5 mr-2 flex-shrink-0" />
                         <span className="text-muted-foreground">{weakness}</span>
                       </li>
                     ))}
@@ -519,7 +519,7 @@ const RakutenSecuritiesDetailPro = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">口座開設の方法</h2>
+                <h2 className="text-3xl font-bold mb-4">口座開設手順</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   楽天証券の口座開設は、スマートフォンと本人確認書類があれば、オンラインで最短5分程度で申し込みが完了します。
                 </p>
