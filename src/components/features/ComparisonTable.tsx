@@ -149,12 +149,12 @@ const ComparisonTable = () => {
     },
   ];
 
-  // 証券会社名からスラッグを生成する関数
+  // 証券会社名からスラッグを生成する関数（pro版対応）
   const getCompanySlug = (name: string) => {
     const slugMap: { [key: string]: string } = {
-      "SBI証券": "sbi",
-      "楽天証券": "rakuten",
-      "マネックス証券": "monex",
+      "SBI証券": "sbi-pro",
+      "楽天証券": "rakuten-pro",
+      "マネックス証券": "monex-pro",
       "IG証券": "ig",
       "松井証券": "matsui",
       "DMM株（DMM.com証券）": "dmm",
@@ -219,7 +219,7 @@ const ComparisonTable = () => {
           asChild
         >
           <Link to={`/securities/${getCompanySlug(company.name)}`}>
-            詳細情報
+            詳細情報を見る
             <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
@@ -393,7 +393,7 @@ const ComparisonTable = () => {
                             asChild
                           >
                             <Link to={`/securities/${getCompanySlug(company.name)}`}>
-                              詳細情報
+                              詳細情報を見る
                               <ArrowRight className="h-4 w-4" />
                             </Link>
                           </Button>
