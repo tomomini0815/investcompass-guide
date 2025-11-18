@@ -72,7 +72,7 @@ const GmoClickFxDetailed = () => {
   // 新しく追加するコンテンツ
   const introductionContent = [
     {
-      title: "なぜGMOクリック証券（FXネオ）は選ばれ続けるのか？",
+      title: "なぜ選ばれ続けるのか？",
       content: "数あるFX業者の中で、常に業界のトップランナーとして君臨し続けるのが、GMOクリック証券の「FXネオ」です。かつてはFX取引高世界第1位（※）を長年にわたり記録し、その実績は今なお多くのトレーダーからの信頼の証となっています。なぜ、GMOクリック証券はこれほどまでに支持されるのでしょうか。\n\nその理由は、「低コスト」「高機能ツール」「高い信頼性」という、トレーダーが求める三つの要素を極めて高いレベルで満たしているからです。スプレッドの狭さという直接的な取引コストの低さに加え、PC・スマホともにプロ水準の取引ツールを提供。さらに、東証プライム上場のGMOフィナンシャルホールディングス株式会社の中核企業としての安心感も兼ね備えています。"
     }
   ];
@@ -286,10 +286,10 @@ const GmoClickFxDetailed = () => {
           </div>
         </section>
 
-        {/* 第1章：GMOクリック証券とは？- 会社概要と揺るぎない信頼性 */}
+        {/* 会社概要と揺るぎない信頼性 */}
         <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">第1章：GMOクリック証券とは？- 会社概要と揺るぎない信頼性</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">会社概要と揺るぎない信頼性</h2>
             
             <div className="space-y-8">
               {companyOverview.map((section, index) => (
@@ -311,10 +311,10 @@ const GmoClickFxDetailed = () => {
           </div>
         </section>
 
-        {/* 第2章：GMOクリック証券（FXネオ）のメリット - 選ばれる8つの理由 */}
+        {/* メリット - 選ばれる8つの理由 */}
         <section className="py-16 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-8 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">第2章：GMOクリック証券（FXネオ）のメリット - 選ばれる8つの理由</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">メリット - 選ばれる8つの理由</h2>
             
             <div className="space-y-8">
               {benefits.map((benefit, index) => (
@@ -322,7 +322,7 @@ const GmoClickFxDetailed = () => {
                   <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5">
                     <CardTitle className="text-2xl flex items-center gap-2">
                       <CheckCircle className="h-6 w-6 text-primary" />
-                      メリット{index + 1}：{benefit.title}
+                      {index + 1}. {benefit.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -336,24 +336,10 @@ const GmoClickFxDetailed = () => {
           </div>
         </section>
 
-        {/* 第3章：GMOクリック証券（FXネオ）のデメリットと注意点 */}
+        {/* デメリットと注意点 */}
         <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">第3章：GMOクリック証券（FXネオ）のデメリットと注意点</h2>
-            
-            <Card className="border-2 border-yellow-500/50 bg-yellow-50/50 shadow-lg mb-8">
-              <CardHeader className="bg-yellow-100/50">
-                <CardTitle className="flex items-center gap-2 text-yellow-800">
-                  <AlertCircle className="h-5 w-5" />
-                  重要な注意点
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <p className="text-yellow-700">
-                  多くのメリットがある一方で、いくつかのデメリットや注意点も存在します。これらを理解した上で利用することが重要です。
-                </p>
-              </CardContent>
-            </Card>
+            <h2 className="text-3xl font-bold mb-12 text-center">デメリットと注意点</h2>
             
             <div className="space-y-8">
               {drawbacks.map((drawback, index) => (
@@ -361,7 +347,7 @@ const GmoClickFxDetailed = () => {
                   <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5">
                     <CardTitle className="text-2xl flex items-center gap-2">
                       <AlertCircle className="h-6 w-6 text-primary" />
-                      デメリット{index + 1}：{drawback.title}
+                      {index + 1}. {drawback.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -375,10 +361,10 @@ const GmoClickFxDetailed = () => {
           </div>
         </section>
 
-        {/* 第4章：口座開設から取引開始までの簡単4ステップ */}
+        {/* 口座開設から取引開始までの簡単4ステップ */}
         <section className="py-16 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-8 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">第4章：口座開設から取引開始までの簡単4ステップ</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">口座開設から取引開始までの簡単4ステップ</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {openingSteps.map((step, index) => (
@@ -398,10 +384,10 @@ const GmoClickFxDetailed = () => {
           </div>
         </section>
 
-        {/* 第5章：GMOクリック証券はどんな人におすすめ？ */}
+        {/* おすすめ対象者 */}
         <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-8 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">第5章：GMOクリック証券はどんな人におすすめ？</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">おすすめ対象者</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {recommendations.map((recommendation, index) => (
@@ -421,10 +407,10 @@ const GmoClickFxDetailed = () => {
           </div>
         </section>
 
-        {/* 第6章：よくある質問（FAQ） */}
+        {/* よくある質問（FAQ） */}
         <section className="py-16 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-8 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">第6章：よくある質問（FAQ）</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">よくある質問（FAQ）</h2>
             
             <div className="space-y-6">
               {faqs.map((faq, index) => (
