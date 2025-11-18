@@ -152,9 +152,9 @@ const ComparisonTable = () => {
   // 証券会社名からスラッグを生成する関数
   const getCompanySlug = (name: string) => {
     const slugMap: { [key: string]: string } = {
-      "SBI証券": "sbi-pro",
-      "楽天証券": "rakuten-pro",
-      "マネックス証券": "monex-pro",
+      "SBI証券": "sbi",
+      "楽天証券": "rakuten",
+      "マネックス証券": "monex",
       "IG証券": "ig",
       "松井証券": "matsui",
       "DMM株（DMM.com証券）": "dmm",

@@ -12,8 +12,8 @@ const Header = () => {
     { name: "ホーム", href: "/" },
     { name: "投資ガイド", href: "/guide/investment-basics" },
     { name: "証券会社比較", href: "/comparison" },
-    { name: "暗号資産取引所比較", href: "/crypto-comparison" },
     { name: "FX業者比較", href: "/fx-comparison" },
+    { name: "暗号資産取引所比較", href: "/crypto-comparison" },
     { name: "投資計算ツール", href: "/tools" },
   ];
 
@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" style={{ '--header-height': '4rem' } as React.CSSProperties}>
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl">
           <div className="gradient-primary p-2 rounded-lg">
